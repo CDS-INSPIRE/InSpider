@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deegreeServicesMetadata configVersion="3.4.0" xmlns="urn:cds-inspire:deegree-extension:metadata"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:cds-inspire:deegree-extension:metadata metadatadao.xsd">
+  <ApplicationContextHolder>cds-inspire</ApplicationContextHolder>
+  
+  <ExtendedCapabilities>
+    <inspire_vs:ExtendedCapabilities
+      xmlns:inspire_common="http://inspire.ec.europa.eu/schemas/common/1.0"
+      xmlns:inspire_vs="http://inspire.ec.europa.eu/schemas/inspire_vs/1.0"
+      xsi:schemaLocation="http://inspire.ec.europa.eu/schemas/inspire_vs/1.0 http://inspire.ec.europa.eu/schemas/inspire_vs/1.0/inspire_vs.xsd">
+      <inspire_common:MetadataUrl>
+        <inspire_common:URL>To be replaced by the
+          DatabaseMetadataProvider</inspire_common:URL>
+        <inspire_common:MediaType>application/vnd.iso.19139+xml</inspire_common:MediaType>
+      </inspire_common:MetadataUrl>
+      <inspire_common:SupportedLanguages>
+        <inspire_common:DefaultLanguage>
+          <inspire_common:Language>dut</inspire_common:Language>
+        </inspire_common:DefaultLanguage>
+      </inspire_common:SupportedLanguages>
+      <inspire_common:ResponseLanguage>
+        <inspire_common:Language>dut</inspire_common:Language>
+      </inspire_common:ResponseLanguage>
+    </inspire_vs:ExtendedCapabilities>
+  </ExtendedCapabilities>
+  
+</deegreeServicesMetadata>

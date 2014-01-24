@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<id>http://www.inspire-provincies.nl/codeList/DatasetTypeCode/HazardArea</id>
+	<title>DatasetTypeCode Hazard Area</title>
+	<entry>
+		<id>http://www.inspire-provincies.nl/codeList/DatasetTypeCode/HazardArea/ntbd</id>
+		<title>Natuurbranden</title>
+		<category term="CodeListValue" />
+	</entry>
+	<entry>
+		<id>http://www.inspire-provincies.nl/codeList/DatasetTypeCode/HazardArea/rorosg</id>
+		<title>ROR Overstroomd gebied</title>
+		<category term="CodeListValue" />
+	</entry>
+</feed>

@@ -1,0 +1,24 @@
+<table class="cds-table log-items">
+    <thead>
+        <tr>
+            <th class="loglevel">&nbsp;</th>
+            <th class="message">Omschrijving</th>
+        </tr>
+    </thead>
+    <tbody>
+        #set($odd = true)
+		#foreach($logItem in $logItems)
+		<tr class="#if($odd) odd #else even #end#if($logItem.logLevel=="WARNING") critical#elseif($logItem.logLevel=="ERROR") error#end">
+            <td>
+            #if($logItem.logLevel=="WARNING")
+            Waarschuwing
+            #elseif($logItem.logLevel=="ERROR")
+            Fout
+            #end
+            </td>
+		    <td class="message">#e($logItem.message)</td>
+		</tr>
+		#set($odd = !$odd)
+		#end
+    </tbody>
+</table>

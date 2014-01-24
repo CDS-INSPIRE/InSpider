@@ -1,0 +1,54 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>	
+	<artifactId>themes</artifactId>	
+	<parent>
+		<groupId>nl.ipo.cds</groupId>
+		<artifactId>cds-parent</artifactId>
+		<version>2.2-SNAPSHOT</version>
+	</parent>
+	<packaging>pom</packaging>
+	
+	<dependencies>		
+		<dependency>
+			<groupId>nl.ipo.cds</groupId>
+			<artifactId>theme-areamanagement</artifactId>
+			<version>2.2-SNAPSHOT</version>
+		</dependency>		
+		<dependency>
+			<groupId>nl.ipo.cds</groupId>
+			<artifactId>theme-exposedelements</artifactId>
+			<version>2.2-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>nl.ipo.cds</groupId>
+			<artifactId>theme-habitat</artifactId>
+			<version>2.2-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>nl.ipo.cds</groupId>
+			<artifactId>theme-hazardarea</artifactId>
+			<version>2.2-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>nl.ipo.cds</groupId>
+			<artifactId>theme-productionfacility</artifactId>
+			<version>2.2-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>nl.ipo.cds</groupId>
+			<artifactId>theme-productioninstallation</artifactId>
+			<version>2.2-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>nl.ipo.cds</groupId>
+			<artifactId>theme-productioninstallationpart</artifactId>
+			<version>2.2-SNAPSHOT</version>
+		</dependency>		
+		<dependency>
+			<groupId>nl.ipo.cds</groupId>
+			<artifactId>theme-riskzone</artifactId>
+			<version>2.2-SNAPSHOT</version>
+		</dependency>  
+	</dependencies>
+</project>

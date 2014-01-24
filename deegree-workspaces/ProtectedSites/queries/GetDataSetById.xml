@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wfs:StoredQueryDefinition 
+    xmlns:wfs="http://www.opengis.net/wfs/2.0"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:fes="http://www.opengis.net/fes/2.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ps="urn:x-inspire:specification:gmlas:ProtectedSites:3.0"
+    xsi:schemaLocation="http://www.opengis.net/wfs/2.0 http://schemas.opengis.net/wfs/2.0/wfs.xsd"
+    id="urn:ogc:def:storedQuery:IPO::GetDataSetById">
+    <wfs:Title>Get data set by id, crs and language</wfs:Title>    
+    <wfs:Parameter name="CRS" type="xs:string"/>
+    <wfs:Parameter name="DataSetId" type="xs:string"/>
+    <wfs:Parameter name="Language" type="xs:string"/>
+    <wfs:QueryExpressionText returnFeatureTypes="ps:ProtectedSite" language="urn:ogc:def:queryLanguage:OGC-WFS::WFS_QueryExpression" isPrivate="true">
+        <wfs:Query srsName="${CRS}" typeNames="ps:ProtectedSite">
+            <fes:Filter>
+                <fes:PropertyIsEqualTo>
+                    <fes:ValueReference>ps:siteDesignation/ps:DesignationType/ps:designationScheme</fes:ValueReference>
+                    <fes:Literal>${DataSetId}</fes:Literal>
+                </fes:PropertyIsEqualTo>
+            </fes:Filter>
+        </wfs:Query>
+    </wfs:QueryExpressionText>
+</wfs:StoredQueryDefinition>

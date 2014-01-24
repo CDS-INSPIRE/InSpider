@@ -1,0 +1,898 @@
+
+	.dojoDndAvatar {
+		width: 16em;
+	}
+
+/* Header: */
+	.cdsAttributePanelHeader {
+		border: solid 1px #B5BCC7 !important;
+		background-color: #EFEFEF !important;
+		background-image: linear-gradient(rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0) 100%) !important;
+	}
+	.cdsMappingPanelHeader h2 {
+		margin-left: 3em;
+		display: inline;
+	}
+	.cdsMappingPanelHeader h2 span {
+		font-size: inherit;
+	}
+
+	.cdsAttributePanelInfo {
+		background-color: #FFEAA6 !important;
+		border: solid 1px #E1CA82; 
+	}
+	
+	.cdsAttributePanelOverlay {
+		position: absolute;
+		background-color: #FFFFFF;
+		left: 0px;
+		right: 0px;
+		top: 0px;
+		bottom: 0px;
+	}
+	
+	.cdsAttributePanelMessageContainer {
+		border-width: 2px;
+		border-style: solid;
+		border-color: transparent;
+		padding: .2em;
+		margin: .2em;
+		margin-right: 14em;
+	}
+	
+	.cdsAttributePanelMessageIcon {
+		display: block;
+		width: 16px;
+		height: 16px;
+		float: left;
+	}
+	
+	.cdsAttributePanelMessageText {
+		display: block;
+		margin-left: 20px;
+		font-weight: bold;
+	}
+	
+	.cdsAttributePanelMessageContainer-info {
+	}
+	
+	.cdsAttributePanelMessageContainer-success {
+		border-color: #45e791;
+	}
+	.cdsAttributePanelMessageContainer-success .cdsAttributePanelMessageIcon {
+		background: url(../images/attributemapping/icon-ok.png) top left no-repeat;
+	}
+	
+	.cdsAttributePanelMessageContainer-warning {
+		border-color: #e7a845;
+	}
+	.cdsAttributePanelMessageContainer-warning .cdsAttributePanelMessageIcon {
+		background: url(../images/attributemapping/icon-warning.png) top left no-repeat;
+	}
+	
+	.cdsAttributePanelMessageContainer-error {
+		border-color: #fb2f2f;
+	}
+	.cdsAttributePanelMessageContainer-error .cdsAttributePanelMessageIcon {
+		background: url(../images/attributemapping/icon-error.png) top left no-repeat;
+	}
+	
+	.cdsAttributePanelMessageContainer-working .cdsAttributePanelMessageIcon {
+		background: url(../images/attributemapping/spinner.gif) top left no-repeat;
+	}
+	
+/*** Tab container: ***/
+
+	.cdsAttributePanelTabModified span.tabLabel {
+		font-style: italic;
+	}
+	
+/* Rows: */
+	.cdsAttributePanelRow {
+	}
+	
+	.cdsAttributePanelRowContainer {
+		white-space: nowrap;
+	}
+	
+/* Placeholder: */
+	.cdsAttributePanelPlaceholder, .cdsAttributePanelEmptyInput {
+		display: inline-block;
+		
+		/* IE 7: */
+		zoom: 1;
+		*display: inline;
+	}
+	
+	.cdsAttributePanelPlaceholder {
+		/* outline: dotted 1px red; */
+	}
+
+	.cdsAttributePanelPlaceholderContent, .cdsAttributePanelEmptyInputContent {
+		height: 5em;
+	}
+	
+	.cdsAttributePanelPlaceholderDownArrow, .cdsAttributePanelEmptyInputDownArrow {
+		height: 45px;
+	}
+	
+	.cdsAttributePanelEmptyInputContent {
+		margin: 0.5em;
+		border: 2px solid #ccc;
+		border-radius: 4px;
+		box-shadow: 0 1px 2px rgba(0,0,0,.4), 0 1px 0 rgba(255,255,255,.5) inset;
+		background-color: #ddd;
+		background-image: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,0));
+	}
+	
+	.cdsAttributePanelEmptyInputContent div {
+		display: block;
+		height: 5em;
+		background: url(../images/attributemapping/empty-input.png) center center no-repeat;
+	}
+	
+/* Blocks: */
+	.cdsAttributePanelBlock {
+		display: inline-block;
+		
+		/* IE 7: */
+		zoom: 1;
+		*display: inline;
+	}
+	
+	.cdsAttributePanelBlockHover {
+	}
+	
+	.cdsAttributePanelBlockFixed {
+		outline: none;
+	}
+	
+	.cdsAttributePanelBlockTopMargin {
+		height: 0.5em;
+	}
+	
+	.cdsAttributePanelBlockCenter {
+		position: relative;
+		height: 5em;
+	}
+	
+	.cdsAttributePanelBlockLeftMargin {
+		width: 0.5em;
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		top: 0px;
+		bottom: 0px;
+	}
+	
+	.cdsAttributePanelBlockContent {
+		border-style: solid !important;
+		border-width: 2px !important;
+		border-color: #e1ca82;
+		position: absolute;
+		top: 0px;
+		bottom: 0px;
+		left: 0.5em;
+		right: 0.5em;
+		background-color: #EFEFEF;
+		cursor: move;
+		padding: 6px;
+		
+		/* CSS 3 borders: */
+		border: 2px solid #ccc;
+		border-radius: 4px;
+		box-shadow: 0 1px 2px rgba(0,0,0,.4), 0 1px 0 rgba(255,255,255,.5) inset;
+		background-color: #ddd;
+		background-image: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,0));
+		
+		border-color: #e1ca82;
+		background-color: #ffeaa6;
+	}
+	
+	.cdsAttributePanelBlockHover .cdsAttributePanelBlockContent {
+		box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.6);
+		transform: translate(-2px, -2px);
+	}
+	
+	.cdsAttributePanelBlockTypeDescription {
+		padding: 2px;	
+		font-style: italic;
+	}
+	.cdsAttributePanelBlockTitle {
+		padding: 2px;
+		overflow: hidden;
+		font-weight: bold;
+		white-space: normal;
+		height: 2.3em;
+	}
+	
+	.cdsAttributePanelBlockFixed .cdsAttributePanelBlockContent {
+		border-color: #a6e761 !important;
+		cursor: default;
+		background-color: #b5f372;
+		box-shadow: 0 1px 2px rgba(0,0,0,.4), 0 1px 0 rgba(255,255,255,.5) inset;
+		transform: none;
+	}
+	
+	.cdsAttributePanelBlockNoInputs .cdsAttributePanelBlockContent,
+	.cdsAttributePanelBlockNoInputs .cdsAttributePanelBlockAdd {
+		border-color: #59add4 !important;
+		background-color: #61bde7;
+	} 
+	
+	.cdsAttributePanelBlockRightMargin {
+		width: 0.5em;
+		position: absolute;
+		top: 0px;
+		right: 0px;
+		top: 0px;
+		bottom: 0px;
+	}
+	
+	.cdsAttributePanelBlockBottomMargin {
+		height: 0.5em;
+	}
+	
+	.cdsAttributePanelBlockDownArrow, .cdsAttributePanelEmptyInputDownArrow {
+		height: 45px;
+		background: url(../images/attributemapping/down-arrow.png) top center no-repeat;
+	}
+	
+
+	.cdsAttributePanelBlockOver-left .cdsAttributePanelBlockLeftMargin {
+		position: absolute;
+		z-index: 1000;
+		background-color: black;
+	}
+	.cdsAttributePanelBlockOver-right .cdsAttributePanelBlockRightMargin {
+		background-color: black;
+	}
+	.cdsAttributePanelBlockOver-bottom .cdsAttributePanelBlockBottomMargin {
+		background-color: black;
+	}
+	.cdsAttributePanelBlockOver-top .cdsAttributePanelBlockTopMargin {
+		background-color: black;
+	}
+
+	/*
+	.cdsAttributePanelBlockOver-left .cdsAttributePanelBlockContent {
+		background-image: url(../images/attributemapping/direction-left.png);
+		background-position: left center;
+		background-repeat: no-repeat;
+	}
+	 
+	.cdsAttributePanelBlockOver-right .cdsAttributePanelBlockContent {
+		background-image: url(../images/attributemapping/direction-right.png);
+		background-position: right center;
+		background-repeat: no-repeat;
+	}
+	 
+	.cdsAttributePanelBlockOver-bottom .cdsAttributePanelBlockContent {
+		background-image: url(../images/attributemapping/direction-bottom.png);
+		background-position: center bottom;
+		background-repeat: no-repeat;
+	}
+	 
+	.cdsAttributePanelBlockOver-top .cdsAttributePanelBlockContent {
+		background-image: url(../images/attributemapping/direction-top.png);
+		background-position: center top;
+		background-repeat: no-repeat;
+	}
+	*/
+	
+	.cdsAttributePanelBlockDelete, 
+	.cdsAttributePanelBlockEdit,
+	.cdsAttributePanelBlockErrorIcon,
+	.cdsAttributePanelBlockAdd {
+		float: right;
+		display: block;
+		width: 20px;
+		height: 20px;
+		margin: 2px;
+		
+		background-color: #eeeeee;
+		background-position: center center;
+		background-repeat: no-repeat;
+		border: solid 1px #8c8c8c;
+		border-radius: 3px;
+		box-shadow: 1px 1px 2px rgba(0,0,0,.4), 0 1px 0 rgba(255,255,255,.5) inset;
+	}
+	.cdsAttributePanelBlockDelete {
+		background-image: url(../images/attributemapping/delete.png);
+	} 
+	.cdsAttributePanelBlockEdit {
+		background-image: url(../images/attributemapping/edit.png);
+	}
+	.cdsAttributePanelBlockAdd {
+		background-image: url(../images/attributemapping/icon-add.png);
+		display: none;
+	}
+	.cdsAttributePanelBlockErrorIcon {
+		background-image: url(../images/attributemapping/error.png);
+		cursor: help;
+		display: none;
+		
+		width: 24px;
+		height: 24px;
+		position: absolute;
+		left: -18px;
+		top: -18px;
+		background-color: #f45321;
+	}
+	.cdsAttributePanelBlockDelete span, 
+	.cdsAttributePanelBlockEdit span,
+	.cdsAttributePanelBlockAdd span {
+		display: none;
+	}
+	
+	.cdsAttributePanelBlockErrors .cdsAttributePanelBlockContent {
+		/*background-color: #ff7c7c;*/
+	}
+	
+	.cdsAttributePanelBlockErrors .cdsAttributePanelBlockErrorIcon {
+		display: block;
+	}
+
+/*** Conditions: ***/
+	.cdsAttributePanelConditionRow {
+		border: solid 2px #CCCCCC;
+		border-radius: 4px;
+		
+		display: inline-block;
+		background-color: #DDDDDD;
+		background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
+		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+		min-width: 100%;
+		
+		/* IE 7 inline block: */
+		zoom: 1;
+		*display: inline;
+	}
+	
+	.cdsAttributePanelConditionRow .cdsAttributePanelBlockDownArrow {
+		display: none;
+	}
+	
+/*** Operations: ***/
+	.cdsOperation {
+		margin: .5em;
+		background-color: #EFEFEF;
+		cursor: move;
+		overflow: hidden;
+		padding: 2px;
+		
+		/* CSS 3 borders: */
+		border: 2px solid #ccc;
+		border-radius: 4px;
+		box-shadow: 0 1px 2px rgba(0,0,0,.4), 0 1px 0 rgba(255,255,255,.5) inset;
+		background-color: #ddd;
+		background-image: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,0));
+		
+		border-color: #e1ca82;
+		background-color: #ffeaa6;
+	}
+	.cdsOperationInput {
+		border-color: #59add4 !important;
+		background-color: #61bde7;
+	}
+	
+	span.cdsAttributePanelBlockTypeContainer {
+		display: inline-block;
+		height: 24px;
+		padding-left: 28px;
+		background: url(../images/attributemapping/type-operation.png) top left no-repeat;
+	}
+	
+	.cdsOperationTitle {
+		font-weight: bold;
+		font-size: .93em;
+	}
+	.cdsOperationDescription {
+		font-size: .9em;
+		color: #555;
+		margin-left: 1em;
+		margin-top: .2em;
+	}
+	
+	.cdsOperationType  {
+		padding-left: 28px;
+		background: url(../images/attributemapping/type-operation.png) top left no-repeat;
+		height: 24px;
+	}
+	.cdsOperation-decimal, span.cdsAttributePanelBlock-decimal,
+	.cdsOperation-double, span.cdsAttributePanelBlock-double,
+	.cdsOperation-float, span.cdsAttributePanelBlock-float,
+	.cdsOperation-int, span.cdsAttributePanelBlock-int {
+		background-image: url(../images/attributemapping/type-number.png);
+	}
+	.cdsOperation-date, span.cdsAttributePanelBlock-date {
+		background-image: url(../images/attributemapping/type-date.png);
+	}
+	.cdsOperation-datetime, span.cdsAttributePanelBlock-datetime {
+		background-image: url(../images/attributemapping/type-datetime.png);
+	}
+	.cdsOperation-time, span.cdsAttributePanelBlock-time {
+		background-image: url(../images/attributemapping/type-time.png);
+	}
+	.cdsOperation-boolean, span.cdsAttributePanelBlock-boolean {
+		background-image: url(../images/attributemapping/type-boolean.png);
+	}
+	.cdsOperation-geometry, span.cdsAttributePanelBlock-geometry {
+		background-image: url(../images/attributemapping/type-geometry.png);
+	}
+	.cdsOperation-string, span.cdsAttributePanelBlock-string {
+		background-image: url(../images/attributemapping/type-string.png);
+	}
+	.cdsOperation-nullreference, span.cdsAttributePanelBlock-nullreference {
+		background-image: url(../images/attributemapping/delete.png);
+	}
+	.cdsOperation-code, span.cdsAttributePanelBlock-code {
+		background-image: url(../images/attributemapping/icon-list.png);
+	}
+	
+/*** Properties dialog: ***/
+	.cdsAttributePanelPropertiesForm {
+		display: block;
+	}
+	.cdsAttributePanelPropertiesFormRows {
+	}
+	.cdsAttributePanelPropertiesFormButtons {
+		text-align: right;
+	}
+	.cdsAttributePanelPropertiesFormRow {
+		display: block;
+		margin-bottom: 1em;
+	}
+	.cdsAttributePanelPropertiesFormLabel {
+		display: block;
+	}
+	.cdsAttributePanelPropertiesFormInput {
+		display: block;
+		margin-left: 2em;
+	}
+	
+/*** Icons: ***/
+	.cdsAttributePanelIconOk {
+		width: 16px;
+		height: 16px;
+		background: url(../images/attributemapping/icon-ok.png) top left no-repeat;
+	}
+	.cdsAttributePanelIconOkModified {
+		width: 32px;
+		height: 16px;
+		background: url(../images/attributemapping/icon-ok-modified.png) top left no-repeat;
+	}
+	.cdsAttributePanelIconErrorModified {
+		width: 32px;
+		height: 16px;
+		background: url(../images/attributemapping/icon-error-modified.png) top left no-repeat;
+	}
+	
+/*** Input types: ***/
+	.cdsAttributeMappingInputTypeInfo {
+		text-align: center;
+	}
+	.cdsAttributeMappingInputTypeInfo span.container {
+		padding: 4px;
+		border: 2px solid #e1ca82;
+		border-bottom: none;
+		border-radius: 4px 4px 0 0;
+		box-shadow: 0 1px 2px rgba(0,0,0,.4), 0 1px 0 rgba(255,255,255,.5) inset;
+		background-color: #ffeaa6;
+		position: relative;
+		top: 4px;
+		cursor: help;
+		zoom: 1;
+	}
+	.cdsAttributeMappingInputTypeInfo span.icon,
+	.cdsAttributePanelBlockTypeDescription span.icon {
+		display: inline-block;
+		width: 22px;
+		height: 22px;
+		vertical-align: middle;
+		margin-right: 4px;
+		cursor: help;
+	}
+	.type-decimal,
+	.type-double,
+	.type-float,
+	.type-int {
+		background-image: url(../images/attributemapping/type-number.png);
+	}
+	.type-date {
+		background-image: url(../images/attributemapping/type-date.png);
+	}
+	.type-datetime {
+		background-image: url(../images/attributemapping/type-datetime.png);
+	}
+	.type-time {
+		background-image: url(../images/attributemapping/type-time.png);
+	}
+	.type-boolean {
+		background-image: url(../images/attributemapping/type-boolean.png);
+	}
+	.type-geometry {
+		background-image: url(../images/attributemapping/type-geometry.png);
+	}
+	.type-string {
+		background-image: url(../images/attributemapping/type-string.png);
+	}
+	.type-nullreference {
+		background: url(../images/attributemapping/delete.png) top left no-repeat;
+	}
+	.type-code {
+		background-image: url(../images/attributemapping/icon-list.png);
+	}
+
+/*** Icons: ***/
+	.icon-help {
+		width: 16px;
+		height: 16px;
+		background: url(../images/attributemapping/icon-help.png) top left no-repeat;
+	}
+	.icon-back {
+		width: 16px;
+		height: 16px;
+		background: url(../images/attributemapping/icon-back.png) top left no-repeat;
+	}
+	
+	.icon-warning {
+		width: 16px;
+		height: 16px;
+		background: url(../images/attributemapping/icon-warning.png) top left no-repeat;
+	}
+	
+	.icon-ok {
+		width: 16px;
+		height: 16px;
+		background: url(../images/attributemapping/icon-ok.png) top left no-repeat;
+	}
+	
+	.icon-refresh {
+		width: 22px;
+		height: 22px;
+		background: url(../images/attributemapping/icon-refresh.png) top left no-repeat;
+	}
+	
+/*** Preview window: ***/
+	.cdsPreviewWindow .dijitDialogPaneContent {
+		padding: 0 !important;
+	}
+
+	.cdsPreviewWindow h1 {
+		margin-bottom: 1em;
+	}
+	
+	.cdsPreviewWindow span.icon {
+		display: inline-block;
+		zoom: 1;
+		*display: inline;
+	}
+	
+	.cdsPreviewWindow th, .cdsPreviewWindow td {
+		vertical-align: top;
+	}
+	
+	.cdsPreviewWindow .feature {
+		background-color: #ffeaa6;
+		border: 2px solid #e1ca82;
+		border-radius: 4px;
+		padding: 4px; 
+		margin-bottom: 1.5em;
+	}
+	
+	.cdsPreviewWindow .feature em {
+		font-weight: bold;
+		font-size: 1.2em;
+		font-style: italic;
+		margin: .3em 0;
+	}
+	
+	.cdsPreviewWindow .feature tr {
+		background-color: transparent;
+		border: none;
+	}
+	
+	.cdsPreviewWindow .feature th {
+		font-weight: bold;
+	}
+	
+	.cdsPreviewWindow .featureCell table {
+		border: 1px solid #e1ca82;
+		background-color: #ffeebc;
+	}
+	.cdsPreviewWindow .featureCell tr:nth-child(even) {
+		background-color: #fff7dd;
+	}
+
+	.cdsPreviewWindow td.inputFeature, .cdsPreviewWindow td.outputFeature {
+		border: none;
+		margin: .5em;
+	}
+	
+	.cdsPreviewWindow span.arrow {
+		display: block;
+		width: 36px;
+		height: 49px;
+		background: url(../images/attributemapping/direction-right.png) top left no-repeat;
+	}
+	
+	.cdsPreviewWindow .loading {
+		width: 100%;
+		height: 100%;
+		padding-top: 5em;
+		text-align: center;
+	}
+	
+	.cdsPreviewWindow .loading h1 {
+		text-align: center;
+	}
+
+	.cdsPreviewWindow .success,
+	.cdsPreviewWindow .failure {
+		font-weight: bold;
+		border-radius: 4px;
+		padding: 1em;
+		width: 45em;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	
+	.cdsPreviewWindow .success {
+		background-color: #DFF0D8;
+		border-color: #D6E9C6;
+		color: #468847;
+	}		
+	  
+	.cdsPreviewWindow .failure {
+		background-color: #F2DEDE;
+    	border-color: #EED3D7;
+    	color: #B94A48;
+   	}
+	
+/*** Status messages: ***/
+	.cdsMappingMessage {
+		padding: 1em;
+		position: absolute;
+		right: 40px;
+		top: 40px;
+		width: 30em;
+		
+		background-color: #ff9d9d;
+		border: solid 2px #c44d4d;
+	}
+	.cdsMappingMessage p, .cdsMappingMessage a {
+		font-size: 1.2em;
+	}
+	.cdsMappingMessage a {
+		text-decoration: underline;
+	}
+	
+	.cdsMappingError {
+		
+	}
+
+/*** Mapping panel menu: ***/
+	.cdsMappingPanelHeader {
+		padding: 0 !important;
+	}
+	
+	.cdsMappingPanelMenu {
+		border-bottom: solid 2px #b5bcc7; 
+	}
+	.cdsMappingPanelMenu ul, .cdsMappingPanelMenu li {
+		display: block;
+		margin: 0;
+		padding: 0;
+	}
+	.cdsMappingPanelMenu li {
+		display: inline-block;
+		position: relative;
+		top: 2px;
+		
+		margin-left: .5em;
+		margin-right: .5em; 
+		border-top-left-radius: 6px;
+		border-top-right-radius: 6px;
+		
+		background-color: #efefef;
+		border: solid 2px #B5BCC7;
+		background-image: linear-gradient(rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0) 100%);
+		
+		zoom: 1;
+		*display: inline;
+	}
+	.cdsMappingPanelMenu li.active {
+		background-color: white;		
+		border-bottom: solid 2px #fff;
+	}
+	.cdsMappingPanelMenu li a {
+		display: block;
+		text-decoration: none;
+		font-weight: bold;
+		color: #000;
+		padding: .5em 1.5em;
+	}
+	.cdsMappingPanelMenu li.active a {
+	}
+
+	.cdsMappingPanelChild {
+		border-left: solid 2px #B5BCC7;
+		border-right: solid 2px #B5BCC7;
+		border-bottom: solid 2px #B5BCC7;
+		padding: 0.5em;
+	}
+
+	.cdsMappingPanelChild .dijitTabContainerLeft-tabs {
+		border-right: solid 2px #b5bcc7;
+		padding-top: 4em;
+	}
+	.cdsMappingPanelChild .dijitTab {
+		background-color: #efefef !important;
+		background-image: linear-gradient(rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0) 100%) !important;
+		padding: 1em .5em !important;
+		border: solid 2px #B5BCC7 !important;
+		border-top-left-radius: 6px !important;
+		border-bottom-left-radius: 6px !important;
+		position: relative !important;
+		left: 2px !important;
+	}
+	.cdsMappingPanelChild .dijitTabChecked {
+		background-color: #fff !important;
+		border-right: solid 2px #fff !important;
+	}
+	.cdsMappingPanelChild .dijitTabContainerLeft-tabs {
+		overflow-y: auto !important;
+		overflow-x: hidden !important;
+	}
+
+/*** Condition panel: ***/
+	.cdsConditionPanel {
+		overflow: visible;
+	}
+	.cdsConditionPanel div.scroll {
+		position: absolute;
+		top: 4em;
+		bottom: 0px;
+		left: 0px;
+		right: 0px;
+		overflow: auto;
+		z-index: 1;
+	}
+	.cdsConditionPanel div.cdsAttributePanelInfo {
+		position: relative;
+		z-index: 2;
+	}
+	.cdsConditionPanel div.cdsAttributePanelHeader {
+		height: 3em;
+	}
+	.cdsConditionPanel div.logical-operator {
+		background-color: #B5F372;
+	    background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
+	    border-radius: 4px 4px 4px 4px;
+	    border-style: solid !important;
+	 	border-color: #A6E761 !important;
+	    border-width: 2px !important;
+	    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+	    padding: .5em;
+	    font-weight: bold;
+	}
+	.cdsConditionPanel div.logical-operator a,
+	.cdsConditionPanelCondition a.delete {
+		float: right; 
+		display: block; 
+		position: absolute; 
+		right: -14px; 
+		top: -14px;
+		width: 20px;
+		height: 20px;
+		margin: 2px;
+		
+		background-color: #eeeeee;
+		background-position: center center;
+		background-repeat: no-repeat;
+		border: solid 1px #8c8c8c;
+		border-radius: 3px;
+		box-shadow: 1px 1px 2px rgba(0,0,0,.4), 0 1px 0 rgba(255,255,255,.5) inset;
+	}
+	.cdsConditionPanel div.logical-operator a {
+		background-image: url(../images/attributemapping/icon-add.png);
+	}
+	.cdsConditionPanelCondition a.delete {
+		background-image: url(../images/attributemapping/delete.png);
+	}
+	.cdsConditionPanel div.logical-operator a span {
+		display: none;
+	}
+	.cdsConditionPanel div.footer div.logical-operator {
+		position: relative;
+		margin: .5em;
+		margin-left: 50%;
+		margin-right: 50%;
+		width: 3em;
+		text-align: center;
+	}
+	.cdsConditionPanelContainer div.outer-container {
+		border: solid 1px black; 
+		padding: .5em;
+		border-radius: 6px;
+	}
+	.cdsConditionPanelContainer div.operator-container div.logical-operator {
+		margin: .5em; 
+		margin-left: 50%; 
+		margin-right: 50%; 
+		width: 3em; 
+		text-align: center;
+	}
+	.cdsConditionPanelContainer div.container-footer {
+		clear: both;
+	}
+	.cdsConditionPanelContainer div.footer-clear {
+		clear: both;
+	}
+	.cdsConditionPanelContainer div.container-footer div.logical-operator {
+		position: relative;
+		float: left;
+	}
+	.cdsConditionPanelCondition {
+		clear: both;
+	}
+	.cdsConditionPanelCondition div.filter {
+		background-color: #FFEAA6;
+	    background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
+	    border-radius: 4px 4px 4px 4px;
+	    border-style: solid !important;
+	    border-color: #E1CA82;
+	    border-width: 2px !important;
+	    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+	    padding: .5em;
+	    margin: .5em;
+	    margin-left: 3.5em;
+	    position: relative;
+	}
+	.cdsConditionPanelCondition div.filter label {
+		margin-right: 2em;
+	}
+	.cdsConditionPanelCondition div.logical-operator {
+		float: left;
+	}
+	.cdsConditionPanelCondition a.delete {
+		
+		
+	}
+	.cdsConditionPanelCondition a.delete span {
+		display: none;
+	}
+	
+	
+.mockup-icon {
+	display: inline-block;
+	width: 22px;
+	height: 22px;
+	vertical-align: middle;
+	margin-right: 4px;
+	cursor: help
+}
+.mockup-filter {
+	background-color: #FFEAA6;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
+    border-radius: 4px 4px 4px 4px;
+    border-style: solid !important;
+    border-color: #E1CA82;
+    border-width: 2px !important;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+    padding: .5em;
+    margin: .5em;
+    margin-left: 3.5em;
+}
+.mockup-logical-operator {
+	background-color: #B5F372;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
+    border-radius: 4px 4px 4px 4px;
+    border-style: solid !important;
+ 	border-color: #A6E761 !important;
+    border-width: 2px !important;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+    padding: .5em;
+    font-weight: bold;
+}

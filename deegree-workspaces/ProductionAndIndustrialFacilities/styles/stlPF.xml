@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sld:StyledLayerDescriptor version="1.1.0" xmlns:xlink="http://www.w3.org/1999/xlink"
+  xmlns:ogc="http://www.opengis.net/ogc"
+  xmlns:sld="http://www.opengis.net/sld" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:se="http://www.opengis.net/se"
+  xsi:schemaLocation="http://www.opengis.net/sld http://schemas.opengis.net/sld/1.1.0/StyledLayerDescriptor.xsd">
+  <sld:NamedLayer>
+    <se:Name>PF.ProductionFacility</se:Name>
+    <sld:UserStyle>
+      <se:Name>PF.ProductionFacility.Default</se:Name>
+      <sld:IsDefault>1</sld:IsDefault>
+      <se:FeatureTypeStyle version="1.1.0">
+        <se:Description>
+          <se:Title>Production Facility Default Style</se:Title>
+          <se:Abstract>The geometry is rendered as a circle with a size of 3 pixels, with a red (#FF0000) fill and a black outline (#000000).</se:Abstract> 
+        </se:Description>
+        <se:Rule>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:Function name="IsPoint">
+                <ogc:PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:geometry</ogc:PropertyName>
+              </ogc:Function>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>                    
+          <se:PointSymbolizer>
+            <se:Geometry>
+              <ogc:PropertyName xmlns:app="http://www.ipo.nl/InSpider">app:geometry</ogc:PropertyName>
+            </se:Geometry>
+            <se:Graphic>
+              <se:Mark>
+                <se:WellKnownName>circle</se:WellKnownName>
+                <se:Fill>												
+                  <se:SvgParameter name="fill-opacity">1.0</se:SvgParameter>
+                  <se:SvgParameter name="fill">#FF0000</se:SvgParameter>
+                </se:Fill>
+                <se:Stroke>
+                  <se:SvgParameter name="stroke">#000000</se:SvgParameter>
+                  <se:SvgParameter name="stroke-width">1</se:SvgParameter> 
+                  <se:SvgParameter name="stroke-opacity">1.0</se:SvgParameter>
+                  <se:SvgParameter name="stroke-linecap">round</se:SvgParameter>
+                </se:Stroke>
+              </se:Mark>
+              <se:Size>3</se:Size>
+              <se:Rotation>0</se:Rotation>
+            </se:Graphic>
+          </se:PointSymbolizer>
+        </se:Rule>
+        
+        <se:Rule>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:Function name="IsSurface">
+                <ogc:PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:geometry</ogc:PropertyName>
+              </ogc:Function>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>
+          <se:PolygonSymbolizer>
+            <se:Fill>												
+              <se:SvgParameter name="fill-opacity">0.5</se:SvgParameter>
+              <se:SvgParameter name="fill">#FF0000</se:SvgParameter>
+            </se:Fill>
+            <se:Stroke>
+              <se:SvgParameter name="stroke">#000000</se:SvgParameter>
+              <se:SvgParameter name="stroke-width">1</se:SvgParameter> 
+              
+              <se:SvgParameter name="stroke-opacity">1.0</se:SvgParameter>
+              <se:SvgParameter name="stroke-linecap">round</se:SvgParameter>
+              
+            </se:Stroke>
+          </se:PolygonSymbolizer>           
+        </se:Rule>
+                
+      </se:FeatureTypeStyle>
+    </sld:UserStyle>
+  </sld:NamedLayer>  
+  
+  <sld:NamedLayer>
+    <se:Name>PF.ProductionInstallation</se:Name>
+    <sld:UserStyle>
+      <se:Name>PF.ProductionInstallation.Default</se:Name>
+      <sld:IsDefault>1</sld:IsDefault>
+      <se:FeatureTypeStyle version="1.1.0">
+        <se:Description>
+          <se:Title>Production Installation Default Style</se:Title>
+          <se:Abstract> The geometry is rendered as a circle with a size of 3 pixels, with a grey (#808080) fill and a black outline (#000000).</se:Abstract> 
+        </se:Description>
+        <se:Rule>
+          <se:PointSymbolizer>
+            <se:Geometry>
+              <ogc:PropertyName xmlns:app="http://www.ipo.nl/InSpider">app:point_geometry</ogc:PropertyName>
+            </se:Geometry>
+            <se:Graphic>
+              <se:Mark>
+                <se:WellKnownName>circle</se:WellKnownName>
+                <se:Fill>												
+                  <se:SvgParameter name="fill-opacity">1.0</se:SvgParameter>
+                  <se:SvgParameter name="fill">#808080</se:SvgParameter>
+                </se:Fill>
+                <se:Stroke>
+                  <se:SvgParameter name="stroke">#000000</se:SvgParameter>
+                  <se:SvgParameter name="stroke-width">1</se:SvgParameter> 
+                  <se:SvgParameter name="stroke-opacity">1.0</se:SvgParameter>
+                  <se:SvgParameter name="stroke-linecap">round</se:SvgParameter>
+                </se:Stroke>
+              </se:Mark>
+              <se:Size>3</se:Size>
+              <se:Rotation>0</se:Rotation>
+            </se:Graphic>
+          </se:PointSymbolizer>
+        </se:Rule>
+      </se:FeatureTypeStyle>
+    </sld:UserStyle>
+  </sld:NamedLayer>  
+  
+  <sld:NamedLayer>
+    <se:Name>PF.ProductionInstallationPart</se:Name>
+    <sld:UserStyle>
+      <se:Name>PF.ProductionInstallationPart.Default</se:Name>
+      <sld:IsDefault>1</sld:IsDefault>
+      <se:FeatureTypeStyle version="1.1.0">
+        <se:Description>
+          <se:Title>Production Installation Default Part Style</se:Title>
+          <se:Abstract> The geometry is rendered as a circle with a size of 3 pixels, with a purple (#800080) fill and a black outline (#000000).</se:Abstract> 
+        </se:Description>
+        <se:Rule>
+          <se:PointSymbolizer>
+            <se:Geometry>
+              <ogc:PropertyName xmlns:app="http://www.ipo.nl/InSpider">app:point_geometry</ogc:PropertyName>
+            </se:Geometry>
+            <se:Graphic>
+              <se:Mark>
+                <se:WellKnownName>circle</se:WellKnownName>
+                <se:Fill>												
+                  <se:SvgParameter name="fill-opacity">1.0</se:SvgParameter>
+                  <se:SvgParameter name="fill">#800080</se:SvgParameter>
+                </se:Fill>
+                <se:Stroke>
+                  <se:SvgParameter name="stroke">#000000</se:SvgParameter>
+                  <se:SvgParameter name="stroke-width">1</se:SvgParameter> 
+                  <se:SvgParameter name="stroke-opacity">1.0</se:SvgParameter>
+                  <se:SvgParameter name="stroke-linecap">round</se:SvgParameter>
+                </se:Stroke>
+              </se:Mark>
+              <se:Size>3</se:Size>
+              <se:Rotation>0</se:Rotation>
+            </se:Graphic>
+          </se:PointSymbolizer>
+        </se:Rule>
+      </se:FeatureTypeStyle>
+    </sld:UserStyle>
+  </sld:NamedLayer>  
+  
+</sld:StyledLayerDescriptor>

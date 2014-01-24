@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<schema targetNamespace="http://mapserver.gis.umn.edu/mapserver" xmlns:ms="http://mapserver.gis.umn.edu/mapserver" xmlns:ogc="http://www.opengis.net/ogc" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml" elementFormDefault="qualified" version="0.1">
+
+  <import namespace="http://www.opengis.net/gml" schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/gml.xsd"/>
+
+  <element name="StilteGebieden" type="ms:StilteGebiedenType" substitutionGroup="gml:_Feature"/>
+
+  <complexType name="StilteGebiedenType">
+    <complexContent>
+      <extension base="gml:AbstractFeatureType">
+        <sequence>
+          <element name="geometry" type="gml:MultiSurfacePropertyType" minOccurs="0" maxOccurs="1"/>
+          <element name="OBJECTID" type="string"/>
+          <element name="GFID" type="string"/>
+          <element name="applicationSchema" type="string"/>
+          <element name="legalFoundationDate" type="string"/>
+          <element name="legalFoundationDocument" type="string"/>
+          <element name="inspireID" type="string"/>
+          <element name="siteName" type="string"/>
+          <element name="siteDesignation" type="string"/>
+          <element name="siteProtectionClassification" type="string"/>
+          <element name="percentageUnderDesignation" type="string"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+
+</schema>

@@ -1,0 +1,22 @@
+<deegreeWMS xmlns="http://www.deegree.org/services/wms"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" configVersion="3.1.0"
+  xmlns:inspire_common="http://inspire.ec.europa.eu/schemas/common/1.0"
+  xmlns:inspire_vs="http://inspire.ec.europa.eu/schemas/inspire_vs/1.0"
+  xsi:schemaLocation="http://www.deegree.org/services/wms ../../../../resources/META-INF/schemas/services/wms/3.2.0/wms_configuration.xsd">
+
+  <SupportedVersions>
+    <Version>1.1.1</Version>
+    <Version>1.3.0</Version>
+  </SupportedVersions>
+
+  <ServiceConfiguration>
+    <ThemeId>protectedSite</ThemeId>
+  </ServiceConfiguration>
+  
+  <FeatureInfoFormats>
+    <GetFeatureInfoFormat>
+      <XSLTFile>../featureInfo/protectedSite.xsl</XSLTFile>
+      <Format>text/html</Format>
+    </GetFeatureInfoFormat>
+  </FeatureInfoFormats>
+</deegreeWMS>

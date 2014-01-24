@@ -1,0 +1,3 @@
+#macro(e $txt)
+#if($txt)$esc.html($txt)#end
+#end

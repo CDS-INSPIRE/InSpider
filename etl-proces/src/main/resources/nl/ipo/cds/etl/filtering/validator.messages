@@ -1,0 +1,14 @@
+DATASET_FILTER_TECHNICAL_ERROR=Technische fout: ${0}.
+DATASET_FILTER_MISSING=Er is geen dataset filter.
+DATASET_FILTER_NO_DATASET=Het dataset filter heef geen dataset.
+DATASET_FILTER_NO_ROOT_EXPRESSION=Het dataset filter heeft geen root expressie.
+
+DATASET_FILTER_LOGICAL_OPERATOR_WITHOUT_INPUTS=Logische operator moet minstens een ingang hebben.
+DATASET_FILTER_LOGICAL_OPERATOR_MISSING_INPUT=Logische operator heeft een ontbrekende ingang.
+DATASET_FILTER_LOGICAL_OPERATOR_WRONG_TYPE=Logische operator ingang is niet van het type OperatorExpression.
+
+DATASET_FILTER_OPERATOR_NO_ATTRIBUTE=Vergelijkings operator moet een attribuut hebben.
+DATASET_FILTER_OPERATOR_NO_VALUE=Vergelijkings operator heeft geen waarde.
+DATASET_FILTER_OPERATOR_INCOMPATIBLE_TYPES=Incompatibele types in vergelijkings operator.
+DATASET_FILTER_OPERATOR_INPUT_COUNT=Operator moet precies twee ingangen bevatten.
+DATASET_FILTER_OPERATOR_MISSING_ATTRIBUTE=Een attribuut van het feature type ontbreekt: ${0}.

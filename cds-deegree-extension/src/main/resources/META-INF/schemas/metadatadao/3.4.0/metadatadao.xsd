@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns:md="urn:cds-inspire:deegree-extension:metadata" xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:cds-inspire:deegree-extension:metadata"
+  elementFormDefault="qualified" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" jaxb:version="2.1">
+
+  <annotation>
+    <appinfo>
+      <jaxb:schemaBindings>
+        <jaxb:package name="nl.ipo.cds.deegree.metadata.jaxb" />
+      </jaxb:schemaBindings>
+    </appinfo>
+  </annotation>
+
+  <element name="deegreeServicesMetadata">
+    <complexType>
+      <sequence>
+        <element name="ApplicationContextHolder" type="string" />
+        <element name="ExtendedCapabilities" type="md:ExtendedCapabilitiesType" minOccurs="0" maxOccurs="unbounded" />
+      </sequence>
+      <attribute name="configVersion" type="md:ConfigVersionType" use="required" />
+    </complexType>
+  </element>
+
+  <complexType name="ExtendedCapabilitiesType">
+    <sequence>
+      <any processContents="lax">
+        <annotation>
+          <appinfo>
+            <jaxb:dom />
+          </appinfo>
+        </annotation>
+      </any>
+    </sequence>
+    <attribute name="protocolVersions" type="string" use="optional" />
+  </complexType>
+
+  <simpleType name="ConfigVersionType">
+    <restriction base="string">
+      <enumeration value="3.4.0" />
+    </restriction>
+  </simpleType>
+
+</schema>

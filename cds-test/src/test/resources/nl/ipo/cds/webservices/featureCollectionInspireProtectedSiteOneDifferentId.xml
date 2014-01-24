@@ -1,0 +1,494 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<wfs:FeatureCollection xmlns:wfs="http://www.opengis.net/wfs/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengis.net/wfs/2.0 http://schemas.opengis.net/wfs/2.0/wfs.xsd urn:x-inspire:specification:gmlas:ProtectedSites:3.0 http://test.inspire-provincies.nl/services?SERVICE=WFS&amp;VERSION=2.0.0&amp;REQUEST=DescribeFeatureType&amp;OUTPUTFORMAT=text%2Fxml%3B+subtype%3Dgml%2F3.2.1&amp;TYPENAME=ps:ProtectedSite&amp;NAMESPACE=xmlns(ps=urn%3Ax-inspire%3Aspecification%3Agmlas%3AProtectedSites%3A3.0)" timeStamp="2011-11-04T10:08:16.054Z" numberMatched="unknown" numberReturned="0">
+  <!--NOTE: numberReturned attribute should be 'unknown', but this would not validate against the current version of the WFS 2.0 schema (change upcoming). See change request (CR 144): https://portal.opengeospatial.org/files?artifact_id=43925.-->
+  <wfs:member>
+    <ps:ProtectedSite xmlns:ps="urn:x-inspire:specification:gmlas:ProtectedSites:3.0" xmlns:gml="http://www.opengis.net/gml/3.2" gml:id="PS_PROTECTEDSITE_1358343">
+      <ps:geometry>
+        <!--Inlined geometry 'PS_PROTECTEDSITE_1358343_PS_GEOMETRY'-->
+        <gml:Polygon gml:id="PS_PROTECTEDSITE_1358343_PS_GEOMETRY" srsName="EPSG:28992">
+          <gml:exterior>
+            <gml:LinearRing>
+              <gml:posList>266464.406 478692.031 266471.063 478683.594 266554.438 478705.281 266553.969 478696.906 266480.031 478677.031 266470.656 478673.906 266467.531 478676.719 266456.563 478689.844 266418.094 478733.344 266404.938 478749.313 266401.500 478752.438 266386.406 478770.031 266340.719 478831.844 266344.406 478833.688 266351.156 478833.688 266380.906 478796.188 266427.969 478740.531 266435.094 478732.844 266451.844 478710.094 266464.406 478692.031</gml:posList>
+            </gml:LinearRing>
+          </gml:exterior>
+        </gml:Polygon>
+      </ps:geometry>
+      <ps:inspireID>
+        <base:Identifier xmlns:base="urn:x-inspire:specification:gmlas:BaseTypes:3.2">
+          <base:localId>DEZE-IS-ANDERS-1F69-47BA-BA2F-627A7A946057</base:localId>
+          <base:namespace>NL.9927.NL</base:namespace>
+        </base:Identifier>
+      </ps:inspireID>
+      <ps:legalFoundationDate>2009-05-19T00:00:00Z</ps:legalFoundationDate>
+      <ps:legalFoundationDocument>
+        <gmd:CI_Citation xmlns:gmd="http://www.isotc211.org/2005/gmd">
+          <gmd:title>
+            <gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">http://gisopenbaar.overijssel.nl/website/Georegister/Inspire/GSbesluit_EHS.pdf</gco:CharacterString>
+          </gmd:title>
+          <gmd:date>
+            <gmd:CI_Date>
+              <gmd:date>
+                <gco:DateTime xmlns:gco="http://www.isotc211.org/2005/gco">2009-05-19T00:00:00Z</gco:DateTime>
+              </gmd:date>
+              <gmd:dateType>
+                <gmd:CI_DateTypeCode codeListValue="publication" codeList="http://www.isotc211.org/2005/resources/codeList.xml#CI_DateTypeCode"/>
+              </gmd:dateType>
+            </gmd:CI_Date>
+          </gmd:date>
+        </gmd:CI_Citation>
+      </ps:legalFoundationDocument>
+      <ps:siteDesignation>
+        <ps:DesignationType>
+          <ps:designationScheme>ecologischeHoofdstructuur</ps:designationScheme>
+          <ps:designation>ecologischeHoofdstructuur</ps:designation>
+          <ps:percentageUnderDesignation>100</ps:percentageUnderDesignation>
+        </ps:DesignationType>
+      </ps:siteDesignation>
+      <ps:siteProtectionClassification>landscape</ps:siteProtectionClassification>
+      <ps:siteProtectionClassification>environment</ps:siteProtectionClassification>
+      <ps:siteProtectionClassification>natureConservation</ps:siteProtectionClassification>
+      <ps:siteProtectionClassification>ecological</ps:siteProtectionClassification>
+    </ps:ProtectedSite>
+  </wfs:member>
+  <wfs:member>
+    <ps:ProtectedSite xmlns:ps="urn:x-inspire:specification:gmlas:ProtectedSites:3.0" xmlns:gml="http://www.opengis.net/gml/3.2" gml:id="PS_PROTECTEDSITE_1358343">
+      <ps:geometry>
+        <!--Inlined geometry 'PS_PROTECTEDSITE_1358343_PS_GEOMETRY'-->
+        <gml:Polygon gml:id="PS_PROTECTEDSITE_1358343_PS_GEOMETRY" srsName="EPSG:28992">
+          <gml:exterior>
+            <gml:LinearRing>
+              <gml:posList>266464.406 478692.031 266471.063 478683.594 266554.438 478705.281 266553.969 478696.906 266480.031 478677.031 266470.656 478673.906 266467.531 478676.719 266456.563 478689.844 266418.094 478733.344 266404.938 478749.313 266401.500 478752.438 266386.406 478770.031 266340.719 478831.844 266344.406 478833.688 266351.156 478833.688 266380.906 478796.188 266427.969 478740.531 266435.094 478732.844 266451.844 478710.094 266464.406 478692.031</gml:posList>
+            </gml:LinearRing>
+          </gml:exterior>
+        </gml:Polygon>
+      </ps:geometry>
+      <ps:inspireID>
+        <base:Identifier xmlns:base="urn:x-inspire:specification:gmlas:BaseTypes:3.2">
+          <base:localId>1B67BEF3-D5F3-4894-8073-9188A4F4D07B</base:localId>
+          <base:namespace>NL.9927.NL</base:namespace>
+        </base:Identifier>
+      </ps:inspireID>
+      <ps:legalFoundationDate>2009-05-19T00:00:00Z</ps:legalFoundationDate>
+      <ps:legalFoundationDocument>
+        <gmd:CI_Citation xmlns:gmd="http://www.isotc211.org/2005/gmd">
+          <gmd:title>
+            <gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">http://gisopenbaar.overijssel.nl/website/Georegister/Inspire/GSbesluit_EHS.pdf</gco:CharacterString>
+          </gmd:title>
+          <gmd:date>
+            <gmd:CI_Date>
+              <gmd:date>
+                <gco:DateTime xmlns:gco="http://www.isotc211.org/2005/gco">2009-05-19T00:00:00Z</gco:DateTime>
+              </gmd:date>
+              <gmd:dateType>
+                <gmd:CI_DateTypeCode codeListValue="publication" codeList="http://www.isotc211.org/2005/resources/codeList.xml#CI_DateTypeCode"/>
+              </gmd:dateType>
+            </gmd:CI_Date>
+          </gmd:date>
+        </gmd:CI_Citation>
+      </ps:legalFoundationDocument>
+      <ps:siteDesignation>
+        <ps:DesignationType>
+          <ps:designationScheme>ecologischeHoofdstructuur</ps:designationScheme>
+          <ps:designation>ecologischeHoofdstructuur</ps:designation>
+          <ps:percentageUnderDesignation>100</ps:percentageUnderDesignation>
+        </ps:DesignationType>
+      </ps:siteDesignation>
+      <ps:siteProtectionClassification>landscape</ps:siteProtectionClassification>
+      <ps:siteProtectionClassification>environment</ps:siteProtectionClassification>
+      <ps:siteProtectionClassification>natureConservation</ps:siteProtectionClassification>
+      <ps:siteProtectionClassification>ecological</ps:siteProtectionClassification>
+    </ps:ProtectedSite>
+  </wfs:member>
+  <wfs:member>
+    <ps:ProtectedSite xmlns:ps="urn:x-inspire:specification:gmlas:ProtectedSites:3.0" xmlns:gml="http://www.opengis.net/gml/3.2" gml:id="PS_PROTECTEDSITE_1358343">
+      <ps:geometry>
+        <!--Inlined geometry 'PS_PROTECTEDSITE_1358343_PS_GEOMETRY'-->
+        <gml:Polygon gml:id="PS_PROTECTEDSITE_1358343_PS_GEOMETRY" srsName="EPSG:28992">
+          <gml:exterior>
+            <gml:LinearRing>
+              <gml:posList>266464.406 478692.031 266471.063 478683.594 266554.438 478705.281 266553.969 478696.906 266480.031 478677.031 266470.656 478673.906 266467.531 478676.719 266456.563 478689.844 266418.094 478733.344 266404.938 478749.313 266401.500 478752.438 266386.406 478770.031 266340.719 478831.844 266344.406 478833.688 266351.156 478833.688 266380.906 478796.188 266427.969 478740.531 266435.094 478732.844 266451.844 478710.094 266464.406 478692.031</gml:posList>
+            </gml:LinearRing>
+          </gml:exterior>
+        </gml:Polygon>
+      </ps:geometry>
+      <ps:inspireID>
+        <base:Identifier xmlns:base="urn:x-inspire:specification:gmlas:BaseTypes:3.2">
+          <base:localId>460F2458-6E25-48CF-B867-D549981C8209</base:localId>
+          <base:namespace>NL.9927.NL</base:namespace>
+        </base:Identifier>
+      </ps:inspireID>
+      <ps:legalFoundationDate>2009-05-19T00:00:00Z</ps:legalFoundationDate>
+      <ps:legalFoundationDocument>
+        <gmd:CI_Citation xmlns:gmd="http://www.isotc211.org/2005/gmd">
+          <gmd:title>
+            <gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">http://gisopenbaar.overijssel.nl/website/Georegister/Inspire/GSbesluit_EHS.pdf</gco:CharacterString>
+          </gmd:title>
+          <gmd:date>
+            <gmd:CI_Date>
+              <gmd:date>
+                <gco:DateTime xmlns:gco="http://www.isotc211.org/2005/gco">2009-05-19T00:00:00Z</gco:DateTime>
+              </gmd:date>
+              <gmd:dateType>
+                <gmd:CI_DateTypeCode codeListValue="publication" codeList="http://www.isotc211.org/2005/resources/codeList.xml#CI_DateTypeCode"/>
+              </gmd:dateType>
+            </gmd:CI_Date>
+          </gmd:date>
+        </gmd:CI_Citation>
+      </ps:legalFoundationDocument>
+      <ps:siteDesignation>
+        <ps:DesignationType>
+          <ps:designationScheme>ecologischeHoofdstructuur</ps:designationScheme>
+          <ps:designation>ecologischeHoofdstructuur</ps:designation>
+          <ps:percentageUnderDesignation>100</ps:percentageUnderDesignation>
+        </ps:DesignationType>
+      </ps:siteDesignation>
+      <ps:siteProtectionClassification>landscape</ps:siteProtectionClassification>
+      <ps:siteProtectionClassification>environment</ps:siteProtectionClassification>
+      <ps:siteProtectionClassification>natureConservation</ps:siteProtectionClassification>
+      <ps:siteProtectionClassification>ecological</ps:siteProtectionClassification>
+    </ps:ProtectedSite>
+  </wfs:member>
+  <wfs:member>
+    <ps:ProtectedSite xmlns:ps="urn:x-inspire:specification:gmlas:ProtectedSites:3.0" xmlns:gml="http://www.opengis.net/gml/3.2" gml:id="PS_PROTECTEDSITE_1358343">
+      <ps:geometry>
+        <!--Inlined geometry 'PS_PROTECTEDSITE_1358343_PS_GEOMETRY'-->
+        <gml:Polygon gml:id="PS_PROTECTEDSITE_1358343_PS_GEOMETRY" srsName="EPSG:28992">
+          <gml:exterior>
+            <gml:LinearRing>
+              <gml:posList>266464.406 478692.031 266471.063 478683.594 266554.438 478705.281 266553.969 478696.906 266480.031 478677.031 266470.656 478673.906 266467.531 478676.719 266456.563 478689.844 266418.094 478733.344 266404.938 478749.313 266401.500 478752.438 266386.406 478770.031 266340.719 478831.844 266344.406 478833.688 266351.156 478833.688 266380.906 478796.188 266427.969 478740.531 266435.094 478732.844 266451.844 478710.094 266464.406 478692.031</gml:posList>
+            </gml:LinearRing>
+          </gml:exterior>
+        </gml:Polygon>
+      </ps:geometry>
+      <ps:inspireID>
+        <base:Identifier xmlns:base="urn:x-inspire:specification:gmlas:BaseTypes:3.2">
+          <base:localId>1260E836-FA1D-426B-B79C-13E745E49A46</base:localId>
+          <base:namespace>NL.9927.NL</base:namespace>
+        </base:Identifier>
+      </ps:inspireID>
+      <ps:legalFoundationDate>2009-05-19T00:00:00Z</ps:legalFoundationDate>
+      <ps:legalFoundationDocument>
+        <gmd:CI_Citation xmlns:gmd="http://www.isotc211.org/2005/gmd">
+          <gmd:title>
+            <gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">http://gisopenbaar.overijssel.nl/website/Georegister/Inspire/GSbesluit_EHS.pdf</gco:CharacterString>
+          </gmd:title>
+          <gmd:date>
+            <gmd:CI_Date>
+              <gmd:date>
+                <gco:DateTime xmlns:gco="http://www.isotc211.org/2005/gco">2009-05-19T00:00:00Z</gco:DateTime>
+              </gmd:date>
+              <gmd:dateType>
+                <gmd:CI_DateTypeCode codeListValue="publication" codeList="http://www.isotc211.org/2005/resources/codeList.xml#CI_DateTypeCode"/>
+              </gmd:dateType>
+            </gmd:CI_Date>
+          </gmd:date>
+        </gmd:CI_Citation>
+      </ps:legalFoundationDocument>
+      <ps:siteDesignation>
+        <ps:DesignationType>
+          <ps:designationScheme>ecologischeHoofdstructuur</ps:designationScheme>
+          <ps:designation>ecologischeHoofdstructuur</ps:designation>
+          <ps:percentageUnderDesignation>100</ps:percentageUnderDesignation>
+        </ps:DesignationType>
+      </ps:siteDesignation>
+      <ps:siteProtectionClassification>landscape</ps:siteProtectionClassification>
+      <ps:siteProtectionClassification>environment</ps:siteProtectionClassification>
+      <ps:siteProtectionClassification>natureConservation</ps:siteProtectionClassification>
+      <ps:siteProtectionClassification>ecological</ps:siteProtectionClassification>
+    </ps:ProtectedSite>
+  </wfs:member>
+  <wfs:member>
+    <ps:ProtectedSite xmlns:ps="urn:x-inspire:specification:gmlas:ProtectedSites:3.0" xmlns:gml="http://www.opengis.net/gml/3.2" gml:id="PS_PROTECTEDSITE_1358343">
+      <ps:geometry>
+        <!--Inlined geometry 'PS_PROTECTEDSITE_1358343_PS_GEOMETRY'-->
+        <gml:Polygon gml:id="PS_PROTECTEDSITE_1358343_PS_GEOMETRY" srsName="EPSG:28992">
+          <gml:exterior>
+            <gml:LinearRing>
+              <gml:posList>266464.406 478692.031 266471.063 478683.594 266554.438 478705.281 266553.969 478696.906 266480.031 478677.031 266470.656 478673.906 266467.531 478676.719 266456.563 478689.844 266418.094 478733.344 266404.938 478749.313 266401.500 478752.438 266386.406 478770.031 266340.719 478831.844 266344.406 478833.688 266351.156 478833.688 266380.906 478796.188 266427.969 478740.531 266435.094 478732.844 266451.844 478710.094 266464.406 478692.031</gml:posList>
+            </gml:LinearRing>
+          </gml:exterior>
+        </gml:Polygon>
+      </ps:geometry>
+      <ps:inspireID>
+        <base:Identifier xmlns:base="urn:x-inspire:specification:gmlas:BaseTypes:3.2">
+          <base:localId>BE2F6246-9D6F-461E-AB1D-3709C563DB3F</base:localId>
+          <base:namespace>NL.9927.NL</base:namespace>
+        </base:Identifier>
+      </ps:inspireID>
+      <ps:legalFoundationDate>2009-05-19T00:00:00Z</ps:legalFoundationDate>
+      <ps:legalFoundationDocument>
+        <gmd:CI_Citation xmlns:gmd="http://www.isotc211.org/2005/gmd">
+          <gmd:title>
+            <gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">http://gisopenbaar.overijssel.nl/website/Georegister/Inspire/GSbesluit_EHS.pdf</gco:CharacterString>
+          </gmd:title>
+          <gmd:date>
+            <gmd:CI_Date>
+              <gmd:date>
+                <gco:DateTime xmlns:gco="http://www.isotc211.org/2005/gco">2009-05-19T00:00:00Z</gco:DateTime>
+              </gmd:date>
+              <gmd:dateType>
+                <gmd:CI_DateTypeCode codeListValue="publication" codeList="http://www.isotc211.org/2005/resources/codeList.xml#CI_DateTypeCode"/>
+              </gmd:dateType>
+            </gmd:CI_Date>
+          </gmd:date>
+        </gmd:CI_Citation>
+      </ps:legalFoundationDocument>
+      <ps:siteDesignation>
+        <ps:DesignationType>
+          <ps:designationScheme>ecologischeHoofdstructuur</ps:designationScheme>
+          <ps:designation>ecologischeHoofdstructuur</ps:designation>
+          <ps:percentageUnderDesignation>100</ps:percentageUnderDesignation>
+        </ps:DesignationType>
+      </ps:siteDesignation>
+      <ps:siteProtectionClassification>landscape</ps:siteProtectionClassification>
+      <ps:siteProtectionClassification>environment</ps:siteProtectionClassification>
+      <ps:siteProtectionClassification>natureConservation</ps:siteProtectionClassification>
+      <ps:siteProtectionClassification>ecological</ps:siteProtectionClassification>
+    </ps:ProtectedSite>
+  </wfs:member>
+  <wfs:member>
+    <ps:ProtectedSite xmlns:ps="urn:x-inspire:specification:gmlas:ProtectedSites:3.0" xmlns:gml="http://www.opengis.net/gml/3.2" gml:id="PS_PROTECTEDSITE_1358343">
+      <ps:geometry>
+        <!--Inlined geometry 'PS_PROTECTEDSITE_1358343_PS_GEOMETRY'-->
+        <gml:Polygon gml:id="PS_PROTECTEDSITE_1358343_PS_GEOMETRY" srsName="EPSG:28992">
+          <gml:exterior>
+            <gml:LinearRing>
+              <gml:posList>266464.406 478692.031 266471.063 478683.594 266554.438 478705.281 266553.969 478696.906 266480.031 478677.031 266470.656 478673.906 266467.531 478676.719 266456.563 478689.844 266418.094 478733.344 266404.938 478749.313 266401.500 478752.438 266386.406 478770.031 266340.719 478831.844 266344.406 478833.688 266351.156 478833.688 266380.906 478796.188 266427.969 478740.531 266435.094 478732.844 266451.844 478710.094 266464.406 478692.031</gml:posList>
+            </gml:LinearRing>
+          </gml:exterior>
+        </gml:Polygon>
+      </ps:geometry>
+      <ps:inspireID>
+        <base:Identifier xmlns:base="urn:x-inspire:specification:gmlas:BaseTypes:3.2">
+          <base:localId>29609080-AEA7-4BDD-952A-EE78BE059B15</base:localId>
+          <base:namespace>NL.9927.NL</base:namespace>
+        </base:Identifier>
+      </ps:inspireID>
+      <ps:legalFoundationDate>2009-05-19T00:00:00Z</ps:legalFoundationDate>
+      <ps:legalFoundationDocument>
+        <gmd:CI_Citation xmlns:gmd="http://www.isotc211.org/2005/gmd">
+          <gmd:title>
+            <gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">http://gisopenbaar.overijssel.nl/website/Georegister/Inspire/GSbesluit_EHS.pdf</gco:CharacterString>
+          </gmd:title>
+          <gmd:date>
+            <gmd:CI_Date>
+              <gmd:date>
+                <gco:DateTime xmlns:gco="http://www.isotc211.org/2005/gco">2009-05-19T00:00:00Z</gco:DateTime>
+              </gmd:date>
+              <gmd:dateType>
+                <gmd:CI_DateTypeCode codeListValue="publication" codeList="http://www.isotc211.org/2005/resources/codeList.xml#CI_DateTypeCode"/>
+              </gmd:dateType>
+            </gmd:CI_Date>
+          </gmd:date>
+        </gmd:CI_Citation>
+      </ps:legalFoundationDocument>
+      <ps:siteDesignation>
+        <ps:DesignationType>
+          <ps:designationScheme>ecologischeHoofdstructuur</ps:designationScheme>
+          <ps:designation>ecologischeHoofdstructuur</ps:designation>
+          <ps:percentageUnderDesignation>100</ps:percentageUnderDesignation>
+        </ps:DesignationType>
+      </ps:siteDesignation>
+      <ps:siteProtectionClassification>landscape</ps:siteProtectionClassification>
+      <ps:siteProtectionClassification>environment</ps:siteProtectionClassification>
+      <ps:siteProtectionClassification>natureConservation</ps:siteProtectionClassification>
+      <ps:siteProtectionClassification>ecological</ps:siteProtectionClassification>
+    </ps:ProtectedSite>
+  </wfs:member>
+  <wfs:member>
+    <ps:ProtectedSite xmlns:ps="urn:x-inspire:specification:gmlas:ProtectedSites:3.0" xmlns:gml="http://www.opengis.net/gml/3.2" gml:id="PS_PROTECTEDSITE_1358343">
+      <ps:geometry>
+        <!--Inlined geometry 'PS_PROTECTEDSITE_1358343_PS_GEOMETRY'-->
+        <gml:Polygon gml:id="PS_PROTECTEDSITE_1358343_PS_GEOMETRY" srsName="EPSG:28992">
+          <gml:exterior>
+            <gml:LinearRing>
+              <gml:posList>266464.406 478692.031 266471.063 478683.594 266554.438 478705.281 266553.969 478696.906 266480.031 478677.031 266470.656 478673.906 266467.531 478676.719 266456.563 478689.844 266418.094 478733.344 266404.938 478749.313 266401.500 478752.438 266386.406 478770.031 266340.719 478831.844 266344.406 478833.688 266351.156 478833.688 266380.906 478796.188 266427.969 478740.531 266435.094 478732.844 266451.844 478710.094 266464.406 478692.031</gml:posList>
+            </gml:LinearRing>
+          </gml:exterior>
+        </gml:Polygon>
+      </ps:geometry>
+      <ps:inspireID>
+        <base:Identifier xmlns:base="urn:x-inspire:specification:gmlas:BaseTypes:3.2">
+          <base:localId>1387BBB1-C238-441F-A4F3-5070FB74FAAE</base:localId>
+          <base:namespace>NL.9927.NL</base:namespace>
+        </base:Identifier>
+      </ps:inspireID>
+      <ps:legalFoundationDate>2009-05-19T00:00:00Z</ps:legalFoundationDate>
+      <ps:legalFoundationDocument>
+        <gmd:CI_Citation xmlns:gmd="http://www.isotc211.org/2005/gmd">
+          <gmd:title>
+            <gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">http://gisopenbaar.overijssel.nl/website/Georegister/Inspire/GSbesluit_EHS.pdf</gco:CharacterString>
+          </gmd:title>
+          <gmd:date>
+            <gmd:CI_Date>
+              <gmd:date>
+                <gco:DateTime xmlns:gco="http://www.isotc211.org/2005/gco">2009-05-19T00:00:00Z</gco:DateTime>
+              </gmd:date>
+              <gmd:dateType>
+                <gmd:CI_DateTypeCode codeListValue="publication" codeList="http://www.isotc211.org/2005/resources/codeList.xml#CI_DateTypeCode"/>
+              </gmd:dateType>
+            </gmd:CI_Date>
+          </gmd:date>
+        </gmd:CI_Citation>
+      </ps:legalFoundationDocument>
+      <ps:siteDesignation>
+        <ps:DesignationType>
+          <ps:designationScheme>ecologischeHoofdstructuur</ps:designationScheme>
+          <ps:designation>ecologischeHoofdstructuur</ps:designation>
+          <ps:percentageUnderDesignation>100</ps:percentageUnderDesignation>
+        </ps:DesignationType>
+      </ps:siteDesignation>
+      <ps:siteProtectionClassification>landscape</ps:siteProtectionClassification>
+      <ps:siteProtectionClassification>environment</ps:siteProtectionClassification>
+      <ps:siteProtectionClassification>natureConservation</ps:siteProtectionClassification>
+      <ps:siteProtectionClassification>ecological</ps:siteProtectionClassification>
+    </ps:ProtectedSite>
+  </wfs:member>
+  <wfs:member>
+    <ps:ProtectedSite xmlns:ps="urn:x-inspire:specification:gmlas:ProtectedSites:3.0" xmlns:gml="http://www.opengis.net/gml/3.2" gml:id="PS_PROTECTEDSITE_1358343">
+      <ps:geometry>
+        <!--Inlined geometry 'PS_PROTECTEDSITE_1358343_PS_GEOMETRY'-->
+        <gml:Polygon gml:id="PS_PROTECTEDSITE_1358343_PS_GEOMETRY" srsName="EPSG:28992">
+          <gml:exterior>
+            <gml:LinearRing>
+              <gml:posList>266464.406 478692.031 266471.063 478683.594 266554.438 478705.281 266553.969 478696.906 266480.031 478677.031 266470.656 478673.906 266467.531 478676.719 266456.563 478689.844 266418.094 478733.344 266404.938 478749.313 266401.500 478752.438 266386.406 478770.031 266340.719 478831.844 266344.406 478833.688 266351.156 478833.688 266380.906 478796.188 266427.969 478740.531 266435.094 478732.844 266451.844 478710.094 266464.406 478692.031</gml:posList>
+            </gml:LinearRing>
+          </gml:exterior>
+        </gml:Polygon>
+      </ps:geometry>
+      <ps:inspireID>
+        <base:Identifier xmlns:base="urn:x-inspire:specification:gmlas:BaseTypes:3.2">
+          <base:localId>59643CB6-D5BA-442B-A222-5079C1641F50</base:localId>
+          <base:namespace>NL.9927.NL</base:namespace>
+        </base:Identifier>
+      </ps:inspireID>
+      <ps:legalFoundationDate>2009-05-19T00:00:00Z</ps:legalFoundationDate>
+      <ps:legalFoundationDocument>
+        <gmd:CI_Citation xmlns:gmd="http://www.isotc211.org/2005/gmd">
+          <gmd:title>
+            <gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">http://gisopenbaar.overijssel.nl/website/Georegister/Inspire/GSbesluit_EHS.pdf</gco:CharacterString>
+          </gmd:title>
+          <gmd:date>
+            <gmd:CI_Date>
+              <gmd:date>
+                <gco:DateTime xmlns:gco="http://www.isotc211.org/2005/gco">2009-05-19T00:00:00Z</gco:DateTime>
+              </gmd:date>
+              <gmd:dateType>
+                <gmd:CI_DateTypeCode codeListValue="publication" codeList="http://www.isotc211.org/2005/resources/codeList.xml#CI_DateTypeCode"/>
+              </gmd:dateType>
+            </gmd:CI_Date>
+          </gmd:date>
+        </gmd:CI_Citation>
+      </ps:legalFoundationDocument>
+      <ps:siteDesignation>
+        <ps:DesignationType>
+          <ps:designationScheme>ecologischeHoofdstructuur</ps:designationScheme>
+          <ps:designation>ecologischeHoofdstructuur</ps:designation>
+          <ps:percentageUnderDesignation>100</ps:percentageUnderDesignation>
+        </ps:DesignationType>
+      </ps:siteDesignation>
+      <ps:siteProtectionClassification>landscape</ps:siteProtectionClassification>
+      <ps:siteProtectionClassification>environment</ps:siteProtectionClassification>
+      <ps:siteProtectionClassification>natureConservation</ps:siteProtectionClassification>
+      <ps:siteProtectionClassification>ecological</ps:siteProtectionClassification>
+    </ps:ProtectedSite>
+  </wfs:member>
+  <wfs:member>
+    <ps:ProtectedSite xmlns:ps="urn:x-inspire:specification:gmlas:ProtectedSites:3.0" xmlns:gml="http://www.opengis.net/gml/3.2" gml:id="PS_PROTECTEDSITE_1358343">
+      <ps:geometry>
+        <!--Inlined geometry 'PS_PROTECTEDSITE_1358343_PS_GEOMETRY'-->
+        <gml:Polygon gml:id="PS_PROTECTEDSITE_1358343_PS_GEOMETRY" srsName="EPSG:28992">
+          <gml:exterior>
+            <gml:LinearRing>
+              <gml:posList>266464.406 478692.031 266471.063 478683.594 266554.438 478705.281 266553.969 478696.906 266480.031 478677.031 266470.656 478673.906 266467.531 478676.719 266456.563 478689.844 266418.094 478733.344 266404.938 478749.313 266401.500 478752.438 266386.406 478770.031 266340.719 478831.844 266344.406 478833.688 266351.156 478833.688 266380.906 478796.188 266427.969 478740.531 266435.094 478732.844 266451.844 478710.094 266464.406 478692.031</gml:posList>
+            </gml:LinearRing>
+          </gml:exterior>
+        </gml:Polygon>
+      </ps:geometry>
+      <ps:inspireID>
+        <base:Identifier xmlns:base="urn:x-inspire:specification:gmlas:BaseTypes:3.2">
+          <base:localId>60E32854-5FA2-443F-A816-D58FEBCBDA00</base:localId>
+          <base:namespace>NL.9927.NL</base:namespace>
+        </base:Identifier>
+      </ps:inspireID>
+      <ps:legalFoundationDate>2009-05-19T00:00:00Z</ps:legalFoundationDate>
+      <ps:legalFoundationDocument>
+        <gmd:CI_Citation xmlns:gmd="http://www.isotc211.org/2005/gmd">
+          <gmd:title>
+            <gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">http://gisopenbaar.overijssel.nl/website/Georegister/Inspire/GSbesluit_EHS.pdf</gco:CharacterString>
+          </gmd:title>
+          <gmd:date>
+            <gmd:CI_Date>
+              <gmd:date>
+                <gco:DateTime xmlns:gco="http://www.isotc211.org/2005/gco">2009-05-19T00:00:00Z</gco:DateTime>
+              </gmd:date>
+              <gmd:dateType>
+                <gmd:CI_DateTypeCode codeListValue="publication" codeList="http://www.isotc211.org/2005/resources/codeList.xml#CI_DateTypeCode"/>
+              </gmd:dateType>
+            </gmd:CI_Date>
+          </gmd:date>
+        </gmd:CI_Citation>
+      </ps:legalFoundationDocument>
+      <ps:siteDesignation>
+        <ps:DesignationType>
+          <ps:designationScheme>ecologischeHoofdstructuur</ps:designationScheme>
+          <ps:designation>ecologischeHoofdstructuur</ps:designation>
+          <ps:percentageUnderDesignation>100</ps:percentageUnderDesignation>
+        </ps:DesignationType>
+      </ps:siteDesignation>
+      <ps:siteProtectionClassification>landscape</ps:siteProtectionClassification>
+      <ps:siteProtectionClassification>environment</ps:siteProtectionClassification>
+      <ps:siteProtectionClassification>natureConservation</ps:siteProtectionClassification>
+      <ps:siteProtectionClassification>ecological</ps:siteProtectionClassification>
+    </ps:ProtectedSite>
+  </wfs:member>
+  <wfs:member>
+    <ps:ProtectedSite xmlns:ps="urn:x-inspire:specification:gmlas:ProtectedSites:3.0" xmlns:gml="http://www.opengis.net/gml/3.2" gml:id="PS_PROTECTEDSITE_1358343">
+      <ps:geometry>
+        <!--Inlined geometry 'PS_PROTECTEDSITE_1358343_PS_GEOMETRY'-->
+        <gml:Polygon gml:id="PS_PROTECTEDSITE_1358343_PS_GEOMETRY" srsName="EPSG:28992">
+          <gml:exterior>
+            <gml:LinearRing>
+              <gml:posList>266464.406 478692.031 266471.063 478683.594 266554.438 478705.281 266553.969 478696.906 266480.031 478677.031 266470.656 478673.906 266467.531 478676.719 266456.563 478689.844 266418.094 478733.344 266404.938 478749.313 266401.500 478752.438 266386.406 478770.031 266340.719 478831.844 266344.406 478833.688 266351.156 478833.688 266380.906 478796.188 266427.969 478740.531 266435.094 478732.844 266451.844 478710.094 266464.406 478692.031</gml:posList>
+            </gml:LinearRing>
+          </gml:exterior>
+        </gml:Polygon>
+      </ps:geometry>
+      <ps:inspireID>
+        <base:Identifier xmlns:base="urn:x-inspire:specification:gmlas:BaseTypes:3.2">
+          <base:localId>7DCA20F5-C570-41DA-89BC-1CA4DE841352</base:localId>
+          <base:namespace>NL.9927.NL</base:namespace>
+        </base:Identifier>
+      </ps:inspireID>
+      <ps:legalFoundationDate>2009-05-19T00:00:00Z</ps:legalFoundationDate>
+      <ps:legalFoundationDocument>
+        <gmd:CI_Citation xmlns:gmd="http://www.isotc211.org/2005/gmd">
+          <gmd:title>
+            <gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">http://gisopenbaar.overijssel.nl/website/Georegister/Inspire/GSbesluit_EHS.pdf</gco:CharacterString>
+          </gmd:title>
+          <gmd:date>
+            <gmd:CI_Date>
+              <gmd:date>
+                <gco:DateTime xmlns:gco="http://www.isotc211.org/2005/gco">2009-05-19T00:00:00Z</gco:DateTime>
+              </gmd:date>
+              <gmd:dateType>
+                <gmd:CI_DateTypeCode codeListValue="publication" codeList="http://www.isotc211.org/2005/resources/codeList.xml#CI_DateTypeCode"/>
+              </gmd:dateType>
+            </gmd:CI_Date>
+          </gmd:date>
+        </gmd:CI_Citation>
+      </ps:legalFoundationDocument>
+      <ps:siteDesignation>
+        <ps:DesignationType>
+          <ps:designationScheme>ecologischeHoofdstructuur</ps:designationScheme>
+          <ps:designation>ecologischeHoofdstructuur</ps:designation>
+          <ps:percentageUnderDesignation>100</ps:percentageUnderDesignation>
+        </ps:DesignationType>
+      </ps:siteDesignation>
+      <ps:siteProtectionClassification>landscape</ps:siteProtectionClassification>
+      <ps:siteProtectionClassification>environment</ps:siteProtectionClassification>
+      <ps:siteProtectionClassification>natureConservation</ps:siteProtectionClassification>
+      <ps:siteProtectionClassification>ecological</ps:siteProtectionClassification>
+    </ps:ProtectedSite>
+  </wfs:member>
+  </wfs:FeatureCollection>

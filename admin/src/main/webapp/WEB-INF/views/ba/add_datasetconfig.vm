@@ -1,0 +1,64 @@
+#set($layerName='add_datasetconfig')
+<br/>
+
+<div>
+	<div data-dojo-type="dijit/form/Form" id="datasetForm" jsId="datasetEditForm" action="#springUrl('/ba/add_datasetconfig/')$bronhouder.id?thema=$thema.naam" method="POST">
+	
+	    <script type="dojo/method" event="onSubmit">
+		        if (this.validate()) {
+		            return true;
+		        } else {
+		            alert('Formulier bevat invalide waarden, corrigeer deze aub');
+		            return false;
+		        }
+		</script>
+		
+		<table class="cds-table" id="datasetViewer">
+			<thead>
+				<tr>
+					<th colspan="2">Toevoegen dataset</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><label>Naam</label></td>
+					<td>
+						#springFormInput("datasetForm.naam" 'data-dojo-type="dijit/form/TextBox" style="width:400px"')						
+						#springShowErrors("<br>" "error")
+					</td>
+				</tr>
+				<tr>
+					<td><label>Uuid</label></td>
+					<td>
+						#springFormInput("datasetForm.uuid" 'data-dojo-type="dijit/form/TextBox" style="width:400px"')						
+						#springShowErrors("<br>" "error")
+					</td>
+				</tr>
+				<tr>
+					<td><label>Type</label></td>
+					<td>
+						<select name="datasettypeId" data-dojo-type="dijit/form/FilteringSelect">		
+						#foreach($dt in $datasetTypes)
+							<option value="$dt.id">$dt.naam</option>
+						#end						
+						</select>
+					</td>
+				</tr>
+			</tbody>
+			<tfoot>
+				<tr>
+					<th colspan="2">
+						<div id="stdButton">
+							<button data-dojo-type="dijit/form/Button" type="submit" name="submit" value="submit" title="Selecteer om dataset gegevens op te slaan">Opslaan</button>
+							<button data-dojo-type="dijit/form/Button" type="button" name="back" value="back" title="Terug naar datasets">Annuleren
+								<script type="dojo/method" data-dojo-event="onClick">
+									document.location.href = "#springUrl('/ba/datasetconfig/')$!bronhouder.id?thema=$!thema.naam";
+								</script>
+							</button>
+						</div>
+					</th>
+				</tr>
+			</tfoot>
+		</table>	
+	</div>
+</div>

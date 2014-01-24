@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns:GU_RRGS="http://www.safe.com/gml/fme" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml" xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.safe.com/gml/fme" elementFormDefault="qualified">
+<import namespace="http://www.opengis.net/gml" schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/gml.xsd"/>
+<element name="Transportroutedeel" type="GU_RRGS:TransportroutedeelType" substitutionGroup="gml:_Feature"/>
+<complexType name="TransportroutedeelType">
+<complexContent>
+<extension base="gml:AbstractFeatureType">
+<sequence>
+<element name="transportrouteId" minOccurs="0">
+<simpleType>
+<restriction base="string">
+<maxLength value="20"/>
+</restriction>
+</simpleType></element>
+<element name="transportroutedeelId" minOccurs="0">
+<simpleType>
+<restriction base="string">
+<maxLength value="20"/>
+</restriction>
+</simpleType></element>
+<element name="laatste_mutatiedatumtijd" minOccurs="0">
+<simpleType>
+<restriction base="string">
+<maxLength value="20"/>
+</restriction>
+</simpleType></element>
+<element name="transportrouteNaam" minOccurs="0">
+<simpleType>
+<restriction base="string">
+<maxLength value="20"/>
+</restriction>
+</simpleType></element>
+<element name="omschrijving" minOccurs="0">
+<simpleType>
+<restriction base="string">
+<maxLength value="20"/>
+</restriction>
+</simpleType></element>
+<element name="buisleidingType" minOccurs="0">
+<simpleType>
+<restriction base="string">
+<maxLength value="20"/>
+</restriction>
+</simpleType></element>
+<element name="naamEigenaar" minOccurs="0">
+<simpleType>
+<restriction base="string">
+<maxLength value="30"/>
+</restriction>
+</simpleType></element>
+<element name="uitwendigeDiameter" minOccurs="0">
+<simpleType>
+<restriction base="string">
+<maxLength value="20"/>
+</restriction>
+</simpleType></element>
+<element name="wandDikte" minOccurs="0">
+<simpleType>
+<restriction base="string">
+<maxLength value="20"/>
+</restriction>
+</simpleType></element>
+<element name="maximaleWerkdruk" minOccurs="0">
+<simpleType>
+<restriction base="string">
+<maxLength value="20"/>
+</restriction>
+</simpleType></element>
+<element name="liggingBovenkant" minOccurs="0">
+<simpleType>
+<restriction base="string">
+<maxLength value="20"/>
+</restriction>
+</simpleType></element>
+<element name="materiaalSoort" minOccurs="0">
+<simpleType>
+<restriction base="string">
+<maxLength value="30"/>
+</restriction>
+</simpleType></element>
+<element name="casNrMaatgevendeStof" minOccurs="0">
+<simpleType>
+<restriction base="string">
+<maxLength value="20"/>
+</restriction>
+</simpleType></element>
+<element name="toelichtingMaatgevendeStof" minOccurs="0">
+<simpleType>
+<restriction base="string">
+<maxLength value="20"/>
+</restriction>
+</simpleType></element>
+<element name="status" minOccurs="0">
+<simpleType>
+<restriction base="string">
+<maxLength value="20"/>
+</restriction>
+</simpleType></element>
+<element ref="gml:curveProperty" minOccurs="0"/>
+<element ref="gml:multiCurveProperty" minOccurs="0"/>
+</sequence>
+</extension>
+</complexContent>
+</complexType>
+</schema>

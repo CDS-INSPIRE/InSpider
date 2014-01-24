@@ -1,0 +1,825 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wfs:WFS_Capabilities version="1.1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://www.opengis.net/wfs" xmlns:wfs="http://www.opengis.net/wfs"
+    xmlns:ows="http://www.opengis.net/ows" xmlns:gml="http://www.opengis.net/gml"
+    xmlns:ogc="http://www.opengis.net/ogc" xmlns:xlink="http://www.w3.org/1999/xlink"
+    xsi:schemaLocation="http://www.opengis.net/wfs http://www.drenthe.info:80/geoserver/schemas/wfs/1.1.0/wfs.xsd"
+    xmlns:zoek="http://swgis01/geoserver/zoek" updateSequence="127">
+    <ows:ServiceIdentification>
+        <ows:Title>Provincie Drenthe Web Feature Service</ows:Title>
+        <ows:Abstract>This is the reference implementation of WFS 1.0.0 and WFS 1.1.0, supports all
+            WFS operations including Transaction.</ows:Abstract>
+        <ows:Keywords>
+            <ows:Keyword>WFS</ows:Keyword>
+            <ows:Keyword>WMS</ows:Keyword>
+            <ows:Keyword>GEOSERVER</ows:Keyword>
+        </ows:Keywords>
+        <ows:ServiceType>WFS</ows:ServiceType>
+        <ows:ServiceTypeVersion>1.1.0</ows:ServiceTypeVersion>
+        <ows:Fees>NONE</ows:Fees>
+        <ows:AccessConstraints>NONE</ows:AccessConstraints>
+    </ows:ServiceIdentification>
+    <ows:ServiceProvider>
+        <ows:ProviderName/>
+        <ows:ServiceContact>
+            <ows:IndividualName/>
+            <ows:PositionName/>
+            <ows:ContactInfo>
+                <ows:Phone>
+                    <ows:Voice/>
+                    <ows:Facsimile/>
+                </ows:Phone>
+                <ows:Address>
+                    <ows:City/>
+                    <ows:AdministrativeArea/>
+                    <ows:PostalCode/>
+                    <ows:Country/>
+                </ows:Address>
+            </ows:ContactInfo>
+        </ows:ServiceContact>
+    </ows:ServiceProvider>
+    <ows:OperationsMetadata>
+        <ows:Operation name="GetCapabilities">
+            <ows:DCP>
+                <ows:HTTP>
+                    <ows:Get xlink:href="http://www.drenthe.info:80/geoserver/zoek/wfs"/>
+                    <ows:Post xlink:href="http://www.drenthe.info:80/geoserver/zoek/wfs"/>
+                </ows:HTTP>
+            </ows:DCP>
+            <ows:Parameter name="AcceptVersions">
+                <ows:Value>1.0.0</ows:Value>
+                <ows:Value>1.1.0</ows:Value>
+            </ows:Parameter>
+            <ows:Parameter name="AcceptFormats">
+                <ows:Value>text/xml</ows:Value>
+            </ows:Parameter>
+        </ows:Operation>
+        <ows:Operation name="DescribeFeatureType">
+            <ows:DCP>
+                <ows:HTTP>
+                    <ows:Get xlink:href="http://www.drenthe.info:80/geoserver/zoek/wfs"/>
+                    <ows:Post xlink:href="http://www.drenthe.info:80/geoserver/zoek/wfs"/>
+                </ows:HTTP>
+            </ows:DCP>
+            <ows:Parameter name="outputFormat">
+                <ows:Value>text/xml; subtype=gml/3.1.1</ows:Value>
+            </ows:Parameter>
+        </ows:Operation>
+        <ows:Operation name="GetFeature">
+            <ows:DCP>
+                <ows:HTTP>
+                    <ows:Get xlink:href="http://www.drenthe.info:80/geoserver/zoek/wfs"/>
+                    <ows:Post xlink:href="http://www.drenthe.info:80/geoserver/zoek/wfs"/>
+                </ows:HTTP>
+            </ows:DCP>
+            <ows:Parameter name="resultType">
+                <ows:Value>results</ows:Value>
+                <ows:Value>hits</ows:Value>
+            </ows:Parameter>
+            <ows:Parameter name="outputFormat">
+                <ows:Value>text/xml; subtype=gml/3.1.1</ows:Value>
+                <ows:Value>GML2</ows:Value>
+                <ows:Value>GML2-GZIP</ows:Value>
+                <ows:Value>SHAPE-ZIP</ows:Value>
+                <ows:Value>csv</ows:Value>
+                <ows:Value>gml3</ows:Value>
+                <ows:Value>gml32</ows:Value>
+                <ows:Value>json</ows:Value>
+                <ows:Value>text/xml; subtype=gml/2.1.2</ows:Value>
+                <ows:Value>text/xml; subtype=gml/3.2</ows:Value>
+            </ows:Parameter>
+            <ows:Constraint name="LocalTraverseXLinkScope">
+                <ows:Value>2</ows:Value>
+            </ows:Constraint>
+        </ows:Operation>
+        <ows:Operation name="GetGmlObject">
+            <ows:DCP>
+                <ows:HTTP>
+                    <ows:Get xlink:href="http://www.drenthe.info:80/geoserver/zoek/wfs"/>
+                    <ows:Post xlink:href="http://www.drenthe.info:80/geoserver/zoek/wfs"/>
+                </ows:HTTP>
+            </ows:DCP>
+        </ows:Operation>
+        <ows:Operation name="LockFeature">
+            <ows:DCP>
+                <ows:HTTP>
+                    <ows:Get xlink:href="http://www.drenthe.info:80/geoserver/zoek/wfs"/>
+                    <ows:Post xlink:href="http://www.drenthe.info:80/geoserver/zoek/wfs"/>
+                </ows:HTTP>
+            </ows:DCP>
+            <ows:Parameter name="releaseAction">
+                <ows:Value>ALL</ows:Value>
+                <ows:Value>SOME</ows:Value>
+            </ows:Parameter>
+        </ows:Operation>
+        <ows:Operation name="GetFeatureWithLock">
+            <ows:DCP>
+                <ows:HTTP>
+                    <ows:Get xlink:href="http://www.drenthe.info:80/geoserver/zoek/wfs"/>
+                    <ows:Post xlink:href="http://www.drenthe.info:80/geoserver/zoek/wfs"/>
+                </ows:HTTP>
+            </ows:DCP>
+            <ows:Parameter name="resultType">
+                <ows:Value>results</ows:Value>
+                <ows:Value>hits</ows:Value>
+            </ows:Parameter>
+            <ows:Parameter name="outputFormat">
+                <ows:Value>text/xml; subtype=gml/3.1.1</ows:Value>
+                <ows:Value>GML2</ows:Value>
+                <ows:Value>GML2-GZIP</ows:Value>
+                <ows:Value>SHAPE-ZIP</ows:Value>
+                <ows:Value>csv</ows:Value>
+                <ows:Value>gml3</ows:Value>
+                <ows:Value>gml32</ows:Value>
+                <ows:Value>json</ows:Value>
+                <ows:Value>text/xml; subtype=gml/2.1.2</ows:Value>
+                <ows:Value>text/xml; subtype=gml/3.2</ows:Value>
+            </ows:Parameter>
+        </ows:Operation>
+        <ows:Operation name="Transaction">
+            <ows:DCP>
+                <ows:HTTP>
+                    <ows:Get xlink:href="http://www.drenthe.info:80/geoserver/zoek/wfs"/>
+                    <ows:Post xlink:href="http://www.drenthe.info:80/geoserver/zoek/wfs"/>
+                </ows:HTTP>
+            </ows:DCP>
+            <ows:Parameter name="inputFormat">
+                <ows:Value>text/xml; subtype=gml/3.1.1</ows:Value>
+            </ows:Parameter>
+            <ows:Parameter name="idgen">
+                <ows:Value>GenerateNew</ows:Value>
+                <ows:Value>UseExisting</ows:Value>
+                <ows:Value>ReplaceDuplicate</ows:Value>
+            </ows:Parameter>
+            <ows:Parameter name="releaseAction">
+                <ows:Value>ALL</ows:Value>
+                <ows:Value>SOME</ows:Value>
+            </ows:Parameter>
+        </ows:Operation>
+    </ows:OperationsMetadata>
+    <FeatureTypeList>
+        <Operations>
+            <Operation>Query</Operation>
+            <Operation>Insert</Operation>
+            <Operation>Update</Operation>
+            <Operation>Delete</Operation>
+            <Operation>Lock</Operation>
+        </Operations>
+        <FeatureType xmlns:zoek="http://swgis01/geoserver/zoek">
+            <Name>zoek:GBI.AW</Name>
+            <Title>Aardkundige waarden</Title>
+            <Abstract>De term aardkundige waarden wordt gebruikt als een verzamelnaam voor
+                geomorfologische,geologische, bodemkundige of geohydrologische verschijnselen in het
+                landschap, die een bepaalde waarde vertegenwoordigen. Het gaat daarbij niet alleen
+                om het behoud en de beleefbaarheid van historische verschijnselen. Er wordt ook
+                betekenis gehecht aan actuele processen, die aardkundige waarden
+                opleveren.</Abstract>
+            <ows:Keywords>
+                <ows:Keyword>GBI.AW</ows:Keyword>
+                <ows:Keyword>features</ows:Keyword>
+            </ows:Keywords>
+            <DefaultSRS>urn:x-ogc:def:crs:EPSG:28992</DefaultSRS>
+            <ows:WGS84BoundingBox>
+                <ows:LowerCorner>6.081893319873306 52.583419528431484</ows:LowerCorner>
+                <ows:UpperCorner>7.1243686085675995 53.21375226363882</ows:UpperCorner>
+            </ows:WGS84BoundingBox>
+        </FeatureType>
+        <FeatureType xmlns:zoek="http://swgis01/geoserver/zoek">
+            <Name>zoek:GBI.NAT_EHS_2013_V</Name>
+            <Title>EHS 2013</Title>
+            <Abstract>De Ecologische Hoofdstructuur (EHS) is een samenhangende structuur van
+                gebieden met een speciale natuurkwaliteit. De huidige stand van zaken EHS staat op
+                de kaart. Jaarlijks wordt deze geactualiseerd. Ook de invulling van de ecologische
+                verbindingen krijgen daarin hun beslag. De ecologische verbindingen zijn een apart
+                bestand in GBI. De EHS wordt verder aangevuld met gebieden die nog begrensd moeten
+                worden of op andere wijze als EHS worden bestemd. Daarnaast liggen er reserveringen
+                voor gebieden, de zogenaamde stergebieden. Bij de actualisatie worden ook externe
+                organisaties geraadpleegd.De volgende gegevensbestanden zijn gebruikt als basis voor
+                de concretisering van de EHS: Top 10, de eigendommen van de terreinbeherende
+                organisaties (SBB, NMM, HDL), waterbedrijven en particuliere boseigenaren,
+                bosuitbreiding en bosreservaten, Natura-2000 gebieden en de agrarische gebieden die
+                begrensd zijn in het Provinciale Natuurbeheerplan als agrarisch natuurgebied en om
+                te vormen tot natuur. De ruime jas gebieden zijn geen EHS.</Abstract>
+            <ows:Keywords>
+                <ows:Keyword>GBI.NAT_EHS_2013_V</ows:Keyword>
+                <ows:Keyword>features</ows:Keyword>
+            </ows:Keywords>
+            <DefaultSRS>urn:x-ogc:def:crs:EPSG:28992</DefaultSRS>
+            <ows:WGS84BoundingBox>
+                <ows:LowerCorner>6.081893319873306 52.583419528431484</ows:LowerCorner>
+                <ows:UpperCorner>7.1243686085675995 53.21375226363882</ows:UpperCorner>
+            </ows:WGS84BoundingBox>
+        </FeatureType>
+        <FeatureType xmlns:zoek="http://swgis01/geoserver/zoek">
+            <Name>zoek:GBI.MILIEU_GELCTR_BEDR_V</Name>
+            <Title>Geluidscontour bedrijventerreinen</Title>
+            <Abstract>Bedrijfsterreinen die in het kader van de Wet geluidhinder zijn
+                gezoneerd.</Abstract>
+            <ows:Keywords>
+                <ows:Keyword>GBI.MILIEU_GELCTR_BEDR_V</ows:Keyword>
+                <ows:Keyword>features</ows:Keyword>
+            </ows:Keywords>
+            <DefaultSRS>urn:x-ogc:def:crs:EPSG:28992</DefaultSRS>
+            <ows:WGS84BoundingBox>
+                <ows:LowerCorner>6.081893319873306 52.583419528431484</ows:LowerCorner>
+                <ows:UpperCorner>7.1243686085675995 53.21375226363882</ows:UpperCorner>
+            </ows:WGS84BoundingBox>
+        </FeatureType>
+        <FeatureType xmlns:zoek="http://swgis01/geoserver/zoek">
+            <Name>zoek:GBI.MILIEU_GELCTR_DAG_V</Name>
+            <Title>Geluidscontour etmaalperiode EU-geluidsbelastingkaart 2011</Title>
+            <Abstract>Geluidscontouren etmaalperiode voor het basisjaar 2011.Dataset is tot stand
+                gekomen in het kader van EU-richtlijn Omgevingslawaai. Dataset wordt eens per vijf
+                jaar gemaakt. Deze dataset is gebaseerd op alle provinciale wegen.</Abstract>
+            <ows:Keywords>
+                <ows:Keyword>GBI.MILIEU_GELCTR_DAG_V</ows:Keyword>
+                <ows:Keyword>features</ows:Keyword>
+            </ows:Keywords>
+            <DefaultSRS>urn:x-ogc:def:crs:EPSG:28992</DefaultSRS>
+            <ows:WGS84BoundingBox>
+                <ows:LowerCorner>6.081893319873306 52.583419528431484</ows:LowerCorner>
+                <ows:UpperCorner>7.1243686085675995 53.21375226363882</ows:UpperCorner>
+            </ows:WGS84BoundingBox>
+        </FeatureType>
+        <FeatureType xmlns:zoek="http://swgis01/geoserver/zoek">
+            <Name>zoek:GBI.MILIEU_GELCTR_VLIEG_V</Name>
+            <Title>Geluidscontour vliegvelden</Title>
+            <Abstract>Geluidscontouren vliegvelden</Abstract>
+            <ows:Keywords>
+                <ows:Keyword>GBI.MILIEU_GELCTR_VLIEG_V</ows:Keyword>
+                <ows:Keyword>features</ows:Keyword>
+            </ows:Keywords>
+            <DefaultSRS>urn:x-ogc:def:crs:EPSG:28992</DefaultSRS>
+            <ows:WGS84BoundingBox>
+                <ows:LowerCorner>6.081893319873306 52.583419528431484</ows:LowerCorner>
+                <ows:UpperCorner>7.1243686085675995 53.21375226363882</ows:UpperCorner>
+            </ows:WGS84BoundingBox>
+        </FeatureType>
+        <FeatureType xmlns:zoek="http://swgis01/geoserver/zoek">
+            <Name>zoek:EXT.TDN_GEMEENTEGRENZEN_V</Name>
+            <Title>Gemeentegrens, Nederland</Title>
+            <Abstract>Grenzen van de gemeenten en van de provincies in Nederland.</Abstract>
+            <ows:Keywords>
+                <ows:Keyword>EXT.TDN_GEMEENTEGRENZEN_V</ows:Keyword>
+                <ows:Keyword>features</ows:Keyword>
+            </ows:Keywords>
+            <DefaultSRS>urn:x-ogc:def:crs:EPSG:28992</DefaultSRS>
+            <ows:WGS84BoundingBox>
+                <ows:LowerCorner>6.081893319873306 52.583419528431484</ows:LowerCorner>
+                <ows:UpperCorner>7.1243686085675995 53.21375226363882</ows:UpperCorner>
+            </ows:WGS84BoundingBox>
+        </FeatureType>
+        <FeatureType xmlns:zoek="http://swgis01/geoserver/zoek">
+            <Name>zoek:GBI.MILIEU_ONTGRONDINGEN_V</Name>
+            <Title>INSPIRE ontgrondingen 2013</Title>
+            <Abstract>Dataset met gegevens over ontgrondingen in 2013 ten behoeve van het project
+                INSPIRE winning van oppervlaktedelfstoffen.</Abstract>
+            <ows:Keywords>
+                <ows:Keyword>GBI.MILIEU_ONTGRONDINGEN_V</ows:Keyword>
+                <ows:Keyword>features</ows:Keyword>
+            </ows:Keywords>
+            <DefaultSRS>urn:x-ogc:def:crs:EPSG:28992</DefaultSRS>
+            <ows:WGS84BoundingBox>
+                <ows:LowerCorner>6.081893319873306 52.583419528431484</ows:LowerCorner>
+                <ows:UpperCorner>7.1243686085675995 53.21375226363882</ows:UpperCorner>
+            </ows:WGS84BoundingBox>
+        </FeatureType>
+        <FeatureType xmlns:zoek="http://swgis01/geoserver/zoek">
+            <Name>zoek:EXT.KADASTERKAART_V</Name>
+            <Title>Kadastrale kaart</Title>
+            <Abstract>Conversie van NEN1878 naar Shape en DXF Binnen het DLG2 dataformaat worden de
+                volgende bestanden uitgesplitst. In Shape-formaat: punten en symbolen, teksten,
+                lijnvormige elementen, vlakken, kadastrale grenzen en kadastrale perceelnummers. In
+                DXF-formaat: perceelnummers, straatnamen, huisnummers, waterloopnamen en overige
+                teksten. N.B. Gegevens worden maandelijks aangepast </Abstract>
+            <ows:Keywords>
+                <ows:Keyword>EXT.KADASTERKAART_V</ows:Keyword>
+                <ows:Keyword>features</ows:Keyword>
+            </ows:Keywords>
+            <DefaultSRS>urn:x-ogc:def:crs:EPSG:28992</DefaultSRS>
+            <ows:WGS84BoundingBox>
+                <ows:LowerCorner>6.081893319873306 52.583419528431484</ows:LowerCorner>
+                <ows:UpperCorner>7.1243686085675995 53.21375226363882</ows:UpperCorner>
+            </ows:WGS84BoundingBox>
+        </FeatureType>
+        <FeatureType xmlns:zoek="http://swgis01/geoserver/zoek">
+            <Name>zoek:GBI.RO_KERNTOPO_V</Name>
+            <Title>Kernen, topografisch</Title>
+            <Abstract>Begrenzing van de kernen op basis van de luchtfoto van 2008.</Abstract>
+            <ows:Keywords>
+                <ows:Keyword>GBI.RO_KERNTOPO_V</ows:Keyword>
+                <ows:Keyword>features</ows:Keyword>
+            </ows:Keywords>
+            <DefaultSRS>urn:x-ogc:def:crs:EPSG:28992</DefaultSRS>
+            <ows:WGS84BoundingBox>
+                <ows:LowerCorner>6.081893319873306 52.583419528431484</ows:LowerCorner>
+                <ows:UpperCorner>7.1243686085675995 53.21375226363882</ows:UpperCorner>
+            </ows:WGS84BoundingBox>
+        </FeatureType>
+        <FeatureType xmlns:zoek="http://swgis01/geoserver/zoek">
+            <Name>zoek:WK.AFVALBAKKEN_P</Name>
+            <Title>Kwis: AFVALBAKKEN_P</Title>
+            <Abstract>tbv kwis</Abstract>
+            <ows:Keywords>
+                <ows:Keyword>WK.AFVALBAKKEN_P</ows:Keyword>
+                <ows:Keyword>features</ows:Keyword>
+            </ows:Keywords>
+            <DefaultSRS>urn:x-ogc:def:crs:EPSG:28992</DefaultSRS>
+            <ows:WGS84BoundingBox>
+                <ows:LowerCorner>6.081893319873306 52.583419528431484</ows:LowerCorner>
+                <ows:UpperCorner>7.1243686085675995 53.21375226363882</ows:UpperCorner>
+            </ows:WGS84BoundingBox>
+        </FeatureType>
+        <FeatureType xmlns:zoek="http://swgis01/geoserver/zoek">
+            <Name>zoek:WK.ANWBWEGWIJZERS_P</Name>
+            <Title>Kwis: ANWBWEGWIJZERS_P</Title>
+            <Abstract>tbv kwis</Abstract>
+            <ows:Keywords>
+                <ows:Keyword>WK.ANWBWEGWIJZERS_P</ows:Keyword>
+                <ows:Keyword>features</ows:Keyword>
+            </ows:Keywords>
+            <DefaultSRS>urn:x-ogc:def:crs:EPSG:28992</DefaultSRS>
+            <ows:WGS84BoundingBox>
+                <ows:LowerCorner>6.081893319873306 52.583419528431484</ows:LowerCorner>
+                <ows:UpperCorner>7.1243686085675995 53.21375226363882</ows:UpperCorner>
+            </ows:WGS84BoundingBox>
+        </FeatureType>
+        <FeatureType xmlns:zoek="http://swgis01/geoserver/zoek">
+            <Name>zoek:WK.BOMEN_P</Name>
+            <Title>Kwis: BOMEN_P</Title>
+            <Abstract>tbv kwis</Abstract>
+            <ows:Keywords>
+                <ows:Keyword>WK.BOMEN_P</ows:Keyword>
+                <ows:Keyword>features</ows:Keyword>
+            </ows:Keywords>
+            <DefaultSRS>urn:x-ogc:def:crs:EPSG:28992</DefaultSRS>
+            <ows:WGS84BoundingBox>
+                <ows:LowerCorner>6.081893319873306 52.583419528431484</ows:LowerCorner>
+                <ows:UpperCorner>7.1243686085675995 53.21375226363882</ows:UpperCorner>
+            </ows:WGS84BoundingBox>
+        </FeatureType>
+        <FeatureType xmlns:zoek="http://swgis01/geoserver/zoek">
+            <Name>zoek:WK.HECTOMETRERING_P</Name>
+            <Title>Kwis: HECTOMETRERING_P</Title>
+            <Abstract>tbv kwis</Abstract>
+            <ows:Keywords>
+                <ows:Keyword>WK.HECTOMETRERING_P</ows:Keyword>
+                <ows:Keyword>features</ows:Keyword>
+            </ows:Keywords>
+            <DefaultSRS>urn:x-ogc:def:crs:EPSG:28992</DefaultSRS>
+            <ows:WGS84BoundingBox>
+                <ows:LowerCorner>6.081893319873306 52.583419528431484</ows:LowerCorner>
+                <ows:UpperCorner>7.1243686085675995 53.21375226363882</ows:UpperCorner>
+            </ows:WGS84BoundingBox>
+        </FeatureType>
+        <FeatureType xmlns:zoek="http://swgis01/geoserver/zoek">
+            <Name>zoek:WK.KOLKEN_P</Name>
+            <Title>Kwis: KOLKEN_P</Title>
+            <Abstract>tbv kwis</Abstract>
+            <ows:Keywords>
+                <ows:Keyword>WK.KOLKEN_P</ows:Keyword>
+                <ows:Keyword>features</ows:Keyword>
+            </ows:Keywords>
+            <DefaultSRS>urn:x-ogc:def:crs:EPSG:28992</DefaultSRS>
+            <ows:WGS84BoundingBox>
+                <ows:LowerCorner>6.081893319873306 52.583419528431484</ows:LowerCorner>
+                <ows:UpperCorner>7.1243686085675995 53.21375226363882</ows:UpperCorner>
+            </ows:WGS84BoundingBox>
+        </FeatureType>
+        <FeatureType xmlns:zoek="http://swgis01/geoserver/zoek">
+            <Name>zoek:WK.LICHTMASTEN_P</Name>
+            <Title>Kwis: LICHTMASTEN_P</Title>
+            <Abstract>tbv kwis</Abstract>
+            <ows:Keywords>
+                <ows:Keyword>WK.LICHTMASTEN_P</ows:Keyword>
+                <ows:Keyword>features</ows:Keyword>
+            </ows:Keywords>
+            <DefaultSRS>urn:x-ogc:def:crs:EPSG:28992</DefaultSRS>
+            <ows:WGS84BoundingBox>
+                <ows:LowerCorner>6.081893319873306 52.583419528431484</ows:LowerCorner>
+                <ows:UpperCorner>7.1243686085675995 53.21375226363882</ows:UpperCorner>
+            </ows:WGS84BoundingBox>
+        </FeatureType>
+        <FeatureType xmlns:zoek="http://swgis01/geoserver/zoek">
+            <Name>zoek:WK.MEERPALEN_P</Name>
+            <Title>Kwis: MEERPALEN_P</Title>
+            <Abstract>tbv kwis</Abstract>
+            <ows:Keywords>
+                <ows:Keyword>WK.MEERPALEN_P</ows:Keyword>
+                <ows:Keyword>features</ows:Keyword>
+            </ows:Keywords>
+            <DefaultSRS>urn:x-ogc:def:crs:EPSG:28992</DefaultSRS>
+            <ows:WGS84BoundingBox>
+                <ows:LowerCorner>6.081893319873306 52.583419528431484</ows:LowerCorner>
+                <ows:UpperCorner>7.1243686085675995 53.21375226363882</ows:UpperCorner>
+            </ows:WGS84BoundingBox>
+        </FeatureType>
+        <FeatureType xmlns:zoek="http://swgis01/geoserver/zoek">
+            <Name>zoek:WK.VERDEELKASTLAAGSPANNING_P</Name>
+            <Title>Kwis: VERDEELKASTLAAGSPANNING_P</Title>
+            <Abstract>tbv kwis</Abstract>
+            <ows:Keywords>
+                <ows:Keyword>WK.VERDEELKASTLAAGSPANNING_P</ows:Keyword>
+                <ows:Keyword>features</ows:Keyword>
+            </ows:Keywords>
+            <DefaultSRS>urn:x-ogc:def:crs:EPSG:28992</DefaultSRS>
+            <ows:WGS84BoundingBox>
+                <ows:LowerCorner>6.081893319873306 52.583419528431484</ows:LowerCorner>
+                <ows:UpperCorner>7.1243686085675995 53.21375226363882</ows:UpperCorner>
+            </ows:WGS84BoundingBox>
+        </FeatureType>
+        <FeatureType xmlns:zoek="http://swgis01/geoserver/zoek">
+            <Name>zoek:EXT.NWB_WEG_DRUITSNEDE_WEGEN_L</Name>
+            <Title>NWB, Wegen (Dr)</Title>
+            <Abstract>Nationaal Wegenbestand, gedeelte van Drenthe.</Abstract>
+            <ows:Keywords>
+                <ows:Keyword>EXT.NWB_WEG_DRUITSNEDE_WEGEN_L</ows:Keyword>
+                <ows:Keyword>features</ows:Keyword>
+            </ows:Keywords>
+            <DefaultSRS>urn:x-ogc:def:crs:EPSG:28992</DefaultSRS>
+            <ows:WGS84BoundingBox>
+                <ows:LowerCorner>6.081893319873306 52.583419528431484</ows:LowerCorner>
+                <ows:UpperCorner>7.1243686085675995 53.21375226363882</ows:UpperCorner>
+            </ows:WGS84BoundingBox>
+        </FeatureType>
+        <FeatureType xmlns:zoek="http://swgis01/geoserver/zoek">
+            <Name>zoek:GBI.NL</Name>
+            <Title>Nationale landschappen</Title>
+            <Abstract>Nationale landschappen zijn gebieden met internationaal zeldzame of unieke en
+                nationaal kenmerkende landschapskwaliteiten, en in samenhang daarmee bijzondere
+                natuurlijke, cultuurhistorische en recreatieve kwaliteiten. Landschappelijke,
+                cultuurhistorische en natuurlijke kwaliteiten van nationale landschappen moeten
+                behouden blijven, duurzaam beheerd en waar mogelijk worden versterkt. Ook zijn
+                samenhang, toegankelijkheid enbeleefbaarheid belangrijke kernbegrippen. Uitgangspunt
+                is dat de nationale landschappen zich sociaal-economisch voldoende moeten kunnen
+                ontwikkelen, terwijl de bijzondere kwaliteiten van het gebied worden behouden en
+                worden versterkt. Deze kaart bevat de grens van het Nationaal landschap Drentsche
+                Aa, kaart 2B (Omgevingsvisie Drenthe, 2010).</Abstract>
+            <ows:Keywords>
+                <ows:Keyword>GBI.NL</ows:Keyword>
+                <ows:Keyword>features</ows:Keyword>
+            </ows:Keywords>
+            <DefaultSRS>urn:x-ogc:def:crs:EPSG:28992</DefaultSRS>
+            <ows:WGS84BoundingBox>
+                <ows:LowerCorner>6.081893319873306 52.583419528431484</ows:LowerCorner>
+                <ows:UpperCorner>7.1243686085675995 53.21375226363882</ows:UpperCorner>
+            </ows:WGS84BoundingBox>
+        </FeatureType>
+        <FeatureType xmlns:zoek="http://swgis01/geoserver/zoek">
+            <Name>zoek:GISUSER.V_MILIEU_POV_V</Name>
+            <Title>POV milieu geoapp bodem</Title>
+            <Abstract>POV milieu geoapp bodem</Abstract>
+            <ows:Keywords>
+                <ows:Keyword>GISUSER.V_MILIEU_POV_V</ows:Keyword>
+                <ows:Keyword>features</ows:Keyword>
+            </ows:Keywords>
+            <DefaultSRS>urn:x-ogc:def:crs:EPSG:28992</DefaultSRS>
+            <ows:WGS84BoundingBox>
+                <ows:LowerCorner>6.081893319873306 52.583419528431484</ows:LowerCorner>
+                <ows:UpperCorner>7.1243686085675995 53.21375226363882</ows:UpperCorner>
+            </ows:WGS84BoundingBox>
+        </FeatureType>
+        <FeatureType xmlns:zoek="http://swgis01/geoserver/zoek">
+            <Name>zoek:GBI.MILIEU_GBGDA_POV_L</Name>
+            <Title>POV, grondwaterbescherming Drentsche Aa</Title>
+            <Abstract>Provinciale Omgevingsverordening Drenthe,grondwaterbeschermingsgebied
+                Drentsche Aa (i.v.m. de winning van oppervlaktewater uit de Drentsche Aa voor de
+                drinkwatervoorziening). Dit bestand behoort tot de POV van 9 maart 2011.</Abstract>
+            <ows:Keywords>
+                <ows:Keyword>GBI.MILIEU_GBGDA_POV_L</ows:Keyword>
+                <ows:Keyword>features</ows:Keyword>
+            </ows:Keywords>
+            <DefaultSRS>urn:x-ogc:def:crs:EPSG:28992</DefaultSRS>
+            <ows:WGS84BoundingBox>
+                <ows:LowerCorner>6.081893319873306 52.583419528431484</ows:LowerCorner>
+                <ows:UpperCorner>7.1243686085675995 53.21375226363882</ows:UpperCorner>
+            </ows:WGS84BoundingBox>
+        </FeatureType>
+        <FeatureType xmlns:zoek="http://swgis01/geoserver/zoek">
+            <Name>zoek:GBI.MILIEU_POV_V</Name>
+            <Title>POV, stiltegebied en grondwater</Title>
+            <Abstract>Het begrip stiltegebied vindt zijn oorsprong in de Wet geluidhinder
+                (Staatsblad, 1979). Stiltegebieden waren daarin gedefinieerd als gebieden waarin de
+                geluidbelasting door toedoen van menselijke activiteiten zo laag is, dat de in dat
+                gebied heersende natuurlijke geluiden niet of nauwelijks worden gestoord. In 1993 is
+                het artikel over stiltegebieden in de Wet geluidhinder komen te vervallen en het
+                wettelijke kader overgenomen in de Wetmilieubeheer.De stiltegebieden maken deel uit
+                van de Provinciale Omgevingsverordening Drenthe, van 14 april 2011.</Abstract>
+            <ows:Keywords>
+                <ows:Keyword>GBI.MILIEU_POV_V</ows:Keyword>
+                <ows:Keyword>features</ows:Keyword>
+            </ows:Keywords>
+            <DefaultSRS>urn:x-ogc:def:crs:EPSG:28992</DefaultSRS>
+            <ows:WGS84BoundingBox>
+                <ows:LowerCorner>6.081893319873306 52.583419528431484</ows:LowerCorner>
+                <ows:UpperCorner>7.1243686085675995 53.21375226363882</ows:UpperCorner>
+            </ows:WGS84BoundingBox>
+        </FeatureType>
+        <FeatureType xmlns:zoek="http://swgis01/geoserver/zoek">
+            <Name>zoek:EXT.ACN_PC_POSTCODE6CIJFER_V</Name>
+            <Title>Postcode (vlak, 6-cijferig)</Title>
+            <Abstract>Gebieden op basis van de 6-cijferige postcodes in Drenthe.</Abstract>
+            <ows:Keywords>
+                <ows:Keyword>EXT.ACN_PC_POSTCODE6CIJFER_V</ows:Keyword>
+                <ows:Keyword>features</ows:Keyword>
+            </ows:Keywords>
+            <DefaultSRS>urn:x-ogc:def:crs:EPSG:28992</DefaultSRS>
+            <ows:WGS84BoundingBox>
+                <ows:LowerCorner>6.081893319873306 52.583419528431484</ows:LowerCorner>
+                <ows:UpperCorner>7.1243686085675995 53.21375226363882</ows:UpperCorner>
+            </ows:WGS84BoundingBox>
+        </FeatureType>
+        <FeatureType xmlns:zoek="http://swgis01/geoserver/zoek">
+            <Name>zoek:GBI.VV_PUP2012_L</Name>
+            <Title>Provinciaal Uitvoeringsprogramma verkeer en vervoer 2012 (projecten op
+                wegenstructuur)</Title>
+            <Abstract>In het PUP zijn de projecten, activiteiten en maatregelen en studies opgenomen
+                die in 2012 voorbereid of uitgevoerd worden om de bereikbaarheid en
+                verkeersveiligheid in Drenthe te verbeteren.</Abstract>
+            <ows:Keywords>
+                <ows:Keyword>GBI.VV_PUP2012_L</ows:Keyword>
+                <ows:Keyword>features</ows:Keyword>
+            </ows:Keywords>
+            <DefaultSRS>urn:x-ogc:def:crs:EPSG:28992</DefaultSRS>
+            <ows:WGS84BoundingBox>
+                <ows:LowerCorner>6.081893319873306 52.583419528431484</ows:LowerCorner>
+                <ows:UpperCorner>7.1243686085675995 53.21375226363882</ows:UpperCorner>
+            </ows:WGS84BoundingBox>
+        </FeatureType>
+        <FeatureType xmlns:zoek="http://swgis01/geoserver/zoek">
+            <Name>zoek:GBI.PM</Name>
+            <Title>Provinciale monumenten</Title>
+            <Abstract>De lijst met Provinciale monumenten is samengesteld door de Provinciale Staten
+                van de provincie en heeft twee verschillende functies:- Panden kunnen zo vanuit de
+                provincie beschermd worden.- De lijst dient als basis voor subsidie
+                toezeggingen.</Abstract>
+            <ows:Keywords>
+                <ows:Keyword>GBI.PM</ows:Keyword>
+                <ows:Keyword>features</ows:Keyword>
+            </ows:Keywords>
+            <DefaultSRS>urn:x-ogc:def:crs:EPSG:28992</DefaultSRS>
+            <ows:WGS84BoundingBox>
+                <ows:LowerCorner>6.081893319873306 52.583419528431484</ows:LowerCorner>
+                <ows:UpperCorner>7.1243686085675995 53.21375226363882</ows:UpperCorner>
+            </ows:WGS84BoundingBox>
+        </FeatureType>
+        <FeatureType xmlns:zoek="http://swgis01/geoserver/zoek">
+            <Name>zoek:GBI.ST</Name>
+            <Title>Stiltegebieden</Title>
+            <Abstract>Het begrip stiltegebied vindt zijn oorsprong in de Wet geluidhinder
+                (Staatsblad, 1979). Stiltegebieden waren daarin gedefinieerd als gebieden waarin de
+                geluidbelasting door toedoen van menselijke activiteiten zo laag is, dat de in dat
+                gebied heersende natuurlijke geluiden niet of nauwelijks worden gestoord. In 1993 is
+                het artikel over stiltegebieden in de Wet geluidhinder komen te vervallen en het
+                wettelijke kader overgenomen in de Wetmilieubeheer.De stiltegebieden maken deel uit
+                van de Provinciale Omgevingsverordening Drenthe, van 14 april 2011.</Abstract>
+            <ows:Keywords>
+                <ows:Keyword>GBI.ST</ows:Keyword>
+                <ows:Keyword>features</ows:Keyword>
+            </ows:Keywords>
+            <DefaultSRS>urn:x-ogc:def:crs:EPSG:28992</DefaultSRS>
+            <ows:WGS84BoundingBox>
+                <ows:LowerCorner>6.081893319873306 52.583419528431484</ows:LowerCorner>
+                <ows:UpperCorner>7.1243686085675995 53.21375226363882</ows:UpperCorner>
+            </ows:WGS84BoundingBox>
+        </FeatureType>
+        <FeatureType xmlns:zoek="http://swgis01/geoserver/zoek">
+            <Name>zoek:GBI.WAV</Name>
+            <Title>WAV gebieden</Title>
+            <Abstract>Vastgestelde voor verzuring gevoelige onderdelen van de ecologische
+                hoofdstructuur en voor verzuring gevoelige gebieden in de nog niet begrensde
+                ecologische verbindingszones.</Abstract>
+            <ows:Keywords>
+                <ows:Keyword>GBI.WAV</ows:Keyword>
+                <ows:Keyword>features</ows:Keyword>
+            </ows:Keywords>
+            <DefaultSRS>urn:x-ogc:def:crs:EPSG:28992</DefaultSRS>
+            <ows:WGS84BoundingBox>
+                <ows:LowerCorner>6.081893319873306 52.583419528431484</ows:LowerCorner>
+                <ows:UpperCorner>7.1243686085675995 53.21375226363882</ows:UpperCorner>
+            </ows:WGS84BoundingBox>
+        </FeatureType>
+        <FeatureType xmlns:zoek="http://swgis01/geoserver/zoek">
+            <Name>zoek:WK.WEGVLAK</Name>
+            <Title>wegvlak Kwis</Title>
+            <Abstract>wegvlak Kwis</Abstract>
+            <ows:Keywords>
+                <ows:Keyword>WK.WEGVLAK</ows:Keyword>
+                <ows:Keyword>features</ows:Keyword>
+            </ows:Keywords>
+            <DefaultSRS>urn:x-ogc:def:crs:EPSG:28992</DefaultSRS>
+            <ows:WGS84BoundingBox>
+                <ows:LowerCorner>6.081893319873306 52.583419528431484</ows:LowerCorner>
+                <ows:UpperCorner>7.1243686085675995 53.21375226363882</ows:UpperCorner>
+            </ows:WGS84BoundingBox>
+        </FeatureType>
+    </FeatureTypeList>
+    <ogc:Filter_Capabilities>
+        <ogc:Spatial_Capabilities>
+            <ogc:GeometryOperands>
+                <ogc:GeometryOperand>gml:Envelope</ogc:GeometryOperand>
+                <ogc:GeometryOperand>gml:Point</ogc:GeometryOperand>
+                <ogc:GeometryOperand>gml:LineString</ogc:GeometryOperand>
+                <ogc:GeometryOperand>gml:Polygon</ogc:GeometryOperand>
+            </ogc:GeometryOperands>
+            <ogc:SpatialOperators>
+                <ogc:SpatialOperator name="Disjoint"/>
+                <ogc:SpatialOperator name="Equals"/>
+                <ogc:SpatialOperator name="DWithin"/>
+                <ogc:SpatialOperator name="Beyond"/>
+                <ogc:SpatialOperator name="Intersects"/>
+                <ogc:SpatialOperator name="Touches"/>
+                <ogc:SpatialOperator name="Crosses"/>
+                <ogc:SpatialOperator name="Contains"/>
+                <ogc:SpatialOperator name="Overlaps"/>
+                <ogc:SpatialOperator name="BBOX"/>
+            </ogc:SpatialOperators>
+        </ogc:Spatial_Capabilities>
+        <ogc:Scalar_Capabilities>
+            <ogc:LogicalOperators/>
+            <ogc:ComparisonOperators>
+                <ogc:ComparisonOperator>LessThan</ogc:ComparisonOperator>
+                <ogc:ComparisonOperator>GreaterThan</ogc:ComparisonOperator>
+                <ogc:ComparisonOperator>LessThanEqualTo</ogc:ComparisonOperator>
+                <ogc:ComparisonOperator>GreaterThanEqualTo</ogc:ComparisonOperator>
+                <ogc:ComparisonOperator>EqualTo</ogc:ComparisonOperator>
+                <ogc:ComparisonOperator>NotEqualTo</ogc:ComparisonOperator>
+                <ogc:ComparisonOperator>Like</ogc:ComparisonOperator>
+                <ogc:ComparisonOperator>Between</ogc:ComparisonOperator>
+                <ogc:ComparisonOperator>NullCheck</ogc:ComparisonOperator>
+            </ogc:ComparisonOperators>
+            <ogc:ArithmeticOperators>
+                <ogc:SimpleArithmetic/>
+                <ogc:Functions>
+                    <ogc:FunctionNames>
+                        <ogc:FunctionName nArgs="1">abs</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">abs_2</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">abs_3</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">abs_4</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">acos</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">Area</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">asin</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">atan</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="2">atan2</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="3">between</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">boundary</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">boundaryDimension</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="2">buffer</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="3">bufferWithSegments</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="0">Categorize</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">ceil</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">centroid</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="2">classify</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">Collection_Average</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">Collection_Bounds</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">Collection_Count</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">Collection_Max</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">Collection_Median</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">Collection_Min</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">Collection_Sum</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">Collection_Unique</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="0">Concatenate</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="2">contains</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="2">convert</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">convexHull</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">cos</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="2">crosses</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="2">dateFormat</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="2">dateParse</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="2">difference</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">dimension</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="2">disjoint</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="2">distance</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">double2bool</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">endAngle</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">endPoint</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">env</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">envelope</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="2">EqualInterval</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="2">equalsExact</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="3">equalsExactTolerance</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="2">equalTo</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">exp</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">exteriorRing</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">floor</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">geometryType</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">geomFromWKT</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">geomLength</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="2">getGeometryN</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">getX</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">getY</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">getZ</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="2">greaterEqualThan</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="2">greaterThan</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="0">id</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="2">IEEEremainder</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="3">if_then_else</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="11">in10</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="3">in2</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="4">in3</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="5">in4</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="6">in5</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="7">in6</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="8">in7</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="9">in8</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="10">in9</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">int2bbool</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">int2ddouble</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">interiorPoint</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="2">interiorRingN</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="0">Interpolate</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="2">intersection</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="2">intersects</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">isClosed</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">isEmpty</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="2">isLike</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">isNull</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="2">isometric</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">isRing</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">isSimple</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">isValid</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="3">isWithinDistance</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="2">Jenks</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">length</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="2">lessEqualThan</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="2">lessThan</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">log</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="2">max</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="2">max_2</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="2">max_3</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="2">max_4</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="2">min</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="2">min_2</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="2">min_3</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="2">min_4</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">mincircle</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">minrectangle</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">not</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="2">notEqualTo</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="2">numberFormat</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="5">numberFormat2</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">numGeometries</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">numInteriorRing</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">numPoints</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="3">offset</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="2">overlaps</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">parseBoolean</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">parseDouble</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">parseInt</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">parseLong</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="0">pi</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="2">pointN</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="2">pow</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">PropertyExists</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="2">Quantile</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="0">random</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="0">Recode</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="2">relate</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="3">relatePattern</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">rint</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">round</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">round_2</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">roundDouble</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="2">setCRS</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">sin</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">sqrt</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="2">StandardDeviation</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">startAngle</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">startPoint</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">strCapitalize</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="2">strConcat</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="2">strEndsWith</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="2">strEqualsIgnoreCase</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="2">strIndexOf</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="2">strLastIndexOf</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">strLength</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="2">strMatches</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="3">strPosition</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="4">strReplace</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="2">strStartsWith</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="3">strSubstring</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="2">strSubstringStart</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">strToLowerCase</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">strToUpperCase</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">strTrim</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="3">strTrim2</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="2">symDifference</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">tan</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">toDegrees</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">toRadians</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="2">touches</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">toWKT</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="2">union</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="2">UniqueInterval</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="1">vertices</ogc:FunctionName>
+                        <ogc:FunctionName nArgs="2">within</ogc:FunctionName>
+                    </ogc:FunctionNames>
+                </ogc:Functions>
+            </ogc:ArithmeticOperators>
+        </ogc:Scalar_Capabilities>
+        <ogc:Id_Capabilities>
+            <ogc:FID/>
+            <ogc:EID/>
+        </ogc:Id_Capabilities>
+    </ogc:Filter_Capabilities>
+</wfs:WFS_Capabilities>

@@ -1,0 +1,16 @@
+ATTRIBUTE_MAPPING_TECHNICAL_ERROR=${0}: technische fout: ${1}
+
+ATTRIBUTE_MAPPING_MISSING=${0}: er bestaat geen mapping voor dit attribuut.
+		
+ATTRIBUTE_MAPPING_CONDITION_INVALID_ATTRIBUTE=${0}: ongeldig attribuut in conditie ${1}: ${2}
+ATTRIBUTE_MAPPING_CONDITION_NO_VALUE=${0}: geen waarde opgegeven bij conditie ${1}
+		
+ATTRIBUTE_MAPPING_TYPES_INCOMPATIBLE=${0}: de attribuutmapping is ongeldig.
+		
+ATTRIBUTE_MAPPING_INPUT_COUNT_INVALID=${0}: de attribuutmapping is ongeldig.
+		
+ATTRIBUTE_MAPPING_INPUT_NOT_FOUND=${0}: invoerattribuut kan niet worden gevonden: ${1}.
+ATTRIBUTE_MAPPING_INPUT_NO_LONGER_AVAILABLE=${0}: invoerattribuut is niet meer beschikbaar in het bronschema: ${1}.
+ATTRIBUTE_MAPPING_INPUT_TYPE_CHANGED=${0}: invoerattribuut ${1} is van type gewijzigd in het bronschema.
+		
+ATTRIBUTE_MAPPING_RUNTIME_ERROR=${0}: er is een fout opgetreden tijdens de mapping van attribuut ${1} (${2}).

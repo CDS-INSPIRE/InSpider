@@ -1,0 +1,44 @@
+<SQLFeatureStore configVersion="3.2.0" xmlns="http://www.deegree.org/datasource/feature/sql" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.deegree.org/datasource/feature/sql http://schemas.deegree.org/datasource/feature/sql/3.2.0/sql.xsd">
+
+  <!-- [1] Identifier of JDBC connection -->
+  <JDBCConnId>conAM</JDBCConnId>
+
+  <!-- [0...n] Definitions of feature types (derived from tables) -->
+
+  <FeatureTypeMapping xmlns:app="http://www.ipo.nl/InSpider" table="inspire.area_management" name="app:ManagementRestrictionOrRegulationZone_NL">
+    <FIDMapping>
+      <Column name="id" />
+    </FIDMapping>
+
+    <Primitive path="app:inspire_id_namespace" mapping="inspire_id_namespace" />
+    <Primitive path="app:inspire_id_local_id" mapping="inspire_id_local_id" />
+    <Primitive path="app:zonetype_code" mapping="zonetype_code" />
+    <Primitive path="app:environmental_domain_code" mapping="environmental_domain_code" />
+    <Primitive path="app:thematic_id_identifier" mapping="thematic_id_identifier" />
+    <Primitive path="app:thematic_id_identifier_scheme" mapping="thematic_id_identifier_scheme" />
+    <Primitive path="app:name_spelling" mapping="name_spelling" />
+    <Primitive path="app:competent_authority_organisation_name" mapping="competent_authority_organisation_name" />
+    <Primitive path="app:legal_basis_name" mapping="legal_basis_name" />
+    <Primitive path="app:legal_basis_link" mapping="legal_basis_link" />
+    <Primitive path="app:legal_basis_date" mapping="legal_basis_date" />
+    <Primitive path="app:specialised_zone_type_code" mapping="specialised_zone_type_code" />
+    <Primitive path="app:designation_period_begin_designation" mapping="designation_period_begin_designation" />
+    <Primitive path="app:designation_period_end_designation" mapping="designation_period_end_designation" />
+    <Primitive path="app:vergunde_kuubs" mapping="vergunde_kuubs" />
+    <Primitive path="app:vergunde_diepte" mapping="vergunde_diepte" />
+    <Primitive path="app:noise_low_value" mapping="noise_low_value" />
+    <Primitive path="app:noise_high_value" mapping="noise_high_value" />
+    
+    <Geometry path="app:geometry" mapping="geometry">
+      <StorageCRS srid="28992">EPSG:28992</StorageCRS>
+    </Geometry> 
+
+    <Geometry path="app:geom_simple" mapping="geom_simple">
+      <StorageCRS srid="28992">EPSG:28992</StorageCRS>
+    </Geometry>
+    
+  </FeatureTypeMapping>
+
+  
+</SQLFeatureStore>

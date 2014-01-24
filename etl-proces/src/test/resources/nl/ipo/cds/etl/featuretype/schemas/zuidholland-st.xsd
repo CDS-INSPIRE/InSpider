@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+	targetNamespace="http://geo-portaal.zuid-holland.nl/ArcGIS/services/PGR/WFS_Inspire_new/MapServer/WFSServer"
+	elementFormDefault="qualified"
+	xmlns:WFS_Inspire_new="http://geo-portaal.zuid-holland.nl/ArcGIS/services/PGR/WFS_Inspire_new/MapServer/WFSServer"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml">
+	<xs:import namespace="http://www.opengis.net/gml"
+		schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/gml.xsd" />
+	<xs:element name="StilteGebieden" type="WFS_Inspire_new:StilteGebiedenType"
+		substitutionGroup="gml:_Feature" />
+	<xs:complexType name="StilteGebiedenType">
+		<xs:complexContent>
+			<xs:extension base="gml:AbstractFeatureType">
+				<xs:sequence>
+					<xs:element name="OBJECTID" type="xs:int" />
+					<xs:element minOccurs="0" name="SHAPE"
+						type="gml:MultiSurfacePropertyType" />
+					<xs:element name="GFID" type="xs:string" />
+					<xs:element minOccurs="0" name="applicationSchema">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="50" />
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element minOccurs="0" name="legalFoundationDate"
+						type="xs:dateTime" />
+					<xs:element minOccurs="0" name="legalFoundationDocument">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="255" />
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="inspireID">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="50" />
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element minOccurs="0" name="SHAPE_Length" type="xs:double" />
+					<xs:element minOccurs="0" name="SHAPE_Area" type="xs:double" />
+					<xs:element minOccurs="0" name="siteName">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="4000" />
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element minOccurs="0" name="siteDesignation">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="4000" />
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element minOccurs="0" name="siteProtectionClassification">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="4000" />
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element minOccurs="0" name="percentageUnderDesignation"
+						type="xs:double" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

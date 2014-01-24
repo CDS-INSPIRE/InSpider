@@ -1,0 +1,240 @@
+<Themes configVersion="3.2.0" xmlns="http://www.deegree.org/themes/standard"
+    xmlns:d="http://www.deegree.org/metadata/description"
+    xmlns:s="http://www.deegree.org/metadata/spatial"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.deegree.org/themes/standard http://schemas.deegree.org/themes/3.2.0/themes.xsd">
+
+    <LayerStoreId>simplifiedProtectedSiteAll</LayerStoreId>
+    <LayerStoreId>simplifiedProtectedSiteArchaeological</LayerStoreId>
+    <LayerStoreId>simplifiedProtectedSiteCultural</LayerStoreId>
+    <LayerStoreId>simplifiedProtectedSiteEcological</LayerStoreId>
+    <LayerStoreId>simplifiedProtectedSiteEnvironment</LayerStoreId>
+    <LayerStoreId>simplifiedProtectedSiteGeological</LayerStoreId>
+    <LayerStoreId>simplifiedProtectedSiteLandscape</LayerStoreId>
+    <LayerStoreId>simplifiedProtectedSiteNatureConservation</LayerStoreId>
+    <LayerStoreId>simplifiedProtectedSiteAardkundigeWaarden</LayerStoreId>
+    <LayerStoreId>simplifiedProtectedSiteEcologischeHoofdstructuur</LayerStoreId>
+    <LayerStoreId>simplifiedProtectedSiteNationaleLandschappen</LayerStoreId>
+    <LayerStoreId>simplifiedProtectedSiteProvincialeMonumenten</LayerStoreId>
+    <LayerStoreId>simplifiedProtectedSiteStilteGebieden</LayerStoreId>
+    <LayerStoreId>simplifiedProtectedSiteWAVGebieden</LayerStoreId>    
+    <Theme>
+        <d:Title>Beschermde gebieden</d:Title>
+        <s:CRS>EPSG:28992 EPSG:4326 EPSG:4258 EPSG:3035 EPSG:3034 EPSG:25830 EPSG:25831 EPSG:25832 urn:ogc:def:crs:EPSG::28992 urn:ogc:def:crs:EPSG::4326 urn:ogc:def:crs:EPSG::4258 urn:ogc:def:crs:EPSG::3035 urn:ogc:def:crs:EPSG::3034 urn:ogc:def:crs:EPSG::25830 urn:ogc:def:crs:EPSG::25831 urn:ogc:def:crs:EPSG::25832</s:CRS>
+        <Theme>
+            <Identifier>PS.ProtectedSite</Identifier>
+            <d:Title>Beschermde gebieden</d:Title>
+            <d:Abstract>Gebieden die worden aangeduid of beheerd in het kader van internationale en communautaire wetgeving of wetgeving van de lidstaten om specifieke doelstellingen op het vlak van milieubescherming te verwezenlijken.</d:Abstract>
+            <d:Keywords>
+                <d:Keyword>behoud</d:Keyword>
+                <d:Type codeSpace="GEMET - Concepts, version 2.4"/>
+            </d:Keywords>
+            <s:CRS>EPSG:28992 EPSG:4326 EPSG:4258 EPSG:3035 EPSG:3034 EPSG:25830 EPSG:25831 EPSG:25832 urn:ogc:def:crs:EPSG::28992 urn:ogc:def:crs:EPSG::4326 urn:ogc:def:crs:EPSG::4258 urn:ogc:def:crs:EPSG::3035 urn:ogc:def:crs:EPSG::3034 urn:ogc:def:crs:EPSG::25830 urn:ogc:def:crs:EPSG::25831 urn:ogc:def:crs:EPSG::25832</s:CRS>
+            <Layer>PS.ProtectedSite</Layer>
+        </Theme>
+        <Theme>
+            <Identifier>PS.ProtectedSiteNatureConservation</Identifier>
+            <d:Title>Beschermde gebieden - Natuurbehoud</d:Title>
+            <d:Abstract>Gebieden die worden beschermd vanwege de instandhouding van natuur</d:Abstract>
+            <d:Keywords>
+                <d:Keyword>behoud</d:Keyword>
+                <d:Keyword>natuur</d:Keyword>
+                <d:Type codeSpace="GEMET - Concepts, version 2.4"/>
+            </d:Keywords>
+            <s:CRS>EPSG:28992 EPSG:4326 EPSG:4258 EPSG:3035 EPSG:3034 EPSG:25830 EPSG:25831 EPSG:25832 urn:ogc:def:crs:EPSG::28992 urn:ogc:def:crs:EPSG::4326 urn:ogc:def:crs:EPSG::4258 urn:ogc:def:crs:EPSG::3035 urn:ogc:def:crs:EPSG::3034 urn:ogc:def:crs:EPSG::25830 urn:ogc:def:crs:EPSG::25831 urn:ogc:def:crs:EPSG::25832</s:CRS>
+            <Layer>PS.ProtectedSiteNatureConservation</Layer>
+        </Theme>
+        <Theme>
+            <Identifier>PS.ProtectedSiteArchaeological</Identifier>
+            <d:Title>Beschermde gebieden - Archeologie</d:Title>
+            <d:Abstract>Gebieden die worden beschermd vanwege de instandhouding van archeologische waarden</d:Abstract>
+            <d:Keywords>
+                <d:Keyword>behoud</d:Keyword>
+                <d:Keyword>archeologie</d:Keyword>
+                <d:Type codeSpace="GEMET - Concepts, version 2.4"/>
+            </d:Keywords>
+            <Layer>PS.ProtectedSiteArchaeological</Layer>
+        </Theme>
+        <Theme>
+            <Identifier>PS.ProtectedSiteCultural</Identifier>
+            <d:Title>Beschermde gebieden - Cultuur</d:Title>
+            <d:Abstract>Gebieden die worden beschermd vanwege de instandhouding van cultuurhistorische waarden</d:Abstract>
+            <d:Keywords>
+                <d:Keyword>behoud</d:Keyword>
+                <d:Keyword>cultuur</d:Keyword>
+                <d:Type codeSpace="GEMET - Concepts, version 2.4"/>
+            </d:Keywords>
+            <s:CRS>EPSG:28992 EPSG:4326 EPSG:4258 EPSG:3035 EPSG:3034 EPSG:25830 EPSG:25831 EPSG:25832 urn:ogc:def:crs:EPSG::28992 urn:ogc:def:crs:EPSG::4326 urn:ogc:def:crs:EPSG::4258 urn:ogc:def:crs:EPSG::3035 urn:ogc:def:crs:EPSG::3034 urn:ogc:def:crs:EPSG::25830 urn:ogc:def:crs:EPSG::25831 urn:ogc:def:crs:EPSG::25832</s:CRS>
+            <Layer>PS.ProtectedSiteCultural</Layer>
+        </Theme>
+        <Theme>
+            <Identifier>PS.ProtectedSiteEcological</Identifier>
+            <d:Title>Beschermde gebieden - Ecologie</d:Title>
+            <d:Abstract>Gebieden die worden beschermd vanwege ecologische stabiliteit</d:Abstract>
+            <d:Keywords>
+                <d:Keyword>behoud</d:Keyword>
+                <d:Keyword>ecologie</d:Keyword>
+                <d:Type codeSpace="GEMET - Concepts, version 2.4"/>
+            </d:Keywords>
+            <s:CRS>EPSG:28992 EPSG:4326 EPSG:4258 EPSG:3035 EPSG:3034 EPSG:25830 EPSG:25831 EPSG:25832 urn:ogc:def:crs:EPSG::28992 urn:ogc:def:crs:EPSG::4326 urn:ogc:def:crs:EPSG::4258 urn:ogc:def:crs:EPSG::3035 urn:ogc:def:crs:EPSG::3034 urn:ogc:def:crs:EPSG::25830 urn:ogc:def:crs:EPSG::25831 urn:ogc:def:crs:EPSG::25832</s:CRS>
+            <Layer>PS.ProtectedSiteEcological</Layer>
+        </Theme>
+        <Theme>
+            <Identifier>PS.ProtectedSiteLandscape</Identifier>
+            <d:Title>Beschermde gebieden - Landschap</d:Title>
+            <d:Abstract>Gebieden die worden beschermd vanwege landschappelijke waarden</d:Abstract>
+            <d:Keywords>
+                <d:Keyword>behoud</d:Keyword>
+                <d:Keyword>landschap</d:Keyword>
+                <d:Type codeSpace="GEMET - Concepts, version 2.4"/>
+            </d:Keywords>
+            <s:CRS>EPSG:28992 EPSG:4326 EPSG:4258 EPSG:3035 EPSG:3034 EPSG:25830 EPSG:25831 EPSG:25832 urn:ogc:def:crs:EPSG::28992 urn:ogc:def:crs:EPSG::4326 urn:ogc:def:crs:EPSG::4258 urn:ogc:def:crs:EPSG::3035 urn:ogc:def:crs:EPSG::3034 urn:ogc:def:crs:EPSG::25830 urn:ogc:def:crs:EPSG::25831 urn:ogc:def:crs:EPSG::25832</s:CRS>
+            <Layer>PS.ProtectedSiteLandscape</Layer>
+        </Theme>
+        <Theme>
+            <Identifier>PS.ProtectedSiteEnvironment</Identifier>
+            <d:Title>Beschermde gebieden - Milieu</d:Title>
+            <d:Abstract>Gebieden die worden worden beschermd vanwege de stabiliteit van het milieu</d:Abstract>
+            <d:Keywords>
+                <d:Keyword>behoud</d:Keyword>
+                <d:Keyword>milieu</d:Keyword>
+                <d:Type codeSpace="GEMET - Concepts, version 2.4"/>
+            </d:Keywords>
+            <s:CRS>EPSG:28992 EPSG:4326 EPSG:4258 EPSG:3035 EPSG:3034 EPSG:25830 EPSG:25831 EPSG:25832 urn:ogc:def:crs:EPSG::28992 urn:ogc:def:crs:EPSG::4326 urn:ogc:def:crs:EPSG::4258 urn:ogc:def:crs:EPSG::3035 urn:ogc:def:crs:EPSG::3034 urn:ogc:def:crs:EPSG::25830 urn:ogc:def:crs:EPSG::25831 urn:ogc:def:crs:EPSG::25832</s:CRS>
+            <Layer>PS.ProtectedSiteEnvironment</Layer>
+        </Theme>
+        <Theme>
+            <Identifier>PS.ProtectedSiteGeological</Identifier>
+            <d:Title>Beschermde gebieden - Geologie</d:Title>
+            <d:Abstract>Gebieden die worden beschermd vanwege de instandhouding van geologische waarden</d:Abstract>
+            <d:Keywords>
+                <d:Keyword>behoud</d:Keyword>
+                <d:Keyword>geologie</d:Keyword>
+                <d:Type codeSpace="GEMET - Concepts, version 2.4"/>
+            </d:Keywords>
+            <s:CRS>EPSG:28992 EPSG:4326 EPSG:4258 EPSG:3035 EPSG:3034 EPSG:25830 EPSG:25831 EPSG:25832 urn:ogc:def:crs:EPSG::28992 urn:ogc:def:crs:EPSG::4326 urn:ogc:def:crs:EPSG::4258 urn:ogc:def:crs:EPSG::3035 urn:ogc:def:crs:EPSG::3034 urn:ogc:def:crs:EPSG::25830 urn:ogc:def:crs:EPSG::25831 urn:ogc:def:crs:EPSG::25832</s:CRS>
+            <Layer>PS.ProtectedSiteGeological</Layer>
+        </Theme>
+        <Theme>
+            <Identifier>PS.ProtectedSiteAardkundigeWaarden</Identifier>
+            <d:Title>Beschermde gebieden - Aardkundige Waarden</d:Title>
+            <d:Abstract>De term aardkundige waarden wordt gebruikt als een verzamelnaam voor geomorfologische, geologische, bodemkundige of geohydrologische verschijnselen in het landschap, die een bepaalde waarde vertegenwoordigen. Het gaat daarbij niet alleen om het behoud en de beleefbaarheid van historische verschijnselen. Er wordt ook betekenis gehecht aan actuele processen, die aardkundige waarden opleveren. Dit bestand bevat informatie conform de INSPIRE dataspecificaties voor beschermde gebieden. Raadpleeg voor meer detailinformatie het bronbestand van de desbetreffende provincie. Meer gedetailleerde informatie voor de beschermde gebieden in de afzonderlijke provincies is te vinden in de beschrijving van de provinciale bestanden over dit onderwerp.</d:Abstract>
+            <d:Keywords>
+                <d:Keyword>behoud</d:Keyword>
+                <d:Keyword>archeologie</d:Keyword>
+                <d:Keyword>cultureel erfgoed</d:Keyword>
+                <d:Keyword>geologie</d:Keyword>
+                <d:Keyword>landschap</d:Keyword>
+                <d:Keyword>natuurbescherming</d:Keyword>
+                <d:Type codeSpace="GEMET - Concepts, version 2.4"/>
+            </d:Keywords>
+            <d:Keywords>
+                <d:Keyword>Beschermde gebieden</d:Keyword>
+                <d:Type codeSpace="GEMET - INSPIRE themes, version 1.0"/>
+            </d:Keywords>
+            <s:CRS>EPSG:28992 EPSG:4326 EPSG:4258 EPSG:3035 EPSG:3034 EPSG:25830 EPSG:25831 EPSG:25832 urn:ogc:def:crs:EPSG::28992 urn:ogc:def:crs:EPSG::4326 urn:ogc:def:crs:EPSG::4258 urn:ogc:def:crs:EPSG::3035 urn:ogc:def:crs:EPSG::3034 urn:ogc:def:crs:EPSG::25830 urn:ogc:def:crs:EPSG::25831 urn:ogc:def:crs:EPSG::25832</s:CRS>
+            <Layer>PS.ProtectedSiteAardkundigeWaarden</Layer>
+        </Theme>
+        <Theme>
+            <Identifier>PS.ProtectedSiteEcologischeHoofdstructuur</Identifier>
+            <d:Title>Beschermde gebieden - Ecologische Hoofdstructuur</d:Title>
+            <d:Abstract>De EHS is een netwerk van gebieden in Nederland waar de natuur voorrang heeft. Het netwerk helpt voorkomen dat planten en dieren in geisoleerde gebieden uitsterven en dat natuurgebieden hun waarde verliezen. De EHS kan worden gezien als de ruggengraat van de Nederlandse natuur. Dit bestand bevat informatie conform de INSPIRE dataspecificaties voor beschermde gebieden. Raadpleeg voor meer detailinformatie het bronbestand van de desbetreffende provincie. Meer gedetailleerde informatie voor de beschermde gebieden in de afzonderlijke provincies is te vinden in de beschrijving van de provinciale bestanden over dit onderwerp.</d:Abstract>
+            <d:Keywords>
+                <d:Keyword>behoud</d:Keyword>
+                <d:Keyword>archeologie</d:Keyword>
+                <d:Keyword>cultureel erfgoed</d:Keyword>
+                <d:Keyword>geologie</d:Keyword>
+                <d:Keyword>landschap</d:Keyword>
+                <d:Keyword>lucht</d:Keyword>
+                <d:Keyword>milieu</d:Keyword>
+                <d:Keyword>natuurbescherming</d:Keyword>
+                <d:Keyword>rustvorm</d:Keyword>
+                <d:Keyword>water</d:Keyword>
+                <d:Type codeSpace="GEMET - Concepts, version 2.4"/>
+            </d:Keywords>
+            <d:Keywords>
+                <d:Keyword>Beschermde gebieden</d:Keyword>
+                <d:Type codeSpace="GEMET - INSPIRE themes, version 1.0"/>
+            </d:Keywords>
+            <s:CRS>EPSG:28992 EPSG:4326 EPSG:4258 EPSG:3035 EPSG:3034 EPSG:25830 EPSG:25831 EPSG:25832 urn:ogc:def:crs:EPSG::28992 urn:ogc:def:crs:EPSG::4326 urn:ogc:def:crs:EPSG::4258 urn:ogc:def:crs:EPSG::3035 urn:ogc:def:crs:EPSG::3034 urn:ogc:def:crs:EPSG::25830 urn:ogc:def:crs:EPSG::25831 urn:ogc:def:crs:EPSG::25832</s:CRS>
+            <Layer>PS.ProtectedSiteEcologischeHoofdstructuur</Layer>
+        </Theme>
+        <Theme>
+            <Identifier>PS.ProtectedSiteNationaleLandschappen</Identifier>
+            <d:Title>Beschermde gebieden - Nationale Landschappen</d:Title>
+            <d:Abstract>Nationale landschappen zijn gebieden met internationaal zeldzame of unieke en nationaal kenmerkende landschapskwaliteiten, en in samenhang daarmee bijzondere natuurlijke , cultuurhistorische en recreatieve kwaliteiten. Landschappelijke, cultuurhistorische en natuurlijke kwaliteiten van nationale landschappen moeten behouden blijven, duurzaam beheerd en waar mogelijk worden versterkt. Ook zijn samenhang, toegankelijkheid en beleefbaarheid belangrijke kernbegrippen. Uitgangspunt is dat de nationale landschappen zich sociaal-economisch voldoende moeten kunnen ontwikkelen, terwijl de bijzondere kwaliteiten van het gebied worden behouden en worden versterkt. Dit bestand bevat informatie conform de INSPIRE dataspecificaties voor beschermde gebieden. Raadpleeg voor meer detailinformatie het bronbestand van de desbetreffende provincie. Meer gedetailleerde informatie voor de beschermde gebieden in de afzonderlijke provincies is te vinden in de beschrijving van de provinciale bestanden over dit onderwerp.</d:Abstract>
+            <d:Keywords>
+                <d:Keyword>behoud</d:Keyword>
+                <d:Keyword>archeologie</d:Keyword>
+                <d:Keyword>cultureel erfgoed</d:Keyword>
+                <d:Keyword>landschap</d:Keyword>
+                <d:Keyword>milieu</d:Keyword>
+                <d:Keyword>landbouw</d:Keyword>
+                <d:Keyword>natuurbescherming</d:Keyword>
+                <d:Keyword>ontspanning</d:Keyword>
+                <d:Type codeSpace="GEMET - Concepts, version 2.4"/>
+            </d:Keywords>
+            <d:Keywords>
+                <d:Keyword>Beschermde gebieden</d:Keyword>
+                <d:Type codeSpace="GEMET - INSPIRE themes, version 1.0"/>
+            </d:Keywords>
+            <s:CRS>EPSG:28992 EPSG:4326 EPSG:4258 EPSG:3035 EPSG:3034 EPSG:25830 EPSG:25831 EPSG:25832 urn:ogc:def:crs:EPSG::28992 urn:ogc:def:crs:EPSG::4326 urn:ogc:def:crs:EPSG::4258 urn:ogc:def:crs:EPSG::3035 urn:ogc:def:crs:EPSG::3034 urn:ogc:def:crs:EPSG::25830 urn:ogc:def:crs:EPSG::25831 urn:ogc:def:crs:EPSG::25832</s:CRS>
+            <Layer>PS.ProtectedSiteNationaleLandschappen</Layer>
+        </Theme>
+        <Theme>
+            <Identifier>PS.ProtectedSiteProvincialeMonumenten</Identifier>
+            <d:Title>Beschermde gebieden -  Provinciale Monumenten</d:Title>
+            <d:Abstract>Enkele provincies kennen naast rijks- en gemeentelijke monumenten ook provinciale monumenten. De panden, maar ook dijken, grenspalen en gemeenteoverschrijdende objecten zijn opgenomen op een provinciale monumentenlijst. De lijst is samengesteld door de Provinciale Staten van de provincie en heeft twee verschillende functies: - Panden kunnen zo vanuit de provincie beschermd worden. - De lijst dient als basis voor subsidie toezeggingen. Dit bestand bevat informatie conform de INSPIRE dataspecificaties voor beschermde gebieden. Raadpleeg voor meer detailinformatie het bronbestand van de desbetreffende provincie. Meer gedetailleerde informatie voor de beschermde gebieden in de afzonderlijke provincies is te vinden in de beschrijving van de provinciale bestanden over dit onderwerp.</d:Abstract>
+            <d:Keywords>
+                <d:Keyword>behoud</d:Keyword>
+                <d:Keyword>archeologie</d:Keyword>
+                <d:Keyword>cultureel erfgoed</d:Keyword>
+                <d:Type codeSpace="GEMET - Concepts, version 2.4"/>
+            </d:Keywords>
+            <d:Keywords>
+                <d:Keyword>Beschermde gebieden</d:Keyword>
+                <d:Type codeSpace="GEMET - INSPIRE themes, version 1.0"/>
+            </d:Keywords>
+            <s:CRS>EPSG:28992 EPSG:4326 EPSG:4258 EPSG:3035 EPSG:3034 EPSG:25830 EPSG:25831 EPSG:25832 urn:ogc:def:crs:EPSG::28992 urn:ogc:def:crs:EPSG::4326 urn:ogc:def:crs:EPSG::4258 urn:ogc:def:crs:EPSG::3035 urn:ogc:def:crs:EPSG::3034 urn:ogc:def:crs:EPSG::25830 urn:ogc:def:crs:EPSG::25831 urn:ogc:def:crs:EPSG::25832</s:CRS>
+            <Layer>PS.ProtectedSiteProvincialeMonumenten</Layer>
+        </Theme>
+        <Theme>
+            <Identifier>PS.ProtectedSiteStilteGebieden</Identifier>
+            <d:Title>Beschermde gebieden -  Stiltegebieden</d:Title>
+            <d:Abstract>Het begrip stiltegebied vindt zijn oorsprong in de Wet geluidhinder (Staatsblad, 1979). Stiltegebieden waren daarin gedefinieerd als gebieden waarin de geluidbelasting door toedoen van menselijke activiteiten zo laag is, dat de in dat gebied heersende natuurlijke geluiden niet of nauwelijks worden gestoord. In 1993 is het artikel over stiltegebieden in de Wet geluidhinder komen te vervallen en het wettelijk kader overgenomen in de Wet milieubeheer.Dit bestand bevat informatie conform de INSPIRE dataspecificaties voor beschermde gebieden. Raadpleeg voor meer detailinformatie het bronbestand van de desbetreffende provincie. Meer gedetailleerde informatie voor de beschermde gebieden in de afzonderlijke provincies is te vinden in de beschrijving van de provinciale bestanden over dit onderwerp.</d:Abstract>
+            <d:Keywords>
+                <d:Keyword>behoud</d:Keyword>
+                <d:Keyword>leefomgeving</d:Keyword>
+                <d:Keyword>milieu</d:Keyword>
+                <d:Keyword>landbouw</d:Keyword>
+                <d:Keyword>natuurbescherming</d:Keyword>
+                <d:Keyword>rustvorm</d:Keyword>
+                <d:Type codeSpace="GEMET - Concepts, version 2.4"/>
+            </d:Keywords>
+            <d:Keywords>
+                <d:Keyword>Beschermde gebieden</d:Keyword>
+                <d:Type codeSpace="GEMET - INSPIRE themes, version 1.0"/>
+            </d:Keywords>
+            <s:CRS>EPSG:28992 EPSG:4326 EPSG:4258 EPSG:3035 EPSG:3034 EPSG:25830 EPSG:25831 EPSG:25832 urn:ogc:def:crs:EPSG::28992 urn:ogc:def:crs:EPSG::4326 urn:ogc:def:crs:EPSG::4258 urn:ogc:def:crs:EPSG::3035 urn:ogc:def:crs:EPSG::3034 urn:ogc:def:crs:EPSG::25830 urn:ogc:def:crs:EPSG::25831 urn:ogc:def:crs:EPSG::25832</s:CRS>
+            <Layer>PS.ProtectedSiteStilteGebieden</Layer>
+        </Theme>
+        <Theme>
+            <Identifier>PS.ProtectedSiteWAVGebieden</Identifier>
+            <d:Title>Beschermde gebieden -  WAV gebieden</d:Title>
+            <d:Abstract>WAV gebieden zijn zeer kwetsbare gebieden volgens de Wet Ammoniak &amp; Veehouderij. Dit zijn voor verzuring gevoelige gebieden, of delen daarvan, die zijn gelegen binnen de Ecologische Hoofdstructuur. Om de verzuring in deze gebieden tegen te gaan gelden beperkingen voor ammoniakemissies in deze gebieden en in een bufferzone van 250 meter rondom de WAV gebieden. Dit bestand bevat informatie conform de INSPIRE dataspecificaties voor beschermde gebieden. Raadpleeg voor meer detailinformatie het bronbestand van de desbetreffende provincie. Meer gedetailleerde informatie voor de beschermde gebieden in de afzonderlijke provincies is te vinden in de beschrijving van de provinciale bestanden over dit onderwerp.</d:Abstract>
+            <d:Keywords>
+                <d:Keyword>behoud</d:Keyword>
+                <d:Keyword>milieu</d:Keyword>
+                <d:Keyword>landbouw</d:Keyword>
+                <d:Keyword>natuurbescherming</d:Keyword>
+                <d:Type codeSpace="GEMET - Concepts, version 2.4"/>
+            </d:Keywords>
+            <d:Keywords>
+                <d:Keyword>Beschermde gebieden</d:Keyword>
+                <d:Type codeSpace="GEMET - INSPIRE themes, version 1.0"/>
+            </d:Keywords>
+            <s:CRS>EPSG:28992 EPSG:4326 EPSG:4258 EPSG:3035 EPSG:3034 EPSG:25830 EPSG:25831 EPSG:25832 urn:ogc:def:crs:EPSG::28992 urn:ogc:def:crs:EPSG::4326 urn:ogc:def:crs:EPSG::4258 urn:ogc:def:crs:EPSG::3035 urn:ogc:def:crs:EPSG::3034 urn:ogc:def:crs:EPSG::25830 urn:ogc:def:crs:EPSG::25831 urn:ogc:def:crs:EPSG::25832</s:CRS>
+            <Layer>PS.ProtectedSiteWAVGebieden</Layer>
+        </Theme>
+    </Theme>
+</Themes>

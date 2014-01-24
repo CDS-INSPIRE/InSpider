@@ -1,0 +1,73 @@
+<FeatureLayers xmlns="http://www.deegree.org/layers/feature" xmlns:d="http://www.deegree.org/metadata/description" xmlns:l="http://www.deegree.org/layers/base" xmlns:s="http://www.deegree.org/metadata/spatial" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.deegree.org/layers/feature http://schemas.deegree.org/layers/feature/3.2.0/feature.xsd" configVersion="3.2.0">
+  <FeatureStoreId>fdsPF</FeatureStoreId>
+
+  <FeatureLayer>
+    <FeatureType xmlns:myapp="http://www.ipo.nl/InSpider">myapp:ProductionFacility_NL</FeatureType>
+    
+    <l:Name>PF.ProductionFacility_NL</l:Name>
+    <d:Title>Production Facility</d:Title>
+
+    <s:CRS>EPSG:28992 EPSG:4326 EPSG:4258 EPSG:3035 EPSG:3034 EPSG:25830 EPSG:25831 EPSG:25832 urn:ogc:def:crs:EPSG::28992 urn:ogc:def:crs:EPSG::4326 urn:ogc:def:crs:EPSG::4258 urn:ogc:def:crs:EPSG::3035 urn:ogc:def:crs:EPSG::3034 urn:ogc:def:crs:EPSG::25830 urn:ogc:def:crs:EPSG::25831 urn:ogc:def:crs:EPSG::25832</s:CRS>
+
+    <l:ScaleDenominators min="1" max="25000"/>
+    
+    <l:StyleRef>
+      <l:StyleStoreId>stlPF</l:StyleStoreId>
+      <l:Style>
+        <l:StyleName>PF.ProductionFacility.Default</l:StyleName>
+        <l:LayerNameRef>PF.ProductionFacility</l:LayerNameRef>
+        <l:StyleNameRef>PF.ProductionFacility.Default</l:StyleNameRef>
+      </l:Style>
+    </l:StyleRef>
+    <l:LayerOptions>
+      <l:MaxFeatures>0</l:MaxFeatures>
+    </l:LayerOptions>
+  </FeatureLayer>
+
+  <FeatureLayer>
+    <FeatureType xmlns:myapp="http://www.ipo.nl/InSpider">myapp:ProductionInstallation_NL</FeatureType>
+    
+    <l:Name>PF.ProductionInstallation_NL</l:Name>
+    <d:Title>Production Installation</d:Title>
+    
+    <s:CRS>EPSG:28992 EPSG:4326 EPSG:4258 EPSG:3035 EPSG:3034 EPSG:25830 EPSG:25831 EPSG:25832 urn:ogc:def:crs:EPSG::28992 urn:ogc:def:crs:EPSG::4326 urn:ogc:def:crs:EPSG::4258 urn:ogc:def:crs:EPSG::3035 urn:ogc:def:crs:EPSG::3034 urn:ogc:def:crs:EPSG::25830 urn:ogc:def:crs:EPSG::25831 urn:ogc:def:crs:EPSG::25832</s:CRS>
+
+    <l:ScaleDenominators min="1" max="25000"/>
+    
+    <l:StyleRef>
+      <l:StyleStoreId>stlPF</l:StyleStoreId>
+      <l:Style>
+        <l:StyleName>PF.ProductionInstallation.Default</l:StyleName>
+        <l:LayerNameRef>PF.ProductionInstallation</l:LayerNameRef>
+        <l:StyleNameRef>PF.ProductionInstallation.Default</l:StyleNameRef>
+      </l:Style>
+    </l:StyleRef>
+    <l:LayerOptions>
+      <l:MaxFeatures>0</l:MaxFeatures>
+    </l:LayerOptions>
+  </FeatureLayer>
+  
+  <FeatureLayer>
+    <FeatureType xmlns:myapp="http://www.ipo.nl/InSpider">myapp:ProductionInstallationPart_NL</FeatureType>
+    
+    <l:Name>PF.ProductionInstallationPart_NL</l:Name>
+    <d:Title>Production Installation Part</d:Title>
+    
+    <s:CRS>EPSG:28992 EPSG:4326 EPSG:4258 EPSG:3035 EPSG:3034 EPSG:25830 EPSG:25831 EPSG:25832 urn:ogc:def:crs:EPSG::28992 urn:ogc:def:crs:EPSG::4326 urn:ogc:def:crs:EPSG::4258 urn:ogc:def:crs:EPSG::3035 urn:ogc:def:crs:EPSG::3034 urn:ogc:def:crs:EPSG::25830 urn:ogc:def:crs:EPSG::25831 urn:ogc:def:crs:EPSG::25832</s:CRS>
+
+    <l:ScaleDenominators min="1" max="25000"/>
+    
+    <l:StyleRef>
+      <l:StyleStoreId>stlPF</l:StyleStoreId>
+      <l:Style>
+        <l:StyleName>PF.ProductionInstallationPart.Default</l:StyleName>
+        <l:LayerNameRef>PF.ProductionInstallationPart</l:LayerNameRef>
+        <l:StyleNameRef>PF.ProductionInstallationPart.Default</l:StyleNameRef>
+      </l:Style>
+    </l:StyleRef>
+    <l:LayerOptions>
+      <l:MaxFeatures>0</l:MaxFeatures>
+    </l:LayerOptions>
+  </FeatureLayer>
+  
+</FeatureLayers>

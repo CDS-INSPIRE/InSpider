@@ -1,0 +1,521 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="./GeoSticker.xsl"?>
+<MD_Metadata xmlns:gml="http://www.opengis.net/gml" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gco="http://www.isotc211.org/2005/gco" xsi:schemaLocation="http://www.isotc211.org/2005/gmd" xmlns="http://www.isotc211.org/2005/gmd">
+  <fileIdentifier>
+    <gco:CharacterString>{F68E024A-6858-43C1-8C2C-04CB13359027}</gco:CharacterString>
+  </fileIdentifier>
+  <language>
+    <gco:CharacterString>dut</gco:CharacterString>
+  </language>
+  <characterSet>
+    <MD_CharacterSetCode codeList="./resources/codeList.xml#MD_CharacterSetCode" codeListValue="utf8" />
+  </characterSet>
+  <hierarchyLevel>
+    <MD_ScopeCode codeList="./resources/codeList.xml#MD_ScopeCode" codeListValue="dataset">dataset</MD_ScopeCode>
+  </hierarchyLevel>
+  <contact>
+    <CI_ResponsibleParty>
+      <individualName>
+        <gco:CharacterString>Geoloket</gco:CharacterString>
+      </individualName>
+      <organisationName>
+        <gco:CharacterString>Provincie Limburg</gco:CharacterString>
+      </organisationName>
+      <positionName>
+        <gco:CharacterString>Contactpunt</gco:CharacterString>
+      </positionName>
+      <contactInfo>
+        <CI_Contact>
+          <phone>
+            <CI_Telephone>
+              <voice>
+                <gco:CharacterString>043-389 89 39</gco:CharacterString>
+              </voice>
+            </CI_Telephone>
+          </phone>
+          <address>
+            <CI_Address>
+              <deliveryPoint>
+                <gco:CharacterString>Postbus 5700</gco:CharacterString>
+              </deliveryPoint>
+              <city>
+                <gco:CharacterString>Maastricht</gco:CharacterString>
+              </city>
+              <administrativeArea>
+                <gco:CharacterString>Limburg</gco:CharacterString>
+              </administrativeArea>
+              <postalCode>
+                <gco:CharacterString>6202 MA</gco:CharacterString>
+              </postalCode>
+              <country>
+                <gco:CharacterString>Nederland</gco:CharacterString>
+              </country>
+              <electronicMailAddress>
+                <gco:CharacterString>geoloket@prvlimburg.nl</gco:CharacterString>
+              </electronicMailAddress>
+            </CI_Address>
+          </address>
+          <onlineResource>
+            <CI_OnlineResource>
+              <linkage>
+                <URL>http://www.limburg.nl</URL>
+              </linkage>
+            </CI_OnlineResource>
+          </onlineResource>
+        </CI_Contact>
+      </contactInfo>
+      <role>
+        <CI_RoleCode codeList="./resources/codeList.xml#CI_RoleCode" codeListValue="pointOfContact" />
+      </role>
+    </CI_ResponsibleParty>
+  </contact>
+  <dateStamp>
+    <gco:Date>2012-03-09</gco:Date>
+  </dateStamp>
+  <metadataStandardName>
+    <gco:CharacterString>ISO 19115</gco:CharacterString>
+  </metadataStandardName>
+  <metadataStandardVersion>
+    <gco:CharacterString>Nederlandse metadata profiel op ISO 19115 voor geografie 1.2</gco:CharacterString>
+  </metadataStandardVersion>
+  <referenceSystemInfo>
+    <MD_ReferenceSystem>
+      <referenceSystemIdentifier>
+        <RS_Identifier>
+          <code>
+            <gco:CharacterString>28992</gco:CharacterString>
+          </code>
+          <codeSpace>
+            <gco:CharacterString>EPSG</gco:CharacterString>
+          </codeSpace>
+        </RS_Identifier>
+      </referenceSystemIdentifier>
+    </MD_ReferenceSystem>
+  </referenceSystemInfo>
+  <referenceSystemInfo>
+    <MD_ReferenceSystem>
+      <referenceSystemIdentifier>
+        <RS_Identifier>
+          <code>
+            <gco:CharacterString>5709</gco:CharacterString>
+          </code>
+          <codeSpace>
+            <gco:CharacterString>EPSG</gco:CharacterString>
+          </codeSpace>
+        </RS_Identifier>
+      </referenceSystemIdentifier>
+    </MD_ReferenceSystem>
+  </referenceSystemInfo>
+  <identificationInfo>
+    <MD_DataIdentification>
+      <citation>
+        <CI_Citation>
+          <title>
+            <gco:CharacterString>Ontgrondingen</gco:CharacterString>
+          </title>
+          <alternateTitle>
+            <gco:CharacterString>POL.polact_ontgrondingen_v</gco:CharacterString>
+          </alternateTitle>
+          <date>
+            <CI_Date>
+              <date>
+                <gco:Date>2009-03-06</gco:Date>
+              </date>
+              <dateType>
+                <CI_DateTypeCode codeList="./resources/codeList.xml#CI_DateTypeCode" codeListValue="revision" />
+              </dateType>
+            </CI_Date>
+          </date>
+          <edition>
+            <gco:CharacterString>POL Actueel</gco:CharacterString>
+          </edition>
+          <identifier>
+            <MD_Identifier>
+              <code>
+                <gco:CharacterString>{cd3d2425-21a4-42aa-a3f8-5e3ffda211c0}</gco:CharacterString>
+              </code>
+            </MD_Identifier>
+          </identifier>
+          <series>
+            <CI_Series />
+          </series>
+        </CI_Citation>
+      </citation>
+      <abstract>
+        <gco:CharacterString>Deze categorie is een weergave van eerder vastgesteld beleid en van reeds genomen besluiten omtrent ontgrondingsvergunningen. Deze categorie zegt niets over de beoordeling van toekomstige aanvragen voor een ontgrondingsvergunning in de betreffende gebieden. Naast het aspect natuur dienen immers bij een aanvraag om een ontgrondingsvergunning nog talloze andere belangen en aspecten te worden afgewogen. Zie tevens de POL-aanvulling EHS, Grensmaas en Zandmaas.</gco:CharacterString>
+      </abstract>
+      <purpose>
+        <gco:CharacterString>POL herziening EHS</gco:CharacterString>
+      </purpose>
+      <status>
+        <MD_ProgressCode codeList="./resources/codeList.xml#MD_ProgressCode" codeListValue="completed" />
+      </status>
+      <pointOfContact>
+        <CI_ResponsibleParty>
+          <individualName>
+            <gco:CharacterString>H.F. Groen</gco:CharacterString>
+          </individualName>
+          <organisationName>
+            <gco:CharacterString>Provincie Limburg</gco:CharacterString>
+          </organisationName>
+          <positionName>
+            <gco:CharacterString>Programmamanager POL</gco:CharacterString>
+          </positionName>
+          <contactInfo>
+            <CI_Contact>
+              <phone>
+                <CI_Telephone>
+                  <voice>
+                    <gco:CharacterString>043-389 74 24</gco:CharacterString>
+                  </voice>
+                </CI_Telephone>
+              </phone>
+              <address>
+                <CI_Address>
+                  <deliveryPoint>
+                    <gco:CharacterString>Postbus 5700</gco:CharacterString>
+                  </deliveryPoint>
+                  <city>
+                    <gco:CharacterString>Maastricht</gco:CharacterString>
+                  </city>
+                  <administrativeArea>
+                    <gco:CharacterString>Limburg</gco:CharacterString>
+                  </administrativeArea>
+                  <postalCode>
+                    <gco:CharacterString>6202 MA</gco:CharacterString>
+                  </postalCode>
+                  <country>
+                    <gco:CharacterString>Nederland</gco:CharacterString>
+                  </country>
+                  <electronicMailAddress>
+                    <gco:CharacterString>hf.groen@prvlimburg.nl</gco:CharacterString>
+                  </electronicMailAddress>
+                </CI_Address>
+              </address>
+              <onlineResource>
+                <CI_OnlineResource>
+                  <linkage>
+                    <URL>http://www.limburg.nl</URL>
+                  </linkage>
+                </CI_OnlineResource>
+              </onlineResource>
+            </CI_Contact>
+          </contactInfo>
+          <role>
+            <CI_RoleCode codeList="./resources/codeList.xml#CI_RoleCode" codeListValue="owner" />
+          </role>
+        </CI_ResponsibleParty>
+      </pointOfContact>
+      <pointOfContact>
+        <CI_ResponsibleParty>
+          <individualName>
+            <gco:CharacterString>H.M. van Steenwijk</gco:CharacterString>
+          </individualName>
+          <organisationName>
+            <gco:CharacterString>Provincie Limburg</gco:CharacterString>
+          </organisationName>
+          <positionName>
+            <gco:CharacterString>Inhoudelijk contactpersoon</gco:CharacterString>
+          </positionName>
+          <contactInfo>
+            <CI_Contact>
+              <phone>
+                <CI_Telephone>
+                  <voice>
+                    <gco:CharacterString>043-389 73 70</gco:CharacterString>
+                  </voice>
+                </CI_Telephone>
+              </phone>
+              <address>
+                <CI_Address>
+                  <deliveryPoint>
+                    <gco:CharacterString>Postbus 5700</gco:CharacterString>
+                  </deliveryPoint>
+                  <city>
+                    <gco:CharacterString>Maastricht</gco:CharacterString>
+                  </city>
+                  <administrativeArea>
+                    <gco:CharacterString>Limburg</gco:CharacterString>
+                  </administrativeArea>
+                  <postalCode>
+                    <gco:CharacterString>6202 MA</gco:CharacterString>
+                  </postalCode>
+                  <country>
+                    <gco:CharacterString>Nederland</gco:CharacterString>
+                  </country>
+                  <electronicMailAddress>
+                    <gco:CharacterString>hm.van.steenwijk@prvlimburg.nl</gco:CharacterString>
+                  </electronicMailAddress>
+                </CI_Address>
+              </address>
+              <onlineResource>
+                <CI_OnlineResource>
+                  <linkage>
+                    <URL>http://www.limburg.nl</URL>
+                  </linkage>
+                </CI_OnlineResource>
+              </onlineResource>
+            </CI_Contact>
+          </contactInfo>
+          <role>
+            <CI_RoleCode codeList="./resources/codeList.xml#CI_RoleCode" codeListValue="owner" />
+          </role>
+        </CI_ResponsibleParty>
+      </pointOfContact>
+      <resourceMaintenance />
+      <graphicOverview>
+        <MD_BrowseGraphic>
+          <fileName>
+            <gco:CharacterString>http://portal.prvlimburg.nl/geoservices/polact_4b_groene_waarden?BBOX=150000,296000,223454,435000&amp;EXCEPTIONS=INIMAGE&amp;VERSION=1.1.1&amp;FORMAT=image/png&amp;SERVICE=WMS&amp;LAYERS=polact_ontgrondingen_v&amp;REQUEST=GetMap&amp;SRS=EPSG:28992&amp;WIDTH=400&amp;HEIGHT=800</gco:CharacterString>
+          </fileName>
+        </MD_BrowseGraphic>
+      </graphicOverview>
+      <descriptiveKeywords>
+        <MD_Keywords>
+          <keyword>
+            <gco:CharacterString>ontgrondingen</gco:CharacterString>
+          </keyword>
+          <thesaurusName>
+            <CI_Citation>
+              <title>
+                <gco:CharacterString>Interprovinciale thesaurus</gco:CharacterString>
+              </title>
+              <date>
+                <CI_Date>
+                  <date>
+                    <gco:Date>2010-11-05</gco:Date>
+                  </date>
+                  <dateType>
+                    <CI_DateTypeCode codeList="./resources/codeList.xml#CI_DateTypeCode" codeListValue="publication" />
+                  </dateType>
+                </CI_Date>
+              </date>
+            </CI_Citation>
+          </thesaurusName>
+        </MD_Keywords>
+      </descriptiveKeywords>
+      <resourceConstraints>
+        <MD_Constraints>
+          <useLimitation>
+            <gco:CharacterString>Geen gebruiksbeperkingen</gco:CharacterString>
+          </useLimitation>
+        </MD_Constraints>
+      </resourceConstraints>
+      <resourceConstraints>
+        <MD_LegalConstraints>
+          <accessConstraints>
+            <MD_RestrictionCode codeList="./resources/codeList.xml#MD_RestrictionCode" codeListValue="otherRestrictions" />
+          </accessConstraints>
+          <otherConstraints>
+            <gco:CharacterString>Geen beperking</gco:CharacterString>
+          </otherConstraints>
+        </MD_LegalConstraints>
+      </resourceConstraints>
+      <resourceConstraints>
+        <MD_LegalConstraints>
+          <accessConstraints>
+            <MD_RestrictionCode codeList="./resources/codeList.xml#MD_RestrictionCode" codeListValue="otherRestrictions" />
+          </accessConstraints>
+          <otherConstraints>
+            <gco:CharacterString>http://creativecommons.org/publicdomain/mark/1.0/deed.nl</gco:CharacterString>
+          </otherConstraints>
+        </MD_LegalConstraints>
+      </resourceConstraints>
+      <spatialRepresentationType>
+        <MD_SpatialRepresentationTypeCode codeList="./resources/codeList.xml#MD_SpatialRepresentationTypeCode" codeListValue="vector" />
+      </spatialRepresentationType>
+      <spatialResolution>
+        <MD_Resolution>
+          <equivalentScale>
+            <MD_RepresentativeFraction>
+              <denominator>
+                <gco:Integer>25000</gco:Integer>
+              </denominator>
+            </MD_RepresentativeFraction>
+          </equivalentScale>
+        </MD_Resolution>
+      </spatialResolution>
+      <language>
+        <gco:CharacterString>dut</gco:CharacterString>
+      </language>
+      <characterSet>
+        <MD_CharacterSetCode codeList="./resources/codeList.xml#MD_CharacterSetCode" codeListValue="utf8" />
+      </characterSet>
+      <topicCategory>
+        <MD_TopicCategoryCode>planningCadastre</MD_TopicCategoryCode>
+      </topicCategory>
+      <extent>
+        <EX_Extent>
+          <geographicElement>
+            <EX_GeographicBoundingBox>
+              <westBoundLongitude>
+                <gco:Decimal>5.632</gco:Decimal>
+              </westBoundLongitude>
+              <eastBoundLongitude>
+                <gco:Decimal>6.213</gco:Decimal>
+              </eastBoundLongitude>
+              <southBoundLatitude>
+                <gco:Decimal>50.816</gco:Decimal>
+              </southBoundLatitude>
+              <northBoundLatitude>
+                <gco:Decimal>51.751</gco:Decimal>
+              </northBoundLatitude>
+            </EX_GeographicBoundingBox>
+          </geographicElement>
+          <geographicElement>
+            <EX_GeographicDescription>
+              <geographicIdentifier>
+                <MD_Identifier>
+                  <code>
+                    <gco:CharacterString>Limburg</gco:CharacterString>
+                  </code>
+                </MD_Identifier>
+              </geographicIdentifier>
+            </EX_GeographicDescription>
+          </geographicElement>
+          <temporalElement>
+            <EX_TemporalExtent>
+              <extent>
+                <gml:TimePeriod gml:id="tp1">
+                  <gml:begin>
+                    <gml:TimeInstant gml:id="ti1">
+                      <gml:timePosition>2009-03-06</gml:timePosition>
+                    </gml:TimeInstant>
+                  </gml:begin>
+                  <gml:end>
+                    <gml:TimeInstant gml:id="ti2">
+                      <gml:timePosition>2013-12-31</gml:timePosition>
+                    </gml:TimeInstant>
+                  </gml:end>
+                </gml:TimePeriod>
+              </extent>
+            </EX_TemporalExtent>
+          </temporalElement>
+        </EX_Extent>
+      </extent>
+    </MD_DataIdentification>
+  </identificationInfo>
+  <distributionInfo>
+    <MD_Distribution>
+      <distributionFormat>
+        <MD_Format>
+          <name>
+            <gco:CharacterString>Shape</gco:CharacterString>
+          </name>
+          <version>
+            <gco:CharacterString>1.0</gco:CharacterString>
+          </version>
+        </MD_Format>
+      </distributionFormat>
+      <distributor>
+        <MD_Distributor>
+          <distributorContact />
+        </MD_Distributor>
+      </distributor>
+      <transferOptions>
+        <MD_DigitalTransferOptions>
+          <unitsOfDistribution>
+            <gco:CharacterString>Limburg</gco:CharacterString>
+          </unitsOfDistribution>
+          <onLine>
+            <CI_OnlineResource>
+              <linkage>
+                <URL>Server=lin022; Service=5151; User=POL; Version=SDE.DEFAULT</URL>
+              </linkage>
+              <protocol>
+                <gco:CharacterString>download</gco:CharacterString>
+              </protocol>
+              <name>
+                <gco:CharacterString>-</gco:CharacterString>
+              </name>
+            </CI_OnlineResource>
+          </onLine>
+          <onLine>
+            <CI_OnlineResource>
+              <linkage>
+                <URL>http://portal.prvlimburg.nl/geoservices/polact_4b_groene_waarden</URL>
+              </linkage>
+              <protocol>
+                <gco:CharacterString>OGC:WMS</gco:CharacterString>
+              </protocol>
+              <name>
+                <gco:CharacterString>polact_ontgrondingen_v</gco:CharacterString>
+              </name>
+            </CI_OnlineResource>
+          </onLine>
+          <onLine>
+            <CI_OnlineResource>
+              <linkage>
+                <URL>http://portal.prvlimburg.nl/geoservices/polact_4b_groene_waarden</URL>
+              </linkage>
+              <protocol>
+                <gco:CharacterString>OGC:WFS</gco:CharacterString>
+              </protocol>
+              <name>
+                <gco:CharacterString>polact_ontgrondingen_v</gco:CharacterString>
+              </name>
+            </CI_OnlineResource>
+          </onLine>
+          <offLine>
+            <MD_Medium>
+              <name>
+                <MD_MediumNameCode codeList="./resources/codeList.xml#MD_MediumNameCode" codeListValue="" />
+              </name>
+            </MD_Medium>
+          </offLine>
+        </MD_DigitalTransferOptions>
+      </transferOptions>
+    </MD_Distribution>
+  </distributionInfo>
+  <dataQualityInfo>
+    <DQ_DataQuality>
+      <scope>
+        <DQ_Scope>
+          <level>
+            <MD_ScopeCode codeList="./resources/codeList.xml#MD_ScopeCode" codeListValue="dataset">dataset</MD_ScopeCode>
+          </level>
+        </DQ_Scope>
+      </scope>
+      <report>
+        <DQ_CompletenessOmission>
+          <result>
+            <DQ_QuantitativeResult>
+              <valueUnit gco:nilReason="inapplicable" />
+              <value>
+                <gco:Record>84 vlakken.</gco:Record>
+              </value>
+            </DQ_QuantitativeResult>
+          </result>
+        </DQ_CompletenessOmission>
+      </report>
+      <lineage>
+        <LI_Lineage>
+          <statement>
+            <gco:CharacterString>Deze categorie heeft betrekking op de volgende gebieden: - Plankaart POL: vergunde delfstofwinning doorlopend tot na 2008, kaart 5j: Bestaande vergunning, Winzone, Winplaats, Geologisch voorkomen Mioceenzand. - Plankaart POL Grensmaas: Natuur na opvulling, natuur na ontgronding en opvulling, natuur na ontgronding, proefproject Meers. - Plankaart POL Zandmaas: Natuurontwikkeling: zoekgebied kadespecie, Natuurontwikkeling: Rivierverruiming en natuurontwikkeling, Hoogwatergeul Tracébesluit, Zone voor rivierverruiming en natuurontwikkeling. - De gebieden waarvoor door de provincie een ontgrondingsvergunning is verleend. - Stimuleringsplan categorieën Grensmaas: Nieuwe natuur te vergraven (Cg) en Nieuwe natuur stroomgeulverbreding (Cs). 
+</gco:CharacterString>
+          </statement>
+          <processStep>
+            <LI_ProcessStep>
+              <description>
+                <gco:CharacterString>POL-aanvulling beëindiging kalksteenwinning Sint-Pietersberg is verwerkt in dit bestand.</gco:CharacterString>
+              </description>
+              <dateTime>
+                <gco:DateTime>2009-03-06T00:00:00</gco:DateTime>
+              </dateTime>
+              <processor>
+                <CI_ResponsibleParty>
+                  <organisationName>
+                    <gco:CharacterString>Provincie Limburg</gco:CharacterString>
+                  </organisationName>
+                  <role>
+                    <CI_RoleCode codeList="./resources/codeList.xml#CI_RoleCode" codeListValue="processor" />
+                  </role>
+                </CI_ResponsibleParty>
+              </processor>
+            </LI_ProcessStep>
+          </processStep>
+        </LI_Lineage>
+      </lineage>
+    </DQ_DataQuality>
+  </dataQualityInfo>
+</MD_Metadata>

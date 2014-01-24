@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans
+	xmlns="http://www.springframework.org/schema/security" 
+	xmlns:beans="http://www.springframework.org/schema/beans"
+    xmlns:batch="http://www.springframework.org/schema/batch"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:util="http://www.springframework.org/schema/util"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+      http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd
+      http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+      http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch-2.1.xsd
+      http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+      http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+      
+	<http auto-config="true">
+		<intercept-url pattern="/styles/**" access="ROLE_GEBRUIKER,ROLE_BEHEERDER,ROLE_LANDELIJKGRONDWATERREGISTER,ROLE_ZWEMWATERREGISTER,ROLE_HABITAT,ROLE_RISICOKAART,ROLE_GASUNIE,ROLE_NAM,ROLE_RISC,ROLE_ROR,ROLE_DRENTHE,ROLE_FLEVOLAND,ROLE_FRIESLAND,ROLE_GELDERLAND,ROLE_GRONINGEN,ROLE_LIMBURG,ROLE_NOORDBRABANT,ROLE_NOORDHOLLAND,ROLE_OVERIJSSEL,ROLE_UTRECHT,ROLE_ZEELAND,ROLE_ZUIDHOLLAND"/>
+		<intercept-url pattern="/scripts/**" access="ROLE_GEBRUIKER,ROLE_BEHEERDER,ROLE_LANDELIJKGRONDWATERREGISTER,ROLE_ZWEMWATERREGISTER,ROLE_HABITAT,ROLE_RISICOKAART,ROLE_GASUNIE,ROLE_NAM,ROLE_RISC,ROLE_ROR,ROLE_DRENTHE,ROLE_FLEVOLAND,ROLE_FRIESLAND,ROLE_GELDERLAND,ROLE_GRONINGEN,ROLE_LIMBURG,ROLE_NOORDBRABANT,ROLE_NOORDHOLLAND,ROLE_OVERIJSSEL,ROLE_UTRECHT,ROLE_ZEELAND,ROLE_ZUIDHOLLAND" />
+		<intercept-url pattern="/images/**" access="ROLE_GEBRUIKER,ROLE_BEHEERDER,ROLE_LANDELIJKGRONDWATERREGISTER,ROLE_ZWEMWATERREGISTER,ROLE_HABITAT,ROLE_RISICOKAART,ROLE_GASUNIE,ROLE_NAM,ROLE_RISC,ROLE_ROR,ROLE_DRENTHE,ROLE_FLEVOLAND,ROLE_FRIESLAND,ROLE_GELDERLAND,ROLE_GRONINGEN,ROLE_LIMBURG,ROLE_NOORDBRABANT,ROLE_NOORDHOLLAND,ROLE_OVERIJSSEL,ROLE_UTRECHT,ROLE_ZEELAND,ROLE_ZUIDHOLLAND" />
+		<intercept-url pattern="/log*" access="ROLE_GEBRUIKER,ROLE_BEHEERDER,ROLE_LANDELIJKGRONDWATERREGISTER,ROLE_ZWEMWATERREGISTER,ROLE_HABITAT,ROLE_RISICOKAART,ROLE_GASUNIE,ROLE_NAM,ROLE_RISC,ROLE_ROR,ROLE_DRENTHE,ROLE_FLEVOLAND,ROLE_FRIESLAND,ROLE_GELDERLAND,ROLE_GRONINGEN,ROLE_LIMBURG,ROLE_NOORDBRABANT,ROLE_NOORDHOLLAND,ROLE_OVERIJSSEL,ROLE_UTRECHT,ROLE_ZEELAND,ROLE_ZUIDHOLLAND" />
+		<intercept-url pattern="/*_help.html" access="ROLE_GEBRUIKER,ROLE_BEHEERDER,ROLE_LANDELIJKGRONDWATERREGISTER,ROLE_ZWEMWATERREGISTER,ROLE_HABITAT,ROLE_RISICOKAART,ROLE_GASUNIE,ROLE_NAM,ROLE_RISC,ROLE_ROR,ROLE_DRENTHE,ROLE_FLEVOLAND,ROLE_FRIESLAND,ROLE_GELDERLAND,ROLE_GRONINGEN,ROLE_LIMBURG,ROLE_NOORDBRABANT,ROLE_NOORDHOLLAND,ROLE_OVERIJSSEL,ROLE_UTRECHT,ROLE_ZEELAND,ROLE_ZUIDHOLLAND" />
+		<!-- BEHEERDERS -->
+		<intercept-url pattern="/ba/monitoring/**" access="ROLE_BEHEERDER" />
+		<intercept-url pattern="/ba/gebruikersbeheer/**" access="ROLE_BEHEERDER" />
+		<intercept-url pattern="/ba/vdconfig/**" access="ROLE_BEHEERDER" />
+		<!-- BRONHOUDERS AND BEHEERDERS -->
+		<intercept-url pattern="/**" access="ROLE_BEHEERDER,ROLE_LANDELIJKGRONDWATERREGISTER,ROLE_ZWEMWATERREGISTER,ROLE_HABITAT,ROLE_RISICOKAART,ROLE_GASUNIE,ROLE_NAM,ROLE_RISC,ROLE_ROR,ROLE_DRENTHE,ROLE_FLEVOLAND,ROLE_FRIESLAND,ROLE_GELDERLAND,ROLE_GRONINGEN,ROLE_LIMBURG,ROLE_NOORDBRABANT,ROLE_NOORDHOLLAND,ROLE_OVERIJSSEL,ROLE_UTRECHT,ROLE_ZEELAND,ROLE_ZUIDHOLLAND" />
+		
+		<anonymous username="guest" granted-authority="ROLE_GEBRUIKER" />
+		
+		<form-login login-page="/login" login-processing-url="/do-login" authentication-failure-url="/login?error=true" default-target-url="/" authentication-success-handler-ref="simpleUrlAuthenticationSuccessHandler"/>
+		<logout logout-url="/logout" success-handler-ref="myLogoutSuccessHandler"/>
+	</http>
+
+	<beans:bean id="simpleUrlAuthenticationSuccessHandler" class="org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler">
+	    <beans:property name="useReferer" value="false"/>
+	    <beans:property name="defaultTargetUrl" value="/"/>
+	    <beans:property name="targetUrlParameter" value="return-to"/>
+	</beans:bean>
+		
+	<beans:bean id="myLogoutSuccessHandler" class="org.springframework.security.web.authentication.logout.SimpleUrlLogoutSuccessHandler">
+		<beans:property name="defaultTargetUrl" value="/"/>
+		<beans:property name="alwaysUseDefaultTargetUrl" value="true"/>
+	</beans:bean>
+
+	<authentication-manager>
+		<ldap-authentication-provider 
+			server-ref="ldapServer" 
+			user-search-filter="uid={0}"
+			user-search-base="ou=People"
+			group-search-filter="member={0}"
+			group-search-base="ou=Group" 
+			group-role-attribute="cn"
+			role-prefix="ROLE_"
+			user-details-class="inetOrgPerson" />
+		
+		<authentication-provider>
+			<user-service>
+				<!-- Convenience admin user -->
+				<user name="admin" password="12admin34" authorities="ROLE_BEHEERDER"/>
+			</user-service>
+		</authentication-provider>
+	</authentication-manager>
+	
+</beans:beans>

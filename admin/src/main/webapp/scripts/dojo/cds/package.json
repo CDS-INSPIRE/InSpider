@@ -1,0 +1,16 @@
+{
+	"name": "cds",
+	"description": "Centrale Data- en Services",
+	"version": "1.0",
+	"keywords": [ "JavaScript", "Dojo", "CDS" ],
+	"maintainers": [{
+		"name": "IDgis bv"
+	}],
+	"dependencies": {
+		"dojo": "~1.8.3",
+		"dijit": "~1.8.3",
+		"dojox": "~1.8.3",
+		"put-selector": "~0.3.3"
+	},
+	"dojoBuild": "profile.js"
+}

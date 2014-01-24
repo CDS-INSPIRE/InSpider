@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://www.esri.com/esri"
+	xmlns:esri="http://www.esri.com/esri" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:gml="http://www.opengis.net/gml" xmlns:gmlsf="http://www.opengis.net/gmlsf"
+	elementFormDefault="qualified" version="1.0">
+	<xsd:annotation>
+		<xsd:appinfo
+			source="http://www.drenthe.info/wfsconnector/schema/gml/3.1.1/profiles/gmlsfProfile/1.0.0/gmlsfLevels.xsd">
+			<gmlsf:ComplianceLevel>0</gmlsf:ComplianceLevel>
+			<gmlsf:GMLProfileSchema>http://www.drenthe.info/wfsconnector/schema/gml/3.1.1/profiles/gmlsfProfile/1.0.0/gmlsf.xsd
+			</gmlsf:GMLProfileSchema>
+		</xsd:appinfo>
+	</xsd:annotation>
+	<xsd:import namespace="http://www.opengis.net/gml"
+		schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/gml.xsd" />
+	<xsd:import namespace="http://www.opengis.net/gmlsf"
+		schemaLocation="http://www.drenthe.info/wfsconnector/schema/gml/3.1.1/profiles/gmlsfProfile/1.0.0/gmlsfLevels.xsd" />
+	<xsd:complexType name="AW-AW_Type">
+		<xsd:complexContent>
+			<xsd:extension base="gml:AbstractFeatureType">
+				<xsd:sequence>
+					<xsd:element name="_shape_" type="gml:MultiSurfacePropertyType" />
+					<xsd:element name="gbi.aw.gfid" type="xsd:string"
+						minOccurs="0" maxOccurs="1" />
+					<xsd:element name="gbi.aw.applicationschema" type="xsd:string"
+						minOccurs="0" maxOccurs="1" />
+					<xsd:element name="gbi.aw.legalfoundationdate" type="xsd:date"
+						minOccurs="0" maxOccurs="1" />
+					<xsd:element name="gbi.aw.legalfoundationdocument"
+						type="xsd:string" minOccurs="0" maxOccurs="1" />
+					<xsd:element name="gbi.aw.inspireid" type="xsd:string"
+						minOccurs="0" maxOccurs="1" />
+					<xsd:element name="gbi.aw.sitename" type="xsd:string"
+						minOccurs="0" maxOccurs="1" />
+					<xsd:element name="gbi.aw.sitedesignation" type="xsd:string"
+						minOccurs="0" maxOccurs="1" />
+					<xsd:element name="gbi.aw.siteprotectionclassification"
+						type="xsd:string" minOccurs="0" maxOccurs="1" />
+					<xsd:element name="gbi.aw.percentageunderdesignation"
+						type="xsd:double" minOccurs="0" maxOccurs="1" />
+					<xsd:element name="gbi.aw.stucat" type="xsd:string"
+						minOccurs="0" maxOccurs="1" />
+					<xsd:element name="gbi.aw.naam" type="xsd:string"
+						minOccurs="0" maxOccurs="1" />
+					<xsd:element name="shape.area" type="xsd:double"
+						minOccurs="0" maxOccurs="1" />
+					<xsd:element name="shape.len" type="xsd:double"
+						minOccurs="0" maxOccurs="1" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:element name="AW-AW" type="esri:AW-AW_Type"
+		substitutionGroup="gml:_Feature" />
+</xsd:schema>

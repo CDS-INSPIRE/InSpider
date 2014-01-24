@@ -1,0 +1,20 @@
+Log report:
+-----------
+
+#macro(jobPreamble $job)
+Job:
+#end
+#macro(jobFasePreamble $jobFase)
+  Fase: $jobFase.fase
+#end
+#foreach($logItem in $logItems)
+#if ($currentJob != $logItem.jobFase.job)
+#set($currentJob = $logItem.jobFase.job)
+#jobPreamble($currentJob)
+#end
+#if($currentJobFase != $logItem.jobFase)
+#set($currentJobFase = $logItem.jobFase)
+#jobFasePreamble($currentJobFase)
+#end
+    - $logItem.message
+#end

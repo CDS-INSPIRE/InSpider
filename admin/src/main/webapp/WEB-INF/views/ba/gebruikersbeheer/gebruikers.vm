@@ -1,0 +1,221 @@
+#set($layerName='gebruikersbeheer-gebruikers')
+<script type="text/javascript">
+require ([
+	"dojo/store/JsonRest",
+	"dojo/store/Memory",
+	"dojo/data/ObjectStore",
+	"dojox/grid/DataGrid",
+   	"dijit/dijit",
+	"cds/ready!"
+], function () {
+
+    var docroot = window.docroot = "#springUrl('/')";
+    var gebruikersbeheerRoot = window.gebruikersbeheerRoot = docroot + "ba/gebruikersbeheer"; 
+
+    // Declare the dataGrid and corresponding dataStore
+	var grid, userStore;
+    
+    ## function to automatically resize the userGrid when the users resizes the browser screen
+	dojo.connect( window, "onresize", userGridResized);
+	## initially fit to screen:
+	userGridResized();
+	## keep userGrid fit to screen when resizing window
+	function userGridResized () {
+        var grd = dijit.byId("userGrid");
+        if (grd){
+        	grd.resize();
+        	grd.update();
+        }
+	}
+
+	function editUserButton(gebruikersNaam){
+		var b = new dijit.form.Button({
+			label: "Wijzig",
+			onClick: function(){
+				document.location.href = gebruikersbeheerRoot + "/gebruikers/"+gebruikersNaam;
+			},
+			title: "Selecteer om deze gebruiker in deze rij te wijzigen."
+		}, "");
+		b._destroyOnRemove = true;
+		return b;
+	}
+
+	function removeUserButton(gebruikersNaam){
+		var b = new dijit.form.Button({
+			label: "Verwijder",
+			onClick: function(){
+				if(gebruikersNaam == "$!principalName"){
+					alert("Een beheerder mag zichzelf niet verwijderen!");
+				} else {
+					var deleteGebruiker = confirm(
+					    "Weet u zeker dat u deze gebruiker wilt verwijderen?"
+					);
+					if(deleteGebruiker){
+						document.location.href = gebruikersbeheerRoot + "/gebruikers/"+gebruikersNaam+"/delete";
+					}
+				}
+			},
+			title: "Selecteer om deze gebruiker in deze rij te verwijderen."
+		}, "");
+		b._destroyOnRemove = true;
+		return b;
+	}
+
+    function formatBoolean(booleanValue){
+        return booleanValue ? "Ja" : "Nee";
+    }
+	
+	dojo.ready(function() {
+
+		dojo.byId("userMessage").innerHTML = '<span class="warning">De gebruiker gegevens worden opgehaald, een ogenblik geduld aub ...</span>';
+		
+		// The columns for the userGrid
+        var layout = [
+	        { 	name: "Gebruikersnaam", field: "gebruikersnaam", width: "20%" },
+	        { 	name: "Bronhouder", field: "naam", width: "18%" },
+	        { 	name: "Beheerder", field: "beheerder", formatter: formatBoolean, width: "10%" },
+	        { 	name: "Email", field: "email", width: "20%" },
+	        { 	name: "Mobiel", field: "mobile", width: "20%" },
+	        { 	name: "Wijzigen", field: "gebruikersnaam", width: "5%", formatter: editUserButton },
+	        { 	name: "Verwijderen", field: "gebruikersnaam", width: "7%", formatter: removeUserButton }
+	        ## width here is necesary for IE7: 
+	        ## IE7 behaviour: after resize a hor. scroll bar appears, after F5/refresh it disappears
+        ];
+	
+        // JSON users
+		var userStoreContextStore = new dojo.store.JsonRest({target:gebruikersbeheerRoot+"/list"});
+		userStoreContextStore.query().then(function(results)
+			{
+				// Use only the userList of the results (there are other objects on the response as well)
+				var userMemoryStore = new dojo.store.Memory({data: results.gebruikerWrapperList});
+				// Wrap the MemoryStore in an ObjectStore, because the MemoryStore is not backwards-compatible
+				userStore = new dojo.data.ObjectStore({objectStore: userMemoryStore});
+				// Create the grid	
+				grid = window.grid = new dojox.grid.DataGrid(
+					{
+					    store: userStore,
+					    query: { id: "*" },
+					    structure: layout,
+					    initialWidth: "95%",
+					    title: "Gebruikers",
+					    noDataMessage: "Er zijn geen gebruikers om te laten zien, kies een andere filter combinatie"
+					},
+				    "userGrid"
+				);
+				// Start the grid
+				grid.startup();
+				## initially fit to screen:
+				userGridResized();
+	
+				// Create the OnClick-handler
+				var gridHandle = dojo.connect(
+					grid,
+					"onRowDblClick",
+					function(evt){
+						// Retrieve the userId of the row that as clicked on
+						var rowIndex = evt.rowIndex;
+						var id = grid.store.getValue(grid.getItem(rowIndex), "gebruikersnaam");
+						document.location.href = gebruikersbeheerRoot + "/gebruikers/"+id;
+					}
+				);
+				dojo.byId("userMessage").innerHTML = '<span class="ok"> </span>';
+			},
+	    	function (error){
+				dojo.byId("userMessage").innerHTML = '<span class="error">De gebruiker gegevens konden niet worden opgehaald</span>';
+	    	}
+			
+		);
+
+		dojo.connect(userNameFilter, "onKeyUp", function(){
+			gebruikerFilterForm.submit();
+		});
+		dojo.connect(onlyBeheerdersFilter, "onChange", function(){
+			gebruikerFilterForm.submit();
+		});
+		dojo.connect(bronhouderIdFilter, "onChange", function(){
+			gebruikerFilterForm.submit();
+		});
+		
+	});
+});
+</script>
+	
+<br/>
+<br/>
+
+<div>
+	<div data-dojo-type="dijit/form/Form" id="gebruikerFilterForm" jsId="gebruikerFilterForm">
+	    <script type="dojo/method" event="onSubmit">
+			var query = {};
+		
+			// Filter on gebruikersnaam
+			if(userNameFilter.getValue()){
+				query.gebruikersnaam = userNameFilter.getValue()+'*';
+			}
+			// Filter on beheerder
+			if(onlyBeheerdersFilter.getValue() == "on"){
+				query.beheerder = true; 
+			}
+			// filter on bronhouder
+			if(bronhouderIdFilter.getValue()){
+				query.naam = bronhouderIdFilter.getValue();
+			}
+
+			grid.setQuery(query);
+            return false;
+		</script>
+	    
+	    <table class="filters cds-table" id="userFilters" width="50em">
+			<thead>
+				<tr>
+					<th><label for="userNameFilter">Gebruikersnaam</label></th>
+					<th><label for="bronhouderIdFilter">Bronhouder</label></th>
+					<th><label for="onlyBeheerdersFilter">Alleen beheerders</label></th>
+				</tr>
+			</thead>
+			<tbody>
+		        <tr>
+		            <td>
+						<div data-dojo-type="dijit/form/TextBox" jsId="userNameFilter" name="userNameFilter" value="$!userNameFilter" title="Type de beginletters van de te zoeken gebruiker">
+						</div>
+					</td>
+					<td>		            
+		                <select data-dojo-type="dijit/form/FilteringSelect" jsId="bronhouderIdFilter" id="bronhouderIdFilter" name="bronhouderIdFilter" title="Kies een bronhouder">
+							<option #if($bronhouder == $null) selected="selected"#end></option>
+							#foreach($bronhouderItem in $bronhouders)
+							    <option value="$bronhouderItem.naam" #if ($bronhouderItem.id==$bronhouder.id) selected="selected" #end>$bronhouderItem.naam</option>
+							#end
+						</select>
+		            </td>
+					<td>		            
+		                <div data-dojo-type="dijit/form/CheckBox" jsId="onlyBeheerdersFilter" id="onlyBeheerdersFilter" name="onlyBeheerdersFilter" value="$!onlyBeheerdersFilter" #if ($onlyBeheerdersFilter) selected="selected" #end title="Selecteer om alleen beheerders te tonen">
+						</div>
+		            </td>
+				</tr>
+			</tbody>
+		</table>
+
+		<br/>
+
+		<div id="userGrid" style="height:27em" ></div>
+
+		<br/>
+
+		<table class="cds-table" >
+			<tfoot>
+				<tr>
+					<th>
+						<div id="stdButton">
+							<button data-dojo-type="dijit/form/Button" title="Selecteer om een nieuwe gebruiker in te voeren">Nieuwe gebruiker
+								<script type="dojo/method" data-dojo-event="onClick">
+									document.location.href = gebruikersbeheerRoot + "/gebruikers/_new";
+								</script>
+							</button>
+						</div>
+					</th>
+				</tr>
+			</tfoot>
+		</table>
+
+	</div>
+</div>

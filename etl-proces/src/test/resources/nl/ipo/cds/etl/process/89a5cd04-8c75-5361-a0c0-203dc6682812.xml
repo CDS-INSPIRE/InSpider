@@ -1,0 +1,665 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<csw:GetRecordByIdResponse xmlns:csw="http://www.opengis.net/cat/csw/2.0.2">
+    <gmd:MD_Metadata xmlns:gmd="http://www.isotc211.org/2005/gmd">
+        <gmd:fileIdentifier>
+            <gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco"
+                >89a5cd04-8c75-5361-a0c0-203dc6682812</gco:CharacterString>
+        </gmd:fileIdentifier>
+        <gmd:language>
+            <gmd:LanguageCode codeList="#LanguageCode" codeListValue="dut"/>
+        </gmd:language>
+        <gmd:characterSet>
+            <gmd:MD_CharacterSetCode codeList="MD_CharacterSetCode" codeListValue="utf8"/>
+        </gmd:characterSet>
+        <gmd:hierarchyLevel>
+            <gmd:MD_ScopeCode
+                codeList="http://www.isotc211.org/2005/resources/codeList.xml#MD_ScopeCode"
+                codeListValue="dataset"/>
+        </gmd:hierarchyLevel>
+        <gmd:contact>
+            <gmd:CI_ResponsibleParty>
+                <gmd:individualName>
+                    <gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">G.
+                        Roodnat</gco:CharacterString>
+                </gmd:individualName>
+                <gmd:organisationName>
+                    <gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">Provincie
+                        Drenthe</gco:CharacterString>
+                </gmd:organisationName>
+                <gmd:positionName>
+                    <gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco"
+                        >Auteur</gco:CharacterString>
+                </gmd:positionName>
+                <gmd:contactInfo>
+                    <gmd:CI_Contact>
+                        <gmd:phone>
+                            <gmd:CI_Telephone>
+                                <gmd:voice>
+                                    <gco:CharacterString
+                                        xmlns:gco="http://www.isotc211.org/2005/gco">0592
+                                        36555</gco:CharacterString>
+                                </gmd:voice>
+                                <gmd:facsimile>
+                                    <gco:CharacterString
+                                        xmlns:gco="http://www.isotc211.org/2005/gco">0592
+                                        365777</gco:CharacterString>
+                                </gmd:facsimile>
+                            </gmd:CI_Telephone>
+                        </gmd:phone>
+                        <gmd:address>
+                            <gmd:CI_Address>
+                                <gmd:deliveryPoint>
+                                    <gco:CharacterString
+                                        xmlns:gco="http://www.isotc211.org/2005/gco">Westerbrink
+                                        1</gco:CharacterString>
+                                </gmd:deliveryPoint>
+                                <gmd:city>
+                                    <gco:CharacterString
+                                        xmlns:gco="http://www.isotc211.org/2005/gco"
+                                        >Assen</gco:CharacterString>
+                                </gmd:city>
+                                <gmd:administrativeArea>
+                                    <gco:CharacterString
+                                        xmlns:gco="http://www.isotc211.org/2005/gco"
+                                        >Drenthe</gco:CharacterString>
+                                </gmd:administrativeArea>
+                                <gmd:postalCode>
+                                    <gco:CharacterString
+                                        xmlns:gco="http://www.isotc211.org/2005/gco"
+                                        >9400AC</gco:CharacterString>
+                                </gmd:postalCode>
+                                <gmd:country>
+                                    <gco:CharacterString
+                                        xmlns:gco="http://www.isotc211.org/2005/gco"
+                                        >Nederland</gco:CharacterString>
+                                </gmd:country>
+                                <gmd:electronicMailAddress>
+                                    <gco:CharacterString
+                                        xmlns:gco="http://www.isotc211.org/2005/gco"
+                                        >info@drenthe.nl</gco:CharacterString>
+                                </gmd:electronicMailAddress>
+                            </gmd:CI_Address>
+                        </gmd:address>
+                        <gmd:onlineResource>
+                            <gmd:CI_OnlineResource>
+                                <gmd:linkage>
+                                    <gmd:URL>http://www.drenthe.nl</gmd:URL>
+                                </gmd:linkage>
+                            </gmd:CI_OnlineResource>
+                        </gmd:onlineResource>
+                    </gmd:CI_Contact>
+                </gmd:contactInfo>
+                <gmd:role>
+                    <gmd:CI_RoleCode
+                        codeList="http://www.isotc211.org/2005/resources/codeList.xml#CI_RoleCode"
+                        codeListValue="author"/>
+                </gmd:role>
+            </gmd:CI_ResponsibleParty>
+        </gmd:contact>
+        <gmd:dateStamp>
+            <gco:DateTime xmlns:gco="http://www.isotc211.org/2005/gco"
+                >2008-10-10T00:00:00.000</gco:DateTime>
+        </gmd:dateStamp>
+        <gmd:metadataStandardName>
+            <gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">ISO
+                19115</gco:CharacterString>
+        </gmd:metadataStandardName>
+        <gmd:metadataStandardVersion>
+            <gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">Nederlandse metadata
+                profiel op ISO 19115 voor geografie 1.2</gco:CharacterString>
+        </gmd:metadataStandardVersion>
+        <gmd:referenceSystemInfo>
+            <gmd:MD_ReferenceSystem>
+                <gmd:referenceSystemIdentifier>
+                    <gmd:RS_Identifier>
+                        <gmd:code>
+                            <gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco"
+                                >28992</gco:CharacterString>
+                        </gmd:code>
+                        <gmd:codeSpace>
+                            <gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco"
+                                >EPSG</gco:CharacterString>
+                        </gmd:codeSpace>
+                    </gmd:RS_Identifier>
+                </gmd:referenceSystemIdentifier>
+            </gmd:MD_ReferenceSystem>
+        </gmd:referenceSystemInfo>
+        <gmd:identificationInfo>
+            <gmd:MD_DataIdentification id="3d30357b-1bf0-5ccc-8a40-4b980f2ba493"
+                uuid="3d30357b-1bf0-5ccc-8a40-4b980f2ba493">
+                <gmd:citation>
+                    <gmd:CI_Citation>
+                        <gmd:title>
+                            <gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco"
+                                >Aardkundige waarden</gco:CharacterString>
+                        </gmd:title>
+                        <gmd:alternateTitle>
+                            <gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco"
+                                >GBI.AW</gco:CharacterString>
+                        </gmd:alternateTitle>
+                        <gmd:date>
+                            <gmd:CI_Date>
+                                <gmd:date>
+                                    <gco:DateTime xmlns:gco="http://www.isotc211.org/2005/gco"
+                                        >2007-07-01T00:00:00.000</gco:DateTime>
+                                </gmd:date>
+                                <gmd:dateType>
+                                    <gmd:CI_DateTypeCode
+                                        codeList="http://www.isotc211.org/2005/resources/codeList.xml#CI_DateTypeCode"
+                                        codeListValue="creation"/>
+                                </gmd:dateType>
+                            </gmd:CI_Date>
+                        </gmd:date>
+                        <gmd:identifier>
+                            <gmd:MD_Identifier>
+                                <gmd:code>
+                                    <gco:CharacterString
+                                        xmlns:gco="http://www.isotc211.org/2005/gco"
+                                        >89a5cd04-8c75-5361-a0c0-203dc6682812</gco:CharacterString>
+                                </gmd:code>
+                            </gmd:MD_Identifier>
+                        </gmd:identifier>
+                        <gmd:identifier>
+                            <gmd:RS_Identifier>
+                                <gmd:code>
+                                    <gco:CharacterString
+                                        xmlns:gco="http://www.isotc211.org/2005/gco"
+                                        >3d30357b-1bf0-5ccc-8a40-4b980f2ba493</gco:CharacterString>
+                                </gmd:code>
+                            </gmd:RS_Identifier>
+                        </gmd:identifier>
+                        <gmd:identifier>
+                            <gmd:MD_Identifier>
+                                <gmd:code>
+                                    <gco:CharacterString
+                                        xmlns:gco="http://www.isotc211.org/2005/gco"
+                                        >3d30357b-1bf0-5ccc-8a40-4b980f2ba493</gco:CharacterString>
+                                </gmd:code>
+                            </gmd:MD_Identifier>
+                        </gmd:identifier>
+                    </gmd:CI_Citation>
+                </gmd:citation>
+                <gmd:abstract>
+                    <gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">De term
+                        aardkundige waarden wordt gebruikt als een verzamelnaam voor
+                        geomorfologische,geologische, bodemkundige of geohydrologische
+                        verschijnselen in het landschap, die eenbepaalde waarde vertegenwoordigen.
+                        Het gaat daarbij niet alleen om het behoud en debeleefbaarheid van
+                        historische verschijnselen. Er wordt ook betekenis gehecht aan
+                        actueleprocessen, die aardkundige waarden opleveren.</gco:CharacterString>
+                </gmd:abstract>
+                <gmd:purpose>
+                    <gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">Recreatie en
+                        natuur</gco:CharacterString>
+                </gmd:purpose>
+                <gmd:status>
+                    <gmd:MD_ProgressCode
+                        codeList="http://www.isotc211.org/2005/resources/codeList.xml#MD_ProgressCode"
+                        codeListValue="completed"/>
+                </gmd:status>
+                <gmd:pointOfContact>
+                    <gmd:CI_ResponsibleParty>
+                        <gmd:individualName>
+                            <gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">E.
+                                Bregman</gco:CharacterString>
+                        </gmd:individualName>
+                        <gmd:organisationName>
+                            <gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco"
+                                >Provincie Drenthe</gco:CharacterString>
+                        </gmd:organisationName>
+                        <gmd:positionName>
+                            <gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco"
+                                >Auteur</gco:CharacterString>
+                        </gmd:positionName>
+                        <gmd:contactInfo>
+                            <gmd:CI_Contact>
+                                <gmd:phone>
+                                    <gmd:CI_Telephone>
+                                        <gmd:voice>
+                                            <gco:CharacterString
+                                                xmlns:gco="http://www.isotc211.org/2005/gco">0592
+                                                36555</gco:CharacterString>
+                                        </gmd:voice>
+                                        <gmd:facsimile>
+                                            <gco:CharacterString
+                                                xmlns:gco="http://www.isotc211.org/2005/gco">0592
+                                                365777</gco:CharacterString>
+                                        </gmd:facsimile>
+                                    </gmd:CI_Telephone>
+                                </gmd:phone>
+                                <gmd:address>
+                                    <gmd:CI_Address>
+                                        <gmd:deliveryPoint>
+                                            <gco:CharacterString
+                                                xmlns:gco="http://www.isotc211.org/2005/gco"
+                                                >Westerbrink 1</gco:CharacterString>
+                                        </gmd:deliveryPoint>
+                                        <gmd:city>
+                                            <gco:CharacterString
+                                                xmlns:gco="http://www.isotc211.org/2005/gco"
+                                                >Assen</gco:CharacterString>
+                                        </gmd:city>
+                                        <gmd:administrativeArea>
+                                            <gco:CharacterString
+                                                xmlns:gco="http://www.isotc211.org/2005/gco"
+                                                >Drenthe</gco:CharacterString>
+                                        </gmd:administrativeArea>
+                                        <gmd:postalCode>
+                                            <gco:CharacterString
+                                                xmlns:gco="http://www.isotc211.org/2005/gco"
+                                                >9400AC</gco:CharacterString>
+                                        </gmd:postalCode>
+                                        <gmd:country>
+                                            <gco:CharacterString
+                                                xmlns:gco="http://www.isotc211.org/2005/gco"
+                                                >Nederland</gco:CharacterString>
+                                        </gmd:country>
+                                        <gmd:electronicMailAddress>
+                                            <gco:CharacterString
+                                                xmlns:gco="http://www.isotc211.org/2005/gco"
+                                                >info@drenthe.nl</gco:CharacterString>
+                                        </gmd:electronicMailAddress>
+                                    </gmd:CI_Address>
+                                </gmd:address>
+                                <gmd:onlineResource>
+                                    <gmd:CI_OnlineResource>
+                                        <gmd:linkage>
+                                            <gmd:URL>http://www.drenthe.nl</gmd:URL>
+                                        </gmd:linkage>
+                                    </gmd:CI_OnlineResource>
+                                </gmd:onlineResource>
+                            </gmd:CI_Contact>
+                        </gmd:contactInfo>
+                        <gmd:role>
+                            <gmd:CI_RoleCode
+                                codeList="http://www.isotc211.org/2005/resources/codeList.xml#CI_RoleCode"
+                                codeListValue="pointOfContact"/>
+                        </gmd:role>
+                    </gmd:CI_ResponsibleParty>
+                </gmd:pointOfContact>
+                <gmd:graphicOverview>
+                    <gmd:MD_BrowseGraphic>
+                        <gmd:fileName>
+                            <gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco"
+                                >http://www.drenthe.info/website/metadata/thumbs/GBI.AW.png</gco:CharacterString>
+                        </gmd:fileName>
+                        <gmd:fileDescription>
+                            <gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco"
+                                >thumbnail</gco:CharacterString>
+                        </gmd:fileDescription>
+                        <gmd:fileType>
+                            <gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco"
+                                >png</gco:CharacterString>
+                        </gmd:fileType>
+                    </gmd:MD_BrowseGraphic>
+                </gmd:graphicOverview>
+                <gmd:graphicOverview>
+                    <gmd:MD_BrowseGraphic>
+                        <gmd:fileName>
+                            <gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco"
+                                >http://www.drenthe.info/website/metadata/thumbs/GBI.AW.png</gco:CharacterString>
+                        </gmd:fileName>
+                        <gmd:fileDescription>
+                            <gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco"
+                                >large_thumbnail</gco:CharacterString>
+                        </gmd:fileDescription>
+                        <gmd:fileType>
+                            <gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco"
+                                >png</gco:CharacterString>
+                        </gmd:fileType>
+                    </gmd:MD_BrowseGraphic>
+                </gmd:graphicOverview>
+                <gmd:descriptiveKeywords>
+                    <gmd:MD_Keywords>
+                        <gmd:keyword>
+                            <gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco"
+                                >aardkundig</gco:CharacterString>
+                        </gmd:keyword>
+                        <gmd:keyword>
+                            <gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco"
+                                >bodem</gco:CharacterString>
+                        </gmd:keyword>
+                        <gmd:thesaurusName>
+                            <gmd:CI_Citation>
+                                <gmd:title>
+                                    <gco:CharacterString
+                                        xmlns:gco="http://www.isotc211.org/2005/gco"
+                                        >Trefwoordenlijst provincie Drenthe</gco:CharacterString>
+                                </gmd:title>
+                                <gmd:date>
+                                    <gmd:CI_Date>
+                                        <gmd:date>
+                                            <gco:DateTime
+                                                xmlns:gco="http://www.isotc211.org/2005/gco"
+                                                >2008-01-01T00:00:00.000</gco:DateTime>
+                                        </gmd:date>
+                                        <gmd:dateType>
+                                            <gmd:CI_DateTypeCode
+                                                codeList="http://www.isotc211.org/2005/resources/codeList.xml#CI_DateTypeCode"
+                                                codeListValue="publication"/>
+                                        </gmd:dateType>
+                                    </gmd:CI_Date>
+                                </gmd:date>
+                            </gmd:CI_Citation>
+                        </gmd:thesaurusName>
+                    </gmd:MD_Keywords>
+                </gmd:descriptiveKeywords>
+                <gmd:resourceConstraints>
+                    <gmd:MD_LegalConstraints>
+                        <gmd:accessConstraints>
+                            <gmd:MD_RestrictionCode
+                                codeList="http://www.isotc211.org/2005/resources/codeList.xml#MD_RestrictionCode"
+                                codeListValue="copyright"/>
+                        </gmd:accessConstraints>
+                        <gmd:otherConstraints>
+                            <gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco"
+                                >Provincie Drenthe</gco:CharacterString>
+                        </gmd:otherConstraints>
+                    </gmd:MD_LegalConstraints>
+                </gmd:resourceConstraints>
+                <gmd:resourceConstraints>
+                    <gmd:MD_Constraints>
+                        <gmd:useLimitation>
+                            <gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco"
+                                >Dataset niet gebruiken bij een schaal kleiner
+                                dan</gco:CharacterString>
+                        </gmd:useLimitation>
+                    </gmd:MD_Constraints>
+                </gmd:resourceConstraints>
+                <gmd:spatialRepresentationType>
+                    <gmd:MD_SpatialRepresentationTypeCode
+                        codeList="http://www.isotc211.org/2005/resources/codeList.xml#MD_SpatialRepresentationTypeCode"
+                        codeListValue="vector"/>
+                </gmd:spatialRepresentationType>
+                <gmd:spatialResolution>
+                    <gmd:MD_Resolution>
+                        <gmd:equivalentScale>
+                            <gmd:MD_RepresentativeFraction>
+                                <gmd:denominator>
+                                    <gco:Integer xmlns:gco="http://www.isotc211.org/2005/gco"
+                                        >250000</gco:Integer>
+                                </gmd:denominator>
+                            </gmd:MD_RepresentativeFraction>
+                        </gmd:equivalentScale>
+                    </gmd:MD_Resolution>
+                </gmd:spatialResolution>
+                <gmd:language>
+                    <gmd:LanguageCode codeList="#LanguageCode" codeListValue="dut"/>
+                </gmd:language>
+                <gmd:characterSet>
+                    <gmd:MD_CharacterSetCode codeList="MD_CharacterSetCode" codeListValue="utf8"/>
+                </gmd:characterSet>
+                <gmd:topicCategory>
+                    <gmd:MD_TopicCategoryCode>geoscientificInformation</gmd:MD_TopicCategoryCode>
+                </gmd:topicCategory>
+                <gmd:extent>
+                    <gmd:EX_Extent>
+                        <gmd:temporalElement>
+                            <gmd:EX_TemporalExtent>
+                                <gmd:extent>
+                                    <gml:TimePeriod xmlns:gml="http://www.opengis.net/gml"
+                                        gml:id="unknown220463">
+                                        <gml:begin>
+                                            <gml:TimeInstant gml:id="unknown220464">
+                                                <gml:timePosition>2009-01-01T00:00:00.000</gml:timePosition>
+                                            </gml:TimeInstant>
+                                        </gml:begin>
+                                        <gml:end>
+                                            <gml:TimeInstant gml:id="unknown220465">
+                                                <gml:timePosition>1970-01-01T00:00:00.000</gml:timePosition>
+                                            </gml:TimeInstant>
+                                        </gml:end>
+                                    </gml:TimePeriod>
+                                </gmd:extent>
+                            </gmd:EX_TemporalExtent>
+                        </gmd:temporalElement>
+                    </gmd:EX_Extent>
+                </gmd:extent>
+                <gmd:extent>
+                    <gmd:EX_Extent>
+                        <gmd:geographicElement>
+                            <gmd:EX_GeographicDescription>
+                                <gmd:geographicIdentifier>
+                                    <gmd:MD_Identifier>
+                                        <gmd:code>
+                                            <gco:CharacterString
+                                                xmlns:gco="http://www.isotc211.org/2005/gco"
+                                                >Provincie Drenthe</gco:CharacterString>
+                                        </gmd:code>
+                                    </gmd:MD_Identifier>
+                                </gmd:geographicIdentifier>
+                            </gmd:EX_GeographicDescription>
+                        </gmd:geographicElement>
+                    </gmd:EX_Extent>
+                </gmd:extent>
+                <gmd:extent>
+                    <gmd:EX_Extent>
+                        <gmd:geographicElement>
+                            <gmd:EX_GeographicBoundingBox>
+                                <gmd:extentTypeCode>
+                                    <gco:Boolean xmlns:gco="http://www.isotc211.org/2005/gco"
+                                        >1</gco:Boolean>
+                                </gmd:extentTypeCode>
+                                <gmd:westBoundLongitude>
+                                    <gco:Decimal xmlns:gco="http://www.isotc211.org/2005/gco"
+                                        >6.64</gco:Decimal>
+                                </gmd:westBoundLongitude>
+                                <gmd:eastBoundLongitude>
+                                    <gco:Decimal xmlns:gco="http://www.isotc211.org/2005/gco"
+                                        >7.54</gco:Decimal>
+                                </gmd:eastBoundLongitude>
+                                <gmd:southBoundLatitude>
+                                    <gco:Decimal xmlns:gco="http://www.isotc211.org/2005/gco"
+                                        >52.35</gco:Decimal>
+                                </gmd:southBoundLatitude>
+                                <gmd:northBoundLatitude>
+                                    <gco:Decimal xmlns:gco="http://www.isotc211.org/2005/gco"
+                                        >53.14</gco:Decimal>
+                                </gmd:northBoundLatitude>
+                            </gmd:EX_GeographicBoundingBox>
+                        </gmd:geographicElement>
+                    </gmd:EX_Extent>
+                </gmd:extent>
+                <gmd:supplementalInformation>
+                    <gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco"
+                        >geen</gco:CharacterString>
+                </gmd:supplementalInformation>
+            </gmd:MD_DataIdentification>
+        </gmd:identificationInfo>
+        <gmd:distributionInfo>
+            <gmd:MD_Distribution>
+                <gmd:distributionFormat>
+                    <gmd:MD_Format>
+                        <gmd:name>
+                            <gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">gdb
+                                polygon feature class</gco:CharacterString>
+                        </gmd:name>
+                        <gmd:version>
+                            <gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco"
+                                >9.2</gco:CharacterString>
+                        </gmd:version>
+                    </gmd:MD_Format>
+                </gmd:distributionFormat>
+                <gmd:distributor>
+                    <gmd:MD_Distributor>
+                        <gmd:distributorContact>
+                            <gmd:CI_ResponsibleParty>
+                                <gmd:individualName>
+                                    <gco:CharacterString
+                                        xmlns:gco="http://www.isotc211.org/2005/gco">J.
+                                        Pattiwael</gco:CharacterString>
+                                </gmd:individualName>
+                                <gmd:organisationName>
+                                    <gco:CharacterString
+                                        xmlns:gco="http://www.isotc211.org/2005/gco">Provincie
+                                        Drenthe</gco:CharacterString>
+                                </gmd:organisationName>
+                                <gmd:positionName>
+                                    <gco:CharacterString
+                                        xmlns:gco="http://www.isotc211.org/2005/gco"
+                                        >Auteur</gco:CharacterString>
+                                </gmd:positionName>
+                                <gmd:contactInfo>
+                                    <gmd:CI_Contact>
+                                        <gmd:phone>
+                                            <gmd:CI_Telephone>
+                                                <gmd:voice>
+                                                  <gco:CharacterString
+                                                  xmlns:gco="http://www.isotc211.org/2005/gco">0592
+                                                  36555</gco:CharacterString>
+                                                </gmd:voice>
+                                                <gmd:facsimile>
+                                                  <gco:CharacterString
+                                                  xmlns:gco="http://www.isotc211.org/2005/gco">0592
+                                                  365777</gco:CharacterString>
+                                                </gmd:facsimile>
+                                            </gmd:CI_Telephone>
+                                        </gmd:phone>
+                                        <gmd:address>
+                                            <gmd:CI_Address>
+                                                <gmd:deliveryPoint>
+                                                  <gco:CharacterString
+                                                  xmlns:gco="http://www.isotc211.org/2005/gco"
+                                                  >Westerbrink 1</gco:CharacterString>
+                                                </gmd:deliveryPoint>
+                                                <gmd:city>
+                                                  <gco:CharacterString
+                                                  xmlns:gco="http://www.isotc211.org/2005/gco"
+                                                  >Assen</gco:CharacterString>
+                                                </gmd:city>
+                                                <gmd:administrativeArea>
+                                                  <gco:CharacterString
+                                                  xmlns:gco="http://www.isotc211.org/2005/gco"
+                                                  >Drenthe</gco:CharacterString>
+                                                </gmd:administrativeArea>
+                                                <gmd:postalCode>
+                                                  <gco:CharacterString
+                                                  xmlns:gco="http://www.isotc211.org/2005/gco"
+                                                  >9400AC</gco:CharacterString>
+                                                </gmd:postalCode>
+                                                <gmd:country>
+                                                  <gco:CharacterString
+                                                  xmlns:gco="http://www.isotc211.org/2005/gco"
+                                                  >Nederland</gco:CharacterString>
+                                                </gmd:country>
+                                                <gmd:electronicMailAddress>
+                                                  <gco:CharacterString
+                                                  xmlns:gco="http://www.isotc211.org/2005/gco"
+                                                  >info@drenthe.nl</gco:CharacterString>
+                                                </gmd:electronicMailAddress>
+                                            </gmd:CI_Address>
+                                        </gmd:address>
+                                        <gmd:onlineResource>
+                                            <gmd:CI_OnlineResource>
+                                                <gmd:linkage>
+                                                  <gmd:URL>http://www.drenthe.nl</gmd:URL>
+                                                </gmd:linkage>
+                                            </gmd:CI_OnlineResource>
+                                        </gmd:onlineResource>
+                                    </gmd:CI_Contact>
+                                </gmd:contactInfo>
+                                <gmd:role>
+                                    <gmd:CI_RoleCode
+                                        codeList="http://www.isotc211.org/2005/resources/codeList.xml#CI_RoleCode"
+                                        codeListValue="owner"/>
+                                </gmd:role>
+                            </gmd:CI_ResponsibleParty>
+                        </gmd:distributorContact>
+                        <gmd:distributionOrderProcess>
+                            <gmd:MD_StandardOrderProcess>
+                                <gmd:fees>
+                                    <gco:CharacterString
+                                        xmlns:gco="http://www.isotc211.org/2005/gco"
+                                        >Gratis</gco:CharacterString>
+                                </gmd:fees>
+                                <gmd:orderingInstructions>
+                                    <gco:CharacterString
+                                        xmlns:gco="http://www.isotc211.org/2005/gco">Neem contact op
+                                        met Provincie Drenthe</gco:CharacterString>
+                                </gmd:orderingInstructions>
+                            </gmd:MD_StandardOrderProcess>
+                        </gmd:distributionOrderProcess>
+                    </gmd:MD_Distributor>
+                </gmd:distributor>
+                <gmd:transferOptions>
+                    <gmd:MD_DigitalTransferOptions>
+                        <gmd:onLine>
+                            <gmd:CI_OnlineResource>
+                                <gmd:linkage>
+                                    <gmd:URL>http://www.drenthe.info/geoserver/zoek/wms</gmd:URL>
+                                </gmd:linkage>
+                                <gmd:protocol>
+                                    <gco:CharacterString
+                                        xmlns:gco="http://www.isotc211.org/2005/gco"
+                                        >OGC:WMS</gco:CharacterString>
+                                </gmd:protocol>
+                                <gmd:name>
+                                    <gco:CharacterString
+                                        xmlns:gco="http://www.isotc211.org/2005/gco"
+                                        >zoek:GBI.AW</gco:CharacterString>
+                                </gmd:name>
+                                <gmd:description>
+                                    <gco:CharacterString
+                                        xmlns:gco="http://www.isotc211.org/2005/gco"
+                                        >AardkundigeWaarden</gco:CharacterString>
+                                </gmd:description>
+                            </gmd:CI_OnlineResource>
+                        </gmd:onLine>
+                        <gmd:onLine>
+                            <gmd:CI_OnlineResource>
+                                <gmd:linkage>
+                                    <gmd:URL>http://www.drenthe.info/geoserver/zoek/wfs</gmd:URL>
+                                </gmd:linkage>
+                                <gmd:protocol>
+                                    <gco:CharacterString
+                                        xmlns:gco="http://www.isotc211.org/2005/gco"
+                                        >OGC:WFS</gco:CharacterString>
+                                </gmd:protocol>
+                                <gmd:name>
+                                    <gco:CharacterString
+                                        xmlns:gco="http://www.isotc211.org/2005/gco"
+                                        >zoek:GBI.AW</gco:CharacterString>
+                                </gmd:name>
+                                <gmd:description>
+                                    <gco:CharacterString
+                                        xmlns:gco="http://www.isotc211.org/2005/gco"
+                                        >AardkundigeWaarden</gco:CharacterString>
+                                </gmd:description>
+                            </gmd:CI_OnlineResource>
+                        </gmd:onLine>
+                    </gmd:MD_DigitalTransferOptions>
+                </gmd:transferOptions>
+            </gmd:MD_Distribution>
+        </gmd:distributionInfo>
+        <gmd:dataQualityInfo>
+            <gmd:DQ_DataQuality>
+                <gmd:scope>
+                    <gmd:DQ_Scope>
+                        <gmd:level>
+                            <gmd:MD_ScopeCode
+                                codeList="http://www.isotc211.org/2005/resources/codeList.xml#MD_ScopeCode"
+                                codeListValue="dataset"/>
+                        </gmd:level>
+                    </gmd:DQ_Scope>
+                </gmd:scope>
+                <gmd:lineage>
+                    <gmd:LI_Lineage>
+                        <gmd:statement>
+                            <gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco"
+                                >geen</gco:CharacterString>
+                        </gmd:statement>
+                        <gmd:source>
+                            <gmd:LI_Source>
+                                <gmd:description>
+                                    <gco:CharacterString
+                                        xmlns:gco="http://www.isotc211.org/2005/gco"
+                                        >250000</gco:CharacterString>
+                                </gmd:description>
+                            </gmd:LI_Source>
+                        </gmd:source>
+                    </gmd:LI_Lineage>
+                </gmd:lineage>
+            </gmd:DQ_DataQuality>
+        </gmd:dataQualityInfo>
+    </gmd:MD_Metadata>
+</csw:GetRecordByIdResponse>

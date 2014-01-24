@@ -1,0 +1,3 @@
+<SpringConnection xmlns="http://www.deegree.org/spring/db">
+  <ApplicationContextHolder>cds-inspire</ApplicationContextHolder>
+</SpringConnection>

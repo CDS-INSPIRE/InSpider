@@ -1,0 +1,35 @@
+<FeatureLayers configVersion="3.2.0" xmlns="http://www.deegree.org/layers/feature"
+    xmlns:d="http://www.deegree.org/metadata/description"
+    xmlns:b="http://www.deegree.org/layers/base"
+    xmlns:ps="urn:x-inspire:simplified"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.deegree.org/layers/feature http://schemas.deegree.org/layers/feature/3.2.0/feature.xsd">
+    
+    <FeatureStoreId>simplifiedProtectedSiteStilteGebieden</FeatureStoreId>    
+    <FeatureLayer>
+        <FeatureType>ps:ProtectedSite</FeatureType>
+        <b:Name>PS.ProtectedSiteStilteGebieden</b:Name>
+        <d:Title></d:Title>
+        <b:StyleRef>
+            <b:StyleStoreId>simplifiedProtectedSite</b:StyleStoreId>            
+            <b:Style>
+                <b:StyleName>PS.ProtectedSite.Default</b:StyleName>
+                <b:LayerNameRef>PS.ProtectedSite</b:LayerNameRef>
+                <b:StyleNameRef>PS.ProtectedSite.Default</b:StyleNameRef>
+                <b:LegendStyle>
+                    <b:LayerNameRef>PS.ProtectedSite</b:LayerNameRef>
+                    <b:StyleNameRef>PS.ProtectedSite.Default.Legend</b:StyleNameRef>
+                </b:LegendStyle>
+            </b:Style>
+            <b:Style>
+                <b:StyleName>PS.ProtectedSite.NL</b:StyleName>
+                <b:LayerNameRef>PS.ProtectedSite</b:LayerNameRef>
+                <b:StyleNameRef>PS.ProtectedSite.NL</b:StyleNameRef>
+                <b:LegendStyle>
+                    <b:LayerNameRef>PS.ProtectedSite</b:LayerNameRef>
+                    <b:StyleNameRef>PS.ProtectedSite.NL.Legend</b:StyleNameRef>
+                </b:LegendStyle>
+            </b:Style>
+        </b:StyleRef>
+    </FeatureLayer>
+</FeatureLayers>

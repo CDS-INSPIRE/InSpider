@@ -1,0 +1,37 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>nl.ipo.cds</groupId>
+		<artifactId>cds-parent</artifactId>
+		<version>2.2-SNAPSHOT</version>
+	</parent>
+	<artifactId>attributemapping</artifactId>
+	<name>CDS Inspire - Attributemapping</name>
+	<dependencies>
+		<dependency>
+			<groupId>javax.inject</groupId>
+			<artifactId>javax.inject</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.deegree</groupId>
+			<artifactId>deegree-core-base</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.googlecode.gentyref</groupId>
+			<artifactId>gentyref</artifactId>
+			<version>1.1.0</version>
+		</dependency>
+	</dependencies>
+</project>

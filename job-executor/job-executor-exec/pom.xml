@@ -1,0 +1,126 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>job-executor-exec</artifactId>
+	<parent>
+		<groupId>nl.ipo.cds</groupId>
+		<artifactId>job-executor</artifactId>
+		<version>2.2-SNAPSHOT</version>
+	</parent>
+	<packaging>jar</packaging>
+
+	<dependencies>
+		<dependency>
+			<groupId>nl.ipo.cds</groupId>
+			<artifactId>etl-proces</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>nl.ipo.cds</groupId>
+			<artifactId>resources</artifactId>
+			<classifier>tests</classifier>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>nl.ipo.cds</groupId>
+			<artifactId>managerDB</artifactId>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>nl.idgis.commons</groupId>
+			<artifactId>commons-jobexecutor</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>nl.ipo.cds</groupId>
+			<artifactId>themes</artifactId>
+			<version>2.2-SNAPSHOT</version>
+			<type>pom</type>
+		</dependency>
+		<dependency>
+			<groupId>nl.ipo.cds</groupId>
+			<artifactId>catalog-metadata</artifactId>
+			<version>2.2-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>aspectj-maven-plugin</artifactId>
+				<version>1.4</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>compile</goal>
+							<!-- use this goal to weave all your main classes -->
+							<goal>test-compile</goal>
+							<!-- use this goal to weave all your test classes -->
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<complianceLevel>1.6</complianceLevel>
+					<aspectLibraries>
+						<aspectLibrary>
+							<groupId>org.springframework</groupId>
+							<artifactId>spring-aspects</artifactId>
+						</aspectLibrary>
+						<aspectLibrary>
+							<groupId>org.springframework</groupId>
+							<artifactId>spring-aop</artifactId>
+						</aspectLibrary>
+					</aspectLibraries>
+				</configuration>
+			</plugin>			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>2.0</version>
+				<configuration>					
+					<transformers>
+						<transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+							<mainClass>nl.ipo.cds.executor.CdsJobExecuter</mainClass>
+							<manifestEntries>
+								<Main-Class>nl.ipo.cds.executor.CdsJobExecuter</Main-Class>
+							</manifestEntries>
+						</transformer>
+						<transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer" />
+						<transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+							<resource>META-INF/spring.handlers</resource>
+						</transformer>
+						<transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+							<resource>META-INF/spring.schemas</resource>
+						</transformer>
+						<transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+							<resource>META-INF/persistence.xml</resource>
+						</transformer>
+					</transformers>
+					<filters>
+						<filter>
+							<artifact>*:*</artifact>
+							<excludes>
+								<exclude>META-INF/*.SF</exclude>
+								<exclude>META-INF/*.DSA</exclude>
+								<exclude>META-INF/*.RSA</exclude>
+							</excludes>
+						</filter>
+					</filters>										
+				</configuration>
+				<executions>
+					<execution>					
+						<phase>package</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>

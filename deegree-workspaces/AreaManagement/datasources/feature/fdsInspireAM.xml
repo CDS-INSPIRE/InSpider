@@ -1,0 +1,116 @@
+<SQLFeatureStore configVersion="3.4.0" xmlns="http://www.deegree.org/datasource/feature/sql" xmlns:tn="urn:x-inspire:specification:gmlas:CommonTransportElements:3.0" xmlns:sc="http://www.interactive-instruments.de/ShapeChange/AppInfo" xmlns:net="urn:x-inspire:specification:gmlas:Network:3.2" xmlns:stat="urn:x-inspire:specification:gmlas:StatisticalUnits:0.0" xmlns:base2="http://inspire.ec.europa.eu/schemas/base2/0.1rc2" xmlns:au="urn:x-inspire:specification:gmlas:AdministrativeUnits:3.0" xmlns:gn="urn:x-inspire:specification:gmlas:GeographicalNames:3.0" xmlns:cp="urn:x-inspire:specification:gmlas:CadastralParcels:3.0" xmlns:am="http://inspire.ec.europa.eu/schemas/am/3.0rc2" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:base="urn:x-inspire:specification:gmlas:BaseTypes:3.2" xmlns:ad="urn:x-inspire:specification:gmlas:Addresses:3.0" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:bui="urn:x-inspire:specification:gmlas:Buildings:0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tn-a="urn:x-inspire:specification:gmlas:AirTransportNetwork:3.0" xsi:schemaLocation="http://www.deegree.org/datasource/feature/sql http://schemas.deegree.org/datasource/feature/sql/3.4.0/sql.xsd">
+  <JDBCConnId>conAM</JDBCConnId>
+  <StorageCRS srid="0" dim="2D">EPSG:28992</StorageCRS>
+  <GMLSchema>http://www.inspire-provincies.nl/draft-schemas/am/3.0rc2/AreaManagementRestrictionRegulationZone.xsd</GMLSchema>
+  <NullEscalation>true</NullEscalation>
+
+  <FeatureTypeMapping name="am:ManagementRestrictionOrRegulationZone" table="inspire.area_management">
+    <FIDMapping prefix="AM_MANAGEMENTRESTRICTIONORREGULATIONZONE_">
+      <Column name="gfid" type="string"/>
+      <UUIDGenerator/>
+    </FIDMapping>
+    <Complex path="am:inspireId">
+      <Complex path="base:Identifier">
+        <Primitive path="base:localId" mapping="inspire_id_local_id"/>
+        <Primitive path="base:namespace" mapping="inspire_id_namespace"/>
+      </Complex>
+    </Complex>
+    <Complex path="am:thematicId">
+      <Complex path="base2:ThematicIdentifier">
+        <Primitive path="base2:identifier" mapping="thematic_id_identifier"/>
+        <Primitive path="base2:identifierScheme" mapping="thematic_id_identifier_scheme"/>
+      </Complex>
+    </Complex>
+    <Complex path="am:name">
+      <Complex path="gn:GeographicalName">
+        <Complex path="gn:language">
+          <Primitive path="text()" mapping="'nl_nl'"/>
+        </Complex>
+        <Complex path="gn:nativeness">
+          <Primitive path="@xsi:nil" mapping="'true'"/>
+          <Primitive path="@nilReason" mapping="'UNKNOWN'"/>
+        </Complex>
+        <Complex path="gn:nameStatus">
+          <Primitive path="@xsi:nil" mapping="'true'"/>
+          <Primitive path="@nilReason" mapping="'UNKNOWN'"/>
+        </Complex>             
+        <Complex path="gn:sourceOfName">
+          <Primitive path="@xsi:nil" mapping="'true'"/>
+          <Primitive path="@nilReason" mapping="'UNKNOWN'"/>
+        </Complex>
+        <Complex path="gn:pronunciation">
+          <Primitive path="@xsi:nil" mapping="'true'"/>
+          <Primitive path="@nilReason" mapping="'UNKNOWN'"/>
+        </Complex>        
+        <Complex path="gn:spelling">
+          <Complex path="gn:SpellingOfName">
+            <Primitive path="gn:text" mapping="name_spelling"/>
+            <Primitive path="gn:script" mapping="'Latn'"/>
+          </Complex>
+        </Complex>
+      </Complex>
+    </Complex>
+    <Complex path="am:geometry">
+      <Geometry path="." mapping="geometry"/>
+    </Complex>
+    <Complex path="am:zoneType">
+      <Primitive path="text()" mapping="zonetype_code"/>
+      <Primitive path="@codeSpace" mapping="'http://inspire.ec.europa.eu/codeList/ZoneTypeCode'"/>
+    </Complex>
+    <Complex path="am:specialisedZoneType">
+      <Primitive path="text()" mapping="specialised_zone_type_code"/>
+      <Primitive path="@codeSpace" mapping="specialised_zone_type_codespace"/>
+    </Complex>
+    <Complex path="am:designationPeriod">
+      <Complex path="gml:TimePeriod">
+        <Complex path="gml:beginPosition">
+          <Primitive path="text()" mapping="designation_period_begin_designation"/>
+        </Complex>
+        <Complex path="gml:endPosition">
+          <Primitive path="@indeterminatePosition" mapping="designation_period_end_indeterminate"/>
+          <Primitive path="text()" mapping="designation_period_end_designation" nullEscalation="false"/>
+        </Complex>
+      </Complex>
+    </Complex>
+    <Complex path="am:competentAuthority">
+      <Complex path="gmd:CI_ResponsibleParty">
+        <Complex path="gmd:organisationName">
+          <Primitive path="gco:CharacterString" mapping="competent_authority_organisation_name"/>
+        </Complex>
+        <Complex path="gmd:role">
+          <Complex path="gmd:CI_RoleCode">
+            <Primitive path="@codeList" mapping="'???'"/>
+            <Primitive path="@codeListValue" mapping="'authority'"/>
+          </Complex>
+        </Complex>        
+      </Complex>
+    </Complex>
+    <Complex path="am:beginLifespanVersion">
+      <Primitive path="@xsi:nil" mapping="'true'"/>
+      <Primitive path="@nilReason" mapping="'UNKNOWN'"/>
+    </Complex>
+    <Complex path="am:endLifespanVersion">
+      <Primitive path="@xsi:nil" mapping="'true'"/>
+      <Primitive path="@nilReason" mapping="'UNKNOWN'"/>
+    </Complex>
+    <Complex path="am:environmentalDomain">
+      <Primitive path="text()" mapping="environmental_domain_code"/>
+      <Primitive path="@codeSpace" mapping="'http://inspire.ec.europa.eu/codeList/EnvironmentalDomain'"/>
+    </Complex>
+    <Complex path="am:legalBasis">
+      <Complex path="base2:LegislationCitation">
+        <Primitive path="@gml:id" mapping="legislation_citation_gml_id"/>
+        <Primitive path="base2:name" mapping="legal_basis_name"/>
+        <Primitive path="base2:date" mapping="legal_basis_date" type="date" />          
+        <Complex path="base2:link">
+          <Primitive path="text()" mapping="legal_basis_link"/>
+        </Complex>      
+        <Complex path="base2:level">
+          <Primitive path="text()" mapping="'national'"/>
+          <Primitive path="@codeSpace" mapping="'?'"/>
+        </Complex>        
+      </Complex>
+    </Complex>
+  </FeatureTypeMapping>
+
+</SQLFeatureStore>

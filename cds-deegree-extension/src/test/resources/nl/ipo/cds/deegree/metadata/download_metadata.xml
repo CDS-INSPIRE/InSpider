@@ -1,0 +1,66 @@
+<deegreeServicesMetadata xmlns="urn:cds-inspire:deegree-extension:metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" configVersion="3.0.0" xsi:schemaLocation="http://www.deegree.org/services/metadata http://schemas.deegree.org/services/metadata/3.2.0/metadata.xsd">
+  <ServiceIdentification>
+    <Title>INSPIRE Download service voor Beschermde Gebieden van de gezamenlijke provincies</Title>
+    <Abstract>Deze Download service is gebaseerd op de geharmoniseerde provinciale datasets voor Beschermde Gebieden. Onderdeel van deze Download service zijn datasets voor Aardkundige Waarden, Ecologische Hoofdstructuur, Provinciale Monumenten, Nationale Landschappen, Stiltegebieden en WAV gebieden</Abstract>
+    <Keywords>
+      <Keyword>infoFeatureAccessService</Keyword>
+      <Type codeSpace="ISO"/>
+    </Keywords>
+    <Keywords>
+    	<Keyword>Beschermde gebieden</Keyword>
+        <Type codeSpace="GEMET - INSPIRE themes, version 1.0"/>
+    </Keywords>
+    <Fees>none</Fees>
+    <AccessConstraints>anders</AccessConstraints>
+  </ServiceIdentification>
+  <ServiceProvider>
+    <ProviderName>GBO provincies</ProviderName>
+    <ProviderSite>http://www.idgis.eu</ProviderSite>
+    <ServiceContact>
+      <IndividualName>Functioneel beheerder Provinciaal Georegister</IndividualName>
+      <PositionName>pointOfContact</PositionName>
+      <ElectronicMailAddress>provinciaalgeoregister@gbo-provincies.nl</ElectronicMailAddress>      
+      <OnlineResource></OnlineResource>
+      <Role>PointOfContact</Role>      
+    </ServiceContact>    
+  </ServiceProvider>
+  
+  <ExtendedCapabilities wfsVersions="2.0.0">
+    <ows:ExtendedCapabilities xmlns:ows="http://www.opengis.net/ows/1.1">
+      <inspire_ds:ExtendedCapabilities xmlns:inspire_ds="http://inspire.ec.europa.eu/schemas/inspire_ds/1.0" xmlns:inspire_common="http://inspire.ec.europa.eu/schemas/common/1.0" xsi:schemaLocation="http://inspire.ec.europa.eu/schemas/common/1.0 http://inspire.ec.europa.eu/schemas/common/1.0/common.xsd http://inspire.ec.europa.eu/schemas/inspire_dls/1.0 http://inspire.ec.europa.eu/schemas/inspire_ds/1.0/inspire_dls.xsd">
+        <inspire_common:MetadataUrl>
+          <inspire_common:URL>To be replaced by the DatabaseMetadataProvider</inspire_common:URL>
+          <inspire_common:MediaType>application/vnd.iso.19139+xml</inspire_common:MediaType>
+        </inspire_common:MetadataUrl>
+        <inspire_common:SupportedLanguages>
+          <inspire_common:DefaultLanguage>
+            <inspire_common:Language>dut</inspire_common:Language>
+          </inspire_common:DefaultLanguage>
+        </inspire_common:SupportedLanguages>
+        <inspire_common:ResponseLanguage>
+          <inspire_common:Language>dut</inspire_common:Language>
+        </inspire_common:ResponseLanguage>
+      </inspire_ds:ExtendedCapabilities>
+    </ows:ExtendedCapabilities>
+  </ExtendedCapabilities>
+  
+  <ExtendedCapabilities wfsVersions="1.1.0">
+    <ows:ExtendedCapabilities xmlns:ows="http://www.opengis.net/ows">
+      <inspire_ds:ExtendedCapabilities xmlns:inspire_ds="http://inspire.ec.europa.eu/schemas/inspire_ds/1.0" xmlns:inspire_common="http://inspire.ec.europa.eu/schemas/common/1.0" xsi:schemaLocation="http://inspire.ec.europa.eu/schemas/common/1.0 http://inspire.ec.europa.eu/schemas/common/1.0/common.xsd http://inspire.ec.europa.eu/schemas/inspire_dls/1.0 http://inspire.ec.europa.eu/schemas/inspire_ds/1.0/inspire_dls.xsd">
+        <inspire_common:MetadataUrl>
+          <inspire_common:URL>To be replaced by the DatabaseMetadataProvider</inspire_common:URL>
+          <inspire_common:MediaType>application/vnd.iso.19139+xml</inspire_common:MediaType>
+        </inspire_common:MetadataUrl>
+        <inspire_common:SupportedLanguages>
+          <inspire_common:DefaultLanguage>
+            <inspire_common:Language>dut</inspire_common:Language>
+          </inspire_common:DefaultLanguage>
+        </inspire_common:SupportedLanguages>
+        <inspire_common:ResponseLanguage>
+          <inspire_common:Language>dut</inspire_common:Language>
+        </inspire_common:ResponseLanguage>
+      </inspire_ds:ExtendedCapabilities>
+    </ows:ExtendedCapabilities>
+  </ExtendedCapabilities>
+  
+</deegreeServicesMetadata>

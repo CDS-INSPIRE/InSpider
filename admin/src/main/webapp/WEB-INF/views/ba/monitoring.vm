@@ -1,0 +1,324 @@
+#set($layerName='monitoring')
+<script type="text/javascript">
+require ([
+ 	"dojo/store/JsonRest",
+	"dojo/date/locale",  
+	"dojo/store/Memory",
+	"dojo/data/ObjectStore",
+	"dojox/grid/DataGrid",
+	"dijit/Menu",
+	"dijit/MenuItem",
+	"cds/ready!"
+], function () {
+
+	dojo.byId("userMessage").innerHTML = '<span class="warning">De statusgegevens worden opgehaald, een ogenblik geduld aub ...</span>';
+    
+	## CONTEXT MENU FUNCTION
+	var statdataMenu, statservMenu, histservMenu, logsysMenu, loguseMenu;
+	dojo.ready(function(){
+		  statservMenu = new dijit.Menu({
+		    targetNodeIds:["StatusServices"],
+		    ## IE7 needs specific width or else menu takes up full screenwidth
+		    style:"width:175px;",
+		    ## IE7: empty title makes image tooltip go away immediately, instead of it blocking the menuItem underneath.
+		    title:"",
+		  	leftClickToOpen:"true"
+		  });
+		  statservMenu.addChild(new dijit.MenuItem({
+		    label:"Nagios overzicht",
+		  	onClick: function(){openNewLocation("$nagiosService/status.cgi?hostgroup=$nagiosHostgroup&style=detail");}
+		  }));
+		  statservMenu.startup();
+		
+		  statdataMenu = new dijit.Menu({
+		    targetNodeIds:["StatusData"],
+		    style:"width:175px;",
+		    title:"",
+		  	leftClickToOpen:"true"
+		  });
+		  statdataMenu.addChild(new dijit.MenuItem({
+		    label:"Job overzicht",
+		  	onClick: function(){fillJobsGrid("Jobs overzicht","#springUrl('/ba/monitoring/jobs/')");}
+		  }));
+		  statdataMenu.addChild(new dijit.MenuItem({
+		    label:"Nagios overzicht",
+		  	onClick: function(){openNewLocation("$nagiosService/status.cgi?hostgroup=$nagiosHostgroup&style=detail");}
+		  }));
+		  statdataMenu.startup();
+		
+		  histservMenu = new dijit.Menu({
+		    targetNodeIds:["HistorieServices"],
+		    style:"width:175px;",
+		    title:"",
+		  	leftClickToOpen:"true"
+		  });
+		  #foreach ($nh in $nagiosHosts)
+		  histservMenu.addChild(new dijit.MenuItem({
+		    label:"WFS availability server $velocityCount",
+		  	onClick: function(){openNewLocation("$nagiosService/trends.cgi?host=$nh&service=WFS+availability");}
+		  }));
+		  #end
+		  #foreach ($nh in $nagiosHosts)
+		  histservMenu.addChild(new dijit.MenuItem({
+		    label:"WMS availability server $velocityCount",
+		  	onClick: function(){openNewLocation("$nagiosService/trends.cgi?host=$nh&service=WMS+availability");}
+		  }));
+		  #end
+		  #foreach ($nh in $nagiosHosts)
+		  histservMenu.addChild(new dijit.MenuItem({
+		    label:"WMS performance server $velocityCount",
+		  	onClick: function(){openNewLocation("$nagiosService/trends.cgi?host=$nh&service=WMS+performance");}
+		  }));
+		  #end
+	 	  histservMenu.startup();
+		
+		  logsysMenu = new dijit.Menu({
+		    targetNodeIds:["LoggingSysteem"],
+		    style:"width:175px;",
+		    title:"",
+		  	leftClickToOpen:"true"
+		  });
+		  logsysMenu.addChild(new dijit.MenuItem({
+		    label:"Memory",
+		  	onClick: function(){openNewLocation("$muninService/memory.html");}
+		  }));
+		  logsysMenu.addChild(new dijit.MenuItem({
+		    label:"Load",
+		  	onClick: function(){openNewLocation("$muninService/load.html");}
+		  }));
+		  logsysMenu.startup();
+		
+		  loguseMenu = new dijit.Menu({
+		    targetNodeIds:["LoggingGebruik"],
+		    style:"width:175px;",
+		    title:"",
+		  	leftClickToOpen:"true"
+		  });
+		  loguseMenu.addChild(new dijit.MenuItem({
+		    label:"Network",
+		  	onClick: function(){openNewLocation("$muninService/if_eth0.html");}
+		  }));
+		  loguseMenu.addChild(new dijit.MenuItem({
+		    label:"Apache",
+		  	onClick: function(){openNewLocation("$muninService/apache_accesses.html");}
+		  }));
+		  #foreach ($aws in $awstatsServices)
+		  loguseMenu.addChild(new dijit.MenuItem({
+		    label:"$aws.name" ,
+		  	onClick: function(){openNewLocation("$aws.url");}
+		  }));
+		  #end
+		  loguseMenu.startup();	
+	});
+		    
+	## OVERZICHT JOBS
+		function fillJobsGrid(gridTitle, url) {
+			## The columns for the jobsGrid
+	        var jobsLayout = [
+		        { name: "Details", field: "id", width: "4%" },
+		        { name: "Type", field: "type", width: "8%", formatter: formatJobType },
+		        { name: "Verversen", field: "verversen", width: "6%", formatter: formatBoolean },
+		        { name: "Creatietijd", field: "createTime", width: "12%", formatter: formatDateTime },
+		        { name: "Starttijd", field: "startTime", width: "12%", formatter: formatDateTime },
+		        { name: "Eindtijd", field: "finishTime", width: "12%", formatter: formatDateTime },
+		        { name: "Status", field: "status", width: "6%", formatter: formatStatus },
+##		        { name: "Datum dataset", field: "metadataUpdateDatum", width: "10%", formatter: formatDateTime },
+		        ## width here is necesary for IE7: 
+##		        { name: "Dataseturl", field: "datasetUrl", width: "38%"}
+		        ## IE7 behaviour: after resize a hor. scroll bar appears, after F5/refresh it disappears
+	        ];
+	        // JSON jobs
+			var jobStoreContextStore = new dojo.store.JsonRest({target: url});
+			jobStoreContextStore.query().then(
+				function(results){
+					## Use only the jobList of the results (there are other objects on the response as well)
+					var jobMemoryStore = new dojo.store.Memory({data: results});
+					## Wrap the MemoryStore in an ObjectStore, because the MemoryStore is not backwards-compatible
+					var jobStore = new dojo.data.ObjectStore({objectStore: jobMemoryStore});
+					## Create the grid	
+					var jobsGrid = new dojox.grid.DataGrid({
+					    store: jobStore,
+					    query: { id: "*" },
+					    structure: jobsLayout,
+					    height: "400px",
+	##				    autoHeight: 8,
+	##				    autoWidth: false,
+					    initialWidth: "95%",
+					    title: "Dubbelklik een rij om een detail pagina van de job te openen; Druk op ESCape om de dialoog te sluiten" ,
+					    noDataMessage: "Er zijn geen jobs om te laten zien"
+					}
+					);
+
+					var dlg = new dijit.Dialog({
+				      id:'myDlg',
+				      title:'Job overzicht',
+				      style:"width:1000px;",
+				      content:jobsGrid,
+					  ## reload de monitoring pagina
+					  ## nodig om de dialog de volgende keer weer zichtbaar te krijgen
+				      onHide:function(){location.reload(true);}
+				    });
+
+					## Start the jobsGrid
+					jobsGrid.startup();
+					## show the dialog with the grid
+    				dlg.show();
+
+					var gridHandle = dojo.connect(jobsGrid, "onRowDblClick", function(evt){
+						## Retrieve the jobId of the row that as been clicked on
+						var rowIndex = evt.rowIndex;
+						var id = jobsGrid.store.getValue(jobsGrid.getItem(rowIndex), "id");
+						## Open new window met jobdetails
+						var jobDetailsUrl = "#springUrl('/ba/monitoring/jobs/')"+id;
+						window.open(jobDetailsUrl,"_blank");
+						## hide the dialog and make sure the current page reloads
+						dlg.hide();
+					});
+					
+				},
+		    	function (error){
+					dojo.byId("userMessage").innerHTML = '<span class="error">Gegevens voor jobs overzicht niet ontvangen.</span>';
+		    	}
+			);
+		}
+
+
+    function formatDateTime(dateMilis){
+    	var result = "";
+        if(dateMilis > 0){  
+        	result = dojo.date.locale.format(new Date(dateMilis), {datePattern: 'dd-MM-yyyy', formatLength: 'short'});
+        }
+        return result;
+    }
+
+	function formatJobType(jobType){
+		return jobType.naam;
+	}
+    function formatBoolean(booleanValue){
+        return booleanValue ? "Ja" : "Nee";
+    }
+    function formatStatus(status){
+        return status;
+    }
+
+    function setTrafficLights(){
+		jsonURL = "#springUrl('/ba/monitoring/getTrafficLights/')";
+		var monitoringStore = new dojo.store.JsonRest({target:jsonURL});
+		monitoringStore.query().then(
+			function(results){
+		    	var StatusData = dojo.byId("StatusData");
+		    	StatusData.src = getTrafficLightImages(results.StatusData); 
+		    	StatusData.alt   = results.StatusDataTitle; 
+		    	StatusData.title = results.StatusDataTitle; 
+		    	var statusServices = dojo.byId("StatusServices");
+		    	statusServices.src = getTrafficLightImages(results.StatusServices);
+		    	statusServices.alt   = results.StatusServicesTitle;
+		    	statusServices.title = results.StatusServicesTitle;
+				dojo.byId("userMessage").innerHTML = '<span class="ok"> </span>';
+				setTimeout (setTrafficLights, 9000);
+	    	},
+	    	function (error){
+		    	var StatusData = dojo.byId("StatusData");
+		    	StatusData.src = getTrafficLightImages("RED"); 
+		    	StatusData.alt   = "UNKNOWN"; 
+		    	StatusData.title = "UNKNOWN"; 
+		    	var statusServices = dojo.byId("StatusServices");
+		    	statusServices.src = getTrafficLightImages("RED");
+		    	statusServices.alt   = "UNKNOWN";
+		    	statusServices.title = "UNKNOWN";
+				dojo.byId("userMessage").innerHTML = '<span class="error">De statusgegevens konden niet worden opgehaald</span>';
+				setTimeout (setTrafficLights, 9000);
+	    	}
+    	);
+	}
+	
+	function getTrafficLightImages(col){
+	    var imgStr = "";
+	    if (col=="RED"){
+			imgStr = "#springUrl('/images/stoplicht_rood.png')";
+		}else if (col=="YELLOW"){
+			imgStr = "#springUrl('/images/stoplicht_oranje.png')";
+		}else if (col=="ORANGE"){
+			imgStr = "#springUrl('/images/stoplicht_oranje.png')";
+		}else{
+			imgStr = "#springUrl('/images/stoplicht_groen.png')";
+		}
+	   	return imgStr;
+    }
+    
+    function openNewLocation(url){
+    	## open a window. 
+    	## URL is loaded into a new window, 
+    	## as in: window.open(url, "_blank");
+	    window.open(url);
+    }
+    
+   
+##   ------------------------------------------------------- 
+##   ------------------------------------------------------- 
+	setTimeout (setTrafficLights, 1000);
+});	   
+</script>
+#set($title = 'Monitoring')
+
+	<div id="localhelp">
+		<h2>Klik op een icoon om meer detail te bekijken.</h2>
+		<h3>De stoplichten geven de actuele situatie weer</h3>
+	</div>
+	
+	<br/>
+	
+	<table id="monitoring" class="cds-table monitoring">
+		<thead>
+			<tr>
+				<th title="" style="text-align:center">Status services</th>
+				<th title="" style="text-align:center">Status data</th>
+				<th title="" style="text-align:center">Historie status services</th>
+				<th title="" style="text-align:center">Logging</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td rowspan="4">
+					<div style="height:256px">
+						<img src="#springUrl('/images/stoplicht_oranje.png')" onmouseover="this.style.cursor='pointer';" id="StatusServices"  name="StatusServices" alt="$StatusServicesTitle" title="$StatusServicesTitle"/>
+					</div>
+				</td>
+				<td rowspan="4">
+					<div style="height:256px" >
+						<img src="#springUrl('/images/stoplicht_oranje.png')" onmouseover="this.style.cursor='pointer';" id="StatusData" name="StatusData"  alt="$StatusDataTitle" title="$StatusDataTitle"/>
+					</div>
+				</td>
+				<td  rowspan="4">
+					<div style="height:256px">
+						<img src="#springUrl('/images/historie.png')" onmouseover="this.style.cursor='pointer';" id="HistorieServices" alt="Historie services" title="Klik hier om de historie van services te bekijken"/>
+					</div>
+				</td>
+				<td style="font-weight: bold;" >Systeem</td>
+			</tr>
+			<tr>
+				<td>
+					<div style="height:128px">
+						<img src="#springUrl('/images/systeem_stat.png')" onmouseover="this.style.cursor='pointer';" id="LoggingSysteem" alt="Logging Systeem" title="Klik hier om de logging van het systeem te bekijken"/>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td style="border-top-width:2px; border-top-style:solid; border-top-color:lightgray; font-weight: bold;" >Gebruik</td>
+			</tr>
+			<tr>
+				<td>
+					<div style="height:128px">
+						<img src="#springUrl('/images/systeem_gebruik.png')" onmouseover="this.style.cursor='pointer';" id="LoggingGebruik" alt="Logging Gebruik" title="Klik hier om de logging van het gebruik te bekijken"/>
+					</div>
+				</td>
+			</tr>			
+		</tbody>
+		<tfoot>
+				<tr>
+					<th colspan="4">&nbsp;</th>
+				</tr>
+		</tfoot>
+	</table>
+	<hr>
+##	<div id="buttonGrid" style="height:10em" >grid</div>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<schema targetNamespace="http://mapserver.gis.umn.edu/mapserver" xmlns:ms="http://mapserver.gis.umn.edu/mapserver" xmlns:ogc="http://www.opengis.net/ogc" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml" elementFormDefault="qualified" version="0.1">
+
+  <import namespace="http://www.opengis.net/gml" schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/gml.xsd"/>
+
+  <element name="EcologischeHoofdstructuur" type="ms:EcologischeHoofdstructuurType" substitutionGroup="gml:_Feature"/>
+
+  <complexType name="EcologischeHoofdstructuurType">
+    <complexContent>
+      <extension base="gml:AbstractFeatureType">
+        <sequence>
+          <element name="geometryValue" type="gml:MultiSurfacePropertyType" minOccurs="0" maxOccurs="1"/>
+          <element name="stringValue" type="string"/>
+          <element name="booleanValue" type="boolean"/>
+          <element name="decimalValue" type="decimal"/>
+          <element name="doubleValue" type="double"/>
+          <element name="integerValue" type="integer"/>
+          <element name="integerValue2" type="int"/>
+          <element name="dateValue" type="date"/>
+          <element name="dateTimeValue" type="dateTime"/>
+          <element name="timeValue" type="time"/>
+          <element name="floatValue" type="float"/>
+          <element name="otherValue" type="anyURI"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+
+</schema>

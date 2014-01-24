@@ -1,0 +1,81 @@
+#set($layerName='attributemapping-form')
+<script type="text/javascript">
+
+// Quick hack to prevent errors if console is undefined:
+if (!window.console) {
+	window.console = { };
+}
+if (!window.console.log) {
+	window.console.log = function () { };
+}
+
+require ([
+   	'dojo/query',
+   	'dijit/registry',
+   	
+   	'cds/attributemapping/MappingController',
+   	
+   	'dojo/NodeList-html',
+   	
+	'cds/attributemapping/MappingPanel',
+	'cds/attributemapping/AttributePanel',
+	'cds/ready!'
+], function (query, registry, MappingController) {
+	
+	query ('body, html').style ({
+		width: '100%',
+		height: '100%',
+		overflow: 'hidden'
+	});
+	query ('#outer-container').style ({
+		position: 'absolute',
+		left: '0px',
+		right: '0px',
+		top: '0px',
+		bottom: '0px'
+	});
+	query ('#content').style ({
+		position: 'absolute',
+		top: '71px',
+		left: '0px',
+		right: '0px',
+		bottom: '0px',
+		marginBottom: '10px',
+		padding: '0px'
+	});
+	query ('#tabs').style ('display', 'none');
+	query ('#content').style ('border', 'none');
+	query ('#contextRight span.dijitButton').style ('display', 'none');
+	
+	var href = window.location.href,
+		inputsUrl = href + '/inputs',
+		operationsUrl = href + '/operations',
+		attributesUrl = href + '/attributes',
+		mappingUrl = href + '/mapping';
+	
+	var mappingController = window.mappingController = new MappingController ({
+		mappingPanel: registry.byId ('mapping-panel'),
+		inputsUrl: inputsUrl,
+		operationsUrl: operationsUrl,
+		attributesUrl: attributesUrl,
+		mappingUrl: mappingUrl,
+		previewUrl: href + '/preview',
+		pingUrl: href + '/ping',
+		loginUrl: "#springUrl('/login')?closeWindow=true",
+		filterUrl: href + '/filter'
+	});
+	
+	mappingController.on ('back', function () {
+		window.location = "#springUrl('/ba/datasetconfig/')$dataset.bronhouder.id?thema=$dataset.datasetType.thema.naam";
+	});
+	
+	mappingController.startup ();
+	
+	// Resize the mapping panel after the rest of the page content has settled:
+	registry.byId ('mapping-panel').resize ();
+});
+</script>
+#set($datasetName = $esc.html($esc.javascript($dataset.datasetType.naam)))
+#set($themeName = $esc.html($esc.javascript($dataset.datasetType.thema.naam)))
+#set($bronhouderName = $esc.html($esc.javascript($dataset.bronhouder.naam)))
+<div id="mapping-panel" data-dojo-type="cds/attributemapping/MappingPanel" data-dojo-props="datasetName: '$!datasetName', themeName: '$!themeName', bronhouderName: '$!bronhouderName', style: 'position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px; width: 100%; height: 100%;', gutters: false"></div>

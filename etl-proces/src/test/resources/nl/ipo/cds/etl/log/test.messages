@@ -1,0 +1,4 @@
+PARTIAL_A=nice
+PARTIAL_B=text
+PARTIAL=${PARTIAL_A} ${PARTIAL_B}
+MESSAGE1=A ${PARTIAL} string for MESSAGE1, param1: ${1}, param0: ${0}, $

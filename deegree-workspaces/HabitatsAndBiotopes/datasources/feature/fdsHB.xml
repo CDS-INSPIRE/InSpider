@@ -1,0 +1,35 @@
+<SQLFeatureStore xmlns="http://www.deegree.org/datasource/feature/sql" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  configVersion="3.2.0" 
+  xmlns:app="http://www.ipo.nl/InSpider"
+  xsi:schemaLocation="http://www.deegree.org/datasource/feature/sql http://schemas.deegree.org/datasource/feature/sql/3.2.0/sql.xsd">
+
+  <JDBCConnId>conHB</JDBCConnId>
+
+  <FeatureTypeMapping table="inspire.habitat" name="app:Habitat_NL">
+    <FIDMapping>
+        <Column name="id" />
+    </FIDMapping>
+      
+    <Primitive path="app:inspire_id_namespace" mapping="inspire_id_namespace" />
+    <Primitive path="app:inspire_id_local_id" mapping="inspire_id_local_id" />
+    <Primitive path="app:habitat_reference_habitat_type_id_code" mapping="habitat_reference_habitat_type_id_code" />
+    <Primitive path="app:habitat_reference_habitat_type_scheme_code" mapping="habitat_reference_habitat_type_scheme_code" />
+    <Primitive path="app:habitat_reference_habitat_type_name" mapping="habitat_reference_habitat_type_name" />
+    <Primitive path="app:local_habitat_name_local_scheme" mapping="local_habitat_name_local_scheme" />
+    <Primitive path="app:local_habitat_name_local_name_code" mapping="local_habitat_name_local_name_code" />
+    <Primitive path="app:local_habitat_name_local_name" mapping="local_habitat_name_local_name" />
+    <Primitive path="app:local_habitat_name_qualifier_local_name" mapping="local_habitat_name_qualifier_local_name" />
+    <Primitive path="app:habitat_area_covered" mapping="habitat_area_covered" />
+
+    <Geometry path="app:geometry" mapping="geometry">
+      <StorageCRS srid="28992">EPSG:28992</StorageCRS>
+    </Geometry>
+
+    <Geometry path="app:geom_simple" mapping="geom_simple">
+      <StorageCRS srid="28992">EPSG:28992</StorageCRS>
+    </Geometry>
+    
+  </FeatureTypeMapping>
+
+</SQLFeatureStore>

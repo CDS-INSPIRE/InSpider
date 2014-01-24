@@ -1,0 +1,164 @@
+<SQLFeatureStore configVersion="3.4.0" xmlns="http://www.deegree.org/datasource/feature/sql" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.deegree.org/datasource/feature/sql http://schemas.deegree.org/datasource/feature/sql/3.1.0/sql.xsd" xmlns:act-core="http://inspire.ec.europa.eu/schemas/act-core/3.0rc3" xmlns:base="http://inspire.ec.europa.eu/schemas/base/3.3rc3/" xmlns:base2="http://inspire.ec.europa.eu/schemas/base2/1.0rc3" xmlns:bu-core2d="http://inspire.ec.europa.eu/schemas/bu-core2d/3.0rc3" xmlns:bu-base="http://inspire.ec.europa.eu/schemas/bu/3.0rc3" xmlns:pf="http://inspire.ec.europa.eu/schemas/pf/3.0rc3" xmlns:ad="urn:x-inspire:specification:gmlas:Addresses:3.0" xmlns:au="urn:x-inspire:specification:gmlas:AdministrativeUnits:3.0" xmlns:tn-a="urn:x-inspire:specification:gmlas:AirTransportNetwork:3.0" xmlns:bui="urn:x-inspire:specification:gmlas:Buildings:0.0" xmlns:cp="urn:x-inspire:specification:gmlas:CadastralParcels:3.0" xmlns:tn="urn:x-inspire:specification:gmlas:CommonTransportElements:3.0" xmlns:gn="urn:x-inspire:specification:gmlas:GeographicalNames:3.0" xmlns:net="urn:x-inspire:specification:gmlas:Network:3.2" xmlns:stat="urn:x-inspire:specification:gmlas:StatisticalUnits:0.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml/3.2">
+  <JDBCConnId>conPF</JDBCConnId>
+  <StorageCRS srid="28992" dim="2D">EPSG:28992</StorageCRS>
+  <!--GMLSchema>http://www.inspire-provincies.nl/draft-schemas/pf/3.0rc3/ProductionAndIndustrialFacilities.xsd</GMLSchema-->
+  <GMLSchema>../../../inspire-schemas/draft-schemas/pf/3.0rc3/ProductionAndIndustrialFacilities.xsd</GMLSchema>
+  <NullEscalation>true</NullEscalation>  
+
+  <FeatureTypeMapping name="pf:ProductionFacility" table="inspire.production_facility">
+    <FIDMapping prefix="PF_PRODUCTIONFACILITY_">
+      <Column name="id" type="integer"/>
+    </FIDMapping>
+    <Complex path="act-core:inspireId">
+      <Complex path="base:Identifier">
+        <Primitive path="base:localId" mapping="inspire_id_local_id"/>
+        <Primitive path="base:namespace" mapping="inspire_id_namespace"/>
+      </Complex>
+    </Complex>
+    <Complex path="act-core:thematicId">
+      <Complex path="base2:ThematicIdentifier">
+        <Primitive path="base2:identifier" mapping="thematic_identifier"/>
+        <Primitive path="base2:identifierScheme" mapping="thematic_identifier_scheme"/>
+      </Complex>
+    </Complex>
+    <Primitive path="act-core:name" mapping="name"/>    
+    <Complex path="act-core:geometry">
+      <Geometry path="." mapping="geometry"/>
+    </Complex>
+    <Complex path="act-core:function">
+      <Complex path="act-core:Function">
+        <Complex path="act-core:activity">
+          <Primitive path="text()" mapping="function_activity"/>
+          <Primitive path="@codeSpace" mapping="'http://inspire.ec.europa.eu/codeList/EconomicActivityNACEValue'"/>
+        </Complex>
+        <Complex path="act-core:input">
+          <Primitive path="text()" mapping="function_input"/>
+          <Primitive path="@codeSpace" mapping="'http://inspire.ec.europa.eu/codeList/ProductCPAValue'"/>
+        </Complex>
+        <Complex path="act-core:output">
+          <Primitive path="text()" mapping="function_output"/>
+          <Primitive path="@codeSpace" mapping="'http://inspire.ec.europa.eu/codeList/ProductCPAValue'"/>
+        </Complex>
+        <Complex path="act-core:description">
+          <Primitive path="gco:CharacterString" mapping="function_description"/>
+        </Complex>
+      </Complex>
+    </Complex>
+    <Complex path="act-core:validFrom">
+      <Primitive path="@xsi:nil" mapping="'true'"/>
+      <Primitive path="@nilReason" mapping="'UNKNOWN'"/>
+    </Complex>
+    <Complex path="act-core:beginLifespanVersion">
+      <Primitive path="@xsi:nil" mapping="'true'"/>
+      <Primitive path="@nilReason" mapping="'UNKNOWN'"/>
+    </Complex>
+    <Complex path="pf:surfaceGeometry">
+      <Geometry path="." mapping="surface_geometry"/>
+    </Complex>
+    <Complex path="pf:status">
+      <Primitive path="@nilReason" mapping="status_nil_reason"/>
+      <Primitive path="@xsi:nil" mapping="status_xsi_nil"/>
+      <Complex path="pf:StatusType">
+        <Complex path="pf:statusType">
+          <Primitive path="text()" mapping="status_type"/>
+          <Primitive path="@codeSpace" mapping="'http://inspire.ec.europa.eu/codeList/ConditionOfFacilityValue'"/>          
+        </Complex>
+        <Primitive path="pf:description" mapping="status_description"/>
+        <Complex path="pf:validFrom">
+          <Primitive path="@xsi:nil" mapping="'true'"/>
+          <Primitive path="@nilReason" mapping="'UNKNOWN'"/>
+        </Complex>
+      </Complex>
+    </Complex>
+  </FeatureTypeMapping>
+
+  <FeatureTypeMapping name="pf:ProductionInstallation" table="inspire.production_installation">
+    <FIDMapping prefix="PF_PRODUCTIONINSTALLATION_">
+      <Column name="id" type="integer"/>
+    </FIDMapping>
+    <Complex path="pf:inspireId">
+      <Complex path="base:Identifier">
+        <Primitive path="base:localId" mapping="inspire_id_local_id"/>
+        <Primitive path="base:namespace" mapping="inspire_id_namespace"/>
+      </Complex>
+    </Complex>
+    <Complex path="pf:thematicId">
+      <Complex path="base2:ThematicIdentifier">
+        <Primitive path="base2:identifier" mapping="thematic_identifier"/>
+        <Primitive path="base2:identifierScheme" mapping="thematic_identifier_scheme"/>
+      </Complex>
+    </Complex>
+    <Complex path="pf:pointGeometry">
+      <Geometry path="." mapping="point_geometry"/>
+    </Complex>
+    <Complex path="pf:surfaceGeometry">
+      <Geometry path="." mapping="surface_geometry"/>
+    </Complex>
+    <Complex path="pf:name">
+      <Primitive path="text()" mapping="name"/>
+    </Complex>
+    <Complex path="pf:description">
+      <Primitive path="text()" mapping="description"/>
+    </Complex>
+    <Complex path="pf:status">
+      <Primitive path="@nilReason" mapping="status_nil_reason"/>
+      <Primitive path="@xsi:nil" mapping="status_xsi_nil"/>
+      <Complex path="pf:StatusType">
+        <Complex path="pf:statusType">
+          <Primitive path="text()" mapping="status_type"/>
+          <Primitive path="@codeSpace" mapping="'http://inspire.ec.europa.eu/codeList/ConditionOfFacilityValue'"/>
+        </Complex>
+        <Primitive path="pf:description" mapping="status_description"/>
+        <Complex path="pf:validFrom">
+          <Primitive path="@xsi:nil" mapping="'true'"/>
+          <Primitive path="@nilReason" mapping="'UNKNOWN'"/>
+        </Complex>
+      </Complex>
+    </Complex>
+    <Complex path="pf:type">
+      <Primitive path="text()" mapping="type"/>
+      <!--Primitive path="@codeSpace" mapping="type_codespace"/-->
+    </Complex>    
+  </FeatureTypeMapping>
+
+  <FeatureTypeMapping name="pf:ProductionInstallationPart" table="inspire.production_installation_part">
+    <FIDMapping prefix="PF_PRODUCTIONINSTALLATIONPART_">
+      <Column name="id" type="integer"/>
+    </FIDMapping>
+    <Complex path="pf:inspireId">
+      <Complex path="base:Identifier">
+        <Primitive path="base:localId" mapping="inspire_id_local_id"/>
+        <Primitive path="base:namespace" mapping="inspire_id_namespace"/>
+      </Complex>
+    </Complex>
+    <Complex path="pf:pointGeometry">
+      <Geometry path="." mapping="point_geometry"/>
+    </Complex>
+    <Complex path="pf:name">
+      <Primitive path="text()" mapping="name"/>
+    </Complex>
+    <Complex path="pf:status">
+      <Primitive path="@nilReason" mapping="status_nil_reason"/>
+      <Primitive path="@xsi:nil" mapping="status_xsi_nil"/>
+      <Complex path="pf:StatusType">
+        <Complex path="pf:statusType">
+          <Primitive path="text()" mapping="status_type"/>
+          <Primitive path="@codeSpace" mapping="'http://inspire.ec.europa.eu/codeList/ConditionOfFacilityValue'"/>
+        </Complex>
+        <Primitive path="pf:description" mapping="status_description"/>
+        <Complex path="pf:validFrom">
+          <Primitive path="@xsi:nil" mapping="'true'"/>
+          <Primitive path="@nilReason" mapping="'UNKNOWN'"/>
+        </Complex>
+      </Complex>
+    </Complex>
+    <Complex path="pf:type">
+      <Primitive path="text()" mapping="type"/>
+      <!--Primitive path="@codeSpace" mapping="type_codespace"/-->      
+    </Complex>
+    <Complex path="pf:technique">
+      <Primitive path="text()" mapping="type"/>
+    </Complex>      
+  </FeatureTypeMapping>
+
+</SQLFeatureStore>

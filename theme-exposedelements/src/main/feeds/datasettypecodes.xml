@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<id>http://www.inspire-provincies.nl/codeList/DatasetTypeCode/ExposedElements</id>
+	<title>DatasetTypeCode Exposed Elements</title>
+	<entry>
+		<id>http://www.inspire-provincies.nl/codeList/DatasetTypeCode/ExposedElements/rorbge</id>
+		<title>ROR Blootgestelde element</title>
+		<category term="CodeListValue" />
+	</entry>
+</feed>

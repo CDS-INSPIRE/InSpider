@@ -1,0 +1,12 @@
+<config xmlns="urn:cds-inspire:config:xml"
+    xmlns:flat="urn:cds-inspire:flat">
+    <replace>
+        <flat:gbi.nl.inspireid>flat:inspireID</flat:gbi.nl.inspireid>
+        <flat:gbi.nl.legalfoundationdate>flat:legalFoundationDate</flat:gbi.nl.legalfoundationdate>
+        <flat:gbi.nl.legalfoundationdocument>flat:legalFoundationDocument</flat:gbi.nl.legalfoundationdocument>
+        <flat:gbi.nl.sitename>flat:siteName</flat:gbi.nl.sitename>
+        <flat:gbi.nl.sitedesignation>flat:siteDesignation</flat:gbi.nl.sitedesignation>
+        <flat:gbi.nl.siteprotectionclassification>flat:siteProtectionClassification</flat:gbi.nl.siteprotectionclassification>
+        <flat:gbi.nl.percentageunderdesignation>flat:percentageUnderDesignation</flat:gbi.nl.percentageunderdesignation>
+    </replace>  
+</config>

@@ -1,0 +1,157 @@
+#set($layerName='gebruikersbeheer-gebruiker')
+<script type="text/javascript">
+require ([
+   	"dijit/dijit",
+   	"cds/ready!"
+], function () {
+
+    var docroot = window.docroot = "#springUrl('/')";
+	
+	dojo.ready(function() {
+
+		setBeheerderCheckBoxEvents();
+		setChangePasswordCheckBoxEvents();
+		
+	});
+
+	function setBeheerderCheckBoxEvents(){
+		var beheerderCheckBox = dijit.byId("beheerder");
+		var bronhouderFilteringSelect = dijit.byId("bronhouder");
+		var beheerderCheckBoxHandle = dojo.connect(beheerderCheckBox, "onChange", function(evt){
+			if(beheerderCheckBox.checked){
+				bronhouderFilteringSelect.set('disabled',true);
+			} else {
+				bronhouderFilteringSelect.set('disabled',false);
+			}
+		});
+	}
+
+	function setChangePasswordCheckBoxEvents(){
+		var changePasswordCheckBox = dijit.byId("changePassword");
+		var wachtwoordInput = dijit.byId("wachtwoord");
+		var changePasswordCheckBoxHandle = dojo.connect(changePasswordCheckBox, "onChange", function(evt){
+			if(changePasswordCheckBox.checked){
+				wachtwoordInput.set('disabled',false);
+			} else {
+				wachtwoordInput.set('disabled',true);
+			}
+		});
+	}
+});	
+</script>
+	
+<br/>
+<br/>
+
+<div>
+	<div data-dojo-type="dijit/form/Form" id="gebruikerEditForm" jsId="gebruikerEditForm" action="#springUrl('/ba/gebruikersbeheer/gebruikers/')$gebruikersNaam/save" method="POST">
+	    <script type="dojo/method" event="onSubmit">
+		        if (this.validate()) {
+		            return true;
+		        } else {
+		            alert('Formulier bevat invalide waarden, corrigeer deze aub');
+		            return false;
+		        }
+		</script>
+	    
+		<table class="cds-table" id="userViewer">
+			<thead>
+				<tr>
+					<th colspan="6">
+						#if($!gebruikersNaam == "_new")Toevoegen#else Wijzigen#end gebruiker
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th width="10%"><label for="gebruiker.gebruikersnaam">Gebruikersnaam:</label></th>
+					<td width="20%">
+						#if($!gebruikersNaam == "_new")
+							#springFormInput("gebruikerForm.gebruiker.gebruikersnaam" 'data-dojo-type="dijit/form/TextBox" style="width:100%"')
+						#else
+							<label>$gebruikerForm.gebruiker.gebruikersnaam</label>
+							#springFormHiddenInput("gebruikerForm.gebruiker.gebruikersnaam" '')
+						#end
+						#springShowErrors("<br>" "error")
+					</td>
+					<th width="10%"><label for="gebruiker.email">Emailadres:</label>&nbsp;&nbsp;<span title="Verplicht veld">*</span></th>
+					<td width="20%">
+						#springFormInput("gebruikerForm.gebruiker.email" 'data-dojo-type="dijit/form/TextBox" style="width:100%"')
+						#springShowErrors("<br>" "error")
+					</td>
+					<th width="10%"><label for="gebruiker.mobile">Mobiel:</label></th>
+					<td width="20%">
+						#springFormInput("gebruikerForm.gebruiker.mobile" 'data-dojo-type="dijit/form/TextBox" style="width:100%"')
+						#springShowErrors("<br>" "error")
+					</td>
+				</tr>
+				<tr>
+					<th><label for="beheerder">Beheerder:</label></th>
+					<td colspan="5">
+						#springBind("gebruikerForm.beheerder")
+						<div data-dojo-type="dijit/form/CheckBox" id="${status.expression}" name="${status.expression}" title="Selecteer indien deze gebruiker een beheerder is" #if(${status.value} == true)checked="checked"#end ></div>
+						#springShowErrors("<br>" "error")
+					</td>
+				</tr>
+				<tr>
+					<th><label for="gebruikersRollen">Bronhouder:</label></th>
+					<td colspan="5">
+						#springBind("gebruikerForm.bronhouder")
+					    <select id="${status.expression}" name="${status.expression}" data-dojo-type="dijit/form/FilteringSelect" #if(${gebruikerForm.beheerder} == true)disabled="disabled"#end>
+						    <option #if($status.value == $null) selected="selected"#end></option>
+					        #foreach($bronhouderItem in $bronhouders)
+					            <option value="${bronhouderItem.id}"
+					            #if("$!status.value" == "${bronhouderItem.id}")
+					                selected="selected"
+					            #end>
+					            $bronhouderItem.naam
+					            </option>
+					        #end
+					    </select>
+						#springShowErrors("<br>" "error")
+						#springBind("gebruikerForm.bronhouderMandatoryValid")
+						#springShowErrors("<br>" "error")
+						#springBind("gebruikerForm.bronhouderDisallowedValid")
+						#springShowErrors("<br>" "error")
+					</td> 
+				</tr>
+				<tr>
+				#if($!gebruikersNaam != "_new")
+					<th><label for="changePassword">Wachtwoord wijzigen:</label></th>
+					<td colspan="1">
+						#springBind("gebruikerForm.changePassword")
+						<div data-dojo-type="dijit/form/CheckBox" id="${status.expression}" name="${status.expression}" title="Selecteer indien u het wachtwoord van deze gebruiker wilt wijzigen" #if(${status.value} == true)checked="checked"#end ></div>
+						#springShowErrors("<br>" "error")
+					</td>
+				#else
+					<input type="hidden" name="changePassword" value="true"/>
+				#end
+					<th><label for="wachtwoord">Wachtwoord:</label></th>
+					<td colspan="1">
+						#springFormPasswordInput("gebruikerForm.wachtwoord" "data-dojo-type='dijit/form/TextBox' #if($!gebruikersNaam == '_new')#else disabled='disabled'#end style='width:100%'")
+						#springShowErrors("<br>" "error")
+						<!-- Show validation error when checkbox gebruikerForm. ChangePassword is checked but now password is typed -->
+						#springBind("gebruikerForm.notNullWachtwoord")
+						#springShowErrors("<br>" "error")
+					</td>
+					<td colspan="#if($!gebruikersNaam == '_new')4#else 2#end"/>
+				</tr>
+			</tbody>
+			<tfoot>
+				<tr>
+					<th colspan="6">
+						<div id="stdButton">
+							<button data-dojo-type="dijit/form/Button" type="submit" name="submit" value="submit" title="Selecteer om gebruiker gegevens op te slaan">Opslaan</button>
+							<button data-dojo-type="dijit/form/Button" type="reset" name="reset" value="reset" title="Wijzigingen ongedaan maken">Reset</button>
+							<button data-dojo-type="dijit/form/Button" type="button" name="back" value="back" title="Terug naar gebruikers">Annuleren
+								<script type="dojo/method" data-dojo-event="onClick">
+									document.location.href = docroot + "/ba/gebruikersbeheer/gebruikers";
+								</script>
+							</button>
+						</div>
+					</th>
+				</tr>
+			</tfoot>
+		</table>
+	</div>
+</div>	

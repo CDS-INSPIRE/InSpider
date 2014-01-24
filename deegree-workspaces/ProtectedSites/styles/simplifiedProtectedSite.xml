@@ -1,0 +1,322 @@
+<StyledLayerDescriptor  version="1.1.0"  xmlns:ogc="http://www.opengis.net/ogc" xmlns:ps="urn:x-inspire:simplified" xmlns:se="http://www.opengis.net/se"  xmlns="http://www.opengis.net/sld" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengis.net/sld http://schemas.opengis.net/sld/1.1.0/StyledLayerDescriptor.xsd http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd">
+    <UserLayer>
+        <se:Name>PS.ProtectedSite</se:Name>
+        <UserStyle>
+            <se:Name>PS.ProtectedSite.Default</se:Name>
+            <se:Description>
+                <se:Title>PS.ProtectedSite.Default</se:Title>
+            </se:Description>
+            <se:FeatureTypeStyle>                
+                <se:FeatureTypeName>ps:ProtectedSite</se:FeatureTypeName>
+                <se:Rule>                        
+                    <ogc:Filter>
+                        <ogc:PropertyIsEqualTo>
+                            <ogc:Function name="IsSurface">
+                                <ogc:PropertyName>ps:geometry</ogc:PropertyName>
+                            </ogc:Function>
+                            <ogc:Literal>true</ogc:Literal>
+                        </ogc:PropertyIsEqualTo>
+                    </ogc:Filter>
+                    <se:PolygonSymbolizer>
+                        <se:Geometry>
+                            <ogc:PropertyName>ps:geometry</ogc:PropertyName>
+                        </se:Geometry>
+                        <se:Fill>
+                            <se:SvgParameter name="fill">#808080</se:SvgParameter>
+                        </se:Fill>
+                        <se:Stroke>
+                            <se:SvgParameter name="stroke">#000000</se:SvgParameter>
+                        </se:Stroke>
+                    </se:PolygonSymbolizer>
+                </se:Rule>
+                <se:Rule>
+                    <ogc:Filter>
+                        <ogc:PropertyIsEqualTo>
+                            <ogc:Function name="IsCurve">
+                                <ogc:PropertyName>ps:geometry</ogc:PropertyName>
+                            </ogc:Function>
+                            <ogc:Literal>true</ogc:Literal>
+                        </ogc:PropertyIsEqualTo>
+                    </ogc:Filter>
+                    <se:LineSymbolizer>
+                        <se:Geometry>
+                            <ogc:PropertyName>ps:geometry</ogc:PropertyName>
+                        </se:Geometry>
+                        <se:Stroke>
+                            <se:SvgParameter name="stroke">#000000</se:SvgParameter>
+                            <se:SvgParameter name="stroke-width">1</se:SvgParameter>
+                        </se:Stroke>
+                    </se:LineSymbolizer>
+                </se:Rule>
+                <se:Rule>
+                    <ogc:Filter>
+                        <ogc:PropertyIsEqualTo>
+                            <ogc:Function name="IsPoint">
+                                <ogc:PropertyName>ps:geometry</ogc:PropertyName>
+                            </ogc:Function>
+                            <ogc:Literal>true</ogc:Literal>
+                        </ogc:PropertyIsEqualTo>
+                    </ogc:Filter>
+                    <se:PointSymbolizer>
+                        <se:Geometry>
+                            <ogc:PropertyName>ps:geometry</ogc:PropertyName>
+                        </se:Geometry>
+                        <se:Graphic>
+                            <se:Mark>
+                                <se:WellKnownName>square</se:WellKnownName>
+                                <se:Fill>
+                                    <se:SvgParameter name="fill">#808080</se:SvgParameter>
+                                </se:Fill>
+                                <se:Stroke>
+                                    <se:SvgParameter name="stroke">#000000</se:SvgParameter>
+                                </se:Stroke>
+                            </se:Mark>
+                            <se:Size>6.0</se:Size>
+                        </se:Graphic>
+                    </se:PointSymbolizer>
+                </se:Rule>
+            </se:FeatureTypeStyle>
+        </UserStyle>
+        <UserStyle>
+            <se:Name>PS.ProtectedSite.Default.Legend</se:Name>
+            <se:FeatureTypeStyle>                
+                <se:FeatureTypeName>ps:ProtectedSite</se:FeatureTypeName>
+                <se:Rule>
+                    <se:PolygonSymbolizer>     
+                        <se:Fill>
+                            <se:SvgParameter name="fill">#808080</se:SvgParameter>
+                        </se:Fill>
+                        <se:Stroke>
+                            <se:SvgParameter name="stroke">#000000</se:SvgParameter>
+                        </se:Stroke>
+                    </se:PolygonSymbolizer>
+                </se:Rule>
+                <se:Rule>
+                    <se:LineSymbolizer>     
+                        <se:Stroke>
+                            <se:SvgParameter name="stroke">#000000</se:SvgParameter>
+                            <se:SvgParameter name="stroke-width">1</se:SvgParameter>
+                        </se:Stroke>
+                    </se:LineSymbolizer>
+                </se:Rule>
+                <se:Rule>
+                    <se:PointSymbolizer>
+                        <se:Graphic>
+                            <se:Mark>
+                                <se:WellKnownName>square</se:WellKnownName>
+                                <se:Fill>
+                                    <se:SvgParameter name="fill">#808080</se:SvgParameter>
+                                </se:Fill>
+                                <se:Stroke>
+                                    <se:SvgParameter name="stroke">#000000</se:SvgParameter>
+                                </se:Stroke>
+                            </se:Mark>
+                            <se:Size>6.0</se:Size>
+                        </se:Graphic>
+                    </se:PointSymbolizer>
+                </se:Rule>
+            </se:FeatureTypeStyle>
+        </UserStyle>
+        <UserStyle>
+            <se:Name>PS.ProtectedSite.NL</se:Name>
+            <se:FeatureTypeStyle>
+                <se:Description>
+                    <se:Title>PS.ProtectedSite.NL</se:Title>    
+                </se:Description>
+                <se:FeatureTypeName>ps:ProtectedSite</se:FeatureTypeName>
+                <se:Rule>
+                    <se:Name>aardkundigeWaarden</se:Name>
+                    <se:Description>
+                        <se:Title>Aardkundige waarden</se:Title>
+                    </se:Description>
+                    <ogc:Filter>
+                        <ogc:PropertyIsEqualTo>
+                            <ogc:PropertyName>ps:site_designation</ogc:PropertyName>
+                            <ogc:Literal>aardkundigeWaarden</ogc:Literal>
+                        </ogc:PropertyIsEqualTo>
+                    </ogc:Filter>
+                    <se:PolygonSymbolizer>
+                        <se:Geometry>
+                            <ogc:PropertyName>ps:geometry</ogc:PropertyName>
+                        </se:Geometry>
+                        <se:Fill>
+                            <se:SvgParameter name="fill">#4a2b10</se:SvgParameter>
+                        </se:Fill>
+                    </se:PolygonSymbolizer>
+                </se:Rule>
+                <se:Rule>
+                    <se:Name>ecologischeHoofdstructuur</se:Name>
+                    <se:Description>
+                        <se:Title>Ecologische hoofdstructuur</se:Title>
+                    </se:Description>
+                    <ogc:Filter>
+                        <ogc:PropertyIsEqualTo>
+                            <ogc:PropertyName>ps:site_designation</ogc:PropertyName>
+                            <ogc:Literal>ecologischeHoofdstructuur</ogc:Literal>
+                        </ogc:PropertyIsEqualTo>
+                    </ogc:Filter>
+                    <se:PolygonSymbolizer>
+                        <se:Geometry>
+                            <ogc:PropertyName>ps:geometry</ogc:PropertyName>
+                        </se:Geometry>
+                        <se:Fill>
+                            <se:SvgParameter name="fill">#54b282</se:SvgParameter>
+                        </se:Fill>
+                    </se:PolygonSymbolizer>
+                </se:Rule>
+                <se:Rule>
+                    <se:Name>nationaleLandschappen</se:Name>
+                    <se:Description>
+                        <se:Title>Nationale landschappen</se:Title>
+                    </se:Description>
+                    <ogc:Filter>
+                        <ogc:PropertyIsEqualTo>
+                            <ogc:PropertyName>ps:site_designation</ogc:PropertyName>
+                            <ogc:Literal>nationaleLandschappen</ogc:Literal>
+                        </ogc:PropertyIsEqualTo>
+                    </ogc:Filter>
+                    <se:PolygonSymbolizer>
+                        <se:Geometry>
+                            <ogc:PropertyName>ps:geometry</ogc:PropertyName>
+                        </se:Geometry>
+                        <se:Fill>
+                            <se:SvgParameter name="fill">#97ff78</se:SvgParameter>
+                        </se:Fill>
+                    </se:PolygonSymbolizer>
+                </se:Rule>
+                <se:Rule>
+                    <se:Name>provincialeMonumenten</se:Name>
+                    <se:Description>
+                        <se:Title>Provinciale monumenten</se:Title>
+                    </se:Description>
+                    <ogc:Filter>
+                        <ogc:PropertyIsEqualTo>
+                            <ogc:PropertyName>ps:site_designation</ogc:PropertyName>
+                            <ogc:Literal>provincialeMonumenten</ogc:Literal>
+                        </ogc:PropertyIsEqualTo>
+                    </ogc:Filter>
+                    <se:PolygonSymbolizer>
+                        <se:Geometry>
+                            <ogc:PropertyName>ps:geometry</ogc:PropertyName>
+                        </se:Geometry>
+                        <se:Fill>
+                            <se:SvgParameter name="fill">#403c23</se:SvgParameter>
+                        </se:Fill>
+                    </se:PolygonSymbolizer>
+                </se:Rule>
+                <se:Rule>
+                    <se:Name>stilteGebieden</se:Name>
+                    <se:Description>
+                        <se:Title>Stilte gebieden</se:Title>
+                    </se:Description>
+                    <ogc:Filter>
+                        <ogc:PropertyIsEqualTo>
+                            <ogc:PropertyName>ps:site_designation</ogc:PropertyName>
+                            <ogc:Literal>stilteGebieden</ogc:Literal>
+                        </ogc:PropertyIsEqualTo>
+                    </ogc:Filter>
+                    <se:PolygonSymbolizer>
+                        <se:Geometry>
+                            <ogc:PropertyName>ps:geometry</ogc:PropertyName>
+                        </se:Geometry>
+                        <se:Fill>
+                            <se:SvgParameter name="fill">#b24928</se:SvgParameter>
+                        </se:Fill>
+                    </se:PolygonSymbolizer>
+                </se:Rule>
+                <se:Rule>
+                    <se:Name>WAVGebieden</se:Name>
+                    <se:Description>
+                        <se:Title>Wav gebieden</se:Title>
+                    </se:Description>
+                    <ogc:Filter>
+                        <ogc:PropertyIsEqualTo>
+                            <ogc:PropertyName>ps:site_designation</ogc:PropertyName>
+                            <ogc:Literal>WAVGebieden</ogc:Literal>
+                        </ogc:PropertyIsEqualTo>
+                    </ogc:Filter>
+                    <se:PolygonSymbolizer>
+                        <se:Geometry>
+                            <ogc:PropertyName>ps:geometry</ogc:PropertyName>
+                        </se:Geometry>
+                        <se:Fill>
+                            <se:SvgParameter name="fill">#ffdc52</se:SvgParameter>
+                        </se:Fill>
+                    </se:PolygonSymbolizer>
+                </se:Rule>
+            </se:FeatureTypeStyle>
+        </UserStyle>
+        <UserStyle>
+            <se:Name>PS.ProtectedSite.NL.Legend</se:Name>
+            <se:FeatureTypeStyle>                
+                <se:FeatureTypeName>ps:ProtectedSite</se:FeatureTypeName>
+                <se:Rule>
+                    <se:Name>aardkundigeWaarden</se:Name>
+                    <se:Description>
+                        <se:Title>Aardkundige waarden</se:Title>
+                    </se:Description>
+                    <se:PolygonSymbolizer>      
+                        <se:Fill>
+                            <se:SvgParameter name="fill">#4a2b10</se:SvgParameter>
+                        </se:Fill>
+                    </se:PolygonSymbolizer>
+                </se:Rule>
+                <se:Rule>
+                    <se:Name>ecologischeHoofdstructuur</se:Name>
+                    <se:Description>
+                        <se:Title>Ecologische hoofdstructuur</se:Title>
+                    </se:Description>
+                    <se:PolygonSymbolizer>      
+                        <se:Fill>
+                            <se:SvgParameter name="fill">#54b282</se:SvgParameter>
+                        </se:Fill>
+                    </se:PolygonSymbolizer>
+                </se:Rule>
+                <se:Rule>
+                    <se:Name>nationaleLandschappen</se:Name>
+                    <se:Description>
+                        <se:Title>Nationale landschappen</se:Title>
+                    </se:Description>
+                    <se:PolygonSymbolizer>
+                        <se:Fill>
+                            <se:SvgParameter name="fill">#97ff78</se:SvgParameter>
+                        </se:Fill>
+                    </se:PolygonSymbolizer>
+                </se:Rule>
+                <se:Rule>
+                    <se:Name>provincialeMonumenten</se:Name>
+                    <se:Description>
+                        <se:Title>Provinciale monumenten</se:Title>
+                    </se:Description>
+                    <se:PolygonSymbolizer>
+                        <se:Fill>
+                            <se:SvgParameter name="fill">#403c23</se:SvgParameter>
+                        </se:Fill>
+                    </se:PolygonSymbolizer>
+                </se:Rule>
+                <se:Rule>
+                    <se:Name>stilteGebieden</se:Name>
+                    <se:Description>
+                        <se:Title>Stilte gebieden</se:Title>
+                    </se:Description>
+                    <se:PolygonSymbolizer>
+                        <se:Fill>
+                            <se:SvgParameter name="fill">#b24928</se:SvgParameter>
+                        </se:Fill>
+                    </se:PolygonSymbolizer>
+                </se:Rule>
+                <se:Rule>
+                    <se:Name>WAVGebieden</se:Name>
+                    <se:Description>
+                        <se:Title>Wav gebieden</se:Title>
+                    </se:Description>
+                    <se:PolygonSymbolizer>
+                        <se:Fill>
+                            <se:SvgParameter name="fill">#ffdc52</se:SvgParameter>
+                        </se:Fill>
+                    </se:PolygonSymbolizer>
+                </se:Rule>
+            </se:FeatureTypeStyle>
+        </UserStyle>
+    </UserLayer>
+</StyledLayerDescriptor>

@@ -1,0 +1,42 @@
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"
+	version="1.0">
+	<persistence-unit name="cds" transaction-type="RESOURCE_LOCAL">		
+		<class>nl.idgis.commons.jobexecutor.AbstractJob</class>
+		<class>nl.ipo.cds.domain.JobType</class>		
+		<class>nl.ipo.cds.domain.Dataset</class>
+		<class>nl.ipo.cds.domain.DatasetType</class>
+		<class>nl.ipo.cds.domain.Bronhouder</class>
+		<class>nl.ipo.cds.domain.Thema</class>
+		<class>nl.ipo.cds.domain.JobLog</class>
+		<class>nl.ipo.cds.domain.EtlJob</class>
+		<class>nl.ipo.cds.domain.ImportJob</class>
+		<class>nl.ipo.cds.domain.RemoveJob</class>
+		<class>nl.ipo.cds.domain.TransformJob</class>
+		<class>nl.ipo.cds.domain.ValidateJob</class>
+		<class>nl.ipo.cds.domain.ThemaBronhouderAuthorization</class>
+		<class>nl.ipo.cds.domain.CodeListMapping</class>
+		
+		<!-- Attribute mapping: -->
+		<class>nl.ipo.cds.domain.AttributeMapping</class>
+		<class>nl.ipo.cds.domain.MappingOperation</class>
+		
+		<!-- Filtering: -->
+		<class>nl.ipo.cds.domain.DatasetFilter</class>
+		<class>nl.ipo.cds.domain.FilterExpression</class>
+		<class>nl.ipo.cds.domain.ValueExpression</class>
+		<class>nl.ipo.cds.domain.AttributeExpression</class>
+		<class>nl.ipo.cds.domain.OperatorExpression</class>
+		
+		<!-- Catalog Metadata Export -->
+		<class>nl.ipo.cds.domain.MetadataDocument</class>
+		
+		<properties>
+			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
+			<property name="hibernate.default_schema" value="manager"/>
+			<property name="hibernate.ejb.naming_strategy" value="nl.ipo.cds.persistence.CdsNamingStrategy"/>
+			<property name="hibernate.hbm2ddl.auto" value="validate"/>
+		</properties>	
+	</persistence-unit>
+</persistence>

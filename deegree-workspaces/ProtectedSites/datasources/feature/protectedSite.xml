@@ -1,0 +1,129 @@
+<SQLFeatureStore xmlns="http://www.deegree.org/datasource/feature/sql"
+    xmlns:ps="urn:x-inspire:specification:gmlas:ProtectedSites:3.0"
+    xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gco="http://www.isotc211.org/2005/gco"
+    xmlns:gn="urn:x-inspire:specification:gmlas:GeographicalNames:3.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" configVersion="3.1.0"
+    xsi:schemaLocation="http://www.deegree.org/datasource/feature/sql http://schemas.deegree.org/datasource/feature/sql/3.1.0/sql.xsd">
+
+    <JDBCConnId>cds-inspire</JDBCConnId>
+    <StorageCRS srid="28992" dim="2D">urn:ogc:def:crs:EPSG::28992</StorageCRS>
+    <GMLSchema>../../appschemas/ProtectedSites.xsd</GMLSchema>
+    
+    <FeatureTypeMapping name="gn:NamedPlace" table="inspire.named_place">
+        <FIDMapping>
+            <Column name="id" type="integer"/>
+        </FIDMapping>
+        <Complex path="gn:beginLifespanVersion">
+            <Primitive path="@xsi:nil" mapping="'true'"/>                    
+        </Complex>
+        <Geometry path="gn:geometry" mapping="geometry"/>
+        <Complex path="gn:inspireId">
+            <Complex path="base:Identifier">
+                <Primitive path="base:localId" mapping="inspire_id_local_id"/>
+                <Primitive path="base:namespace" mapping="inspire_id_namespace"/>
+            </Complex>
+        </Complex>
+        <Complex path="gn:localType">
+            <Primitive path="@xsi:nil" mapping="'true'"/>                    
+        </Complex>
+        <Complex path="gn:name">
+            <Complex path="gn:GeographicalName">
+                <Join table="inspire.site_name" fromColumns="id" toColumns="fk_protected_site"/>
+                <Primitive path="gn:language" mapping="'nld'"/>
+                <Complex path="gn:nativeness">
+                    <Primitive path="@xsi:nil" mapping="'true'"/>                    
+                </Complex>
+                <Complex path="gn:nameStatus">
+                    <Primitive path="@xsi:nil" mapping="'true'"/>                    
+                </Complex>
+                <Complex path="gn:sourceOfName">
+                    <Primitive path="@xsi:nil" mapping="'true'"/>                    
+                </Complex>
+                <Complex path="gn:pronunciation">
+                    <Primitive path="@xsi:nil" mapping="'true'"/>                    
+                </Complex>
+                <Complex path="gn:spelling">
+                    <Complex path="gn:SpellingOfName">
+                        <Primitive path="gn:text" mapping="site_name"/>
+                        <Primitive path="gn:script" mapping="'Latn'"/>
+                    </Complex>
+                </Complex>
+            </Complex>
+        </Complex>
+        <Complex path="gn:type">
+            <Primitive path="@xsi:nil" mapping="'true'"/>                    
+        </Complex>
+    </FeatureTypeMapping>
+    
+    
+    <FeatureTypeMapping name="ps:ProtectedSite" table="inspire.protected_site">
+        <FIDMapping>
+            <Column name="id" type="integer"/>
+        </FIDMapping>
+        <Geometry path="ps:geometry" mapping="geometry"/>
+        <Complex path="ps:inspireID">
+            <Complex path="base:Identifier">
+                <Primitive path="base:localId" mapping="inspire_id_local_id"/>
+                <Primitive path="base:namespace" mapping="inspire_id_namespace"/>
+            </Complex>
+        </Complex>
+        <Primitive path="ps:legalFoundationDate" mapping="legal_foundation_date"/>
+        <Complex path="ps:legalFoundationDocument">
+            <Complex path="gmd:CI_Citation">
+                <Complex path="gmd:title">
+                    <Primitive path="gco:CharacterString" mapping="legal_foundation_document"/>
+                </Complex>
+                <Complex path="gmd:date">
+                    <Complex path="gmd:CI_Date">
+                        <Complex path="gmd:date">
+                            <Primitive path="gco:DateTime" mapping="legal_foundation_date"/>
+                        </Complex>
+                        <Complex path="gmd:dateType">
+                            <Complex path="gmd:CI_DateTypeCode">
+                                <Primitive path="@codeListValue" mapping="'publication'"/>
+                                <Primitive path="@codeList" mapping="'http://www.isotc211.org/2005/resources/codeList.xml#CI_DateTypeCode'"/>
+                            </Complex>
+                        </Complex>
+                    </Complex>
+                </Complex>
+            </Complex>
+        </Complex>
+        <Complex path="ps:siteDesignation">
+            <Complex path="ps:DesignationType">
+                <Join table="inspire.site_designation" fromColumns="id" toColumns="fk_protected_site"/>
+                <Primitive path="ps:designationScheme" mapping="site_designation_schema"/>
+                <Primitive path="ps:designation" mapping="site_designation"/>
+                <Primitive path="ps:percentageUnderDesignation" mapping="percentage_under_designation"/>
+            </Complex>
+        </Complex>
+        <Complex path="ps:siteName">
+            <Complex path="gn:GeographicalName">
+                <Join table="inspire.site_name" fromColumns="id" toColumns="fk_protected_site"/>
+                <Primitive path="gn:language" mapping="'nld'"/>
+                <Complex path="gn:nativeness">
+                    <Primitive path="@xsi:nil" mapping="'true'"/>                    
+                </Complex>
+                <Complex path="gn:nameStatus">
+                    <Primitive path="@xsi:nil" mapping="'true'"/>                    
+                </Complex>
+                <Complex path="gn:sourceOfName">
+                    <Primitive path="@xsi:nil" mapping="'true'"/>                    
+                </Complex>
+                <Complex path="gn:pronunciation">
+                    <Primitive path="@xsi:nil" mapping="'true'"/>                    
+                </Complex>
+                <Complex path="gn:spelling">
+                    <Complex path="gn:SpellingOfName">
+                        <Primitive path="gn:text" mapping="site_name"/>
+                        <Primitive path="gn:script" mapping="'Latn'"/>
+                    </Complex>
+                </Complex>
+            </Complex>
+        </Complex>
+        <Complex path="ps:siteProtectionClassification">
+            <Join table="inspire.site_protection_classification" fromColumns="id" toColumns="fk_protected_site"/>
+            <Primitive path="text()" mapping="site_protection_classification"/>
+        </Complex>
+    </FeatureTypeMapping>
+
+</SQLFeatureStore>

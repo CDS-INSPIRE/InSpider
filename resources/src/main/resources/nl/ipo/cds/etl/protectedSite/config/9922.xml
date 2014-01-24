@@ -1,0 +1,7 @@
+<config xmlns="urn:cds-inspire:config:xml" 
+    xmlns:flat="urn:cds-inspire:flat">
+    <gmlVersion>GML_31</gmlVersion>
+    <replace>
+        <flat:_shape_>flat:geometry</flat:_shape_>
+    </replace>  
+</config>

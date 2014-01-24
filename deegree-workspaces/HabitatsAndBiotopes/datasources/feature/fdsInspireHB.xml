@@ -1,0 +1,67 @@
+<SQLFeatureStore configVersion="3.1.0" xmlns="http://www.deegree.org/datasource/feature/sql" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.deegree.org/datasource/feature/sql http://schemas.deegree.org/datasource/feature/sql/3.1.0/sql.xsd" xmlns:base="http://inspire.ec.europa.eu/schemas/base/3.3rc3/" xmlns:base2="http://inspire.ec.europa.eu/schemas/base2/1.0rc3" xmlns:hb="http://inspire.ec.europa.eu/schemas/hb/3.0rc3" xmlns:sd="http://inspire.ec.europa.eu/schemas/sd/3.0rc3" xmlns:ad="urn:x-inspire:specification:gmlas:Addresses:3.0" xmlns:au="urn:x-inspire:specification:gmlas:AdministrativeUnits:3.0" xmlns:tn-a="urn:x-inspire:specification:gmlas:AirTransportNetwork:3.0" xmlns:bui="urn:x-inspire:specification:gmlas:Buildings:0.0" xmlns:cp="urn:x-inspire:specification:gmlas:CadastralParcels:3.0" xmlns:tn="urn:x-inspire:specification:gmlas:CommonTransportElements:3.0" xmlns:gn="urn:x-inspire:specification:gmlas:GeographicalNames:3.0" xmlns:net="urn:x-inspire:specification:gmlas:Network:3.2" xmlns:stat="urn:x-inspire:specification:gmlas:StatisticalUnits:0.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml/3.2">
+  <JDBCConnId>conHB</JDBCConnId>
+  <StorageCRS srid="28992" dim="2D">EPSG:28992</StorageCRS>
+  <!--GMLSchema>http://www.inspire-provincies.nl/draft-schemas/hb/3.0rc3/HabitatsAndBiotopes.xsd</GMLSchema-->
+  <GMLSchema>../../../inspire-schemas/draft-schemas/hb/3.0rc3/HabitatsAndBiotopes.xsd</GMLSchema>
+  <NullEscalation>true</NullEscalation>
+
+  <FeatureTypeMapping name="hb:Habitat" table="inspire.habitat">
+    <FIDMapping prefix="HB_HABITAT_">
+      <Column name="id" type="integer"/>
+      <UUIDGenerator/>
+    </FIDMapping>
+    <Complex path="hb:inspireId">
+      <Complex path="base:Identifier">
+        <Primitive path="base:localId" mapping="inspire_id_local_id"/>
+        <Primitive path="base:namespace" mapping="inspire_id_namespace"/>
+      </Complex>
+    </Complex>
+    <Complex path="hb:geometry">
+      <Geometry path="." mapping="geometry"/>
+    </Complex>
+    <Complex path="hb:habitat">
+      <Complex path="hb:HabitatTypeCoverType">
+        <Complex path="hb:referenceHabitatTypeId">
+          <Primitive path="text()" mapping="habitat_reference_habitat_type_id_code"/>
+          <Primitive path="@codeSpace" mapping="habitat_reference_habitat_type_id_codespace"/>
+        </Complex>       
+        <Complex path="hb:referenceHabitatTypeScheme">
+          <Primitive path="text()" mapping="habitat_reference_habitat_type_scheme_code"/>
+          <Primitive path="@codeSpace" mapping="'http://inspire.ec.europa.eu/codeList/ReferenceHabitatTypeSchemeValue'"/>
+        </Complex>       
+        <Complex path="hb:referenceHabitatTypeName">
+          <Primitive path="text()" mapping="habitat_reference_habitat_type_name"/>
+        </Complex>      
+        <Complex path="hb:localHabitatName">
+          <Complex path="hb:LocalNameType">
+            <Primitive path="hb:localScheme" mapping="local_habitat_name_local_scheme"/>
+            <Complex path="hb:localNameCode">
+              <Primitive path="text()" mapping="local_habitat_name_local_name_code"/>
+              <Primitive path="@codeSpace" mapping="local_habitat_name_local_scheme"/>
+            </Complex>
+            <Complex path="hb:localName">
+              <Primitive path="text()" mapping="local_habitat_name_local_name"/>
+            </Complex>
+            <Complex path="hb:qualifierLocalName">
+              <Primitive path="text()" mapping="local_habitat_name_qualifier_local_name"/>
+              <Primitive path="@codeSpace" mapping="'http://inspire.ec.europa.eu/codeList/QualifierLocalNameValue'"/>
+            </Complex>
+          </Complex>
+        </Complex>
+        <Complex path="hb:areaCovered">
+          <Primitive path="@uom" mapping="'m2'"/>
+          <Primitive path="text()" mapping="habitat_area_covered"/>
+        </Complex>
+      </Complex>
+    </Complex>   
+    <Complex path="hb:habitatSpecies">
+      <Primitive path="@nilReason" mapping="'UNKNOWN'"/>
+      <Primitive path="@xsi:nil" mapping="'true'"/>       
+    </Complex>
+    <Complex path="hb:habitatVegetation">
+      <Primitive path="@nilReason" mapping="'UNKNOWN'"/>
+      <Primitive path="@xsi:nil" mapping="'true'"/>
+    </Complex>      
+  </FeatureTypeMapping>
+
+</SQLFeatureStore>

@@ -1,0 +1,78 @@
+#set($layerName='naw')
+#set($title = 'Bronhouder - ' + $bronhouder.naam)
+
+
+<br/>
+<form method="POST" action="#springUrl('/ba/naw/')$updateBronhouderForm.id/">
+	<label>Bronhouder:&nbsp;&nbsp;&nbsp;
+	</label>
+    <select data-dojo-type="dijit/form/FilteringSelect" id="bronhouderId" title="Provincie of bronhouder" name="bronhouderId" required="true" #if(! $authz.anyGranted("ROLE_BEHEERDER")) disabled #end>
+		<script type="dojo/method" data-dojo-event="onChange">
+					var bronhouderId = this.get('value');
+					var url = "#springUrl('/ba/naw/')" + bronhouderId;
+					location.href=url;
+				</script>
+		#foreach($b in $bronhouders)
+		    <option value="$b.id" #if ($b.id==$bronhouder.id) selected="selected" #end>$b.naam</option>
+		#end
+	</select>
+	<p></p>
+	<table class="cds-table naw" id="naw">
+		<thead>
+			<tr>
+				<th colspan="3" >NAW gegevens bronhouder #e($updateBronhouderForm.bronhouderNaam)</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td width="10%">Naam: </td>
+				<td width="20%"><input type="text"  value="#e($updateBronhouderForm.naam)" id="naam" name="contactNaam" title="Naam van de vertegenwoordiger van bronhouder $!updateBronhouderForm.naam" style="width:300px"/> 
+				</td>
+				<td width="70%"></td>
+			</tr>
+			<tr>
+				<td>Adres: </td>
+				<td ><input type="text" value="#e($updateBronhouderForm.adres)" id="adres" name="contactAdres" title="Adres van de vertegenwoordiger van bronhouder $updateBronhouderForm.naam" style="width:300px"/> 
+				</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>Postcode: </td>
+				<td ><input type="text"  value="#e($updateBronhouderForm.postcode)" name="contactPostcode" id="postcode" value="" data-dojo-type="dijit/form/ValidationTextBox"
+					regExp="^[1-9]{1}[0-9]{3}\s?[A-Z]{2}$" title="Postcode van de vertegenwoordiger van bronhouder $updateBronhouderForm.naam"  
+					promptMessage="Voer hier de postcode in (bijv. 1234 AB)" 
+					invalidMessage="De postcode bevat fouten." style="width:100px"> 
+				</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>Plaats: </td>
+				<td ><input type="text"  value="#e($updateBronhouderForm.plaats)" id="plaats" name="contactPlaats" title="Plaats van de vertegenwoordiger van bronhouder $updateBronhouderForm.naam" style="width:300px"/> 
+				</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td title="Verplicht veld">Email:&nbsp;&nbsp;*</td>
+				<td ><input type="text"  value="#e($updateBronhouderForm.emailadres)" name="contactEmailadres" id="emailadres" value="" data-dojo-type="dijit/form/ValidationTextBox"
+					regExp="^[\w-]+(\.[\w-]+)*@([a-z0-9-]+(\.[a-z0-9-]+)*?\.[a-z]{2,6}|(\d{1,3}\.){3}\d{1,3})(:\d{4})?$" title="Email adres van de vertegenwoordiger van bronhouder $updateBronhouderForm.naam. NB. berichten over problemen bij het verwerken van datasets, worden naar dit email adres gestuurd."  required="true" 
+					promptMessage="Voer hier een email adres in" 
+					invalidMessage="Het email adres bevat fouten" style="width:300px"> 
+				</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>telefoon: </td>
+				<td ><input type="text"  value="#e($updateBronhouderForm.telefoonnummer)" id="telefoonnummer" name="contactTelefoonnummer" title="��n of meerdere telefoon nummers van de vertegenwoordiger van bronhouder $updateBronhouderForm.naam"  style="width:300px"/> 
+				</td>
+				<td></td>
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+				<th align="left" colspan="3"><div id="stdButton"><button data-dojo-type="dijit/form/Button" type="submit" name="submit" value="Submit" title="Druk op deze knop om de NAW gegevens op te slaan">Opslaan</button></div></th>
+			</tr>
+		</tfoot>
+	</table>
+</form>						
+
+	

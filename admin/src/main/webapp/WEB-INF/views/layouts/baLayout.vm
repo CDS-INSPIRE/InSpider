@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>CDS Inspire#if($title) - #e($title)#end</title>
+        <link rel="stylesheet" type="text/css" href="#springUrl('/styles/ba.css')" />
+        <link rel="stylesheet" type="text/css" href="#springUrl('/styles/attributemapping.css')">
+        <link rel="stylesheet" type="text/css" href="#springUrl('/styles/dojoxFormListInput.css')" />
+		<link rel="shortcut icon" href="#springUrl('/images/favicon.ico')" type="image/x-icon"/>
+		<link rel="icon" href="#springUrl('/images/favicon.ico')" type="image/x-icon"/>
+        #if($refresh)
+        <meta http-equiv="refresh" content="$refresh" />
+        #end
+        <meta http-equiv="content-style-type" content="text/css">
+        
+	    <!-- load Dojo -->
+	    #if($dojoDebug)
+	    #set($scriptLocation = "#springUrl('/scripts/dojo')")
+	    <script src="//ajax.googleapis.com/ajax/libs/dojo/1.8.3/dojo/dojo.js" data-dojo-config="parseOnLoad: false, async: true, isDebug: true, useDeferredInstrumentation: true, packages: [{ name: 'cds', location: '$scriptLocation/cds' }, { name: 'put-selector', location: '$scriptLocation/put-selector' }]"></script>
+        <link rel="stylesheet" type="text/css" href="//ajax.googleapis.com/ajax/libs/dojo/1.8.3/dojox/grid/resources/Grid.css">
+        <link rel="stylesheet" type="text/css" href="//ajax.googleapis.com/ajax/libs/dojo/1.8.3/dojox/grid/resources/claroGrid.css">
+        <link rel="stylesheet" type="text/css" href="//ajax.googleapis.com/ajax/libs/dojo/1.8.3/dojo/resources/dojo.css">
+        <link rel="stylesheet" type="text/css" href="//ajax.googleapis.com/ajax/libs/dojo/1.8.3/dijit/themes/claro/claro.css">
+        <link rel="stylesheet" type="text/css" href="//ajax.googleapis.com/ajax/libs/dojo/1.8.3/dojox/widget/Dialog/Dialog.css">
+        #else
+	    <script src="#springUrl('/scripts/cds/dojo/dojo.js')" data-dojo-config="parseOnLoad: false, async: true, isDebug: false, useDeferredInstrumentation: false"></script>
+	    #if($layerName)
+	    <script src="#springUrl('/scripts/cds/cds/layer-')$layerName#**#.js"></script>
+	    #end
+        <link rel="stylesheet" type="text/css" href="#springUrl('/scripts/cds/dojox/grid/resources/Grid.css')">
+        <link rel="stylesheet" type="text/css" href="#springUrl('/scripts/cds/dojox/grid/resources/claroGrid.css')">
+        <link rel="stylesheet" type="text/css" href="#springUrl('/scripts/cds/dojo/resources/dojo.css')">
+        <link rel="stylesheet" type="text/css" href="#springUrl('/scripts/cds/dijit/themes/claro/claro.css')">
+        <link rel="stylesheet" type="text/css" href="#springUrl('/scripts/cds/dojox/widget/Dialog/Dialog.css')">
+        #end
+	    <!--
+	    -->
+	    
+		<script type="text/javascript">
+		define ('cds/ready', [], function () {
+			var ready = false,
+				queue = [ ];
+			
+			function cdsReady (callback) {
+				if (ready) {
+					callback ();
+				} else {
+					queue.push (callback);
+				}
+			}
+			
+			cdsReady.load = function (id, req, load) {
+				cdsReady (load);
+			};
+			cdsReady.fire = function () {
+				while (queue.length > 0) {
+					(queue.shift ()) ();
+				}
+			};
+			
+			return cdsReady;
+		});
+		require ([
+		    'cds/ready',
+		    'dojo/parser',
+		    'dojo/_base/fx',
+		    'dojo/query',
+		    'dojo/NodeList-dom',
+		    // 'dijit/dijit',
+			'dojo/domReady!'
+		], function (ready) {
+		    // Preloader-hider-function:
+		    var hideLoader = function(){
+		        dojo.fadeOut({
+		            node:"preloader",
+		            duration:300,
+		            onEnd: function(){
+		                dojo.style("preloader", "display", "none");
+		            }
+		        }).play();
+		    }
+		 
+	        // notice the second onLoad here:
+            dojo.parser.parse().then (function () {
+	            hideLoader();
+		
+		  		// Select tab, based on (current)viewName
+				var tab = dojo.query("#tabs$!viewName");
+				tab.addClass("dijitTabChecked");
+				tab.addClass("dijitChecked");
+				
+				ready.fire ();
+            });
+		});
+		</script>
+ 
+	</head>
+	
+<!--
+     Body moet dojo class name bevatten, gelijk aan theme css name (claro.css)
+-->
+	#set($authenticated = $!authz.principal && $!authz.principal != "guest")
+
+	<body class=" claro ">
+		<div id="outer-container">
+	
+			<div id="header">
+				<div style="text-align:left"> <h1>Centrale Data- en Services <span class="superscript">#e($mavenVersion) [#e($buildVersion)]</span></h1></div>
+				#if($!authz.principal == "guest")
+					<div style="text-align:center; margin-left:280px; "></div>
+				#else
+					<div style="text-align:center; margin-left:280px; ">Ingelogd als: $!authz.principal 
+					<span title="Klik hier als u zich wilt afmelden of wilt inloggen onder een andere gebruikersnaam">[ <a href="#springUrl('/logout')">Afmelden</a> ]</span>
+					<span title="Klik hier als u uw wachtwoord wilt wijzigen">[ <a href="#springUrl('/changePassword')">Wachtwoord wijzigen</a> ]</span></div>
+				#end
+				<a title="Ga naar de website van het IPO" id="ipo_logo" href="http://www.ipo.nl"><span>Interprovinciaal overleg</span></a>
+			</div>
+			
+			<div id="preloader"></div>
+			#if($authenticated && $showTabs != false)
+				<div id="tabs">
+					<div style="width: 95%; height: 32px;" class="dijitTabContainer dijitContainer dijitTabContainerTop dijitLayoutContainer tabStrip-enabled dijitBorderContainer-child dijitBorderContainer-dijitTabContainerTop dijitBorderContainerPane">
+						<div style="width: 100%; height:100%;" class="dijitTabListContainer-top dijitAlignTop dijitLayoutContainer">
+						    <div style="width: 100%; height:100%;"  class="dijitTabListWrapper dijitTabContainerTopStrip dijitAlignClient">
+						    	<div style="width: 100%; height:100%;" class="nowrapTabStrip dijitTabContainerTop-tabs">
+									#if($authz.anyGranted("ROLE_BEHEERDER"))
+							    	<div id="tabs_ba_monitoring" class="dijitTab">
+									    <div class='dijitTabInnerDiv'>
+									        <div title="Monitor pagina van het etl proces" class='dijitTabContent' onClick="location.href='#springUrl('/ba/monitoring')';">
+								                <span class='tabLabel'>Monitoring</span>
+									        </div>
+									    </div>
+									</div>
+									#end
+							    	<div id="tabs_ba_etloverzicht" class="dijitTab">
+									    <div class='dijitTabInnerDiv'>
+									        <div title="Overzichtspagina met actuele status van datasets" class='dijitTabContent' onClick="location.href='#springUrl('/ba/etloverzicht')';">
+								                <span class='tabLabel'>ETL Overzicht</span>
+									        </div>
+									    </div>
+									</div>							    	
+							    	<div id="tabs_ba_naw" class="dijitTab">
+									    <div class='dijitTabInnerDiv'>
+									        <div title="Contact informatie beheren" class='dijitTabContent' onClick="location.href='#springUrl('/ba/naw')';">
+								                <span class='tabLabel'>NAW</span>
+									        </div>
+									    </div>
+									</div>
+							    	<div id="tabs_ba_datasetconfig" class="dijitTab">
+									    <div class='dijitTabInnerDiv'>
+									        <div title="Datasets configureren" class='dijitTabContent' onClick="location.href='#springUrl('/ba/datasetconfig')';">
+								                <span class='tabLabel'>Datasets</span>
+									        </div>
+									    </div>
+									</div>
+									#if($authz.anyGranted("ROLE_BEHEERDER"))
+							    	<div id="tabs_ba_gebruikersbeheer_gebruikers" class="dijitTab">
+									    <div class='dijitTabInnerDiv'>
+									        <div title="Gebruikers en rollen beheren" class='dijitTabContent' onClick="location.href='#springUrl('/ba/gebruikersbeheer/gebruikers')';">
+								                <span class='tabLabel'>Gebruikersbeheer</span>
+									        </div>
+									    </div>
+									</div>
+									#end
+									#if($authz.anyGranted("ROLE_BEHEERDER"))
+							    	<div id="tabs_ba_vdconfig" class="dijitTab">
+									    <div class='dijitTabInnerDiv'>
+									        <div title="Configureren van gegevens voor view en download service capabilities" class='dijitTabContent' onClick="location.href='#springUrl('/ba/vdconfig')';">
+								                <span class='tabLabel'>View&amp;Download service configuratie</span>
+									        </div>
+									    </div>
+									</div>
+									#end
+									#if($authz.anyGranted("ROLE_BEHEERDER"))
+									<div id="tabs_ba_codelists_form" class="dijitTab">
+										<div class="dijitTabInnerDiv">
+											<div title="Configureren mappings voor code lijsten" class="dijitTabContent" onClick="location.href='#springUrl('/ba/codelists')';">
+												<span class="tabLabel">Codelijsten</span>
+											</div>
+										</div>
+									</div>
+									#end
+							    </div>
+							</div>
+						</div>
+					</div>
+				</div>
+			#end
+			<div id="contextLeft">
+				<h3>$!contextTitle</h3>
+			</div>
+			<div id="contextMiddle">
+				<span id="userMessage" class="#if($!{userMessageClass})$userMessageClass#else error#end">$!{userMessage}</span>
+			</div>
+			#if($authenticated && $showTabs != false)
+				<div id="contextRight">
+					<button data-dojo-type="dijit/form/Button" title="Toon hulp bij de functionaliteit waar u nu mee bezig bent">Help
+						<script type="dojo/method" data-dojo-event="onClick" data-dojo-args="evt">			        
+	
+					    var dialog = dijit.byId("helpDialog");
+						dialog.startup();
+						dialog.set("style","display:");
+						dialog.show();
+						if (dojo.isIE == 7){ // only IE7
+							dojo.style(dialog.containerNode, {width: '900px', height: '500px'});
+						} else {
+						## no size for FF or IE8, they scale the help screen according to screen size
+##							dojo.style(dialog.containerNode, {width: '960px', height: '600px'});
+						}
+			        	var underlay = dojo.byId ('helpDialog_underlay');
+				        if (underlay) {
+					        dojo.destroy (underlay);
+				        }
+				        var	elem = dojo.byId ("$viewName");
+			        	dojo.window.scrollIntoView(elem);
+				    </script>
+					</button>
+				</div>
+	##			#set($urlStr = "/resources/CDS-INSPIRE_Handleiding_${roleFunction}.pdf")
+	##			<div id="contextMiddleRight">
+	##				<button data-dojo-type="dijit/form/Button" title="klik voor een ${roleFunction} handleiding">
+	##				Handleiding
+	##					<script type="dojo/method" data-dojo-event="onClick" data-dojo-args="evt">			        
+##	                    ## open a window. 
+##	                    ## URL is loaded into a new window, 
+##	                    ## as in: window.open(url, "_blank");
+##				    	var url = "#springUrl($urlStr)";
+##						window.open(url);
+##				    </script>
+	##				
+	##				</button>
+	##			</div>
+			#end
+			<div id="content">
+				$screenContent
+			</div>
+			<div id="footer">
+			</div>
+			<div class="dijitHidden">
+	    		<div id="helpDialog" data-dojo-type="dojox/widget/DialogSimple" data-dojo-props="title:'Help'">
+	##    		<div id="helpDialog" data-dojo-type="dijit/Dialog" data-dojo-props="title:'Help'">
+				    <div id="helpDialogContentPane" data-dojo-type="dijit/layout/ContentPane">
+				    #if($roleFunction)
+		    			#parse ("help/${roleFunction}.vm")
+		    		#end
+		   			</div>   				        
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

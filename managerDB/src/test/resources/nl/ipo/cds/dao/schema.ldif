@@ -1,0 +1,21 @@
+version: 3
+
+dn: cn=schema
+changetype: modify
+add: attributeTypes
+attributeTypes: ( 1.3.6.1.4.1.26027.1.9.9.1 
+  NAME 'bronhouderCode' 
+  SINGLE-VALUE 
+  EQUALITY integerMatch 
+  ORDERING integerOrderingMatch 
+  )
+-
+add: objectClasses
+objectClasses: ( 
+  1.3.6.1.4.1.26027.1.9.9.2 
+  NAME 'bronhouder' 
+  SUP groupOfNames 
+  STRUCTURAL 
+  MUST bronhouderCode 
+  )
+-

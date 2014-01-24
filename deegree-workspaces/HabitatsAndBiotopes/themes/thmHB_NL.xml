@@ -1,0 +1,17 @@
+<Themes xmlns="http://www.deegree.org/themes/standard" xmlns:d="http://www.deegree.org/metadata/description" xmlns:s="http://www.deegree.org/metadata/spatial" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" configVersion="3.2.0" xsi:schemaLocation="http://www.deegree.org/themes/standard http://schemas.deegree.org/themes/3.2.0/themes.xsd">
+
+  <LayerStoreId>lyrHB_NL</LayerStoreId>
+  
+  <Theme>
+    <Identifier>base</Identifier>
+    <d:Title>Root theme</d:Title>
+    <s:CRS>EPSG:28992</s:CRS>
+    <Theme>
+      <Identifier>HB.Habitat</Identifier>
+      <d:Title>Habitat NL structure</d:Title>
+      <s:CRS>EPSG:28992</s:CRS>
+      <Layer>HB.Habitat_NL</Layer>
+    </Theme>
+  </Theme>
+
+</Themes>

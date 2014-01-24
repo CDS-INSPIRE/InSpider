@@ -1,0 +1,155 @@
+version: 1
+
+dn: dc=inspire,dc=idgis,dc=eu
+objectClass: domain
+objectClass: top
+dc: inspire
+
+dn: ou=People,dc=inspire,dc=idgis,dc=eu
+objectClass: organizationalUnit
+objectClass: top
+ou: People
+
+dn: ou=Group,dc=inspire,dc=idgis,dc=eu
+objectClass: organizationalUnit
+objectClass: top
+ou: Group
+
+dn: cn=beheerder,ou=Group,dc=inspire,dc=idgis,dc=eu
+objectClass: groupOfNames
+objectClass: top
+cn: beheerder
+member: uid=brabant,ou=People,dc=inspire,dc=idgis,dc=eu
+member: uid=drenthe,ou=People,dc=inspire,dc=idgis,dc=eu
+
+dn: uid=brabant,ou=People,dc=inspire,dc=idgis,dc=eu
+objectClass: person
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: top
+cn: brabant
+sn: brabant
+uid: brabant
+userPassword:: e1NIQX1vamdsK0QyZGJzVXJKZSt6YUpMQUxobkwzWlU9
+mail: test@idgis.nl
+
+dn: uid=drenthe,ou=People,dc=inspire,dc=idgis,dc=eu
+objectClass: person
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: top
+cn: drenthe
+sn: drenthe
+uid: drenthe
+userPassword:: e1NIQX05ZmZrZks0aHZDZW1pUTdMYytpOXdVdE02clE9
+mail: test@idgis.nl
+
+dn: uid=flevoland,ou=People,dc=inspire,dc=idgis,dc=eu
+objectClass: person
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: top
+cn: flevoland
+sn: flevoland
+uid: flevoland
+userPassword:: e1NIQX1RL1BXaEd4WGtYTFBjeHJDYkRJSGF6cHdTdXM9
+mail: test@idgis.nl
+
+dn: uid=fryslan,ou=People,dc=inspire,dc=idgis,dc=eu
+objectClass: person
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: top
+cn: fryslan
+sn: fryslan
+uid: fryslan
+userPassword:: e1NIQX1peUdKRWFPcFhXQkI0azFtMnNldHo2TTEvc009
+mail: test@idgis.nl
+
+dn: uid=gelderland,ou=People,dc=inspire,dc=idgis,dc=eu
+objectClass: person
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: top
+cn: gelderland
+sn: gelderland
+uid: gelderland
+userPassword:: e1NIQX1uWFdLZzhaTXEzQkE3MGdZVkVBd2dLeUp1cVE9
+mail: test@idgis.nl
+
+dn: uid=groningen,ou=People,dc=inspire,dc=idgis,dc=eu
+objectClass: person
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: top
+cn: groningen
+sn: groningen
+uid: groningen
+userPassword:: e1NIQX1TSWNmVmlRT0RjSnBBREFrWExmUlY1cVFrTFk9
+mail: test@idgis.nl
+
+dn: uid=limburg,ou=People,dc=inspire,dc=idgis,dc=eu
+objectClass: person
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: top
+cn: limburg
+sn: limburg
+uid: limburg
+userPassword:: e1NIQX0zbmswRnp3aUREU0lIYVlGOXZVemdDbDlJMWM9
+mail: test@idgis.nl
+
+dn: uid=noord-holland,ou=People,dc=inspire,dc=idgis,dc=eu
+objectClass: person
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: top
+cn: noord-holland
+sn: noord-holland
+uid: noord-holland
+userPassword:: e1NIQX14QTJ5M2Z0SzZDWGtxMEpQaE1NQWJLeThMZ3M9
+mail: test@idgis.nl
+
+dn: uid=overijssel,ou=People,dc=inspire,dc=idgis,dc=eu
+objectClass: person
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: top
+cn: overijssel
+sn: overijssel
+uid: overijssel
+userPassword:: e1NIQX03SUNWbWNsTzYxSjdKZjBXWWpGSm1xQW85VXc9
+mail: test@idgis.nl
+
+dn: uid=utrecht,ou=People,dc=inspire,dc=idgis,dc=eu
+objectClass: person
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: top
+cn: utrecht
+sn: utrecht
+uid: utrecht
+userPassword:: e1NIQX14QTJ5M2Z0SzZDWGtxMEpQaE1NQWJLeThMZ3M9
+mail: test@idgis.nl
+
+dn: uid=zeeland,ou=People,dc=inspire,dc=idgis,dc=eu
+objectClass: person
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: top
+cn: zeeland
+sn: zeeland
+uid: zeeland
+userPassword:: e1NIQX1ZUlVRY3owQ0RLeUc0L3AvQ1FNbVpiZHlhVDQ9
+mail: test@idgis.nl
+
+dn: uid=zuid-holland,ou=People,dc=inspire,dc=idgis,dc=eu
+objectClass: person
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: top
+cn: zuid-holland
+sn: zuid-holland
+uid: zuid-holland
+userPassword:: e1NIQX1QeDV0M3ZjMU1GeEdxYXl2aE11SjYwdG51Z1E9
+mail: test@idgis.nl

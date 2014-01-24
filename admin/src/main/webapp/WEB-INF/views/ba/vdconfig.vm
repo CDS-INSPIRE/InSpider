@@ -1,0 +1,465 @@
+#set($layerName='vdconfig')
+<script type="text/javascript">
+require ([
+   	"dijit/dijit",
+	"cds/ready!"
+], function () {
+	// Variable to store the id of the active service_tab
+	var active_service_tab_id;
+	// Variable to store the id of the last created table-row of the keywords_table.
+	var newKeywordRowId;
+	
+    dojo.ready(function() {
+        // Select active service_tab
+		selectServiceTab();
+
+        // Initialize variable "newKeywordRowId"
+        newKeywordRowId = dojo.byId("keywords_table_body").rows.length;
+        
+		// Listen to tab_change and store selected service_tab_id in hidden form input field
+		dojo.connect(dijit.byId("service_tabs"), "selectChild", function(service_tab){
+	    	var service_tab_id_input = dojo.byId("service_tab_id_input");
+	    	active_service_tab_id = service_tab.id;
+		});
+
+    });
+
+    window.selectServiceTab = function (){
+        if("$!serviceTabId"){
+        	var active_tab = dijit.byId("$!serviceTabId");
+    		var service_tabs = dijit.byId("service_tabs");
+    		if(active_tab && service_tabs){
+        		service_tabs.selectChild(active_tab);
+        		active_service_tab_id = active_tab.id;
+    		}
+        }
+	}
+
+	window.addKeyword = function (aObject){
+
+		// increase the new rowId
+		var currentRowId = newKeywordRowId++;
+		// The keywords-table-body
+		var keywordsTableBody = dojo.byId("keywords_table_body");
+		// Intialize the rowindex used for the "name"-attribute of the form-input-widgets
+		var currentRowIndex = keywordsTableBody.rows.length;
+
+		require(["dojo/dom-construct"], function(domConstruct){
+			// The new table-row
+			var tr = domConstruct.create("tr", {id:"tr.service.serviceIdentification.keywords["+currentRowId+"]"}, keywordsTableBody, "last");
+			// Column for mandatory asterix
+			var tdAsterix = domConstruct.create("td", {align:"right", title:"Verplicht veld"}, tr);
+			tdAsterix.innerHTML = "*";
+			// Column for keyword value
+			var tdValue = domConstruct.create("td", null, tr);
+			var valueDiv = domConstruct.create("div", null, tdValue);
+			var valueInput = new dijit.form.TextBox({
+					id:"serviceIdentification.keywords["+currentRowId+"].value",
+					name:"serviceIdentification.keywords["+currentRowIndex+"].value",
+					style:"width:100%"},
+				valueDiv);
+			// Column for keyword codeSpace
+			var tdCodeSpace = domConstruct.create("td", null, tr);
+			var codeSpaceDiv = domConstruct.create("div", null, tdCodeSpace);
+			var codeSpaceInput = new dijit.form.TextBox({
+					id:"serviceIdentification.keywords["+currentRowId+"].codeSpace",
+					name:"serviceIdentification.keywords["+currentRowIndex+"].codeSpace",
+					style:"width:100%"},
+				codeSpaceDiv);
+			// Column for remove keyword link
+			var tdDelete = domConstruct.create("td", null, tr);
+			var removeButton = new dijit.form.Button(
+				{
+					label: "Verwijderen",
+					onClick: function(){
+					alert("tr.service.serviceIdentification.keywords["+currentRowId+"]");
+						removeKeyword("tr.service.serviceIdentification.keywords["+currentRowId+"]");
+					}
+				}
+			);
+			tdDelete.appendChild(removeButton.domNode);
+		});
+	}
+
+	window.removeKeyword = function (id){
+		this.removeDomTreeById(id);
+		this.reNumberTableRowWidgets();
+	}
+
+	/**
+	 * Function to remove a DOM-node and its containing widgets
+	 * @parameter: id: The id of the dom-node to be deleted
+	 */
+	window.removeDomTreeById = function (id){
+		var node = dojo.byId(id);
+		var widgets = dijit.findWidgets(node);
+		for (i in widgets) {
+			var widget = widgets[i];
+			widget.destroy();
+		}
+		// Remove entire node
+		dojo.destroy(id);
+		
+	}
+
+	/**
+	 * When deleting keywords (table-rows), then there are wholes in the indexes of the keywords.
+	 * Therefore rename the "name"-attribute of all widgets from zero to the number of rows.
+	 * Do not try to rename id's, to prevent collisions
+	 */
+	window.reNumberTableRowWidgets = function (){
+		var tableRows = dojo.byId("keywords_table_body").rows;
+		for (i = 0; i < tableRows.length; i++) {
+			var tableRow = tableRows[i];
+			var widgets = dijit.findWidgets(tableRow);
+			// All widgets of tableRow
+			for (j = 0; j < widgets.length; j++) {
+				var widget = widgets[j];
+				var widgetName = widget.name.replace(/\[.+\]/gi, "\[" + i + "\]");
+				// Change the "name"-attribute of the form-widget
+				if(widgetName){
+					widget.set("name", widgetName);
+				}
+			}
+		}
+	}
+
+	window.openMetadataUrl = function (id){
+		var urlNode = dojo.byId(id);
+		window.open(urlNode.value);
+		
+	}
+});
+</script>
+<style>
+<!--
+.left {
+    width: 50%;
+    float:left; /* add this */
+}
+.right {
+    width: 50%;
+    overflow: hidden; /* if you don't want #right to wrap below #left */
+}
+
+-->
+</style>
+<br/>
+<div data-dojo-type="dijit/form/Form" method="POST" action="#springUrl('/ba/vdconfig/service/')$service.id">
+	<script type="dojo/method" data-dojo-event="onSubmit">
+		// Store the id of the active service_tab in a hidden form input field to be submitted to the server
+		var service_tab_id_input = dojo.byId("service_tab_id_input");
+		service_tab_id_input.value = active_service_tab_id;
+        return true;
+    </script>
+	
+	<input type="hidden" name="id" value="$service.id"/>
+	<input type="hidden" id="service_tab_id_input" name="serviceTabId" value="$serviceTabId"/>
+
+	<label>Service:&nbsp;&nbsp;&nbsp;
+	</label>
+    <select data-dojo-type="dijit/form/FilteringSelect" id="serviceId" title="$!service.serviceIdentification.title" name="serviceId" required="true">
+		<script type="dojo/on" data-dojo-event="change">
+					var serviceId = this.get('value');
+					var url = "#springUrl('/ba/vdconfig/service/')" + serviceId;
+					location.href=url + "?serviceTabId=";// active_service_tab_id is undefined here
+		</script>
+		#foreach($s in $services)
+		    <option value="$s.id" #if ($s.id==$service.id) selected="selected" #end>$s.description</option>
+		#end
+	</select>
+	#if($service.serviceIdentification.serviceType.toLowerCase()=="wms")
+	#set($serviceVersion = $inspireGetCapabilitiesRequestWMSVersion)
+	#elseif($service.serviceIdentification.serviceType.toLowerCase()=="wfs")
+	#set($serviceVersion = $inspireGetCapabilitiesRequestWFSVersion)
+	#end
+	&nbsp;&nbsp;&nbsp;&nbsp;<span>Type: $!service.serviceIdentification.serviceType</span>#springBind("service.serviceIdentification.serviceType")#springShowErrors("<br>" "error")
+	&nbsp;&nbsp;&nbsp;&nbsp;<button data-dojo-type="dijit/form/Button" onClick="window.open('${inspireHost}/${service.serviceIdentification.servicePath}?${inspireGetCapabilitiesRequestTemplate}&service=${service.serviceIdentification.serviceType}&version=${serviceVersion}')">Toon service capabilities</button>
+
+	<br/>
+	<br/>
+	
+	#if($service.id)
+	<div style="width: 100%; height: 500px">
+		<div id="service_tabs" data-dojo-type="dijit/layout/TabContainer"
+			style="width: 100%; height: 100%;">
+			<!------------------------------------- TAB SERVICE IDENTIFICATIE -------------------------------------->
+			<div id="service_tab_service_identification" data-dojo-type="dijit/layout/ContentPane" title="Service Identificatie">
+				<table class="cds-table">
+					<tbody>
+						<tr>
+							<th width="10%"><label for="serviceIdentification.title">Titel:</label></th>
+							<td width="1%"></td>
+							<td width="89%">
+<!--									#springFormInput("service.serviceIdentification.title" 'title="De titel van de service" style="width:100%"')-->
+								#springBind("service.serviceIdentification.title")
+								<textarea data-dojo-type="dijit/form/Textarea" id="${status.expression}" name="${status.expression}" title="De titel van de service" style="width:100%">$!status.value</textarea>
+								#springShowErrors("<br>" "error")
+							</td>
+						</tr>
+						<tr>
+							<th><label for="serviceIdentification.abstract">Samenvatting:</label></th>
+							<td align="left" title="Verplicht veld">*</td>
+							<td>
+								#springBind("service.serviceIdentification.abstract")
+								<textarea data-dojo-type="dijit/form/Textarea" id="${status.expression}" name="${status.expression}" title="De samenvatting van de service" style="width:100%">$!status.value</textarea>
+								#springShowErrors("<br>" "error")
+							</td>
+						</tr>
+						<tr>
+							<th><label for="serviceIdentification.fees">Prijsinformatie:</label></th>
+							<td/>
+							<td>
+<!--									#springFormInput("service.serviceIdentification.fees" 'title="De kosten en voorwaarden voor gebruik van de service" style="width:100%"')-->
+								#springBind("service.serviceIdentification.fees")
+								<textarea data-dojo-type="dijit/form/Textarea" id="${status.expression}" name="${status.expression}" title="De kosten en voorwaarden voor gebruik van de service" style="width:100%">$!status.value</textarea>
+								#springShowErrors("<br>" "error")
+							</td>
+						</tr>
+						<tr>
+							<th><label for="serviceIdentification.accessContraints">Gebruiksbeperkingen:</label></th>
+							<td/>
+							<td>
+								#springBind("service.serviceIdentification.accessContraints")
+								<div data-dojo-type="dojox/form/ListInput" id="${status.expression}" title="Klik rechts van de laatste invoer om toe te voegen,  Klik op het kruis om te verwijderen." data-dojo-props="name:'${status.expression}', value:${strings.singleQuoatanizeStringList($status.actualValue)}"></div>
+								#springShowErrors("<br>" "error")
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<!------------------------------------- TAB SERVICE CONTACT -------------------------------------->
+			<div id="service_tab_service_contact" data-dojo-type="dijit/layout/ContentPane" title="Service Contact">
+				<table class="cds-table">
+					<tbody>
+						<tr>
+							<th><label for="serviceProvider.organizationName">Organisatie:</label></th>
+							<td>
+								#springFormInput("service.serviceProvider.organizationName" 'data-dojo-type="dijit/form/TextBox" style="width:100%"')
+								#springShowErrors("<br>" "error")
+							</td>
+							<td colspan="2"/>
+						</tr>
+						<tr>
+							<th><label for="serviceProvider.individualName">Contactpersoon:</label></th>
+							<td>
+								#springFormInput("service.serviceProvider.individualName" 'data-dojo-type="dijit/form/TextBox" style="width:100%"')
+								#springShowErrors("<br>" "error")
+							</td>
+							<th><label for="serviceProvider.positionName">Functie:</label></th>
+							<td>
+								#springFormInput("service.serviceProvider.positionName" 'data-dojo-type="dijit/form/TextBox" title="Functie/positie" style="width:100%"')
+								#springShowErrors("<br>" "error")
+							</td> 
+						</tr>
+						<tr>
+							<th><label for="serviceProvider.deliveryPoints[0]">Adres:</label></th>
+							<td>
+								#springFormInput("service.serviceProvider.deliveryPoints[0]" 'data-dojo-type="dijit/form/TextBox" style="width:100%"')
+								#springShowErrors("<br>" "error")
+							</td> 
+							<td colspan="2"/>
+						</tr>
+						<tr>
+							<th><label for="serviceProvider.postalCode">Postcode:</label></th>
+							<td>
+								#springFormInput("service.serviceProvider.postalCode" 'data-dojo-type="dijit/form/TextBox" style="width:100%"')
+								#springShowErrors("<br>" "error")
+							</td>
+							<th><label for="serviceProvider.city">Plaats:</label></th>
+							<td>
+								#springFormInput("service.serviceProvider.city" 'data-dojo-type="dijit/form/TextBox" style="width:100%"')
+								#springShowErrors("<br>" "error")
+							</td>
+						</tr>
+						<tr>
+							<th width="15%"><label for="serviceProvider.administrativeArea">Provincie:</label></th>
+							<td width="35%">
+								#springFormInput("service.serviceProvider.administrativeArea" 'data-dojo-type="dijit/form/TextBox" style="width:100%"')
+								#springShowErrors("<br>" "error")
+							</td>
+							<td colspan="2"/>
+						</tr>
+						<tr>
+							<th width="15%"><label for="serviceProvider.country">Land:</label></th>
+							<td width="35%">
+								#springFormInput("service.serviceProvider.country" 'data-dojo-type="dijit/form/TextBox" style="width:100%"')
+								#springShowErrors("<br>" "error")
+							</td>
+							<td colspan="2"/>
+						</tr>
+						<tr>
+							<th><label for="serviceProvider.phoneNumbers[0]">Telefoon:</label></th>
+							<td>
+								#springFormInput("service.serviceProvider.phoneNumbers[0]" 'data-dojo-type="dijit/form/TextBox" style="width:100%"')
+								#springShowErrors("<br>" "error")
+							</td>
+							<td colspan="2"/>
+						</tr>
+						<tr>
+							<th><label for="serviceProvider.faxNumbers[0]">Fax:</label></th>
+							<td>
+								#springFormInput("service.serviceProvider.faxNumbers[0]" 'data-dojo-type="dijit/form/TextBox" style="width:100%"')
+								#springShowErrors("<br>" "error")
+							</td> 
+							<td colspan="2"/>
+						</tr>
+						<tr>
+							<th><label for="serviceProvider.emailAddresses[0]">Email:</label></th>
+							<td>
+								#springFormInput("service.serviceProvider.emailAddresses[0]" 'data-dojo-type="dijit/form/TextBox" style="width:100%"')
+								#springShowErrors("<br>" "error")
+							</td>
+							<td colspan="2"/>
+						</tr>
+						#if("$service.serviceIdentification.serviceType" == "WFS")
+							<tr>
+								<th><label for="serviceProvider.contactInstructions">Contact instructies:</label></th>
+								<td>
+									#springFormInput("service.serviceProvider.contactInstructions" 'data-dojo-type="dijit/form/TextBox" style="width:100%"')
+									#springShowErrors("<br>" "error")
+								</td>
+								<th><label for="serviceProvider.hoursOfService">Openingstijden:</label></th>
+								<td>
+									#springFormInput("service.serviceProvider.hoursOfService" 'data-dojo-type="dijit/form/TextBox" style="width:100%"')
+									#springShowErrors("<br>" "error")
+								</td> 
+							</tr>
+							<tr>
+								<th><label for="serviceProvider.providerName">Naam provider:</label></th>
+								<td>
+									#springFormInput("service.serviceProvider.providerName" 'data-dojo-type="dijit/form/TextBox" title="Unieke naam van de organisatie van de service provider" style="width:100%"')
+									#springShowErrors("<br>" "error")
+								</td>
+								<th><label for="serviceProvider.role">Rol provider:</label></th>
+								<td>
+									#springFormInput("service.serviceProvider.role" 'data-dojo-type="dijit/form/TextBox" style="width:100%"')
+									#springShowErrors("<br>" "error")
+								</td> 
+							</tr>
+							<tr>
+								<th colspan="1"><label for="serviceProvider.providerSite">Url website provider:</label></th>
+								<td colspan="3">
+									#springFormInput("service.serviceProvider.providerSite" 'data-dojo-type="dijit/form/TextBox" title="Url naar de meest relevante website van de service provider" style="width:100%"')
+									#springShowErrors("<br>" "error")
+								</td> 
+							</tr>
+						#end
+						<tr>
+							<th colspan="1"><label for="serviceProvider.onlineResource">Url naar online-informatie:</label></th>
+							<td colspan="3">
+								#springFormInput("service.serviceProvider.onlineResource" 'data-dojo-type="dijit/form/TextBox" title="On-line informatie die gebruikt kan worden om contact op te nemen met de persoon of de organisatie" style="width:100%"')
+								#springShowErrors("<br>" "error")
+							</td> 
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<!------------------------------------- TAB KEYWORDS ---------------------------------------------------->
+			<div id="service_tab_keywords" data-dojo-type="dijit/layout/ContentPane" title="Trefwoorden">
+				<table class="cds-table" id="keywords_table">
+					<thead>
+						<tr>
+							<th width="1%" align="right" />
+							<th width="19%">Waarde</th>
+							<th width="30%">Codespace/vocabulaire (optioneel)</th>
+							<th width="10%">Verwijderen</th>
+						</tr>
+					</thead>
+					<tbody id="keywords_table_body">
+						#foreach($keyword in $service.serviceIdentification.keywords)
+							<tr id="tr.service.serviceIdentification.keywords[$foreach.index]">
+								<td align="right" title="Verplicht veld">*</td>
+								<td>
+									#springFormInput("service.serviceIdentification.keywords[$foreach.index].value" 'data-dojo-type="dijit/form/TextBox" title="De waarde van het trefwoord" style="width:100%"')
+									#springShowErrors("<br>" "error")
+								</td>
+								<td>
+									#springFormInput("service.serviceIdentification.keywords[$foreach.index].codeSpace" 'data-dojo-type="dijit/form/TextBox" title="De codespace of vocabulaire van het trefwoord" style="width:100%"')
+									#springShowErrors("<br>" "error")
+								</td> 
+								<td>
+									<button data-dojo-type="dijit/form/Button" onClick="removeKeyword('tr.service.serviceIdentification.keywords[$foreach.index]')" title="Verwijder het trefwoord (klik op Opslaan om te bevestigen)">Verwijderen</button>
+								</td> 
+							</tr>
+						#end
+					</tbody>
+				</table>
+				<button data-dojo-type="dijit/form/Button" onclick="addKeyword(this.getParent());" title="Druk op deze knop om een trefwoord toe te voegen">Trefwoord toevoegen</button>
+			</div>
+			#if("$service.serviceIdentification.serviceType" == "WMS")
+				<!------------------------------------- TAB METADATA ---------------------------------------------------->
+				<div id="service_tab_metadata" data-dojo-type="dijit/layout/ContentPane" title="Layer metadata">
+					<table class="cds-table">
+						<thead>
+							<tr>
+								<th width="10%">Naam</th>
+<!--								<th width="10%">Namespace</th>-->
+								<th colspan="2" width="70%">Url</th>
+								<th width="10%">Gebruik url</th>
+							</tr>
+						</thead>
+						<tbody>
+							#foreach($datasetMetadata in $service.datasetMetadatas)
+								<tr>
+									<td>
+										<label>$datasetMetadata.name</label>
+										<input type="hidden" value="$datasetMetadata.name" name="datasetMetadatas[$foreach.index].name"/>
+									</td>
+<!--									<td>-->
+<!--										<label>$datasetMetadata.namespace</label>-->
+<!--										<input type="hidden" value="$datasetMetadata.namespace" name="datasetMetadatas[$foreach.index].namespace"/>-->
+<!--									</td> -->
+									<td width="1%" align="left" title="Verplicht veld">*</td>
+									<td>
+										#springFormInput("service.datasetMetadatas[$foreach.index].url" 'data-dojo-type="dijit/form/TextBox" title="De url naar de metadata van deze laag" style="width:100%"')
+										#springShowErrors("<br>" "error")
+									</td>
+									<td>
+										<button data-dojo-type="dijit/form/Button" onClick="openMetadataUrl('datasetMetadatas[$foreach.index].url')">Gebruik Url</button>
+									</td>									
+								</tr>
+							#end
+						</tbody>
+					</table>
+				</div>
+			#end
+				<!------------------------------------- TAB EXTENDED CAPABILITIES -------------------------------------->
+				<div id="service_tab_extended_capabilities" data-dojo-type="dijit/layout/ContentPane" title="Extended Capabilities">
+					<table class="cds-table">						
+						<tbody>							
+							<tr>
+								<td style="white-space: nowrap">Url naar metadata van deze service</td>
+								<td width="100%">
+									#springFormInput("service.extendedCapabilities.metadataUrl" 'data-dojo-type="dijit/form/TextBox" style="width:100%"')
+									#springShowErrors("<br>" "error")
+								</td>
+							</tr>
+							#if($service.serviceIdentification.serviceType.toLowerCase()=="wfs")
+							<tr>
+								<td style="white-space: nowrap">SpatialDataSetIdentifier Code</td>
+								<td width="100%">
+									#springFormInput("service.extendedCapabilities.spatialDataSetIdentifier.code" 'data-dojo-type="dijit/form/TextBox" style="width:100%"')
+									#springShowErrors("<br>" "error")
+								</td>
+							</tr>
+							<tr>
+								<td style="white-space: nowrap">SpatialDataSetIdentifier Namespace</td>
+								<td width="100%">
+									#springFormInput("service.extendedCapabilities.spatialDataSetIdentifier.namespace" 'data-dojo-type="dijit/form/TextBox" style="width:100%"')
+									#springShowErrors("<br>" "error")
+								</td>
+							</tr>
+							#end							
+						</tbody>
+					</table>
+				</div>
+		</div>
+	</div>
+	
+	<div id="stdButton">
+		<button data-dojo-type="dijit/form/Button" type="submit" name="submit" value="Submit" title="Druk op deze knop om de wijzigingen van Service gegevens op te slaan">Opslaan</button>
+	</div>
+	
+	#end
+</div>

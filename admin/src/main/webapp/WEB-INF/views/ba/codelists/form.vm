@@ -1,0 +1,29 @@
+<h2>Configuratie mappings voor codelijsten</h2>
+
+<form method="post" action="#springUrl('/ba/codelists')">
+	<table class="cds-table">
+		<thead>
+			<tr>
+				<th>Codelijst identifier</th>
+				<th>Atom feed URL</th>
+			</tr>			
+		</thead>
+		<tfoot>
+			<tr>
+				<th colspan="2">
+					<button type="submit" name="store" value="" data-dojo-type="dijit/form/Button">Opslaan</button>
+				</th>
+			</tr>
+		</tfoot>
+		<tbody>
+			#foreach($codeSpace in $codeSpaces)
+			<tr>
+				<td>#e($codeSpace)</td>
+				<td>
+					<input value="#e($mappings[$codeSpace])" type="text" name="mappings[#e($codeSpace)]" data-dojo-type="dijit/form/TextBox" data-dojo-props="style: 'width: 40em;'">
+				</td>
+			</tr>
+			#end
+		</tbody>
+	</table>
+</form>

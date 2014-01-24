@@ -1,0 +1,19 @@
+<config xmlns="urn:cds-inspire:config:xml" 
+    xmlns:gml="http://www.opengis.net/gml/3.2"
+    xmlns:flat="urn:cds-inspire:flat">
+    <gmlVersion>GML_31</gmlVersion>
+    <replace>
+        <flat:inspireID>flat:inspireID</flat:inspireID>
+		<flat:INSPIRE_ID>flat:inspireID</flat:INSPIRE_ID>
+
+        <flat:SHAPE>flat:geometry</flat:SHAPE>
+		<flat:GEOMETRY>flat:geometry</flat:GEOMETRY>
+
+        <flat:legalFoundationDate>flat:legalFoundationDate</flat:legalFoundationDate>
+        <flat:legalFoundationDocument>flat:legalFoundationDocument</flat:legalFoundationDocument>
+        <flat:NAAM>flat:siteName</flat:NAAM>
+        <flat:siteDesignation>flat:siteDesignation</flat:siteDesignation>
+        <flat:siteProtectionClassification>flat:siteProtectionClassification</flat:siteProtectionClassification>
+        <flat:percentageUnderDesignation>flat:percentageUnderDesignation</flat:percentageUnderDesignation>
+    </replace>  
+</config>

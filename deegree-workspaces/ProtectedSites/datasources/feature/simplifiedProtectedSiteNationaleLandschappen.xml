@@ -1,0 +1,30 @@
+<ExtendedSimpleSQLFeatureStore
+    configVersion="3.0.0"
+    xmlns="urn:cds-inspire:deegree-extension:persistence">
+    
+    <StorageCRS>EPSG:28992</StorageCRS>  
+    <FeatureTypeName>ProtectedSite</FeatureTypeName>
+    <FeatureTypeNamespace>urn:x-inspire:simplified</FeatureTypeNamespace>
+    <ConnectionPoolId>cds-inspire</ConnectionPoolId>
+    
+    <SQLStatement>
+        select st_asbinary(st_transform(geometry, ?)) geometry, site_designation
+        from inspire.protected_site ps
+        join inspire.jt_site_designation jtsd on jtsd.fk_protected_site = id
+        join inspire.dt_site_designation dtsd on dtsd.id = jtsd.fk_site_designation
+        where geometry &amp;&amp; st_setsrid(st_geomfromtext(?, -1), 28992) 
+        and site_designation = 'nationaleLandschappen'
+        order by dtsd.id desc
+    </SQLStatement>
+    
+    <BBoxStatement>
+        select st_astext(st_extent(geometry)) bbox from inspire.protected_site_nationale_landschappen
+    </BBoxStatement>
+    
+    <LODStatement aboveScale="50000">
+        select st_asbinary(st_transform(geometry, ?)) geometry, 'nationaleLandschappen' site_designation
+        from inspire.protected_site_nationale_landschappen
+        where geometry &amp;&amp; st_setsrid(st_geomfromtext(?, -1), 28992)
+    </LODStatement>
+    
+</ExtendedSimpleSQLFeatureStore>

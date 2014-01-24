@@ -1,0 +1,12 @@
+<config xmlns="urn:cds-inspire:config:xml"
+    xmlns:flat="urn:cds-inspire:flat">
+    <replace>
+        <flat:fryslan.fryslan.annexi_wav.inspireid>flat:inspireID</flat:fryslan.fryslan.annexi_wav.inspireid>       
+        <flat:fryslan.fryslan.annexi_wav.legalfoundationdate>flat:legalFoundationDate</flat:fryslan.fryslan.annexi_wav.legalfoundationdate>
+        <flat:fryslan.fryslan.annexi_wav.legalfoundationdocument>flat:legalFoundationDocument</flat:fryslan.fryslan.annexi_wav.legalfoundationdocument>
+        <flat:fryslan.fryslan.annexi_wav.sitename>flat:siteName</flat:fryslan.fryslan.annexi_wav.sitename>
+        <flat:fryslan.fryslan.annexi_wav.sitedesignation>flat:siteDesignation</flat:fryslan.fryslan.annexi_wav.sitedesignation>
+        <flat:fryslan.fryslan.annexi_wav.siteprotectionclassification>flat:siteProtectionClassification</flat:fryslan.fryslan.annexi_wav.siteprotectionclassification>
+        <flat:fryslan.fryslan.annexi_wav.percentageunderdesignation>flat:percentageUnderDesignation</flat:fryslan.fryslan.annexi_wav.percentageunderdesignation>
+    </replace>  
+</config>

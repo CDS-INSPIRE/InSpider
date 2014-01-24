@@ -1,0 +1,6 @@
+<config xmlns="urn:cds-inspire:config:xml"
+    xmlns:flat="urn:cds-inspire:flat">
+    <replace>       
+        <flat:SHAPE>flat:geometry</flat:SHAPE>
+    </replace>  
+</config>

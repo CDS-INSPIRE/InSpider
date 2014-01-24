@@ -1,0 +1,302 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>cds-parent</artifactId>
+		<groupId>nl.ipo.cds</groupId>
+		<version>2.2-SNAPSHOT</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+	<artifactId>etl-proces</artifactId>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+					<fork>true</fork>
+					<maxmem>1024</maxmem>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<phase>package</phase>
+					</execution>
+				</executions>
+				<configuration>			      	
+			      	<appendAssemblyId>true</appendAssemblyId>
+			      	<descriptors>
+		     			<descriptor>src/main/assembly/assembly-sql.xml</descriptor>		      		
+			      	</descriptors>
+				</configuration>
+		    </plugin>
+		
+			
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>aspectj-maven-plugin</artifactId>
+				<version>1.5</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>compile</goal>       <!-- use this goal to weave all your main classes -->
+							<goal>test-compile</goal>  <!-- use this goal to weave all your test classes -->
+						</goals>
+					</execution>
+				</executions>
+                <configuration>
+                	<source>1.6</source>
+                	<target>1.6</target>
+                    <complianceLevel>1.6</complianceLevel>
+			        <aspectLibraries>
+			            <aspectLibrary>
+			                <groupId>org.springframework</groupId>
+			                <artifactId>spring-aspects</artifactId>
+			            </aspectLibrary>
+			        </aspectLibraries>
+                </configuration>
+			</plugin>
+<!--     	    <plugin> -->
+<!-- 				<groupId>org.dstovall</groupId> -->
+<!-- 				<artifactId>onejar-maven-plugin</artifactId> -->
+<!-- 				<executions> -->
+<!-- 					<execution> -->
+<!-- 						<id>main</id> -->
+<!-- 						<configuration> -->
+<!-- 							<mainClass>nl.ipo.cds.etl.GenerateAttributeMappings</mainClass> -->
+<!-- 							<attachToBuild>true</attachToBuild> -->
+<!-- 							<classifier>mappings</classifier> -->
+<!-- 							<filename>${project.build.finalName}-mappings.jar</filename> -->
+<!-- 						</configuration> -->
+<!-- 						<goals> -->
+<!-- 							<goal>one-jar</goal> -->
+<!-- 						</goals> -->
+<!-- 					</execution> -->
+<!-- 				</executions> -->
+<!-- 			</plugin> -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-shade-plugin</artifactId>
+					<version>2.0</version>
+					<configuration>
+						<finalName>${project.artifactId}-${project.version}-SHADED</finalName>
+						<transformers>
+							<transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+								<mainClass>nl.ipo.cds.etl.GenerateAttributeMappings</mainClass>
+								<manifestEntries>
+									<Main-Class>nl.ipo.cds.etl.GenerateAttributeMappings</Main-Class>
+								</manifestEntries>
+							</transformer>
+			                <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer" />
+			                <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+			                  <resource>META-INF/spring.handlers</resource>
+			                </transformer>
+			                <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+			                  <resource>META-INF/spring.schemas</resource>
+			                </transformer>
+			                <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+			                  <resource>META-INF/persistence.xml</resource>
+			                </transformer>
+						</transformers>
+						<filters>
+							<filter>
+								<artifact>*:*</artifact>
+								<excludes>
+									<exclude>META-INF/*.SF</exclude>
+									<exclude>META-INF/*.DSA</exclude>
+									<exclude>META-INF/*.RSA</exclude>
+								</excludes>
+							</filter>
+						</filters>
+					</configuration>
+					<executions>
+						<execution>
+							<phase>package</phase>
+							<goals>
+								<goal>shade</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+		</plugins>
+		<pluginManagement>
+			<plugins>
+				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											org.codehaus.mojo
+										</groupId>
+										<artifactId>
+											aspectj-maven-plugin
+										</artifactId>
+										<versionRange>
+											[1.4,)
+										</versionRange>
+										<goals>
+											<goal>test-compile</goal>
+											<goal>compile</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore />
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+            
+	            <plugin>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<configuration>
+						<skip>true</skip>
+					</configuration>
+					<executions>
+						<execution>
+							<id>unit-tests</id>
+							<phase>test</phase>
+							<goals>
+								<goal>test</goal>
+							</goals>
+							<configuration>
+								<skip>false</skip>
+								<excludes>
+									<exclude>**/*IntegrationTest.java</exclude>
+								</excludes>
+							</configuration>
+						</execution>
+						<execution>
+							<id>integration-tests</id>
+							<phase>integration-test</phase>
+							<goals>
+								<goal>test</goal>
+							</goals>
+							<configuration>
+								<skip>true</skip>
+								<includes>
+									<include>**/*IntegrationTest.java</include>
+								</includes>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+	<dependencies>
+		<dependency>
+			<groupId>org.apache.ws.commons.axiom</groupId>
+			<artifactId>axiom-impl</artifactId>
+			<version>1.2.13</version>
+			<scope>compile</scope>
+			<exclusions>
+				<exclusion>
+					<artifactId>geronimo-javamail_1.4_spec</artifactId>
+					<groupId>org.apache.geronimo.specs</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.16</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>nl.ipo.cds</groupId>
+			<artifactId>domain</artifactId>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>nl.ipo.cds</groupId>
+			<artifactId>commons</artifactId>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.deegree</groupId>
+			<artifactId>deegree-core-base</artifactId>
+			<version>${deegree3.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>postgresql</artifactId>
+					<groupId>postgresql</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>nl.ipo.cds</groupId>
+			<artifactId>resources</artifactId>
+			<classifier>tests</classifier>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>nl.ipo.cds</groupId>
+			<artifactId>managerDB</artifactId>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aspects</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.jmock</groupId>
+			<artifactId>jmock</artifactId>
+			<version>2.5.1</version>
+			<type>jar</type>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-email</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.velocity</groupId>
+			<artifactId>velocity</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>nl.ipo.cds</groupId>
+			<artifactId>attributemapping</artifactId>
+			<version>2.2-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>nl.ipo.cds</groupId>
+			<artifactId>etl-operations</artifactId>
+			<version>2.2-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>nl.idgis.commons</groupId>
+			<artifactId>commons-jobexecutor</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>nl.ipo.cds</groupId>
+			<artifactId>validation</artifactId>
+		</dependency>
+	</dependencies>
+</project>

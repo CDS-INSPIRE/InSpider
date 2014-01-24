@@ -1,0 +1,95 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <artifactId>cds-parent</artifactId>
+    <groupId>nl.ipo.cds</groupId>
+    <version>2.2-SNAPSHOT</version>
+  </parent>
+  <artifactId>cds-test</artifactId>
+
+	<build>
+		<plugins>
+<!-- 			<plugin> -->
+<!-- 				<groupId>org.dstovall</groupId> -->
+<!-- 				<artifactId>onejar-maven-plugin</artifactId> -->
+<!-- 				<executions> -->
+<!-- 					<execution> -->
+<!-- 						<id>main</id> -->
+<!-- 						<configuration> -->
+<!-- 							<mainClass>nl.ipo.cds.webservices.FeatureCompletenessChecker</mainClass> -->
+<!-- 							<attachToBuild>true</attachToBuild> -->
+<!-- 							<classifier>feature-checker</classifier> -->
+<!-- 							<filename>${project.build.finalName}feature-checker.jar</filename> -->
+<!-- 						</configuration> -->
+<!-- 						<goals> -->
+<!-- 							<goal>one-jar</goal> -->
+<!-- 						</goals> -->
+<!-- 					</execution> -->
+<!-- 				</executions> -->
+<!-- 			</plugin> -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-shade-plugin</artifactId>
+					<version>2.0</version>
+					<configuration>
+						<finalName>${project.artifactId}-${project.version}-feature-checker-SHADED</finalName>
+						<transformers>
+							<transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+								<mainClass>nl.ipo.cds.webservices.FeatureCompletenessChecker</mainClass>
+								<manifestEntries>
+									<Main-Class>nl.ipo.cds.webservices.FeatureCompletenessChecker</Main-Class>
+								</manifestEntries>
+							</transformer>
+			                <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer" />
+			                <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+			                  <resource>META-INF/spring.handlers</resource>
+			                </transformer>
+			                <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+			                  <resource>META-INF/spring.schemas</resource>
+			                </transformer>
+			                <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+			                  <resource>META-INF/persistence.xml</resource>
+			                </transformer>
+						</transformers>
+						<filters>
+							<filter>
+								<artifact>*:*</artifact>
+								<excludes>
+									<exclude>META-INF/*.SF</exclude>
+									<exclude>META-INF/*.DSA</exclude>
+									<exclude>META-INF/*.RSA</exclude>
+								</excludes>
+							</filter>
+						</filters>
+					</configuration>
+					<executions>
+						<execution>
+							<phase>package</phase>
+							<goals>
+								<goal>shade</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+		</plugins>
+	</build>
+  <dependencies>
+  	<dependency>
+  		<groupId>nl.ipo.cds</groupId>
+  		<artifactId>managerDB</artifactId>
+  		<type>jar</type>
+  		<scope>compile</scope>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.springframework</groupId>
+  		<artifactId>spring-test</artifactId>
+  		<type>pom</type>
+  	</dependency>
+  	<dependency>
+  		<groupId>nl.ipo.cds</groupId>
+  		<artifactId>etl-proces</artifactId>
+  		<type>jar</type>
+  		<scope>compile</scope>
+  	</dependency>
+  </dependencies>
+</project>

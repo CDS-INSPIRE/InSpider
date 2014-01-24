@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+      http://www.springframework.org/schema/beans/spring-beans.xsd
+      http://www.springframework.org/schema/tx
+      http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+	
+	<!--
+		Let the Spring container act as a JPA container and inject an
+		EnitityManager from the EntityManagerFactory into @PersistenceContext
+		annotated properties/methods.
+	-->
+	<bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor"/>
+
+	<!--
+		The entityManagerFactory creates the EntityManager's used by the DAO's
+	-->
+	<bean id="entityManagerFactoryMetadata"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="persistenceUnitName" value="cds-metadata" />
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+				<property name="showSql" value="false" />
+				<property name="generateDdl" value="true" />
+				<property name="databasePlatform" value="org.hibernate.dialect.PostgreSQLDialect" />
+			</bean>
+		</property>
+		<property name="dataSource" ref="dataSource"/>
+		<property name="jpaDialect" ref="jpaDialect"/>
+	</bean>
+
+	<bean id="jpaDialect" class="org.springframework.orm.jpa.vendor.HibernateJpaDialect"/>
+
+	<!--
+		The JpaTransactionManager is responsible for creating EntityManagers
+		opening transactions and binding them to the current thread context.
+	-->
+	<bean id="transactionManagerMetadata" class="org.springframework.orm.jpa.JpaTransactionManager" >
+		<property name="entityManagerFactory" ref="entityManagerFactoryMetadata" />
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<!--
+		Tell Spring to put transactional advice on any class or method that
+		has an @Transactional annotation on it.
+	-->
+	<tx:annotation-driven mode="aspectj" transaction-manager="transactionManagerMetadata"/>
+
+	<!-- Dao's -->
+	<bean id="metadataDao" class="nl.ipo.cds.dao.metadata.impl.MetadataDaoImpl">
+	</bean>
+	
+</beans>

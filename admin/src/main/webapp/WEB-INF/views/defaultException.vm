@@ -1,0 +1,39 @@
+<p>Interne serverfout.</p>
+
+<script type="text/javascript">
+require ([
+	"dojo/dom",
+	"dojo/dom-style",
+	"dojo/on",
+    "cds/ready!"
+], function (dom, domStyle, on) {
+	var show = dom.byId("show");
+	var hide = dom.byId("hide");
+	var exception = dom.byId("exception");
+	
+	on(show, "click", function(e) {
+		domStyle.set(show, "display", "none");
+		domStyle.set(hide, "display", "inline");
+		domStyle.set(exception, "display", "block");
+		
+		e.preventDefault();
+	});
+	
+	on(hide, "click", function(e) {
+		domStyle.set(show, "display", "inline");
+		domStyle.set(hide, "display", "none");
+		domStyle.set(exception, "display", "none");
+		
+		e.preventDefault();
+	});
+});
+
+</script>
+
+<p>
+	<a id="show" href="">Stacktrace weergeven</a>
+	<a style="display: none" id="hide" href="">Stacktrace verbergen</a>
+	<pre style="display: none" id="exception">
+		$exceptionUtils.getFullStackTrace($exception)
+	</pre>
+</p>

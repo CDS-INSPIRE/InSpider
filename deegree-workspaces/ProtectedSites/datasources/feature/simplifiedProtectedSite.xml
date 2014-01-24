@@ -1,0 +1,59 @@
+<ExtendedSimpleSQLFeatureStore
+    configVersion="3.0.0"
+    xmlns="urn:cds-inspire:deegree-extension:persistence">
+    
+    <StorageCRS>EPSG:28992</StorageCRS>  
+    <FeatureTypeName>ProtectedSite</FeatureTypeName>
+    <FeatureTypeNamespace>urn:x-inspire:simplified</FeatureTypeNamespace>
+    <ConnectionPoolId>cds-inspire</ConnectionPoolId>
+    
+    <SQLStatement>
+        select st_asbinary(st_transform(geometry, ?)) geometry, site_designation
+        from inspire.protected_site ps
+        join inspire.jt_site_designation jtsd on jtsd.fk_protected_site = id
+        join inspire.dt_site_designation dtsd on dtsd.id = jtsd.fk_site_designation
+        where geometry &amp;&amp; st_setsrid(st_geomfromtext(?, -1), 28992)
+        order by dtsd.id desc
+    </SQLStatement>
+    
+    <BBoxStatement>
+        select st_astext(st_extent(geometry)) bbox from (
+        select geometry from inspire.protected_site_aardkundige_waarden
+        union all
+        select geometry from inspire.protected_site_ecologische_hoofdstructuur
+        union all
+        select geometry from inspire.protected_site_nationale_landschappen
+        union all
+        select geometry from inspire.protected_site_provinciale_monumenten
+        union all
+        select geometry from inspire.protected_site_stilte_gebieden
+        union all
+        select geometry from inspire.protected_site_wav_gebieden
+        ) bq
+    </BBoxStatement>
+    
+    <LODStatement aboveScale="50000">
+        select st_asbinary(st_transform(geometry, ?)) geometry, site_designation from (
+        select geometry, site_designation, dtsd.id from inspire.protected_site_aardkundige_waarden
+        join inspire.dt_site_designation dtsd on dtsd.site_designation = 'aardkundigeWaarden'
+        union all
+        select geometry, site_designation, dtsd.id from inspire.protected_site_ecologische_hoofdstructuur
+        join inspire.dt_site_designation dtsd on dtsd.site_designation = 'ecologischeHoofdstructuur'
+        union all
+        select geometry, site_designation, dtsd.id from inspire.protected_site_nationale_landschappen
+        join inspire.dt_site_designation dtsd on dtsd.site_designation = 'nationaleLandschappen'
+        union all
+        select geometry, site_designation, dtsd.id from inspire.protected_site_provinciale_monumenten
+        join inspire.dt_site_designation dtsd on dtsd.site_designation = 'provincialeMonumenten'
+        union all
+        select geometry, site_designation, dtsd.id from inspire.protected_site_stilte_gebieden
+        join inspire.dt_site_designation dtsd on dtsd.site_designation = 'stilteGebieden'
+        union all
+        select geometry, site_designation, dtsd.id from inspire.protected_site_wav_gebieden
+        join inspire.dt_site_designation dtsd on dtsd.site_designation = 'WAVGebieden'
+        ) bq
+        where geometry &amp;&amp; st_setsrid(st_geomfromtext(?, -1), 28992)
+        order by id desc
+    </LODStatement>
+    
+</ExtendedSimpleSQLFeatureStore>

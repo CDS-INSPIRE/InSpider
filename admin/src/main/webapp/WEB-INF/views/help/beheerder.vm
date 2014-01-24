@@ -1,0 +1,594 @@
+<div class="contexthelp" id="contexthelp">
+	<div id="_ba_monitoring">
+        <h1>Monitoring (Beheerdersmodule)</h1>
+        <h2>Monitoring van het etl-proces en de services</h2>
+		<h3>
+			Een overzicht van de werking van de belangrijkste onderdelen van CDS.
+		</h3>
+		<p>
+		<!-- OK, WARNING, CRITICAL and UNKNOWN -->
+			De stoplichten geven in één oogopslag weer wat de toestand is tav het ETL proces en de view en download service. <br/>
+			De kleuren hebben de volgende betekenis:
+		</p>
+		<ul>
+			<li>
+				<span class="greenlight"> GROEN:&nbsp;&nbsp;</span>
+				OK: geen problemen geconstateerd.
+			</li>
+			<li>
+				<span  class="orangelight"> ORANJE:&nbsp;</span>
+				WARNING: Het onderdeel is 1 of meer keren buiten de specificaties gekomen. <br/>
+				Als dit vaker dan 5 keer gebeurd gaat de situatie naar ROOD (CRITICAL)
+			</li>
+			<li>
+				<span  class="redlight"> ROOD:&nbsp;&nbsp;&nbsp;</span>
+				CRITICAL: Het onderdeel werkt niet naar behoren of er kunnen geen metingen worden verricht omtrent de goede werking.
+			</li>
+		</ul>
+		<br/>
+			Klik met de muis op een icoon om een menu te openen.
+		<br/>
+			Kies daarna uit de menu items.
+		<br/>
+		<br/>
+		<h4>Status services</h4>
+		<p>De status van de services wordt bepaald aan de hand van de volgende indicatoren:
+		<ul>
+		<li>WFS Availability</li>
+		<li>WMS Availability</li>
+		<li>WMS Performance</li>
+		</ul>
+		Omdat de WFS en WMS dubbel zijn uitgevoerd (twee onafhankelijke machines) wordt de status van de indicatoren
+		bepaald door de combinatie van de twee machines.<br/><br/>
+
+		Per indicator kan de volgende tabel worden gehanteerd:
+
+		<table style="width:97%" class="cds-table">
+		<thead >
+			<tr>
+			<th title="Machine A" style="text-align:center" width="20%">Machine A</th>
+			<th title="Machine B" style="text-align:center" width="20%">Machine B</th>
+			<th title="Status" style="text-align:center" width="20%">Status</th>
+			<th title="Toelichting" style="text-align:left" width="40%">Toelichting</th>
+		</thead>
+		<tbody >
+					<tr>
+						<td style="text-align:center">OK</td>
+						<td style="text-align:center">OK</td>
+						<td style="text-align:center">OK</td>
+						<td style="text-align:left">Geen uitval</td>
+					</tr>
+					<tr>
+						<td style="text-align:center">OK</td>
+						<td style="text-align:center">Warning</td>
+						<td style="text-align:center">Warning</td>
+						<td style="text-align:left">Geen uitval, wel verhoogde kans op uitval</td>
+					</tr>
+					<tr>
+						<td style="text-align:center">Warning</td>
+						<td style="text-align:center">OK</td>
+						<td style="text-align:center">Warning</td>
+						<td style="text-align:left">Geen uitval, wel verhoogde kans op uitval</td>
+					</tr>
+					<tr>
+						<td style="text-align:center">OK</td>
+						<td style="text-align:center">Critical</td>
+						<td style="text-align:center">Warning</td>
+						<td style="text-align:left">Geen uitval, wel verhoogde kans op uitval</td>
+					</tr>
+					<tr>
+						<td style="text-align:center">Critical</td>
+						<td style="text-align:center">OK</td>
+						<td style="text-align:center">Warning</td>
+						<td style="text-align:left">Geen uitval, wel verhoogde kans op uitval</td>
+					</tr>
+					<tr>
+						<td style="text-align:center">Critical</td>
+						<td style="text-align:center">Critical</td>
+						<td style="text-align:center">Critical</td>
+						<td style="text-align:left">Voor gebruiker merkbare problemen in availability of performance</td>
+					</tr>
+
+		</tbody>
+		<tfoot>
+			<tr>
+			<th colspan="4">&nbsp;</th>
+			</tr>
+		</tfoot>
+		</table>
+		<br/>
+				<p>De slechtste score van een van de drie indicatoren bepaalt uiteindelijk de algehele status en dus de stoplichtkleur.
+				De volgende waarden zijn mogelijk:
+				</p>
+				<br/>
+				<table style="width:40%" class="cds-table">
+						<thead >
+							<tr>
+							<th title="Status" style="text-align:center" width="50%">Status</th>
+							<th title="Machine B" style="text-align:center" width="50%">Stoplicht</th>
+
+						</thead>
+						<tbody >
+							<tr>
+								<td style="text-align:center" >OK</td>
+								<td style="text-align:center" ><span class="greenlight">Groen</span>
+							</tr>
+							<tr>
+								<td style="text-align:center">Warning</td>
+								<td style="text-align:center"><span class="orangelight">Oranje</span></td>
+
+							</tr>
+							<tr>
+								<td style="text-align:center">Critical</td>
+								<td style="text-align:center"><span class="redlight">Rood</span></td>
+
+							</tr>
+							<tr>
+								<td style="text-align:center">Unknown</td>
+								<td style="text-align:center"><span class="redlight">Rood</span></td>
+
+							</tr>
+
+						</tbody>
+						<tfoot>
+							<tr>
+							<th colspan="2">&nbsp;</th>
+							</tr>
+				</tfoot>
+				</table>
+
+				<h4>Status data</h4>
+				<p>
+				De status wordt bepaald aan de hand van de status van de volgende indicatoren:
+				</p>
+				<ul>
+				<li>Aborted ETL jobs</li>
+				<li>ETL Job Age</li>
+				<li>Service jars</li>
+				<li>Database replication</li>
+				</ul>
+				<p>
+				Voor de eerste drie indicatoren geldt de slechtste score per machine.
+				Voor de indicator &quot;Database replication&quot; geldt de volgende tabel:
+				<br/>
+				</p>
+				<table style="width:97%" class="cds-table">
+						<thead >
+							<tr>
+							<th title="Score Machine A" style="text-align:center" width="20%">Score Machine A</th>
+							<th title="Score Machine B" style="text-align:center" width="20%">Score Machine B</th>
+							<th title="Status" style="text-align:center" width="20%">Status</th>
+							<th title="Toelichting" style="text-align:left" width="40%">Toelichting</th>
+						</thead>
+						<tbody >
+							<tr>
+								<td style="text-align:center">OK</td>
+								<td style="text-align:center">OK</td>
+								<td style="text-align:center">OK</td>
+								<td style="text-align:left">Geen probleem</td>
+							</tr>
+							<tr>
+								<td style="text-align:center">OK</td>
+								<td style="text-align:center">Warning</td>
+								<td style="text-align:center">Warning</td>
+								<td style="text-align:left">Geen falen, wel verhoogd risico</td>
+							</tr>
+							<tr>
+								<td style="text-align:center">Warning</td>
+								<td style="text-align:center">OK</td>
+								<td style="text-align:center">Warning</td>
+								<td style="text-align:left">Geen falen, wel verhoogd risico</td>
+							</tr>
+							<tr>
+								<td style="text-align:center">OK</td>
+								<td style="text-align:center">Critical</td>
+								<td style="text-align:center">Warning</td>
+								<td style="text-align:left">Geen falen, wel verhoogd risico</td>
+							</tr>
+							<tr>
+								<td style="text-align:center">Critical</td>
+								<td style="text-align:center">OK</td>
+								<td style="text-align:center">Warning</td>
+								<td style="text-align:left">Geen falen, wel verhoogd risico</td>
+							</tr>
+							<tr>
+								<td style="text-align:center">Critical</td>
+								<td style="text-align:center">Critical</td>
+								<td style="text-align:center">Critical</td>
+								<td style="text-align:left">Falen</td>
+							</tr>
+
+						</tbody>
+						<tfoot>
+							<tr>
+							<th colspan="4">&nbsp;</th>
+							</tr>
+				</tfoot>
+				</table>
+				<br/>
+				<p>De slechtste score van één van de vier indicatoren bepaalt
+				uiteindelijk de algehele status en dus de stoplichtkleur. De volgende waarden zijn mogelijk:
+				</p>
+				<table style="width:40%" class="cds-table">
+								<thead >
+									<tr >
+									<th title="Status" style="text-align:center" width="50%" >Status</th>
+									<th title="Machine B" style="text-align:center" width="50%">Stoplicht</th>
+
+								</thead>
+								<tbody >
+									<tr>
+										<td style="text-align:center" >OK</td>
+										<td style="text-align:center" ><span class="greenlight">Groen</span></td>
+
+									</tr>
+									<tr>
+										<td style="text-align:center">Warning</td>
+										<td style="text-align:center"><span class="orangelight">Oranje</span></td>
+
+									</tr>
+									<tr>
+										<td style="text-align:center">Critical</td>
+										<td style="text-align:center"><span class="redlight">Rood</span></td>
+
+									</tr>
+									<tr>
+										<td style="text-align:center">Unknown</td>
+										<td style="text-align:center"><span class="redlight">Rood</span></td>
+
+									</tr>
+
+								</tbody>
+								<tfoot >
+									<tr>
+									<th colspan="2">&nbsp;</th>
+									</tr>
+						</tfoot>
+				</table>
+				<br/>
+		<h4>Historie status services opvragen</h4>
+		<p>U kunt de historie opvragen van de service status. Klik op het icoon en kies de indicator die u wilt opvragen:
+		<ul>
+		<li>WFS Availability</li>
+		<li>WMS Availability</li>
+		<li>WMS Performance</li>
+		</ul>
+
+		U komt vervolgens (na inloggen met uw CDS gebruikersnaam en wachtwoord) in de betreffende Nagios pagina terecht
+		(in onderstaand voorbeeld de WFS Availability):<br/><br/>
+##		style attribuut met width / height noodzakelijk voor goede weergave in IE7/IE8
+		<img src="#springUrl('/images/ServiceStateNagios.png')" style="width:1100px; height:442px" >
+		<br/>
+		<div class="note">
+		<img src="#springUrl('/images/tip.png')" style="width:15px; height:15px" /> Het valt buiten de scope van deze Help om Nagios hier verder toe te lichten.
+		  Meer informatie kunt u vinden op de website van nagios: 
+##		  <A href="http://www.nagios.org">
+		  http://www.nagios.org
+##		  </A> ## reference is commented out because it interferes with dojo.window.scrollIntoView(elem) in baLayout.vm 
+		 </div>
+
+		 <h4>Logging Systeem opvragen</h4>
+		 Klik op het icoon <b>Systeem</b> en kies de logging (Memory of Load).
+		 U kunt vervolgens inloggen met uw CDS gebruikersnaam en wachtwoord,
+		 waarna de betreffende Munin pagina wordt geopend (in onderstaand voorbeeld &quot;Memory&quot;):<br><br>
+
+		<img src="#springUrl('/images/MuninMemory.png')" style="width:1079px; height:606px" >
+		<br/>
+		<br/>
+		<div class="note"><img src="#springUrl('/images/tip.png')" style="width:15px; height:15px" /> Gebruik het kruimelpad bovenin de pagina,
+		of pas de URL aan om het overzicht voor de andere server (server-b.inspire-provincies.nl) te openen.
+		</div>
+		<h4>Voorbeeld: opvragen Disk usage voor de inspire-b server</h4>
+		<ol>
+		<li>Klik in het kruimelpad op Inspire. De index lijst met beschikbare items wordt geopend.
+		<li>De volgende machines zijn voor CDS-INSPIRE van belang:  server-a.inspire-provincies.nl en server-b.inspire-provincies.nl. (dus niet inspire-a.inspire.idgis.eu)
+		<li>Scroll naar server-b.inspire-provicies.nl -&gt; disk
+		<li>Klik op <b>Disk usage in percent</b>. Het overzicht wordt getoond:
+		</ol>
+		<br>
+		<img src="#springUrl('/images/MuninDiskUsage.png')" style="width:1106px; height:546px" >
+		<br>
+		<h4>Logging gebruik opvragen</h4>
+		Klik op het icoon <b>Gebruik</b> en kies de logging (Network, Apache, AWstats)
+		Als u kiest voor Network of Apache kunt u vervolgens inloggen met uw CDS gebruikersnaam en wachtwoord,
+		waarna de betreffende Munin pagina wordt geopend (In dit geval &quot;Network&quot;).<br>
+		<br>
+		<img src="#springUrl('/images/MuninNetwork.png')" style="width:1085px; height:431px" >
+		<br>
+		<h4>Gebruikersstatistieken opvragen</h4>
+
+		<p>U kunt gebruikerstatistieken opvragen door te klikken op het icoon <b>Gebruik</b> en vervolgens op <b>AWStats</b>.
+		AWStats is een open source web analyse tool. Het geeft statistieken over het gebruik van een website zoals aantal gebruikers per tijdseenheid, gebruikte browsers, locatie van gebruikers.
+		<br>
+		Onderaan de pagina zijn statistieken opgenomen van de Protected Sites WFS en WMS services.
+		<br>
+		<!-- img src="#springUrl('/images/awstats.png')" style="width:1100px; height:555px" -->
+		<img src="#springUrl('/images/awstatsPS.png')" style="width:1100px; height:538px" >
+		<br>
+		<div class="note"><img src="#springUrl('/images/tip.png')" style="width:15px; height:15px" /> Het valt buiten de scope van deze handleiding om AWStats hier verder toe te lichten.
+		Meer informatie kunt u vinden op de website van AWStats: 
+##		<A href="http://awstats.sourceforge.net/">
+		http://awstats.sourceforge.net
+##		</A> ## reference is commented out because it interferes with dojo.window.scrollIntoView(elem) in baLayout.vm 
+		</div>
+
+		<h3>Details tonen </h3>
+
+		<h4>Nagios  overzicht</h4>
+
+		<p>Om de details te tonen van de verschillende indicatoren, kunt u klikken op een van de stoplichten en vervolgens op <b>Nagios overzicht</b>.
+		U kunt vervolgens met uw CDS  gebruikersnaam en wachtwoord inloggen. Het Nagios overzicht wordt geopend:
+		<br>
+		</p>
+		<div class="note"><img src="#springUrl('/images/tip.png')" style="width:15px; height:15px">
+		 Nagios is een systeem voor de bewaking van netwerkservices (zoals SMTP, POP3, HTTP) en computeronderdelen (zoals processorload, schijfgebruik).
+		 Het kan berichten versturen als er iets buiten gestelde specificaties dreigt te komen.
+		</div>
+		<br>
+			<img src="#springUrl('/images/NagiosServiceStatus.png')" style="width:1100px; height:555px" >
+		<br>
+		<p>In dit overzicht ziet in de linkerkolom de hosts staan (host-a en host-b).
+		In de kolom &quot;Service&quot; ziet u de indicatoren. Voor u als beheerder zijn de indicatoren van belang
+		die de status van de data en services bepalen:
+		</p>
+		<ul>
+		<li>WFS Availability</li>
+		<li>WMS Availability</li>
+		<li>WMS Performance</li>
+		<li>Aborted ETL jobs</li>
+		<li>ETL Job Age</li>
+		<li>Service jars</li>
+		<li>Database replication</li>
+		</ul>
+
+		<p>
+		De overige indicatoren kunt u negeren en zijn van belang voor de hostingprovider (IDgis)<br>
+		</p>
+
+		<div class="note"><img src="#springUrl('/images/tip.png')" style="width:15px; height:15px" /> Het valt buiten de scope van deze handleiding om Nagios
+		hier verder toe te lichten. Meer informatie kunt u vinden op de website van Nagios: 
+##		<A href="http://www.nagios.org">
+		http://www.nagios.org
+##		</A> ## reference is commented out because it interferes with dojo.window.scrollIntoView(elem) in baLayout.vm 
+		</div>
+		<h4>Job overzicht</h4>
+		<p>Om het job overzicht op te vragen, kunt u klikken op het &quot;Status data&quot; stoplicht en vervolgens op <b>Job overzicht</b>.
+		Het overzicht wordt geopend:
+		<br>
+			<img src="#springUrl('/images/JobOverzicht.png')" style="width:1011px; height:438px" >
+		<br>
+		<p>U ziet in dit overzicht alle jobs die zijn afgebroken door een interne technische fout (&quot;aborted&quot;),
+		nog niet zijn beëindigd (&quot;started&quot;) en jobs die klaarstaan maar nog niet zijn gestart (&quot;created&quot;).
+		Jobs die succesvol zijn afgerond ziet u niet in dit overzicht. Deze kunt u inzien via het opvragen van een validatierapport.
+		<br/>
+		<br/>
+		Dubbelklik op de rij van de betreffende job om een jobrapport op te vragen met details van de job
+		<br/>
+		<br>
+		<div class="note"><img src="#springUrl('/images/tip.png')" style="width:15px; height:15px" /> Het jobrapport wordt in een apart browservenster geopend.
+		Wilt u een ander jobrapport openen, dan zult u het job overzicht opnieuw moeten opvragen via het stoplicht.
+		</div>
+		<br>
+			<img src="#springUrl('/images/JobRapport.png')" style="width:800px; height:540px" >
+		<br>
+		<h5>Toelichting:</h5>
+		De <b>&quot;ID&quot;</b> is ter identificatie van de job.
+		Het <b>&quot;Job type&quot;</b> kan zijn:
+		<ul>
+		<li>VALIDATE voor een validatie job,</li>
+		<li>IMPORT voor een importeer job of</li>
+		<li>REMOVE voor een verwijder job van de dataset.</li>
+		</ul>
+		<br>Binnen het proces is er nog het jobtype TRANSFORM.  De transform job is echter automatisch gekoppeld aan
+		een import job en remove job en wordt daarom niet als apart type hier vermeld.
+		<br/><br/>
+		De diverse waarden van de <b>&quot;Status&quot;</b> in het job detail rapport zijn afhankelijk van de interne job status. Deze kunnen voor het jobrapport zijn:
+		·	nog niet gestart
+		·	bezig
+		·	Er zijn één of meerdere fouten opgetreden bij het valideren
+		·	Afgebroken door technische fout
+
+		De <b>&quot;Prioriteit&quot;</b> is alleen van belang voor het interne proces en bepaalt de juiste volgorde binnen het proces.
+		<br/>De <b>&quot;Creatie tijd&quot;</b>is de tijd dat de job is aangemaakt.
+		<br/>De <b>&quot;Start tijd&quot;</b>is de tijd dat de uitvoering van de job begonnen is. (In dit voorbeeld is er geen Start tijd omdat de job, reeds is afgebroken voordat de job is gestart).
+		<br/>De <b>&quot;Eind tijd&quot;</b> en <b>&quot;Tijdstip&quot;</b> van import is de tijd dat de job succesvol is afgerond.
+		Deze velden blijven dus leeg in dit overzicht. (Finished jobs worden niet weergegeven).
+		<br/>
+		<br/>
+    </div>
+	<br/>
+	<br/>
+	<br/>
+    <hr/>
+	<div id="_ba_gebruikersbeheer_gebruikers">
+        <h1>Gebruikersbeheer (Beheerdersmodule)</h1>
+        <h2>Toekennen van rollen aan gebruikers</h2>
+		<h3>Toevoegen, wijzigen en verwijderen van gebruikers van CDS.
+		</h3>
+		<p>Er wordt onderscheid gemaakt tussen de rollen 'bronhouder'  en 'beheerder'.<br/>
+		Een bronhouder is verbonden met één bepaalde provincie en kan alleen deze gegevens inzien en bewerken.<br/>
+		Een beheerder kan gegevens van alle bronhouders inzien en bewerken en heeft toegang tot de pagina's 'Monitoring', 'Gebruikersbeheer' en 'View&amp;Download service configuratie'.
+		</p>
+		<br/>
+			Gebruiker toevoegen:
+			<ul>
+				<li> Klik op de knop <b>Nieuwe gebruiker</b>
+				</li>
+				<li>Voer een gebruikersnaam in en een emailadres (verplicht veld) en eventueel een mobiel nummer.
+				</li>
+				<li>Kies of een gebruiker de rol beheerder moet worden toegekend.
+				In dat geval hoeft (en kan) er geen bronhouder/provincie worden gekozen.
+				</li>
+				<li>Geef een initieel wachtwoord op dat, samen met gebruikersnaam, wordt gebruikt bij het inloggen.<br/>
+				Het wachtwoord kan later door de gebuiker zelf worden veranderd.
+				</li>
+				<li>
+				De betekenis van de knoppen is als volgt:<br/>
+				<em>Opslaan:</em> Sla de gegevens van de nieuwe gebruiker op en ga terug naar de hoofdpagina.<br/>
+				<em>Reset:</em> Wis de laatst ingevoerde gegevens in dit formulier.<br/>
+				<em>Annuleren:</em> Annuleer de invoer en ga terug naar de hoofdpagina.<br/>
+				</li>
+			</ul>
+		<br/>
+			Gebruiker wijzigen:
+			<ul>
+				<li> Druk op de knop 'Wijzig'
+				</li>
+				<li>Het invoer scherm is vrijwel gelijk aan dat bij 'Gebruiker toevoegen'.
+				</li>
+				<li>De gebruikersnaam kan niet worden veranderd.
+				</li>
+				<li>Het wachtwoord kan worden veranderd door eerst de box bij 'Wachtwoord wijzigen:' aan te vinken en daaarna een nieuw wachtwoord in te voeren.
+				</li>
+			</ul>
+		<br/>
+			Gebruiker verwijderen:
+			<ul>
+				<li> Druk op de knop 'Verwijder'
+				</li>
+				<li>Er wordt om bevestiging gevraagd.
+				</li>
+			</ul>
+		<br/>
+		<br/><div class="note"><img src="#springUrl('/images/tip.png')" style="width:15px; height:15px" />  U kunt als beheerder iedereen behalve uzelf verwijderen. Dit betekent dat er altijd één beheerder in staat
+		is om gebruikers aan te maken.</div>
+		<br/>
+ 		<br/><div class="note"><img src="#springUrl('/images/tip.png')" style="width:15px; height:15px" /> U kunt als beheerder uzelf tot bronhouder maken. Dit betekent dat u bij opnieuw inloggen geen
+ 		toegang meer heeft tot de beheerders schermen.</div>
+
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+    </div>
+    <hr/>
+	<div id="_ba_vdconfig">
+
+        <h1>View- en Download service configuratie (Beheerdersmodule)</h1>
+        <h2>Configuratie van View- en Download services </h2>
+		<h3>Configuratie van de capabilities van de services.
+		</h3>
+		<p>
+		Voor view en download service zijn er verschillende schermen om gegevens in te voeren en te wijzigen.<br/>
+		Beweeg de muiscursor boven een invoerveld voor een tooltip met nadere uitleg over de betekenis van dat veld.<br/>
+		</p>
+
+		<p>
+		Kies een service uit de lijst.<br/>
+		Klik op de knop <b>Toon service capabilities</b> om een GetCapabilities request te sturen. De respons wordt geopend in een nieuw browservenster.
+		</p>
+		<br/>
+			<em>Download service (WFS):</em>
+			<ul>
+				<li><em>Service Identificatie</em><br/>
+				In de velden bij Titel, Samenvatting en Prijsinformatie kan vrije tekst worden ingevoerd.<br/>
+				Toelichting bij veld Gebruiksbeperkingen: <br/>
+				Klik in het lichtgrijze vlak rechts om een nieuwe tekst in te voeren.<br/>
+				Druk daarna op Enter of klik met de muis in een van de andere tekstvlakken.<br/>
+				Klik op het kruisje bij een tekst om deze te verwijderen.
+				</li>
+				<li><em>Service Contact</em><br/>
+				De velden in dit scherm zijn niet verplicht en vrije invoer (geen check op een correct email adres bijvoorbeeld)
+				</li>
+				<li><em>Trefwoorden</em><br/>
+				Trefwoorden kunnen toegevoegd en verwijderd worden.
+				</li>
+				<li>
+				Klik op <b>Opslaan:</b> om de gegevens die in de vijf tabs zijn ingevoerd en aangepast te bevestigen en op te slaan.<br/>
+				</li>
+			</ul>
+			<em>View service (WMS):</em>
+			<ul>
+				<li><em>Service Identificatie</em>, <em>Service Contact</em>, <em>Trefwoorden</em><br/>
+				Zie de uitleg bij de download service.
+				</li>
+				<li><em>Layer metadata</em><br/>
+				Per laag moet u de url naar de metadata invoeren (verplicht veld).<br/>
+				Met de knop 'Gebruik url' kunt u de juistheid van de url testen.
+				</li>
+				<li><em>Extended capabilities</em><br/>
+				Een veld met de url naar de metadata van de service. Deze Url naar metadata van de Inspire view service,
+				wordt gebruikt in de GetCapabilities voor het opvragen van Extended Capabilities. U kunt deze Url indien nodig wijzigen.
+				</li>
+				<li>
+				Klik op <b>Opslaan:</b> om de gegevens die in de vijf tabs zijn ingevoerd en aangepast te bevestigen en op te slaan.<br/>
+				</li>
+			</ul>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+    </div>
+	<div id="_ba_codelists_form">
+		<h1>Configuratie mappings voor codelijsten</h1>
+		<p>
+			Binnen diverse thema's worden codes gevalideerd tegen lijsten met toegestane waardes. Hiervoor
+			wordt het GML "CodeType" concept gebruikt: tekstuele codes die in een bepaalde "code space" zitten.
+			Ieder attribuut dat een code uit een lijst bevat heeft een code space eigenschap waarmee de lijst
+			kan worden opgezocht.
+		</p>
+		<p>
+			Binnen INSPIRE thema's is de code space een URL waarmee de daadwerkelijke code lijst kan worden
+			opgehaald in XML-, JSON- en Atom-formaat. Deze zijn vastgelegd in het <a href="http://inspire.ec.europa.eu/registry/" target="_blank">INSPIRE registry</a>. 
+			Het CDS leest de codelijsten tijdens het valideren uit de Atom-feeds. Voor deze thema's
+			hoeft in principe niets geconfigureerd te worden, the codelijsten zijn dankzij deze conventie
+			altijd op te halen waardoor het CDS op ieder moment over actuele codes beschikt zonder hier
+			zelf een kopie van te hoeven bijhouden. 
+		</p>
+		<p>
+			Bij niet-INSPIRE thema's zal de code space niet altijd een geldige URL zijn (bijvoorbeeld bij
+			de Risicokaart-thema's). In dit geval kan via dit venster een mapping worden geconfigureerd van
+			code space naar een URL waarmee de bijbehorende Atom-feed te raadplegen is.
+		</p>
+		<p>
+			De Atom-feed bij een codelijst dient aan de volgende eisen te voldoen:
+		</p>
+		<ul>
+			<li>Het ID-attribuut van de feed is gelijk aan de "code space".</li>
+			<li>De feed heeft de waarde "CodeList" als category.</li>
+			<li>Voor iedere waarde in de codelijst wordt een "entry" opgenomen.</li>
+			<li>Iedere entry heeft een uniek ID.</li>
+			<li>De titel van de entry komt overeen met de waarde van de code.</li>
+			<li>Iedere entry heeft de waarde "CodeListValue" als category.</li>
+		</ul>
+	</div>
+</div>

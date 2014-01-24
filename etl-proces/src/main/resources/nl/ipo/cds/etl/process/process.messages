@@ -1,0 +1,7 @@
+NO_FEATURES=0 features gevonden
+XML_FEATURES_HTTP_ERROR=Fout bij lezen Features. Http errorcode: ${0} 
+XML_FEATURES_EXCEPTION=Fout bij parsen Features. Oorzaak: ${0} 
+NO_DATASET_HANDLERS=UUID ${0} is niet geconfigureerd voor provincie ${1}(${2})
+WFS_EXCEPTIONREPORT=WFS geeft een foutmelding. OWS Exceptionreport: exceptionCode: ${0}, locator: ${1}, ExceptionText: ${2}
+XML_BLOCKING_FEATURE_ERROR=Er is minimaal één blokkerende validatiefout opgetreden.
+WFS_UNPARSEBLE_RESPONSE=Niet mogelijk om response van de WFS te verwerken.

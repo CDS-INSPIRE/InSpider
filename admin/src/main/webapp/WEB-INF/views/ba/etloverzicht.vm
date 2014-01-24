@@ -1,0 +1,566 @@
+#set($layerName='etloverzicht')
+<script type="text/javascript">
+require ([
+	"dojo/date/stamp",
+	"dojo/date/locale",
+	"dojo/store/JsonRest",
+	"dojo/store/Memory",
+	"dojo/data/ObjectStore",
+	"dojox/grid/DataGrid",
+    "dojox/layout/TableContainer",
+   	"dijit/dijit",
+    "cds/ready!"
+], function () {
+
+	## function to automatically resize the jobsGrid when the users resizes the browser screen
+	dojo.connect( window, "onresize", jobGridResized);
+	## initially fit to screen:
+	jobGridResized();
+	## keep jobsGrid fit to screen when resizing window
+	function jobGridResized () {
+        var grd = dijit.byId("jobsGrid");
+        if (grd){
+        	grd.resize();
+        	grd.update();
+        }
+	}
+	
+    var docroot = "#springUrl('/')";
+    var techErrorCount = 0;
+
+    function formatDateTime(dateMilis){
+    	var result = "onbekend";
+        if(dateMilis > 0){  
+        	result = dojo.date.locale.format(new Date(dateMilis), {datePattern: 'dd-MM-yyyy', formatLength: 'short'});
+        }
+        return result;
+    }
+    function formatDate(dateMilis){
+    	var result = "onbekend";
+        if(dateMilis > 0){  
+        	result = dojo.date.locale.format(new Date(dateMilis), {selector: 'date', datePattern: 'dd-MM-yyyy', formatLength: 'short'});
+        }
+        return result;
+    }
+    function formatTime(dateMilis){
+    	var result = "onbekend";
+        if(dateMilis > 0){  
+        	result = dojo.date.locale.format(new Date(dateMilis), {selector: 'time', timePattern: 'HH:mm', formatLength: 'short'});
+        }
+        return result;
+    }
+    function formatBoolean(booleanValue){
+        return booleanValue ? "Ja" : "Nee";
+    }
+
+	#if(!$jobsMode)
+
+		// DATASETinfoS
+	    window.doValidate = function (url){
+	        var validationUrl = "#springUrl('/')"+url;
+			dojo.xhrGet({
+			    // The URL of the request
+			    url: validationUrl,
+			    // The success callback with result from server
+			    load: function(response) {
+					refreshDatasetInfoMap();
+			    }
+			});
+	    }
+	    
+	    window.doImport = function (url){
+	        var validationUrl = "#springUrl('/')"+url;
+			dojo.xhrGet({
+			    // The URL of the request
+			    url: validationUrl,
+			    // The success callback with result from server
+			    load: function(response) {
+					refreshDatasetInfoMap();
+			    }
+			});
+	    };
+	
+	    dojo.ready(function() {
+			refreshDatasetInfoMap();
+		});
+
+		function refreshDatasetInfoMap(){
+		    var datasetInfosUrl = docroot + "ba/bronhouders/${bronhouder.id}/datasetInfos?datasetTypeId=$!datasetTypeId&datasetStatusImport=$!datasetStatusImport&progress=$!progress";
+			dojo.xhrGet({
+			    // The URL of the request
+			    url: datasetInfosUrl,
+			    // Handle the result as JSON data
+			    handleAs: "json",
+			    // The success callback with result from server
+			    load: function(datasetInfoMap) {
+				    // Update total messageCount
+				    dojo.byId("totalValidationLogCount").innerHTML = datasetInfoMap.totalValidationLogCount;
+
+				    var datasetInfos = datasetInfoMap.datasetInfos;
+				    for(var i in datasetInfos){
+					    var datasetInfo = datasetInfos[i];
+					    var datasetId = datasetInfo.id;
+
+					    // Update Actief
+					    var actiefNode = dojo.byId("datasetInfo_"+datasetId+"_actief");
+					    if (actiefNode == null) {
+					    	continue;
+					    }
+						if(progressNode){
+							actiefNode.innerHTML = formatBoolean(datasetInfo.actief);
+						}
+					    
+					    // Update last validation result
+					    var lastValidationResultNode = dojo.byId("datasetInfo_"+datasetId+"_lastValidationResult");
+					    if(lastValidationResultNode){
+						    var lastValidationResultString = '<p>Niet gevalideerd.</p>';
+					    	if(datasetInfo.lastValidationJobInfo != null){
+					    		var errorWarningText = '<em' + (datasetInfo.lastValidationJobInfo.errorCount>0 ? ' class="error"' : '') + '>' + datasetInfo.lastValidationJobInfo.errorCount + ' fouten</em>, <em' + (datasetInfo.lastValidationJobInfo.warningCount>0 ? ' class="warning"' : '') + '>' + datasetInfo.lastValidationJobInfo.warningCount + ' waarschuwingen</em>' + (datasetInfo.lastValidationJobInfo.featureCount != null ? ', <em' + (datasetInfo.lastValidationJobInfo.featureCount == 0 ? ' class="error"' : '') + '>' + datasetInfo.lastValidationJobInfo.featureCount + ' features</em>' : '') + '<br/>';
+					    	
+								if(datasetInfo.lastValidationJobInfo.status == "ABORTED"){
+									lastValidationResultString = ''+
+										'<p>'+
+											'<em class="error">Kon niet worden gevalideerd vanwege een technische fout.<br/></em> Laatste poging op ' + formatDate(datasetInfo.lastValidationJobInfo.eindTijd) + ' om ' + formatTime(datasetInfo.lastValidationJobInfo.eindTijd) + '.'+
+										'</p>'+
+										'<p>'+
+											errorWarningText +
+										'</p>';
+								} else {
+									lastValidationResultString = ''+
+										'<p>'+
+											'Gevalideerd op ' + formatDate(datasetInfo.lastValidationJobInfo.eindTijd) + ' om ' + formatTime(datasetInfo.lastValidationJobInfo.eindTijd) + '.' +
+										'</p>'+
+										'<p>Revisiedatum: ' + formatDate(datasetInfo.lastValidationJobInfo.metadataUpdateDatum) + '</p>'+
+										'<p>'+
+											errorWarningText +
+											'<a href="' + docroot + 'ba/bronhouders/' + datasetInfo.bronhouder.id + '/datasetTypes/' + datasetInfo.datasetType.id + '/jobs/' + datasetInfo.lastValidationJobInfo.id + '" target="_blank">Toon validatierapport</a>'+
+										'</p>';
+								}
+							}
+					    	lastValidationResultNode.innerHTML = lastValidationResultString;
+					    }					    
+					    // Disable/enable validation button
+					    var validateButton = dijit.byId("datasetInfo_"+datasetId+"_validateButton");
+					    if(validateButton){
+					    	if(datasetInfo.pendingJob){
+					    		validateButton.set('disabled',true);
+					    	} else{
+					    		validateButton.set('disabled',false);
+					    	}
+					    	
+					    }
+					    // Disable/enable import button
+					    var importButton = dijit.byId("datasetInfo_"+datasetId+"_importButton");
+					    if(importButton){
+					    	if(datasetInfo.pendingJob || !datasetInfo.actief){
+					    		importButton.set('disabled',true);
+					    	} else{
+					    		importButton.set('disabled',false);
+					    	}
+					    	
+					    }
+					    // Update status Import
+					    var statusImportNode = dojo.byId("datasetInfo_"+datasetId+"_statusImport");
+						if(statusImportNode){
+							var statusImportString = "!!!!Onbekende Status import!!!!";
+					    	if(datasetInfo.statusImport == "NOT_IMPORTED"){
+								statusImportString = '<em class="warning">Niet Ge&iuml;mporteerd</em><br />';
+					    	} else if(datasetInfo.statusImport == "IMPORTED"){
+								statusImportString = ''+
+									'<em title="op ' + formatDateTime(datasetInfo.lastImportJobInfo.eindTijd) + '" class="ok">Ge&iuml;mporteerd</em>'+
+									'<br/>'+
+									'<p>Revisiedatum: ' + formatDate(datasetInfo.lastImportJobInfo.metadataUpdateDatum) + '</p>'+
+									'<em class="warning">Getransformeerd: Nee</em>';
+					    	} else if(datasetInfo.statusImport == "IMPORTED_WARNINGS"){
+								statusImportString = ''+
+									'<em title="op ' + formatDateTime(datasetInfo.lastImportJobInfo.eindTijd) + '" class="ok">Ge&iuml;mporteerd</em>'+
+									'<em class="warning"> met waarschuwingen</em>'+
+									'<br/>'+
+									'<p>Revisiedatum: ' + formatDate(datasetInfo.lastImportJobInfo.metadataUpdateDatum) + '</p>'+
+									'<em class="warning">Getransformeerd: Nee</em>';
+							} else if(datasetInfo.statusImport == "TRANSFORMED"){
+								statusImportString = ''+
+									'<em title="op ' + formatDateTime(datasetInfo.lastImportJobInfo.eindTijd) + '" class="ok">Ge&iuml;mporteerd</em>'+
+									'<br/>'+
+									'<p>Revisiedatum: ' + formatDate(datasetInfo.lastImportJobInfo.metadataUpdateDatum) + '</p>'+
+									'<em title="op ' + formatDateTime(datasetInfo.lastTransformJob.finishTime) + '" class="ok">Getransformeerd</em>';
+							} else if(datasetInfo.statusImport == "TRANSFORMED_WARNINGS"){
+								statusImportString = ''+
+									'<em title="op ' + formatDateTime(datasetInfo.lastImportJobInfo.eindTijd) + '" class="ok">Ge&iuml;mporteerd</em>'+
+									'<em class="warning"> met waarschuwingen</em>'+
+									'<br/>'+
+									'<p>Revisiedatum: ' + formatDate(datasetInfo.lastImportJobInfo.metadataUpdateDatum) + '</p>'+
+									'<em title="op ' + formatDateTime(datasetInfo.lastTransformJob.finishTime) + '" class="ok">Getransformeerd</em>';
+							}
+							statusImportNode.innerHTML = statusImportString;
+						}
+					    // Update voortgang
+					    var progressNode = dojo.byId("datasetInfo_"+datasetId+"_progress");
+						if(progressNode){
+						    var progressString = "not be able to determine progress";
+							if(datasetInfo.progress == "NO_PENDING_JOB"){
+								progressString = "-";
+							} else if(datasetInfo.progress == "WAIT_FOR_VALIDATION"){
+								progressString = "Wachten op validatie";
+							} else if(datasetInfo.progress == "VALIDATING"){
+								progressString = "Bezig met valideren";
+							} else if(datasetInfo.progress == "WAIT_FOR_IMPORT"){
+								progressString = "Wachten op import";
+							} else if(datasetInfo.progress == "IMPORTING"){
+								progressString = "Bezig met importeren";
+							}
+							progressNode.innerHTML = progressString;
+						}
+					}
+						    
+					// Refresh again after interval
+					timerHandle = setTimeout(refreshDatasetInfoMap, 5000);
+				    // Clear error message
+				    dojo.byId("userMessage").innerHTML = "";
+				    techErrorCount = 0;
+				},
+			    // The error handler
+			    error: function(error) {
+				    techErrorCount++;
+					// Refresh again after interval
+					timerHandle = setTimeout(refreshDatasetInfoMap, 5000);
+				    // Update error message
+				    var errorMessage = "";
+				    if(techErrorCount > 3){
+				    	errorMessage = '<em class="error">Er is een technische fout opgetreden tijdens het verversen van het overzicht. Probeer het opnieuw door de browser te verversen.</em>';
+				    } else {
+				    	errorMessage = '<em class="warning">Niet gelukt om het etloverzicht te verversen.</em>'
+				    }
+				    dojo.byId("userMessage").innerHTML = errorMessage;
+			    }
+			});
+		}
+		
+	    var timerHandle = setTimeout(refreshDatasetInfoMap, 1000);
+	#else
+	    window.backToDatasets = function(){
+			var searchform = dijit.byId("searchForm");
+			searchForm.containerNode.action = "#springUrl('/ba/etloverzicht')";
+			// Ignore
+			searchForm.submit();
+	    }
+
+	    function formatStatus(status){
+	        return status;
+	    }
+	    function formatPriority(priority){
+	        switch(priority){
+	    		case 100:
+	    			return "Laag";
+	    		case 200:
+	    			return "Gemiddeld";
+	    		case 300:
+	    			return "Hoog";
+	        	default:
+	        		return "Onbekend";
+	        }
+	    }
+	
+		function formatJobType(jobType){
+			return jobType;
+		}
+	
+		function detailsButton(id){
+			var b = new dijit.form.Button({
+				label: "Details",
+				onClick: function(){
+					// Open new window
+					var jobDetaisUrl = "#springUrl('/ba/bronhouders/')$bronhouder.id/datasetTypes/$datasetType.id/jobs/"+id;
+					window.open(jobDetaisUrl,"_blank");					
+				},
+				title: "Klik om het validatierapport te openen. Jobs ouder dan vier maanden worden niet getoond."
+			}, "");
+			b._destroyOnRemove = true;
+			return b;
+		}
+	
+	
+		var grid, jobStore;
+	
+		dojo.ready(function() {
+	
+			// The columns for the jobsGrid
+	        var layout = [
+					        { name: "Details", field: "id", width: "8%", cellStyles: "text-align: center;" , formatter: detailsButton },
+					        { name: "Type", field: "type", width: "10%", formatter: formatJobType },
+					        { name: "Verversen", field: "verversen", width: "8%", formatter: formatBoolean },
+					        { name: "Creatietijd", field: "createTime", width: "14%", formatter: formatDateTime },
+##					        { name: "Starttijd", field: "startTijd", width: "10%", formatter: formatDateTime },
+##					        { name: "Eindtijd", field: "eindTijd", width: "10%", formatter: formatDateTime },
+					        { name: "Status", field: "status", width: "8%", formatter: formatStatus },
+					        { name: "Datum dataset", field: "metadataUpdateDatum", width: "10%", formatter: formatDate },
+					        ## width here is necesary for IE7: 
+					        { name: "Dataseturl", field: "datasetUrl", width: "50%"}
+					        ## IE7 behaviour: after resize a hor. scroll bar appears, after F5/refresh it disappears
+	        ];
+	
+	        // JSON jobs
+			var jobStoreContextStore = new dojo.store.JsonRest({target:"#springUrl('/ba/bronhouders/')$bronhouder.id/datasetTypes/$datasetType.id/jobs?jobrefreshed=$!jobrefreshed&jobStatus=$!jobStatus"});
+			jobStoreContextStore.query().then(function(results){
+				// Use only the jobList of the results (there are other objects on the response as well)
+				var jobMemoryStore = new dojo.store.Memory({data: results.etlJobList});
+				// Wrap the MemoryStore in an ObjectStore, because the MemoryStore is not backwards-compatible
+				var jobStore = new dojo.data.ObjectStore({objectStore: jobMemoryStore});
+				// Create the grid	
+				grid = new dojox.grid.DataGrid({
+				    store: jobStore,
+				    query: { id: "*" },
+				    structure: layout,
+##				    autoHeight: 8,
+##				    autoWidth: false,
+				    initialWidth: "95%",
+				    title: "Dubbelklik een rij om het validatierapport te openen. Jobs ouder dan vier maanden worden niet getoond.",
+				    noDataMessage: "Er zijn geen jobs om te laten zien, kies een andere filter combinatie"
+				}, "jobsGrid");
+				// Start the grid
+				grid.startup();
+## 				initially fit to screen:
+				jobGridResized();
+	
+				// Create the OnClick-handler
+				var gridHandle = dojo.connect(grid, "onRowDblClick", function(evt){
+					// Retrieve the jobId of the row that as clicked on
+					var rowIndex = evt.rowIndex;
+					var id = grid.store.getValue(grid.getItem(rowIndex), "id");
+					// Open new window
+					var jobDetaisUrl = "#springUrl('/ba/bronhouders/')$bronhouder.id/datasetTypes/$datasetType.id/jobs/"+id;
+					window.open(jobDetaisUrl,"_blank");
+				});
+			});
+		});
+   	#end
+});
+</script>
+
+<!--
+     Tabel met filters
+-->
+	<br/>
+	<br/>
+	<div>
+		<div data-dojo-type="dijit/form/Form" id="searchForm" jsId="searchForm"
+		action="" method="GET">
+		    <script type="dojo/method" event="onSubmit">
+		        if (this.validate()) {
+		            return true;
+		        } else {
+		            alert('Formulier bevat invalide waarden, corrigeer deze aub');
+		            return false;
+		        }
+		    </script>
+		    
+		    <table class="cds-table filters" id="datasetFilters"  width="80%">
+				<thead>
+					<tr>
+						<th title="Filter op Bronhouder"><label for="name">Bronhouder</label></th>
+						<th title="Filter op Thema"><label for="thema">Thema</label></th>
+						<th title="Filter op Datasettype"><label for="datasettype">Type</label></th>
+						#if(!$jobsMode)
+							<th title="Filter op Status import"><label for="statusImport">Status import</label></th>
+						#else
+							<th title="Filter op Status job"><label for="statusImport">Status job</label></th>
+						#end
+						#if(!$jobsMode)
+						<th title="Filter op Voortgang"><label for="datum">Voortgang</label></th>
+						#end
+						#if($jobsMode)
+						<th title="Filter op Verversen"><label for="name">Verversen</label></th>
+						#end
+						<th>
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+			        <tr>
+			            <td title="Filter op Bronhouder" width="20%">
+			                <select data-dojo-type="dijit/form/FilteringSelect" id="bronhouderId" name="bronhouderId" required="true" #if(! $authz.anyGranted("ROLE_BEHEERDER")) disabled #end  style="width:90%">
+								<script type="dojo/method" data-dojo-event="onChange">
+									this.getParent().submit();
+								</script>
+								#foreach($bronhouderItem in $bronhouders)
+								    <option value="$bronhouderItem.id" #if ($bronhouderItem.naam==$bronhouder.naam) selected="selected" #end>$bronhouderItem.naam</option>
+								#end
+							</select>
+			            </td>
+			            <td title="Filter op Thema" width="20%">
+			                <select data-dojo-type="dijit/form/Select" id="themaId" name="themaId" required="true"  style="width:90%;border-width:1px; border-style:solid; border-color:black">
+								<script type="dojo/method" data-dojo-event="onChange">
+									this.getParent().submit();
+								</script>
+								#foreach($themaItem in $themas)
+								    <option value="$themaItem.id" #if($themaItem.id == $themaId) selected="selected"#end>#e($themaItem.naam)</option>
+								#end
+							</select>
+			            </td>
+			            <td title="Filter op Datasettype" width="20%">
+			                <select data-dojo-type="dijit/form/Select" id="datasetTypeId" name="datasetTypeId"  style="width:90%;border-width:1px; border-style:solid; border-color:black">
+								<script type="dojo/method" data-dojo-event="onChange">
+									this.getParent().submit();
+								</script>
+								#if(!$jobsMode)<option value="0">all</option>#end
+								#foreach($datasetTypeItem in $datasetTypes)
+								    <option value="$datasetTypeItem.id" #if($datasetTypeItem.id == $datasetTypeId) selected="selected"#end>#e($datasetTypeItem.naam)</option>
+								#end
+							</select>
+			            </td>
+						#if(!$jobsMode)
+			            <td title="Filter op Status import" width="20%">
+			                <select data-dojo-type="dijit/form/FilteringSelect" id="datasetStatusImport" name="datasetStatusImport" style="width:90%">
+								<script type="dojo/method" data-dojo-event="onChange">
+									this.getParent().submit();
+								</script>
+							    <option #if($datasetStatusImport == $null) selected="selected"#end></option>
+								<option value="NOT_IMPORTED" #if($datasetStatusImport == "NOT_IMPORTED") selected="selected"#end>Niet Ge&iuml;mporteerd</option>
+								<option value="IMPORTED" #if($datasetStatusImport == "IMPORTED") selected="selected"#end>Ge&iuml;mporteerd</option>
+								<option value="IMPORTED_WARNINGS" #if($datasetStatusImport == "IMPORTED_WARNINGS") selected="selected"#end>Ge&iuml;mporteerd met waarschuwingen</option>
+								<option value="TRANSFORMED" #if($datasetStatusImport == "TRANSFORMED") selected="selected"#end>Getransformeerd</option>
+								<option value="TRANSFORMED_WARNINGS" #if($datasetStatusImport == "TRANSFORMED_WARNINGS") selected="selected"#end>Getransformeerd met waarschuwingen</option>
+							</select>
+			            </td>
+			            #else
+			            <td title="Filter op Status job" width="20%">
+			            	<!--
+			            	<input type="hidden" id="datasetStatusImport" name="datasetStatusImport" value="$datasetStatusImport"/>
+			            	 -->
+			                <select data-dojo-type="dijit/form/FilteringSelect" id="jobStatus" name="jobStatus" style="width:90%">
+								<script type="dojo/method" data-dojo-event="onChange">
+									this.getParent().submit();
+								</script>
+							    <option #if($jobStatus == $null) selected="selected"#end></option>
+							    <option value="CREATED" #if($jobStatus == "CREATED") selected="selected"#end>CREATED</option>
+							    <option value="STARTED" #if($jobStatus == "STARTED") selected="selected"#end>STARTED</option>
+							    <option value="FINISHED" #if($jobStatus == "FINISHED") selected="selected"#end>FINISHED</option>
+							    <option value="ABORTED" #if($jobStatus == "ABORTED") selected="selected"#end>ABORTED</option>
+							</select>
+			            </td>
+			            #end
+						#if(!$jobsMode)
+			            <td title="Filter op Voortgang" width="20%">
+			                <select data-dojo-type="dijit/form/FilteringSelect" id="progress" name="progress" style="width:90%">
+								<script type="dojo/method" data-dojo-event="onChange">
+									this.getParent().submit();
+								</script>
+								<option #if($progress == $null) selected="selected"#end></option>
+								<option value="NO_PENDING_JOB" #if($progress == "NO_PENDING_JOB") selected="selected"#end>Geen jobs in behandeling (-)</option>
+							    <option value="WAIT_FOR_VALIDATION" #if($progress == "WAIT_FOR_VALIDATION") selected="selected"#end>Wachten op validatie</option>
+							    <option value="VALIDATING" #if($progress == "VALIDATING") selected="selected"#end>Bezig met valideren</option>
+							    <option value="WAIT_FOR_IMPORT" #if($progress == "WAIT_FOR_IMPORT") selected="selected"#end>Wachten op import</option>
+							    <option value="IMPORTING" #if($progress == "IMPORTING") selected="selected"#end>Bezig met importeren</option>
+							</select>
+			            </td>
+			            #else
+			            	<!-- 
+			            	<td>
+				            	<input type="hidden" id="progress" name="progress" value="$progress"/>
+				            </td>
+			            	 -->
+			            #end
+			            #if($jobsMode)
+			            <td title="Filter op Verversen" width="20%">
+			                <select data-dojo-type="dijit/form/FilteringSelect" id="jobrefreshed" name="jobrefreshed" style="width:90%">
+								<script type="dojo/method" data-dojo-event="onChange">
+									this.getParent().submit();
+								</script>
+								<option #if($jobrefreshed == $null) selected="selected"#end></option>
+							    <option value="true" #if($jobrefreshed) selected="selected"#end>Ja</option>
+							    <option value="false" #if(!$jobrefreshed) selected="selected"#end>Nee</option>
+							</select>
+			            </td>
+			            #end
+			            <td><!-- 
+						    <div id="stdButton">
+							    <button data-dojo-type="dijit/form/Button" type="submit" name="submitButton"
+							    title="" value="Submit">
+							        Filter
+							    </button>
+						    </div>
+						     -->
+			            </td>
+			        </tr>
+			    </tbody>
+			    <!--
+				<tfoot>
+					<tr>
+						<th colspan="#if($jobsMode) 8#else 7#end"></th>
+					</tr>
+				</tfoot>
+				 -->
+		    </table>
+		</div>			
+		
+
+<!--
+     Tabel met Dataset overzicht
+-->
+	<br/>
+		#if(!$jobsMode)
+			<table class="cds-table" id="datasets">
+				<thead>
+					<tr>
+						<th class="naam" title="Klik op de link om de jobs van een dataset te bekijken">Naam</th>
+						<th class="dataset-type" title="Klik op de link om de jobs van een dataset te bekijken">Type</th>
+						<th class="actief" title="Is de dataset actief, dan wordt regelmatig gecheckt of er nieuwe data moet worden opgenomen in CDS" >Actief</th>						
+						<th class="metadata" title="Klik op de link om de metadata gegevens van een dataset te bekijken" >Metadata</th>
+						<th class="resultaten" title="Meest recente validatie resultaat">Laatste validatieresultaat</th>
+						<th class="valideren" title="Ad-hoc-valideren van een dataset">Valideer</th>
+						<th class="status" title="Meest recente import status">Status import</th>
+						<th class="importeren" title="Ad-hoc-importeren van een dataset">Importeer</th>
+						<th class="voortgang" title="Actuele weergave van de voortgang van het validatie of import proces">Voortgang</th>
+					</tr>
+				</thead>
+				<tbody>
+					#foreach($datasetInfo in $datasetInfoMap.datasetInfos)
+					<tr>
+						<td class="naam">#e($datasetInfo.naam)</td>
+						<td class="dataset-type" title="Klik op de link om de jobs van dataset $datasetInfo.datasetType.naam te bekijken" ><a href="#springUrl('/ba/etloverzicht/jobs')?bronhouderId=$bronhouder.id&amp;datasetTypeId=$datasetInfo.datasetType.id">#e($datasetInfo.datasetType.naam)</a></td>
+						#if($datasetInfo.actief==true) 
+							#set($actiefTitle = "Dataset $datasetInfo.naam is actief: er wordt regelmatig gecheckt of er nieuwe data moet worden opgenomen in CDS" )
+						#else
+							#set($actiefTitle = "Dataset $datasetInfo.naam is niet actief: er wordt niet regelmatig gecheckt of er nieuwe data moet worden opgenomen in CDS" )
+						#end
+						<td id="datasetInfo_${datasetInfo.id}_actief" class="actief" title="$actiefTitle">#if($datasetInfo.actief==true) Ja #else Nee #end</td>						
+						#if($datasetInfo.uuid.startsWith("http")) 
+							<td class="metadata" title="Klik op de link om de metadata gegevens van dataset $datasetInfo.datasetType.naam te bekijken" ><a target="_blank" href="$datasetInfo.uuid">Klik hier voor de metadataset</a></td>
+						#else
+							<td class="metadata" title="Klik op de link om de metadata gegevens van dataset $datasetInfo.datasetType.naam te bekijken" ><a target="_blank" href="$esc.html($pgrBaseUrl)$datasetInfo.uuid">Klik hier voor de PGR metadataset</a></td>
+						#end
+						<td id="datasetInfo_${datasetInfo.id}_lastValidationResult" class="resultaten" title="Meest recente validatie resultaat van dataset $datasetInfo.datasetType.naam " >
+						</td>
+						<td class="valideren" title="Druk op de knop Valideer om de dataset $datasetInfo.datasetType.naam te valideren" >
+							<button id="datasetInfo_${datasetInfo.id}_validateButton" disabled data-dojo-type="dijit/form/Button" onclick="doValidate('ba/bronhouders/$bronhouder.id/validate?datasetType=$datasetInfo.datasetType.id&amp;uuid=$esc.url($datasetInfo.uuid)');">Valideer</button>
+						</td>
+						<td id="datasetInfo_${datasetInfo.id}_statusImport" class="statusImport" title="Meest recente import status van dataset $datasetInfo.datasetType.naam " >
+						</td>
+						<td class="importeren" title="Druk op de knop Importeer om de dataset $datasetInfo.datasetType.naam te importeren" >
+							<button id="datasetInfo_${datasetInfo.id}_importButton" disabled data-dojo-type="dijit/form/Button" onclick="doImport('ba/bronhouders/$bronhouder.id/import?datasetType=$datasetInfo.datasetType.id&amp;uuid=$esc.url($datasetInfo.uuid)');">Importeer</button>
+						</td>
+						<td id="datasetInfo_${datasetInfo.id}_progress" class="voortgang" title="Actuele weergave van de voortgang van het validatie of import proces van dataset $datasetInfo.datasetType.naam "></td>
+					</tr>
+					#end
+				</tbody>
+				<tfoot>
+					<tr>
+						<th colspan="5"></th>
+						<th title="Het totaal aantal fouten en waarschuwingen van alle getoonde datasets" class="resultaten">
+							Totaal <span id="totalValidationLogCount">$datasetInfoMap.totalValidationLogCount</span> meldingen
+						</th>
+						<th id="errorMessageOld" colspan="4">
+						</th>
+					</tr>
+				</tfoot>
+			</table>
+		#else
+			<button data-dojo-type="dijit/form/Button" id="backToDatasets" title="Ga terug naar de datasets in het ETL Overzicht" onclick="backToDatasets();">&lt;&nbsp;Terug naar datasets</button>
+			<p></p>
+			#if($datasetTypeExists)
+			<div id="jobsGrid" style="height:30em" ></div>
+			#else 
+			<div id="noJobsGrid" style="align:center" >Er zijn geen jobs voor datasets van type $datasetType.naam voor bronhouder $bronhouder.naam</div>
+			#end
+		#end
+			

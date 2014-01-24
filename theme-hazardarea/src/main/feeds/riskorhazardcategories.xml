@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+   <id>http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue</id>
+   <title>NaturalHazardCategoryValue</title>
+   <author>
+      <name>INSPIRE Registry team</name>
+      <email>inspire-registry-info@jrc.ec.europa.eu</email>
+      <uri>http://inspire.ec.europa.eu/registry</uri>
+   </author>
+   <subtitle>A generic classification of types of natural hazards.</subtitle>
+   <link href="http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue" rel="self"/>
+   <link href="http://inspire.ec.europa.eu/codelist" rel="up"/>
+   <link href="http://inspire.ec.europa.eu/theme/hb" rel="related"/>
+   <link href="http://inspire.ec.europa.eu/applicationschema/hb" rel="related"/>
+   <category term="CodeList"/>
+   <updated>2013-11-21T10:30:00.000+02:00</updated>
+   <entry>
+      <id>http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue/geologicalHydrological</id>
+      <title>Geological / hydrological</title>
+      <summary>Geological / hydrological hazard classification.</summary>
+      <link href="http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue/geologicalHydrological" rel="self"/>
+      <link href="http://inspire.ec.europa.eu/theme/nz" rel="related"/>
+      <link href="http://inspire.ec.europa.eu/applicationschema/nz" rel="related"/>
+      <link href="http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue" rel="up"/>
+      <category term="CodeListValue"/>
+      <updated>2013-11-21T10:30:00.000+02:00</updated>
+   </entry>
+   <entry>
+      <id>http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue/tsunami</id>
+      <title>Tsunami</title>
+      <summary>Tsunami hazard classification.</summary>
+      <link href="http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue/tsunami" rel="self"/>
+      <link href="http://inspire.ec.europa.eu/theme/nz" rel="related"/>
+      <link href="http://inspire.ec.europa.eu/applicationschema/nz" rel="related"/>
+      <link href="http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue" rel="up"/>
+      <category term="CodeListValue"/>
+      <updated>2013-11-21T10:30:00.000+02:00</updated>
+   </entry>
+   <entry>
+      <id>http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue/volcanic</id>
+      <title>Volcanic</title>
+      <summary>Volcanic hazard classification.</summary>
+      <link href="http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue/volcanic" rel="self"/>
+      <link href="http://inspire.ec.europa.eu/theme/nz" rel="related"/>
+      <link href="http://inspire.ec.europa.eu/applicationschema/nz" rel="related"/>
+      <link href="http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue" rel="up"/>
+      <category term="CodeListValue"/>
+      <updated>2013-11-21T10:30:00.000+02:00</updated>
+   </entry>
+   <entry>
+      <id>http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue/earthquake</id>
+      <title>Earthquake</title>
+      <summary>Earthquake hazard classification.</summary>
+      <link href="http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue/earthquake" rel="self"/>
+      <link href="http://inspire.ec.europa.eu/theme/nz" rel="related"/>
+      <link href="http://inspire.ec.europa.eu/applicationschema/nz" rel="related"/>
+      <link href="http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue" rel="up"/>
+      <category term="CodeListValue"/>
+      <updated>2013-11-21T10:30:00.000+02:00</updated>
+   </entry>
+   <entry>
+      <id>http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue/subsidenceAndCollapse</id>
+      <title>Subsidence and collapse</title>
+      <summary>Subsidence and collapse hazard classification.</summary>
+      <link href="http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue/subsidenceAndCollapse" rel="self"/>
+      <link href="http://inspire.ec.europa.eu/theme/nz" rel="related"/>
+      <link href="http://inspire.ec.europa.eu/applicationschema/nz" rel="related"/>
+      <link href="http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue" rel="up"/>
+      <category term="CodeListValue"/>
+      <updated>2013-11-21T10:30:00.000+02:00</updated>
+   </entry>   
+   <entry>
+      <id>http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue/landslide</id>
+      <title>Landslide</title>
+      <summary>Landslide hazard classification.</summary>
+      <link href="http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue/landslide" rel="self"/>
+      <link href="http://inspire.ec.europa.eu/theme/nz" rel="related"/>
+      <link href="http://inspire.ec.europa.eu/applicationschema/nz" rel="related"/>
+      <link href="http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue" rel="up"/>
+      <category term="CodeListValue"/>
+      <updated>2013-11-21T10:30:00.000+02:00</updated>
+   </entry> 
+   <entry>
+      <id>http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue/snowAvalanche</id>
+      <title>Snow avalanche</title>
+      <summary>Snow avalanche hazard classification.</summary>
+      <link href="http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue/snowAvalanche" rel="self"/>
+      <link href="http://inspire.ec.europa.eu/theme/nz" rel="related"/>
+      <link href="http://inspire.ec.europa.eu/applicationschema/nz" rel="related"/>
+      <link href="http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue" rel="up"/>
+      <category term="CodeListValue"/>
+      <updated>2013-11-21T10:30:00.000+02:00</updated>
+   </entry>
+   <entry>
+      <id>http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue/flood</id>
+      <title>Flood</title>
+      <summary>Flood</summary>
+      <link href="http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue/flood" rel="self"/>
+      <link href="http://inspire.ec.europa.eu/theme/nz" rel="related"/>
+      <link href="http://inspire.ec.europa.eu/applicationschema/nz" rel="related"/>
+      <link href="http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue" rel="up"/>
+      <category term="CodeListValue"/>
+      <updated>2013-11-21T10:30:00.000+02:00</updated>
+   </entry>
+   <entry>
+      <id>http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue/toxicOrRadioactive</id>
+      <title>Toxic or radioactive</title>
+      <summary>Toxic or radioactive hazard classification.</summary>
+      <link href="http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue/toxicOrRadioactive" rel="self"/>
+      <link href="http://inspire.ec.europa.eu/theme/nz" rel="related"/>
+      <link href="http://inspire.ec.europa.eu/applicationschema/nz" rel="related"/>
+      <link href="http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue" rel="up"/>
+      <category term="CodeListValue"/>
+      <updated>2013-11-21T10:30:00.000+02:00</updated>
+   </entry>
+   <entry>
+      <id>http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue/meteorologicalClimatological</id>
+      <title>Meteorological climatological</title>
+      <summary>Meteorological climatological hazard classification.</summary>
+      <link href="http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue/meteorologicalClimatological" rel="self"/>
+      <link href="http://inspire.ec.europa.eu/theme/nz" rel="related"/>
+      <link href="http://inspire.ec.europa.eu/applicationschema/nz" rel="related"/>
+      <link href="http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue" rel="up"/>
+      <category term="CodeListValue"/>
+      <updated>2013-11-21T10:30:00.000+02:00</updated>
+   </entry>
+   <entry>
+      <id>http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue/extremeTemperature</id>
+      <title>Extreme temperature</title>
+      <summary>Extreme temperature hazard classification.</summary>
+      <link href="http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue/extremeTemperature" rel="self"/>
+      <link href="http://inspire.ec.europa.eu/theme/nz" rel="related"/>
+      <link href="http://inspire.ec.europa.eu/applicationschema/nz" rel="related"/>
+      <link href="http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue" rel="up"/>
+      <category term="CodeListValue"/>
+      <updated>2013-11-21T10:30:00.000+02:00</updated>
+   </entry>
+   <entry>
+      <id>http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue/tornadosAndHurricanesStrongWinds</id>
+      <title>Tornados and hurricanes strong winds</title>
+      <summary>Tornados and hurricanes strong winds hazard classification.</summary>
+      <link href="http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue/tornadosAndHurricanesStrongWinds" rel="self"/>
+      <link href="http://inspire.ec.europa.eu/theme/nz" rel="related"/>
+      <link href="http://inspire.ec.europa.eu/applicationschema/nz" rel="related"/>
+      <link href="http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue" rel="up"/>
+      <category term="CodeListValue"/>
+      <updated>2013-11-21T10:30:00.000+02:00</updated>
+   </entry>
+   <entry>
+      <id>http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue/lightning</id>
+      <title>Lightning</title>
+      <summary>Lightning hazard classification.</summary>
+      <link href="http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue/lightning" rel="self"/>
+      <link href="http://inspire.ec.europa.eu/theme/nz" rel="related"/>
+      <link href="http://inspire.ec.europa.eu/applicationschema/nz" rel="related"/>
+      <link href="http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue" rel="up"/>
+      <category term="CodeListValue"/>
+      <updated>2013-11-21T10:30:00.000+02:00</updated>
+   </entry>
+   <entry>
+      <id>http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue/stormSurge</id>
+      <title>Storm surge </title>
+      <summary>Storm surge hazard classification.</summary>
+      <link href="http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue/stormSurge" rel="self"/>
+      <link href="http://inspire.ec.europa.eu/theme/nz" rel="related"/>
+      <link href="http://inspire.ec.europa.eu/applicationschema/nz" rel="related"/>
+      <link href="http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue" rel="up"/>
+      <category term="CodeListValue"/>
+      <updated>2013-11-21T10:30:00.000+02:00</updated>
+   </entry>
+   <entry>
+      <id>http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue/fires</id>
+      <title>Fires</title>
+      <summary>Fires hazard classification.</summary>
+      <link href="http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue/fires" rel="self"/>
+      <link href="http://inspire.ec.europa.eu/theme/nz" rel="related"/>
+      <link href="http://inspire.ec.europa.eu/applicationschema/nz" rel="related"/>
+      <link href="http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue" rel="up"/>
+      <category term="CodeListValue"/>
+      <updated>2013-11-21T10:30:00.000+02:00</updated>
+   </entry>
+   <entry>
+      <id>http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue/forestFireWildfire</id>
+      <title>Forest fire wildfire</title>
+      <summary>Forest fire wildfire hazard classification.</summary>
+      <link href="http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue/forestFireWildfire" rel="self"/>
+      <link href="http://inspire.ec.europa.eu/theme/nz" rel="related"/>
+      <link href="http://inspire.ec.europa.eu/applicationschema/nz" rel="related"/>
+      <link href="http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue" rel="up"/>
+      <category term="CodeListValue"/>
+      <updated>2013-11-21T10:30:00.000+02:00</updated>
+   </entry>
+   <entry>
+      <id>http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue/undergroundFires</id>
+      <title>Underground fires</title>
+      <summary>Underground fires hazard classification.</summary>
+      <link href="http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue/undergroundFires" rel="self"/>
+      <link href="http://inspire.ec.europa.eu/theme/nz" rel="related"/>
+      <link href="http://inspire.ec.europa.eu/applicationschema/nz" rel="related"/>
+      <link href="http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue" rel="up"/>
+      <category term="CodeListValue"/>
+      <updated>2013-11-21T10:30:00.000+02:00</updated>
+   </entry>
+   <entry>
+      <id>http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue/biological</id>
+      <title>Biological</title>
+      <summary>Biological hazard classification.</summary>
+      <link href="http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue/biological" rel="self"/>
+      <link href="http://inspire.ec.europa.eu/theme/nz" rel="related"/>
+      <link href="http://inspire.ec.europa.eu/applicationschema/nz" rel="related"/>
+      <link href="http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue" rel="up"/>
+      <category term="CodeListValue"/>
+      <updated>2013-11-21T10:30:00.000+02:00</updated>
+   </entry>  
+   <entry>
+      <id>http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue/biological</id>
+      <title>Biological</title>
+      <summary>Biological hazard classification.</summary>
+      <link href="http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue/biological" rel="self"/>
+      <link href="http://inspire.ec.europa.eu/theme/nz" rel="related"/>
+      <link href="http://inspire.ec.europa.eu/applicationschema/nz" rel="related"/>
+      <link href="http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue" rel="up"/>
+      <category term="CodeListValue"/>
+      <updated>2013-11-21T10:30:00.000+02:00</updated>
+   </entry>  
+   <entry>
+      <id>http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue/infestation</id>
+      <title>Infestation</title>
+      <summary>Infestation hazard classification.</summary>
+      <link href="http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue/infestation" rel="self"/>
+      <link href="http://inspire.ec.europa.eu/theme/nz" rel="related"/>
+      <link href="http://inspire.ec.europa.eu/applicationschema/nz" rel="related"/>
+      <link href="http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue" rel="up"/>
+      <category term="CodeListValue"/>
+      <updated>2013-11-21T10:30:00.000+02:00</updated>
+   </entry>  
+   <entry>
+      <id>http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue/epidemic</id>
+      <title>Epidemic</title>
+      <summary>Epidemic hazard classification.</summary>
+      <link href="http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue/epidemic" rel="self"/>
+      <link href="http://inspire.ec.europa.eu/theme/nz" rel="related"/>
+      <link href="http://inspire.ec.europa.eu/applicationschema/nz" rel="related"/>
+      <link href="http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue" rel="up"/>
+      <category term="CodeListValue"/>
+      <updated>2013-11-21T10:30:00.000+02:00</updated>
+   </entry>  
+   <entry>
+      <id>http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue/allergens</id>
+      <title>Allergens</title>
+      <summary>Allergens hazard classification.</summary>
+      <link href="http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue/allergens" rel="self"/>
+      <link href="http://inspire.ec.europa.eu/theme/nz" rel="related"/>
+      <link href="http://inspire.ec.europa.eu/applicationschema/nz" rel="related"/>
+      <link href="http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue" rel="up"/>
+      <category term="CodeListValue"/>
+      <updated>2013-11-21T10:30:00.000+02:00</updated>
+   </entry>  
+   <entry>
+      <id>http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue/cosmic</id>
+      <title>Cosmic</title>
+      <summary>Cosmic hazard classification.</summary>
+      <link href="http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue/cosmic" rel="self"/>
+      <link href="http://inspire.ec.europa.eu/theme/nz" rel="related"/>
+      <link href="http://inspire.ec.europa.eu/applicationschema/nz" rel="related"/>
+      <link href="http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue" rel="up"/>
+      <category term="CodeListValue"/>
+      <updated>2013-11-21T10:30:00.000+02:00</updated>
+   </entry>  
+   <entry>
+      <id>http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue/meteoriteImpact</id>
+      <title>Meteorite impact</title>
+      <summary>Meteorite impact hazard classification.</summary>
+      <link href="http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue/meteoriteImpact" rel="self"/>
+      <link href="http://inspire.ec.europa.eu/theme/nz" rel="related"/>
+      <link href="http://inspire.ec.europa.eu/applicationschema/nz" rel="related"/>
+      <link href="http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue" rel="up"/>
+      <category term="CodeListValue"/>
+      <updated>2013-11-21T10:30:00.000+02:00</updated>
+   </entry>  
+   <entry>
+      <id>http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue/magneticDisruption</id>
+      <title>Magnetic disruption</title>
+      <summary>Magnetic disruption hazard classification.</summary>
+      <link href="http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue/magneticDisruption" rel="self"/>
+      <link href="http://inspire.ec.europa.eu/theme/nz" rel="related"/>
+      <link href="http://inspire.ec.europa.eu/applicationschema/nz" rel="related"/>
+      <link href="http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue" rel="up"/>
+      <category term="CodeListValue"/>
+      <updated>2013-11-21T10:30:00.000+02:00</updated>
+   </entry>  
+   <entry>
+      <id>http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue/solarAndCosmicRadiation</id>
+      <title>Solar and cosmic radiation</title>
+      <summary>Solar and cosmic radiation hazard classification.</summary>
+      <link href="http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue/solarAndCosmicRadiation" rel="self"/>
+      <link href="http://inspire.ec.europa.eu/theme/nz" rel="related"/>
+      <link href="http://inspire.ec.europa.eu/applicationschema/nz" rel="related"/>
+      <link href="http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue" rel="up"/>
+      <category term="CodeListValue"/>
+      <updated>2013-11-21T10:30:00.000+02:00</updated>
+   </entry>  
+   <entry>
+      <id>http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue/otherGeologicalHydrological</id>
+      <title>Other geological hydrological</title>
+      <summary>Other geological hydrological hazard classification.</summary>
+      <link href="http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue/otherGeologicalHydrological" rel="self"/>
+      <link href="http://inspire.ec.europa.eu/theme/nz" rel="related"/>
+      <link href="http://inspire.ec.europa.eu/applicationschema/nz" rel="related"/>
+      <link href="http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue" rel="up"/>
+      <category term="CodeListValue"/>
+      <updated>2013-11-21T10:30:00.000+02:00</updated>
+   </entry>  
+   <entry>
+      <id>http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue/otherMeteorologicalClimatological</id>
+      <title>Other meteorological climatological</title>
+      <summary>Other meteorological climatological</summary>
+      <link href="http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue/otherMeteorologicalClimatological" rel="self"/>
+      <link href="http://inspire.ec.europa.eu/theme/nz" rel="related"/>
+      <link href="http://inspire.ec.europa.eu/applicationschema/nz" rel="related"/>
+      <link href="http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue" rel="up"/>
+      <category term="CodeListValue"/>
+      <updated>2013-11-21T10:30:00.000+02:00</updated>
+   </entry>  
+   <entry>
+      <id>http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue/otherFires</id>
+      <title>Other fires</title>
+      <summary>Other fires</summary>
+      <link href="http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue/otherFires" rel="self"/>
+      <link href="http://inspire.ec.europa.eu/theme/nz" rel="related"/>
+      <link href="http://inspire.ec.europa.eu/applicationschema/nz" rel="related"/>
+      <link href="http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue" rel="up"/>
+      <category term="CodeListValue"/>
+      <updated>2013-11-21T10:30:00.000+02:00</updated>
+   </entry>  
+   <entry>
+      <id>http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue/otherBiological</id>
+      <title>Other biological</title>
+      <summary>Other biological</summary>
+      <link href="http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue/otherBiological" rel="self"/>
+      <link href="http://inspire.ec.europa.eu/theme/nz" rel="related"/>
+      <link href="http://inspire.ec.europa.eu/applicationschema/nz" rel="related"/>
+      <link href="http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue" rel="up"/>
+      <category term="CodeListValue"/>
+      <updated>2013-11-21T10:30:00.000+02:00</updated>
+   </entry>  
+   <entry>
+      <id>http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue/otherCosmic</id>
+      <title>Other cosmic</title>
+      <summary>Other cosmic</summary>
+      <link href="http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue/otherCosmic" rel="self"/>
+      <link href="http://inspire.ec.europa.eu/theme/nz" rel="related"/>
+      <link href="http://inspire.ec.europa.eu/applicationschema/nz" rel="related"/>
+      <link href="http://inspire.ec.europa.eu/codelist/RiskOrHazardCategoryValue" rel="up"/>
+      <category term="CodeListValue"/>
+      <updated>2013-11-21T10:30:00.000+02:00</updated>
+   </entry>
+</feed>

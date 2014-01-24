@@ -1,0 +1,44 @@
+#if($error)
+<h2>Fout</h2>
+<p>
+	De opgegeven combinatie van gebruikersnaam en wachtwoord is ongeldig.
+</p>
+#end
+<script type="text/javascript">
+</script>
+
+<form method="POST" action="#springUrl('/do-login')#if($closeWindow)?return-to=/login-close#end">
+	<table class="cds-table login" width="30%" id="login">
+		<thead>
+			<tr>
+				<th align="left">Aanmelden</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td width="10%">
+					<label>Gebruikersnaam: </label><br />
+				</td>
+				<td width="10%">
+					<input id="username" name="j_username" type="text" size="32" value="" /><br />
+				</td>
+			</tr>
+			<tr>
+				<td width="10%">
+					<label>Wachtwoord: </label><br />
+				</td>
+				<td width="10%">
+					<input name="j_password" type="password" size="32" value="" /><br />
+				</td>
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+				<th colspan="2" align="left">
+					<div id="stdButton"><button data-dojo-type="dijit/form/Button" type="submit" name="login" value="">Inloggen</button></div>
+				</th>
+			</tr>
+		</tfoot>
+	</table>
+</form>

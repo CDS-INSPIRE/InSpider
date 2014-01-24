@@ -1,0 +1,1755 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sld:StyledLayerDescriptor version="1.1.0" xmlns:xlink="http://www.w3.org/1999/xlink"
+  xmlns:top10nl="http://www.kadaster.nl/top10nl" xmlns:ogc="http://www.opengis.net/ogc"
+  xmlns:sld="http://www.opengis.net/sld" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:se="http://www.opengis.net/se"
+  xsi:schemaLocation="http://www.opengis.net/sld http://schemas.opengis.net/sld/1.1.0/StyledLayerDescriptor.xsd">
+
+  <!-- AM.AirQualityManagementZone -->
+  <!--
+  <sld:NamedLayer>
+    <se:Name>AM.AirQualityManagementZone</se:Name>
+    <sld:UserStyle>
+      <se:Name>AM.AirQualityManagementZone.Default</se:Name>
+      <sld:IsDefault>1</sld:IsDefault>
+      
+      <se:FeatureTypeStyle>
+        <se:Name>tFTSname</se:Name>
+        <se:Rule>
+          <ogc:Filter>
+              <ogc:PropertyIsEqualTo>
+                <ogc:Function name="IsSurface">
+                  <ogc:PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:geometry</ogc:PropertyName>
+                </ogc:Function>
+                <ogc:Literal>true</ogc:Literal>
+              </ogc:PropertyIsEqualTo>
+          </ogc:Filter>          
+          <se:PolygonSymbolizer>
+            <se:Fill>												
+              <se:SvgParameter name="fill-opacity">0.5</se:SvgParameter>
+              <se:SvgParameter name="fill">#FFD37F</se:SvgParameter>
+            </se:Fill>
+            <se:Stroke>
+              <se:SvgParameter name="stroke">#FFD37F</se:SvgParameter>
+              <se:SvgParameter name="stroke-width">2</se:SvgParameter> 
+              
+              <se:SvgParameter name="stroke-opacity">1.0</se:SvgParameter>
+              <se:SvgParameter name="stroke-linecap">round</se:SvgParameter>
+              
+            </se:Stroke>
+          </se:PolygonSymbolizer>           
+        </se:Rule>
+
+        <se:Rule>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:Function name="IsCurve">
+                <ogc:PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:geometry</ogc:PropertyName>
+              </ogc:Function>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>          
+          <se:LineSymbolizer>
+            <se:Stroke>
+              <se:SvgParameter name="stroke">#FFD37F</se:SvgParameter>
+              <se:SvgParameter name="stroke-width">2</se:SvgParameter> 
+              
+              <se:SvgParameter name="stroke-opacity">1.0</se:SvgParameter>
+              <se:SvgParameter name="stroke-linecap">round</se:SvgParameter>
+              
+            </se:Stroke>
+          </se:LineSymbolizer>           
+        </se:Rule>
+        
+        <se:Rule>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:Function name="IsPoint">
+                <ogc:PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:geometry</ogc:PropertyName>
+              </ogc:Function>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>          
+          <se:PointSymbolizer>
+            <se:Graphic>
+              <se:Mark>
+                <se:WellKnownName>square</se:WellKnownName>
+                <se:Fill>												
+                  <se:SvgParameter name="fill-opacity">1.0</se:SvgParameter>
+                  <se:SvgParameter name="fill">#FFD37F</se:SvgParameter>
+                </se:Fill>
+                <se:Stroke>
+                  <se:SvgParameter name="stroke">#000000</se:SvgParameter>
+                  <se:SvgParameter name="stroke-width">1</se:SvgParameter> 
+                  
+                  <se:SvgParameter name="stroke-opacity">1.0</se:SvgParameter>
+                  <se:SvgParameter name="stroke-linecap">round</se:SvgParameter>
+                  
+                </se:Stroke>
+              </se:Mark>
+              <se:Size>6</se:Size>
+              <se:Rotation>0</se:Rotation>
+            </se:Graphic>
+          </se:PointSymbolizer>
+        </se:Rule>
+        
+      </se:FeatureTypeStyle>
+    </sld:UserStyle>
+  </sld:NamedLayer>
+  -->
+  <!-- AM.AnimalHealthRestrictionZone -->
+  <!--
+  <sld:NamedLayer>
+    <se:Name>AM.AnimalHealthRestrictionZone</se:Name>
+    <sld:UserStyle>
+      <se:Name>AM.AnimalHealthRestrictionZone.Default</se:Name>
+      <sld:IsDefault>1</sld:IsDefault>
+      
+      <se:FeatureTypeStyle>
+        <se:Name>tFTSname</se:Name>
+        <se:Rule>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:Function name="IsSurface">
+                <ogc:PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:geometry</ogc:PropertyName>
+              </ogc:Function>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>          
+          <se:PolygonSymbolizer>
+            <se:Fill>												
+              <se:SvgParameter name="fill-opacity">0.5</se:SvgParameter>
+              <se:SvgParameter name="fill">#FF0000</se:SvgParameter>
+            </se:Fill>
+            <se:Stroke>
+              <se:SvgParameter name="stroke">#FF0000</se:SvgParameter>
+              <se:SvgParameter name="stroke-width">2</se:SvgParameter> 
+              
+              <se:SvgParameter name="stroke-opacity">1.0</se:SvgParameter>
+              <se:SvgParameter name="stroke-linecap">round</se:SvgParameter>
+              
+            </se:Stroke>
+          </se:PolygonSymbolizer>           
+        </se:Rule>
+        
+        <se:Rule>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:Function name="IsCurve">
+                <ogc:PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:geometry</ogc:PropertyName>
+              </ogc:Function>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>          
+          <se:LineSymbolizer>
+            <se:Stroke>
+              <se:SvgParameter name="stroke">#FF0000</se:SvgParameter>
+              <se:SvgParameter name="stroke-width">2</se:SvgParameter> 
+              
+              <se:SvgParameter name="stroke-opacity">1.0</se:SvgParameter>
+              <se:SvgParameter name="stroke-linecap">round</se:SvgParameter>
+              
+            </se:Stroke>
+          </se:LineSymbolizer>           
+        </se:Rule>
+        
+        <se:Rule>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:Function name="IsPoint">
+                <ogc:PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:geometry</ogc:PropertyName>
+              </ogc:Function>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>          
+          <se:PointSymbolizer>
+            <se:Graphic>
+              <se:Mark>
+                <se:WellKnownName>square</se:WellKnownName>
+                <se:Fill>												
+                  <se:SvgParameter name="fill-opacity">1.0</se:SvgParameter>
+                  <se:SvgParameter name="fill">#FF0000</se:SvgParameter>
+                </se:Fill>
+                <se:Stroke>
+                  <se:SvgParameter name="stroke">#000000</se:SvgParameter>
+                  <se:SvgParameter name="stroke-width">2</se:SvgParameter> 
+                  
+                  <se:SvgParameter name="stroke-opacity">1.0</se:SvgParameter>
+                  <se:SvgParameter name="stroke-linecap">round</se:SvgParameter>
+                  
+                </se:Stroke>
+              </se:Mark>
+              <se:Size>6</se:Size>
+              <se:Rotation>0</se:Rotation>
+            </se:Graphic>
+          </se:PointSymbolizer>
+        </se:Rule>
+        
+      </se:FeatureTypeStyle>
+    </sld:UserStyle>
+  </sld:NamedLayer>
+  -->  
+  <!-- AM.AreaForDisposalOfWaste -->
+  <!--
+  <sld:NamedLayer>
+    <se:Name>AM.AreaForDisposalOfWaste</se:Name>
+    <sld:UserStyle>
+      <se:Name>AM.AreaForDisposalOfWaste.Default</se:Name>
+      <sld:IsDefault>1</sld:IsDefault>
+      
+      <se:FeatureTypeStyle>
+        <se:Name>tFTSname</se:Name>
+        <se:Rule>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:Function name="IsSurface">
+                <ogc:PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:geometry</ogc:PropertyName>
+              </ogc:Function>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>          
+          <se:PolygonSymbolizer>
+            <se:Fill>												
+              <se:SvgParameter name="fill-opacity">0.5</se:SvgParameter>
+              <se:SvgParameter name="fill">#CDAA66</se:SvgParameter>
+            </se:Fill>
+            <se:Stroke>
+              <se:SvgParameter name="stroke">#CDAA66</se:SvgParameter>
+              <se:SvgParameter name="stroke-width">2</se:SvgParameter> 
+              
+              <se:SvgParameter name="stroke-opacity">1.0</se:SvgParameter>
+              <se:SvgParameter name="stroke-linecap">round</se:SvgParameter>
+              
+            </se:Stroke>
+          </se:PolygonSymbolizer>           
+        </se:Rule>
+        
+        <se:Rule>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:Function name="IsCurve">
+                <ogc:PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:geometry</ogc:PropertyName>
+              </ogc:Function>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>          
+          <se:LineSymbolizer>
+            <se:Stroke>
+              <se:SvgParameter name="stroke">#CDAA66</se:SvgParameter>
+              <se:SvgParameter name="stroke-width">2</se:SvgParameter> 
+              
+              <se:SvgParameter name="stroke-opacity">1.0</se:SvgParameter>
+              <se:SvgParameter name="stroke-linecap">round</se:SvgParameter>
+              
+            </se:Stroke>
+          </se:LineSymbolizer>           
+        </se:Rule>
+        
+        <se:Rule>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:Function name="IsPoint">
+                <ogc:PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:geometry</ogc:PropertyName>
+              </ogc:Function>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>          
+          <se:PointSymbolizer>
+            <se:Graphic>
+              <se:Mark>
+                <se:WellKnownName>square</se:WellKnownName>
+                <se:Fill>												
+                  <se:SvgParameter name="fill-opacity">1.0</se:SvgParameter>
+                  <se:SvgParameter name="fill">#CDAA66</se:SvgParameter>
+                </se:Fill>
+                <se:Stroke>
+                  <se:SvgParameter name="stroke">#000000</se:SvgParameter>
+                  <se:SvgParameter name="stroke-width">2</se:SvgParameter> 
+                  
+                  <se:SvgParameter name="stroke-opacity">1.0</se:SvgParameter>
+                  <se:SvgParameter name="stroke-linecap">round</se:SvgParameter>
+                  
+                </se:Stroke>
+              </se:Mark>
+              <se:Size>6</se:Size>
+              <se:Rotation>0</se:Rotation>
+            </se:Graphic>
+          </se:PointSymbolizer>
+        </se:Rule>
+        
+      </se:FeatureTypeStyle>
+    </sld:UserStyle>
+  </sld:NamedLayer>
+  -->  
+  <!-- AM.BathingWaters -->
+  
+  <sld:NamedLayer>
+    <se:Name>AM.BathingWaters</se:Name>
+    <sld:UserStyle>
+      <se:Name>AM.BathingWaters.Default</se:Name>
+      <sld:IsDefault>1</sld:IsDefault>
+      
+      <se:FeatureTypeStyle>
+        <se:Name>tFTSname</se:Name>
+        <se:Rule>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:Function name="IsSurface">
+                <ogc:PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:geometry</ogc:PropertyName>
+              </ogc:Function>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>
+          <se:PolygonSymbolizer>
+            <se:Fill>												
+              <se:SvgParameter name="fill-opacity">0.5</se:SvgParameter>
+              <se:SvgParameter name="fill">#BED2FF</se:SvgParameter>
+            </se:Fill>
+            <se:Stroke>
+              <se:SvgParameter name="stroke">#BED2FF</se:SvgParameter>
+              <se:SvgParameter name="stroke-width">2</se:SvgParameter> 
+              
+              <se:SvgParameter name="stroke-opacity">1.0</se:SvgParameter>
+              <se:SvgParameter name="stroke-linecap">round</se:SvgParameter>
+              
+            </se:Stroke>
+          </se:PolygonSymbolizer>           
+        </se:Rule>
+                
+        <se:Rule>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:Function name="IsCurve">
+                <ogc:PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:geometry</ogc:PropertyName>
+              </ogc:Function>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>          
+          <se:LineSymbolizer>
+            <se:Stroke>
+              <se:SvgParameter name="stroke">#BED2FF</se:SvgParameter>
+              <se:SvgParameter name="stroke-width">2</se:SvgParameter> 
+              
+              <se:SvgParameter name="stroke-opacity">1.0</se:SvgParameter>
+              <se:SvgParameter name="stroke-linecap">round</se:SvgParameter>
+              
+            </se:Stroke>
+          </se:LineSymbolizer>           
+        </se:Rule>
+        
+        <se:Rule>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:Function name="IsPoint">
+                <ogc:PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:geometry</ogc:PropertyName>
+              </ogc:Function>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>          
+          <se:PointSymbolizer>
+            <se:Graphic>
+              <se:Mark>
+                <se:WellKnownName>square</se:WellKnownName>
+                <se:Fill>												
+                  <se:SvgParameter name="fill-opacity">1.0</se:SvgParameter>
+                  <se:SvgParameter name="fill">#BED2FF</se:SvgParameter>
+                </se:Fill>
+                <se:Stroke>
+                  <se:SvgParameter name="stroke">#000000</se:SvgParameter>
+                  <se:SvgParameter name="stroke-width">2</se:SvgParameter> 
+                  
+                  <se:SvgParameter name="stroke-opacity">1.0</se:SvgParameter>
+                  <se:SvgParameter name="stroke-linecap">round</se:SvgParameter>
+                  
+                </se:Stroke>
+              </se:Mark>
+              <se:Size>6</se:Size>
+              <se:Rotation>0</se:Rotation>
+            </se:Graphic>
+          </se:PointSymbolizer>
+        </se:Rule>
+        
+      </se:FeatureTypeStyle>
+    </sld:UserStyle>
+  </sld:NamedLayer>
+  
+  <!-- AM.CoastalZoneManagementArea -->
+  <!--
+  <sld:NamedLayer>
+    <se:Name>AM.CoastalZoneManagementArea</se:Name>
+    <sld:UserStyle>
+      <se:Name>AM.CoastalZoneManagementArea.Default</se:Name>
+      <sld:IsDefault>1</sld:IsDefault>
+      
+      <se:FeatureTypeStyle>
+        <se:Name>tFTSname</se:Name>
+        <se:Rule>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:Function name="IsSurface">
+                <ogc:PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:geometry</ogc:PropertyName>
+              </ogc:Function>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>          
+          <se:PolygonSymbolizer>
+            <se:Fill>												
+              <se:SvgParameter name="fill-opacity">0.5</se:SvgParameter>
+              <se:SvgParameter name="fill">#85ABFF</se:SvgParameter>
+            </se:Fill>
+            <se:Stroke>
+              <se:SvgParameter name="stroke">#85ABFF</se:SvgParameter>
+              <se:SvgParameter name="stroke-width">2</se:SvgParameter> 
+              
+              <se:SvgParameter name="stroke-opacity">1.0</se:SvgParameter>
+              <se:SvgParameter name="stroke-linecap">round</se:SvgParameter>
+              
+            </se:Stroke>
+          </se:PolygonSymbolizer>           
+        </se:Rule>
+        
+        <se:Rule>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:Function name="IsCurve">
+                <ogc:PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:geometry</ogc:PropertyName>
+              </ogc:Function>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>          
+          <se:LineSymbolizer>
+            <se:Stroke>
+              <se:SvgParameter name="stroke">#85ABFF</se:SvgParameter>
+              <se:SvgParameter name="stroke-width">2</se:SvgParameter> 
+              
+              <se:SvgParameter name="stroke-opacity">1.0</se:SvgParameter>
+              <se:SvgParameter name="stroke-linecap">round</se:SvgParameter>
+              
+            </se:Stroke>
+          </se:LineSymbolizer>           
+        </se:Rule>
+        
+        <se:Rule>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:Function name="IsPoint">
+                <ogc:PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:geometry</ogc:PropertyName>
+              </ogc:Function>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>          
+          <se:PointSymbolizer>
+            <se:Graphic>
+              <se:Mark>
+                <se:WellKnownName>square</se:WellKnownName>
+                <se:Fill>												
+                  <se:SvgParameter name="fill-opacity">1.0</se:SvgParameter>
+                  <se:SvgParameter name="fill">#85ABFF</se:SvgParameter>
+                </se:Fill>
+                <se:Stroke>
+                  <se:SvgParameter name="stroke">#000000</se:SvgParameter>
+                  <se:SvgParameter name="stroke-width">2</se:SvgParameter> 
+                  
+                  <se:SvgParameter name="stroke-opacity">1.0</se:SvgParameter>
+                  <se:SvgParameter name="stroke-linecap">round</se:SvgParameter>
+                  
+                </se:Stroke>
+              </se:Mark>
+              <se:Size>6</se:Size>
+              <se:Rotation>0</se:Rotation>
+            </se:Graphic>
+          </se:PointSymbolizer>
+        </se:Rule>
+        
+      </se:FeatureTypeStyle>
+    </sld:UserStyle>
+  </sld:NamedLayer>
+  -->  
+  <!-- AM.DesignatedWaters -->
+  <!--
+  <sld:NamedLayer>
+    <se:Name>AM.DesignatedWaters</se:Name>
+    <sld:UserStyle>
+      <se:Name>AM.DesignatedWaters.Default</se:Name>
+      <sld:IsDefault>1</sld:IsDefault>
+      
+      <se:FeatureTypeStyle>
+        <se:Name>tFTSname</se:Name>
+        <se:Rule>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:Function name="IsSurface">
+                <ogc:PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:geometry</ogc:PropertyName>
+              </ogc:Function>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>          
+          <se:PolygonSymbolizer>
+            <se:Fill>												
+              <se:SvgParameter name="fill-opacity">0.5</se:SvgParameter>
+              <se:SvgParameter name="fill">#BED2FF</se:SvgParameter>
+            </se:Fill>
+            <se:Stroke>
+              <se:SvgParameter name="stroke">#BED2FF</se:SvgParameter>
+              <se:SvgParameter name="stroke-width">2</se:SvgParameter> 
+              
+              <se:SvgParameter name="stroke-opacity">1.0</se:SvgParameter>
+              <se:SvgParameter name="stroke-linecap">round</se:SvgParameter>
+              
+            </se:Stroke>
+          </se:PolygonSymbolizer>           
+        </se:Rule>
+        
+        <se:Rule>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:Function name="IsCurve">
+                <ogc:PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:geometry</ogc:PropertyName>
+              </ogc:Function>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>          
+          <se:LineSymbolizer>
+            <se:Stroke>
+              <se:SvgParameter name="stroke">#BED2FF</se:SvgParameter>
+              <se:SvgParameter name="stroke-width">2</se:SvgParameter> 
+              
+              <se:SvgParameter name="stroke-opacity">1.0</se:SvgParameter>
+              <se:SvgParameter name="stroke-linecap">round</se:SvgParameter>
+              
+            </se:Stroke>
+          </se:LineSymbolizer>           
+        </se:Rule>
+        
+        <se:Rule>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:Function name="IsPoint">
+                <ogc:PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:geometry</ogc:PropertyName>
+              </ogc:Function>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>          
+          <se:PointSymbolizer>
+            <se:Graphic>
+              <se:Mark>
+                <se:WellKnownName>square</se:WellKnownName>
+                <se:Fill>												
+                  <se:SvgParameter name="fill-opacity">1.0</se:SvgParameter>
+                  <se:SvgParameter name="fill">#BED2FF</se:SvgParameter>
+                </se:Fill>
+                <se:Stroke>
+                  <se:SvgParameter name="stroke">#000000</se:SvgParameter>
+                  <se:SvgParameter name="stroke-width">2</se:SvgParameter> 
+                  
+                  <se:SvgParameter name="stroke-opacity">1.0</se:SvgParameter>
+                  <se:SvgParameter name="stroke-linecap">round</se:SvgParameter>
+                  
+                </se:Stroke>
+              </se:Mark>
+              <se:Size>6</se:Size>
+              <se:Rotation>0</se:Rotation>
+            </se:Graphic>
+          </se:PointSymbolizer>
+        </se:Rule>
+        
+      </se:FeatureTypeStyle>
+    </sld:UserStyle>
+  </sld:NamedLayer>
+  -->  
+  <!-- AM.DrinkingWaterProtectionArea -->
+  
+  <sld:NamedLayer>
+    <se:Name>AM.DrinkingWaterProtectionArea</se:Name>
+    <sld:UserStyle>
+      <se:Name>AM.DrinkingWaterProtectionArea.Default</se:Name>
+      <sld:IsDefault>1</sld:IsDefault>
+      
+      <se:FeatureTypeStyle>
+        <se:Name>tFTSname</se:Name>
+        <se:Rule>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:Function name="IsSurface">
+                <ogc:PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:geometry</ogc:PropertyName>
+              </ogc:Function>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>          
+          <se:PolygonSymbolizer>
+            <se:Fill>												
+              <se:SvgParameter name="fill-opacity">0.5</se:SvgParameter>
+              <se:SvgParameter name="fill">#BED2FF</se:SvgParameter>
+            </se:Fill>
+            <se:Stroke>
+              <se:SvgParameter name="stroke">#BED2FF</se:SvgParameter>
+              <se:SvgParameter name="stroke-width">2</se:SvgParameter> 
+              
+              <se:SvgParameter name="stroke-opacity">1.0</se:SvgParameter>
+              <se:SvgParameter name="stroke-linecap">round</se:SvgParameter>
+              
+            </se:Stroke>
+          </se:PolygonSymbolizer>           
+        </se:Rule>
+        
+        <se:Rule>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:Function name="IsCurve">
+                <ogc:PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:geometry</ogc:PropertyName>
+              </ogc:Function>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>          
+          <se:LineSymbolizer>
+            <se:Stroke>
+              <se:SvgParameter name="stroke">#BED2FF</se:SvgParameter>
+              <se:SvgParameter name="stroke-width">2</se:SvgParameter> 
+              
+              <se:SvgParameter name="stroke-opacity">1.0</se:SvgParameter>
+              <se:SvgParameter name="stroke-linecap">round</se:SvgParameter>
+              
+            </se:Stroke>
+          </se:LineSymbolizer>           
+        </se:Rule>
+        
+        <se:Rule>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:Function name="IsPoint">
+                <ogc:PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:geometry</ogc:PropertyName>
+              </ogc:Function>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>          
+          <se:PointSymbolizer>
+            <se:Graphic>
+              <se:Mark>
+                <se:WellKnownName>square</se:WellKnownName>
+                <se:Fill>												
+                  <se:SvgParameter name="fill-opacity">1.0</se:SvgParameter>
+                  <se:SvgParameter name="fill">#BED2FF</se:SvgParameter>
+                </se:Fill>
+                <se:Stroke>
+                  <se:SvgParameter name="stroke">#000000</se:SvgParameter>
+                  <se:SvgParameter name="stroke-width">2</se:SvgParameter> 
+                  
+                  <se:SvgParameter name="stroke-opacity">1.0</se:SvgParameter>
+                  <se:SvgParameter name="stroke-linecap">round</se:SvgParameter>
+                  
+                </se:Stroke>
+              </se:Mark>
+              <se:Size>6</se:Size>
+              <se:Rotation>0</se:Rotation>
+            </se:Graphic>
+          </se:PointSymbolizer>
+        </se:Rule>
+        
+      </se:FeatureTypeStyle>
+    </sld:UserStyle>
+  </sld:NamedLayer>
+  
+  <!-- AM.FloodUnitOfManagement -->
+  <!--
+  <sld:NamedLayer>
+    <se:Name>AM.FloodUnitOfManagement</se:Name>
+    <sld:UserStyle>
+      <se:Name>AM.FloodUnitOfManagement.Default</se:Name>
+      <sld:IsDefault>1</sld:IsDefault>
+      
+      <se:FeatureTypeStyle>
+        <se:Name>tFTSname</se:Name>
+        <se:Rule>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:Function name="IsSurface">
+                <ogc:PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:geometry</ogc:PropertyName>
+              </ogc:Function>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>          
+          <se:PolygonSymbolizer>
+            <se:Fill>												
+              <se:SvgParameter name="fill-opacity">0.5</se:SvgParameter>
+              <se:SvgParameter name="fill">#9966FF</se:SvgParameter>
+            </se:Fill>
+            <se:Stroke>
+              <se:SvgParameter name="stroke">#9966FF</se:SvgParameter>
+              <se:SvgParameter name="stroke-width">2</se:SvgParameter> 
+              
+              <se:SvgParameter name="stroke-opacity">1.0</se:SvgParameter>
+              <se:SvgParameter name="stroke-linecap">round</se:SvgParameter>
+              
+            </se:Stroke>
+          </se:PolygonSymbolizer>           
+        </se:Rule>
+        
+        <se:Rule>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:Function name="IsCurve">
+                <ogc:PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:geometry</ogc:PropertyName>
+              </ogc:Function>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>          
+          <se:LineSymbolizer>
+            <se:Stroke>
+              <se:SvgParameter name="stroke">#9966FF</se:SvgParameter>
+              <se:SvgParameter name="stroke-width">2</se:SvgParameter> 
+              
+              <se:SvgParameter name="stroke-opacity">1.0</se:SvgParameter>
+              <se:SvgParameter name="stroke-linecap">round</se:SvgParameter>
+              
+            </se:Stroke>
+          </se:LineSymbolizer>           
+        </se:Rule>
+        
+        <se:Rule>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:Function name="IsPoint">
+                <ogc:PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:geometry</ogc:PropertyName>
+              </ogc:Function>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>          
+          <se:PointSymbolizer>
+            <se:Graphic>
+              <se:Mark>
+                <se:WellKnownName>square</se:WellKnownName>
+                <se:Fill>												
+                  <se:SvgParameter name="fill-opacity">1.0</se:SvgParameter>
+                  <se:SvgParameter name="fill">#9966FF</se:SvgParameter>
+                </se:Fill>
+                <se:Stroke>
+                  <se:SvgParameter name="stroke">#000000</se:SvgParameter>
+                  <se:SvgParameter name="stroke-width">2</se:SvgParameter> 
+                  
+                  <se:SvgParameter name="stroke-opacity">1.0</se:SvgParameter>
+                  <se:SvgParameter name="stroke-linecap">round</se:SvgParameter>
+                  
+                </se:Stroke>
+              </se:Mark>
+              <se:Size>6</se:Size>
+              <se:Rotation>0</se:Rotation>
+            </se:Graphic>
+          </se:PointSymbolizer>
+        </se:Rule>
+        
+      </se:FeatureTypeStyle>
+    </sld:UserStyle>
+  </sld:NamedLayer>
+  -->
+  <!-- AM.ForestManagementArea -->
+  <!--
+  <sld:NamedLayer>
+    <se:Name>AM.ForestManagementArea</se:Name>
+    <sld:UserStyle>
+      <se:Name>AM.ForestManagementArea.Default</se:Name>
+      <sld:IsDefault>1</sld:IsDefault>
+      
+      <se:FeatureTypeStyle>
+        <se:Name>tFTSname</se:Name>
+        <se:Rule>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:Function name="IsSurface">
+                <ogc:PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:geometry</ogc:PropertyName>
+              </ogc:Function>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>          
+          <se:PolygonSymbolizer>
+            <se:Fill>												
+              <se:SvgParameter name="fill-opacity">0.5</se:SvgParameter>
+              <se:SvgParameter name="fill">#33CC33</se:SvgParameter>
+            </se:Fill>
+            <se:Stroke>
+              <se:SvgParameter name="stroke">#33CC33</se:SvgParameter>
+              <se:SvgParameter name="stroke-width">2</se:SvgParameter> 
+              
+              <se:SvgParameter name="stroke-opacity">1.0</se:SvgParameter>
+              <se:SvgParameter name="stroke-linecap">round</se:SvgParameter>
+              
+            </se:Stroke>
+          </se:PolygonSymbolizer>           
+        </se:Rule>
+        
+        <se:Rule>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:Function name="IsCurve">
+                <ogc:PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:geometry</ogc:PropertyName>
+              </ogc:Function>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>          
+          <se:LineSymbolizer>
+            <se:Stroke>
+              <se:SvgParameter name="stroke">#33CC33</se:SvgParameter>
+              <se:SvgParameter name="stroke-width">2</se:SvgParameter> 
+              
+              <se:SvgParameter name="stroke-opacity">1.0</se:SvgParameter>
+              <se:SvgParameter name="stroke-linecap">round</se:SvgParameter>
+              
+            </se:Stroke>
+          </se:LineSymbolizer>           
+        </se:Rule>
+        
+        <se:Rule>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:Function name="IsPoint">
+                <ogc:PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:geometry</ogc:PropertyName>
+              </ogc:Function>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>          
+          <se:PointSymbolizer>
+            <se:Graphic>
+              <se:Mark>
+                <se:WellKnownName>square</se:WellKnownName>
+                <se:Fill>												
+                  <se:SvgParameter name="fill-opacity">1.0</se:SvgParameter>
+                  <se:SvgParameter name="fill">#33CC33</se:SvgParameter>
+                </se:Fill>
+                <se:Stroke>
+                  <se:SvgParameter name="stroke">#000000</se:SvgParameter>
+                  <se:SvgParameter name="stroke-width">2</se:SvgParameter> 
+                  
+                  <se:SvgParameter name="stroke-opacity">1.0</se:SvgParameter>
+                  <se:SvgParameter name="stroke-linecap">round</se:SvgParameter>
+                  
+                </se:Stroke>
+              </se:Mark>
+              <se:Size>6</se:Size>
+              <se:Rotation>0</se:Rotation>
+            </se:Graphic>
+          </se:PointSymbolizer>
+        </se:Rule>
+        
+      </se:FeatureTypeStyle>
+    </sld:UserStyle>
+  </sld:NamedLayer>
+  -->
+  <!-- AM.MarineRegion -->
+  <!--
+  <sld:NamedLayer>
+    <se:Name>AM.MarineRegion</se:Name>
+    <sld:UserStyle>
+      <se:Name>AM.MarineRegion.Default</se:Name>
+      <sld:IsDefault>1</sld:IsDefault>
+      
+      <se:FeatureTypeStyle>
+        <se:Name>tFTSname</se:Name>
+        <se:Rule>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:Function name="IsSurface">
+                <ogc:PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:geometry</ogc:PropertyName>
+              </ogc:Function>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>          
+          <se:PolygonSymbolizer>
+            <se:Fill>												
+              <se:SvgParameter name="fill-opacity">0.5</se:SvgParameter>
+              <se:SvgParameter name="fill">#85ABFF</se:SvgParameter>
+            </se:Fill>
+            <se:Stroke>
+              <se:SvgParameter name="stroke">#85ABFF</se:SvgParameter>
+              <se:SvgParameter name="stroke-width">2</se:SvgParameter> 
+              
+              <se:SvgParameter name="stroke-opacity">1.0</se:SvgParameter>
+              <se:SvgParameter name="stroke-linecap">round</se:SvgParameter>
+              
+            </se:Stroke>
+          </se:PolygonSymbolizer>           
+        </se:Rule>
+        
+        <se:Rule>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:Function name="IsCurve">
+                <ogc:PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:geometry</ogc:PropertyName>
+              </ogc:Function>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>          
+          <se:LineSymbolizer>
+            <se:Stroke>
+              <se:SvgParameter name="stroke">#85ABFF</se:SvgParameter>
+              <se:SvgParameter name="stroke-width">2</se:SvgParameter> 
+              
+              <se:SvgParameter name="stroke-opacity">1.0</se:SvgParameter>
+              <se:SvgParameter name="stroke-linecap">round</se:SvgParameter>
+              
+            </se:Stroke>
+          </se:LineSymbolizer>           
+        </se:Rule>
+        
+        <se:Rule>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:Function name="IsPoint">
+                <ogc:PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:geometry</ogc:PropertyName>
+              </ogc:Function>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>          
+          <se:PointSymbolizer>
+            <se:Graphic>
+              <se:Mark>
+                <se:WellKnownName>square</se:WellKnownName>
+                <se:Fill>												
+                  <se:SvgParameter name="fill-opacity">1.0</se:SvgParameter>
+                  <se:SvgParameter name="fill">#85ABFF</se:SvgParameter>
+                </se:Fill>
+                <se:Stroke>
+                  <se:SvgParameter name="stroke">#000000</se:SvgParameter>
+                  <se:SvgParameter name="stroke-width">2</se:SvgParameter> 
+                  
+                  <se:SvgParameter name="stroke-opacity">1.0</se:SvgParameter>
+                  <se:SvgParameter name="stroke-linecap">round</se:SvgParameter>
+                  
+                </se:Stroke>
+              </se:Mark>
+              <se:Size>6</se:Size>
+              <se:Rotation>0</se:Rotation>
+            </se:Graphic>
+          </se:PointSymbolizer>
+        </se:Rule>
+        
+      </se:FeatureTypeStyle>
+    </sld:UserStyle>
+  </sld:NamedLayer>
+  -->
+  <!-- AM.NitrateVulnerableZone -->
+  <!--
+  <sld:NamedLayer>
+    <se:Name>AM.NitrateVulnerableZone</se:Name>
+    <sld:UserStyle>
+      <se:Name>AM.NitrateVulnerableZone.Default</se:Name>
+      <sld:IsDefault>1</sld:IsDefault>
+      
+      <se:FeatureTypeStyle>
+        <se:Name>tFTSname</se:Name>
+        <se:Rule>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:Function name="IsSurface">
+                <ogc:PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:geometry</ogc:PropertyName>
+              </ogc:Function>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>          
+          <se:PolygonSymbolizer>
+            <se:Fill>												
+              <se:SvgParameter name="fill-opacity">0.5</se:SvgParameter>
+              <se:SvgParameter name="fill">#FFFF66</se:SvgParameter>
+            </se:Fill>
+            <se:Stroke>
+              <se:SvgParameter name="stroke">#FFFF66</se:SvgParameter>
+              <se:SvgParameter name="stroke-width">2</se:SvgParameter> 
+              
+              <se:SvgParameter name="stroke-opacity">1.0</se:SvgParameter>
+              <se:SvgParameter name="stroke-linecap">round</se:SvgParameter>
+              
+            </se:Stroke>
+          </se:PolygonSymbolizer>           
+        </se:Rule>
+        
+        <se:Rule>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:Function name="IsCurve">
+                <ogc:PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:geometry</ogc:PropertyName>
+              </ogc:Function>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>          
+          <se:LineSymbolizer>
+            <se:Stroke>
+              <se:SvgParameter name="stroke">#FFFF66</se:SvgParameter>
+              <se:SvgParameter name="stroke-width">2</se:SvgParameter> 
+              
+              <se:SvgParameter name="stroke-opacity">1.0</se:SvgParameter>
+              <se:SvgParameter name="stroke-linecap">round</se:SvgParameter>
+              
+            </se:Stroke>
+          </se:LineSymbolizer>           
+        </se:Rule>
+        
+        <se:Rule>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:Function name="IsPoint">
+                <ogc:PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:geometry</ogc:PropertyName>
+              </ogc:Function>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>          
+          <se:PointSymbolizer>
+            <se:Graphic>
+              <se:Mark>
+                <se:WellKnownName>square</se:WellKnownName>
+                <se:Fill>												
+                  <se:SvgParameter name="fill-opacity">1.0</se:SvgParameter>
+                  <se:SvgParameter name="fill">#FFFF66</se:SvgParameter>
+                </se:Fill>
+                <se:Stroke>
+                  <se:SvgParameter name="stroke">#000000</se:SvgParameter>
+                  <se:SvgParameter name="stroke-width">2</se:SvgParameter> 
+                  
+                  <se:SvgParameter name="stroke-opacity">1.0</se:SvgParameter>
+                  <se:SvgParameter name="stroke-linecap">round</se:SvgParameter>
+                  
+                </se:Stroke>
+              </se:Mark>
+              <se:Size>6</se:Size>
+              <se:Rotation>0</se:Rotation>
+            </se:Graphic>
+          </se:PointSymbolizer>
+        </se:Rule>
+        
+      </se:FeatureTypeStyle>
+    </sld:UserStyle>
+  </sld:NamedLayer>
+  -->
+  <!-- AM.NoiseRestrictionZone -->
+  
+  <sld:NamedLayer>
+    <se:Name>AM.NoiseRestrictionZone</se:Name>
+    <sld:UserStyle>
+      <se:Name>AM.NoiseRestrictionZone.Default</se:Name>
+      <sld:IsDefault>1</sld:IsDefault>      
+      <se:FeatureTypeStyle>
+        <se:Name>tFTSname</se:Name>
+        <se:Rule>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:Function name="IsSurface">
+                <ogc:PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:geometry</ogc:PropertyName>
+              </ogc:Function>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>     
+          <se:PolygonSymbolizer>
+            <se:Fill>												
+              <se:SvgParameter name="fill-opacity">0.5</se:SvgParameter>
+              <se:SvgParameter name="fill">#FFD37F</se:SvgParameter>
+            </se:Fill>
+            <se:Stroke>
+              <se:SvgParameter name="stroke">#FFD37F</se:SvgParameter>
+              <se:SvgParameter name="stroke-width">2</se:SvgParameter> 
+              
+              <se:SvgParameter name="stroke-opacity">1.0</se:SvgParameter>
+              <se:SvgParameter name="stroke-linecap">round</se:SvgParameter>
+              
+            </se:Stroke>
+          </se:PolygonSymbolizer>           
+        </se:Rule>
+        
+        <se:Rule>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:Function name="IsCurve">
+                <ogc:PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:geometry</ogc:PropertyName>
+              </ogc:Function>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>          
+          <se:LineSymbolizer>
+            <se:Stroke>
+              <se:SvgParameter name="stroke">#FFD37F</se:SvgParameter>
+              <se:SvgParameter name="stroke-width">2</se:SvgParameter> 
+              
+              <se:SvgParameter name="stroke-opacity">1.0</se:SvgParameter>
+              <se:SvgParameter name="stroke-linecap">round</se:SvgParameter>
+              
+            </se:Stroke>
+          </se:LineSymbolizer>           
+        </se:Rule>
+        
+        <se:Rule>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:Function name="IsPoint">
+                <ogc:PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:geometry</ogc:PropertyName>
+              </ogc:Function>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>          
+          <se:PointSymbolizer>
+            <se:Graphic>
+              <se:Mark>
+                <se:WellKnownName>square</se:WellKnownName>
+                <se:Fill>												
+                  <se:SvgParameter name="fill-opacity">1.0</se:SvgParameter>
+                  <se:SvgParameter name="fill">#FFD37F</se:SvgParameter>
+                </se:Fill>
+                <se:Stroke>
+                  <se:SvgParameter name="stroke">#000000</se:SvgParameter>
+                  <se:SvgParameter name="stroke-width">1</se:SvgParameter> 
+                  
+                  <se:SvgParameter name="stroke-opacity">1.0</se:SvgParameter>
+                  <se:SvgParameter name="stroke-linecap">round</se:SvgParameter>
+                  
+                </se:Stroke>
+              </se:Mark>
+              <se:Size>6</se:Size>
+              <se:Rotation>0</se:Rotation>
+            </se:Graphic>
+          </se:PointSymbolizer>
+        </se:Rule>
+
+      </se:FeatureTypeStyle>
+    </sld:UserStyle>
+  </sld:NamedLayer>
+  
+  <!-- AM.PlantHealthProtectionZone -->
+  <!--
+  <sld:NamedLayer>
+    <se:Name>AM.PlantHealthProtectionZone</se:Name>
+    <sld:UserStyle>
+      <se:Name>AM.PlantHealthProtectionZone.Default</se:Name>
+      <sld:IsDefault>1</sld:IsDefault>
+      
+      <se:FeatureTypeStyle>
+        <se:Name>tFTSname</se:Name>
+        <se:Rule>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:Function name="IsSurface">
+                <ogc:PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:geometry</ogc:PropertyName>
+              </ogc:Function>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>          
+          <se:PolygonSymbolizer>
+            <se:Fill>												
+              <se:SvgParameter name="fill-opacity">0.5</se:SvgParameter>
+              <se:SvgParameter name="fill">#FF0000</se:SvgParameter>
+            </se:Fill>
+            <se:Stroke>
+              <se:SvgParameter name="stroke">#FF0000</se:SvgParameter>
+              <se:SvgParameter name="stroke-width">2</se:SvgParameter> 
+              
+              <se:SvgParameter name="stroke-opacity">1.0</se:SvgParameter>
+              <se:SvgParameter name="stroke-linecap">round</se:SvgParameter>
+              
+            </se:Stroke>
+          </se:PolygonSymbolizer>           
+        </se:Rule>
+        
+        <se:Rule>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:Function name="IsCurve">
+                <ogc:PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:geometry</ogc:PropertyName>
+              </ogc:Function>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>          
+          <se:LineSymbolizer>
+            <se:Stroke>
+              <se:SvgParameter name="stroke">#FF0000</se:SvgParameter>
+              <se:SvgParameter name="stroke-width">2</se:SvgParameter> 
+              
+              <se:SvgParameter name="stroke-opacity">1.0</se:SvgParameter>
+              <se:SvgParameter name="stroke-linecap">round</se:SvgParameter>
+              
+            </se:Stroke>
+          </se:LineSymbolizer>           
+        </se:Rule>
+        
+        <se:Rule>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:Function name="IsPoint">
+                <ogc:PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:geometry</ogc:PropertyName>
+              </ogc:Function>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>          
+          <se:PointSymbolizer>
+            <se:Graphic>
+              <se:Mark>
+                <se:WellKnownName>square</se:WellKnownName>
+                <se:Fill>												
+                  <se:SvgParameter name="fill-opacity">1.0</se:SvgParameter>
+                  <se:SvgParameter name="fill">#FF0000</se:SvgParameter>
+                </se:Fill>
+                <se:Stroke>
+                  <se:SvgParameter name="stroke">#000000</se:SvgParameter>
+                  <se:SvgParameter name="stroke-width">2</se:SvgParameter> 
+                  
+                  <se:SvgParameter name="stroke-opacity">1.0</se:SvgParameter>
+                  <se:SvgParameter name="stroke-linecap">round</se:SvgParameter>
+                  
+                </se:Stroke>
+              </se:Mark>
+              <se:Size>6</se:Size>
+              <se:Rotation>0</se:Rotation>
+            </se:Graphic>
+          </se:PointSymbolizer>
+        </se:Rule>
+        
+      </se:FeatureTypeStyle>
+    </sld:UserStyle>
+  </sld:NamedLayer>
+  -->
+  <!-- AM.ProspectingAndMiningPermitArea -->
+  
+  <sld:NamedLayer>
+    <se:Name>AM.ProspectingAndMiningPermitArea</se:Name>
+    <sld:UserStyle>
+      <se:Name>AM.ProspectingAndMiningPermitArea.Default</se:Name>
+      <sld:IsDefault>1</sld:IsDefault>
+      
+      <se:FeatureTypeStyle>
+        <se:Name>tFTSname</se:Name>
+        <se:Rule>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:Function name="IsSurface">
+                <ogc:PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:geometry</ogc:PropertyName>
+              </ogc:Function>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>          
+          <se:PolygonSymbolizer>
+            <se:Fill>												
+              <se:SvgParameter name="fill-opacity">0.5</se:SvgParameter>
+              <se:SvgParameter name="fill">#CDAA66</se:SvgParameter>
+            </se:Fill>
+            <se:Stroke>
+              <se:SvgParameter name="stroke">#CDAA66</se:SvgParameter>
+              <se:SvgParameter name="stroke-width">2</se:SvgParameter> 
+              
+              <se:SvgParameter name="stroke-opacity">1.0</se:SvgParameter>
+              <se:SvgParameter name="stroke-linecap">round</se:SvgParameter>
+              
+            </se:Stroke>
+          </se:PolygonSymbolizer>           
+        </se:Rule>
+        
+        <se:Rule>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:Function name="IsCurve">
+                <ogc:PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:geometry</ogc:PropertyName>
+              </ogc:Function>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>          
+          <se:LineSymbolizer>
+            <se:Stroke>
+              <se:SvgParameter name="stroke">#CDAA66</se:SvgParameter>
+              <se:SvgParameter name="stroke-width">2</se:SvgParameter> 
+              
+              <se:SvgParameter name="stroke-opacity">1.0</se:SvgParameter>
+              <se:SvgParameter name="stroke-linecap">round</se:SvgParameter>
+              
+            </se:Stroke>
+          </se:LineSymbolizer>           
+        </se:Rule>
+        
+        <se:Rule>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:Function name="IsPoint">
+                <ogc:PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:geometry</ogc:PropertyName>
+              </ogc:Function>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>          
+          <se:PointSymbolizer>
+            <se:Graphic>
+              <se:Mark>
+                <se:WellKnownName>square</se:WellKnownName>
+                <se:Fill>												
+                  <se:SvgParameter name="fill-opacity">1.0</se:SvgParameter>
+                  <se:SvgParameter name="fill">#CDAA66</se:SvgParameter>
+                </se:Fill>
+                <se:Stroke>
+                  <se:SvgParameter name="stroke">#000000</se:SvgParameter>
+                  <se:SvgParameter name="stroke-width">2</se:SvgParameter> 
+                  
+                  <se:SvgParameter name="stroke-opacity">1.0</se:SvgParameter>
+                  <se:SvgParameter name="stroke-linecap">round</se:SvgParameter>
+                  
+                </se:Stroke>
+              </se:Mark>
+              <se:Size>6</se:Size>
+              <se:Rotation>0</se:Rotation>
+            </se:Graphic>
+          </se:PointSymbolizer>
+        </se:Rule>
+        
+      </se:FeatureTypeStyle>
+    </sld:UserStyle>
+  </sld:NamedLayer>
+  
+  <!-- AM.RegulatedFairwayAtSeaOrLargeInlandWater -->
+  <!--
+  <sld:NamedLayer>
+    <se:Name>AM.RegulatedFairwayAtSeaOrLargeInlandWater</se:Name>
+    <sld:UserStyle>
+      <se:Name>AM.RegulatedFairwayAtSeaOrLargeInlandWater.Default</se:Name>
+      <sld:IsDefault>1</sld:IsDefault>
+      
+      <se:FeatureTypeStyle>
+        <se:Name>tFTSname</se:Name>
+        <se:Rule>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:Function name="IsSurface">
+                <ogc:PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:geometry</ogc:PropertyName>
+              </ogc:Function>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>          
+          <se:PolygonSymbolizer>
+            <se:Fill>												
+              <se:SvgParameter name="fill-opacity">0.5</se:SvgParameter>
+              <se:SvgParameter name="fill">#85ABFF</se:SvgParameter>
+            </se:Fill>
+            <se:Stroke>
+              <se:SvgParameter name="stroke">#85ABFF</se:SvgParameter>
+              <se:SvgParameter name="stroke-width">2</se:SvgParameter> 
+              
+              <se:SvgParameter name="stroke-opacity">1.0</se:SvgParameter>
+              <se:SvgParameter name="stroke-linecap">round</se:SvgParameter>
+              
+            </se:Stroke>
+          </se:PolygonSymbolizer>           
+        </se:Rule>
+        
+        <se:Rule>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:Function name="IsCurve">
+                <ogc:PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:geometry</ogc:PropertyName>
+              </ogc:Function>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>          
+          <se:LineSymbolizer>
+            <se:Stroke>
+              <se:SvgParameter name="stroke">#85ABFF</se:SvgParameter>
+              <se:SvgParameter name="stroke-width">2</se:SvgParameter> 
+              
+              <se:SvgParameter name="stroke-opacity">1.0</se:SvgParameter>
+              <se:SvgParameter name="stroke-linecap">round</se:SvgParameter>
+              
+            </se:Stroke>
+          </se:LineSymbolizer>           
+        </se:Rule>
+        
+        <se:Rule>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:Function name="IsPoint">
+                <ogc:PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:geometry</ogc:PropertyName>
+              </ogc:Function>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>          
+          <se:PointSymbolizer>
+            <se:Graphic>
+              <se:Mark>
+                <se:WellKnownName>square</se:WellKnownName>
+                <se:Fill>												
+                  <se:SvgParameter name="fill-opacity">1.0</se:SvgParameter>
+                  <se:SvgParameter name="fill">#85ABFF</se:SvgParameter>
+                </se:Fill>
+                <se:Stroke>
+                  <se:SvgParameter name="stroke">#000000</se:SvgParameter>
+                  <se:SvgParameter name="stroke-width">2</se:SvgParameter> 
+                  
+                  <se:SvgParameter name="stroke-opacity">1.0</se:SvgParameter>
+                  <se:SvgParameter name="stroke-linecap">round</se:SvgParameter>
+                  
+                </se:Stroke>
+              </se:Mark>
+              <se:Size>6</se:Size>
+              <se:Rotation>0</se:Rotation>
+            </se:Graphic>
+          </se:PointSymbolizer>
+        </se:Rule>
+        
+      </se:FeatureTypeStyle>
+    </sld:UserStyle>
+  </sld:NamedLayer>
+  -->
+  <!-- AM.RestrictedZonesAroundContaminatedSites -->
+  <!--
+  <sld:NamedLayer>
+    <se:Name>AM.RestrictedZonesAroundContaminatedSites</se:Name>
+    <sld:UserStyle>
+      <se:Name>AM.RestrictedZonesAroundContaminatedSites.Default</se:Name>
+      <sld:IsDefault>1</sld:IsDefault>
+      
+      <se:FeatureTypeStyle>
+        <se:Name>tFTSname</se:Name>
+        <se:Rule>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:Function name="IsSurface">
+                <ogc:PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:geometry</ogc:PropertyName>
+              </ogc:Function>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>          
+          <se:PolygonSymbolizer>
+            <se:Fill>												
+              <se:SvgParameter name="fill-opacity">0.5</se:SvgParameter>
+              <se:SvgParameter name="fill">#FF0000</se:SvgParameter>
+            </se:Fill>
+            <se:Stroke>
+              <se:SvgParameter name="stroke">#FF0000</se:SvgParameter>
+              <se:SvgParameter name="stroke-width">2</se:SvgParameter> 
+              
+              <se:SvgParameter name="stroke-opacity">1.0</se:SvgParameter>
+              <se:SvgParameter name="stroke-linecap">round</se:SvgParameter>
+              
+            </se:Stroke>
+          </se:PolygonSymbolizer>           
+        </se:Rule>
+        
+        <se:Rule>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:Function name="IsCurve">
+                <ogc:PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:geometry</ogc:PropertyName>
+              </ogc:Function>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>          
+          <se:LineSymbolizer>
+            <se:Stroke>
+              <se:SvgParameter name="stroke">#FF0000</se:SvgParameter>
+              <se:SvgParameter name="stroke-width">2</se:SvgParameter> 
+              
+              <se:SvgParameter name="stroke-opacity">1.0</se:SvgParameter>
+              <se:SvgParameter name="stroke-linecap">round</se:SvgParameter>
+              
+            </se:Stroke>
+          </se:LineSymbolizer>           
+        </se:Rule>
+        
+        <se:Rule>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:Function name="IsPoint">
+                <ogc:PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:geometry</ogc:PropertyName>
+              </ogc:Function>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>          
+          <se:PointSymbolizer>
+            <se:Graphic>
+              <se:Mark>
+                <se:WellKnownName>square</se:WellKnownName>
+                <se:Fill>												
+                  <se:SvgParameter name="fill-opacity">1.0</se:SvgParameter>
+                  <se:SvgParameter name="fill">#FF0000</se:SvgParameter>
+                </se:Fill>
+                <se:Stroke>
+                  <se:SvgParameter name="stroke">#000000</se:SvgParameter>
+                  <se:SvgParameter name="stroke-width">2</se:SvgParameter> 
+                  
+                  <se:SvgParameter name="stroke-opacity">1.0</se:SvgParameter>
+                  <se:SvgParameter name="stroke-linecap">round</se:SvgParameter>
+                  
+                </se:Stroke>
+              </se:Mark>
+              <se:Size>6</se:Size>
+              <se:Rotation>0</se:Rotation>
+            </se:Graphic>
+          </se:PointSymbolizer>
+        </se:Rule>
+        
+      </se:FeatureTypeStyle>
+    </sld:UserStyle>
+  </sld:NamedLayer>
+  -->
+  <!-- AM.RiverBasinDistrict -->
+  <!--
+  <sld:NamedLayer>
+    <se:Name>AM.RiverBasinDistrict</se:Name>
+    <sld:UserStyle>
+      <se:Name>AM.RiverBasinDistrict.Default</se:Name>
+      <sld:IsDefault>1</sld:IsDefault>
+      
+      <se:FeatureTypeStyle>
+        <se:Name>tFTSname</se:Name>
+        <se:Rule>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:Function name="IsSurface">
+                <ogc:PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:geometry</ogc:PropertyName>
+              </ogc:Function>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>          
+          <se:PolygonSymbolizer>
+            <se:Fill>												
+              <se:SvgParameter name="fill-opacity">0.5</se:SvgParameter>
+              <se:SvgParameter name="fill">#9966FF</se:SvgParameter>
+            </se:Fill>
+            <se:Stroke>
+              <se:SvgParameter name="stroke">#9966FF</se:SvgParameter>
+              <se:SvgParameter name="stroke-width">2</se:SvgParameter> 
+              
+              <se:SvgParameter name="stroke-opacity">1.0</se:SvgParameter>
+              <se:SvgParameter name="stroke-linecap">round</se:SvgParameter>
+              
+            </se:Stroke>
+          </se:PolygonSymbolizer>           
+        </se:Rule>
+        
+        <se:Rule>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:Function name="IsCurve">
+                <ogc:PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:geometry</ogc:PropertyName>
+              </ogc:Function>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>          
+          <se:LineSymbolizer>
+            <se:Stroke>
+              <se:SvgParameter name="stroke">#9966FF</se:SvgParameter>
+              <se:SvgParameter name="stroke-width">2</se:SvgParameter> 
+              
+              <se:SvgParameter name="stroke-opacity">1.0</se:SvgParameter>
+              <se:SvgParameter name="stroke-linecap">round</se:SvgParameter>
+              
+            </se:Stroke>
+          </se:LineSymbolizer>           
+        </se:Rule>
+        
+        <se:Rule>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:Function name="IsPoint">
+                <ogc:PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:geometry</ogc:PropertyName>
+              </ogc:Function>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>          
+          <se:PointSymbolizer>
+            <se:Graphic>
+              <se:Mark>
+                <se:WellKnownName>square</se:WellKnownName>
+                <se:Fill>												
+                  <se:SvgParameter name="fill-opacity">1.0</se:SvgParameter>
+                  <se:SvgParameter name="fill">#9966FF</se:SvgParameter>
+                </se:Fill>
+                <se:Stroke>
+                  <se:SvgParameter name="stroke">#000000</se:SvgParameter>
+                  <se:SvgParameter name="stroke-width">2</se:SvgParameter> 
+                  
+                  <se:SvgParameter name="stroke-opacity">1.0</se:SvgParameter>
+                  <se:SvgParameter name="stroke-linecap">round</se:SvgParameter>
+                  
+                </se:Stroke>
+              </se:Mark>
+              <se:Size>6</se:Size>
+              <se:Rotation>0</se:Rotation>
+            </se:Graphic>
+          </se:PointSymbolizer>
+        </se:Rule>
+        
+      </se:FeatureTypeStyle>
+    </sld:UserStyle>
+  </sld:NamedLayer>
+  -->
+  <!-- AM.SensitiveArea -->
+  <!--
+  <sld:NamedLayer>
+    <se:Name>AM.SensitiveArea</se:Name>
+    <sld:UserStyle>
+      <se:Name>AM.SensitiveArea.Default</se:Name>
+      <sld:IsDefault>1</sld:IsDefault>
+      
+      <se:FeatureTypeStyle>
+        <se:Name>tFTSname</se:Name>
+        <se:Rule>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:Function name="IsSurface">
+                <ogc:PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:geometry</ogc:PropertyName>
+              </ogc:Function>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>          
+          <se:PolygonSymbolizer>
+            <se:Fill>												
+              <se:SvgParameter name="fill-opacity">0.5</se:SvgParameter>
+              <se:SvgParameter name="fill">#FFFF66</se:SvgParameter>
+            </se:Fill>
+            <se:Stroke>
+              <se:SvgParameter name="stroke">#FFFF66</se:SvgParameter>
+              <se:SvgParameter name="stroke-width">2</se:SvgParameter> 
+              
+              <se:SvgParameter name="stroke-opacity">1.0</se:SvgParameter>
+              <se:SvgParameter name="stroke-linecap">round</se:SvgParameter>
+              
+            </se:Stroke>
+          </se:PolygonSymbolizer>           
+        </se:Rule>
+        
+        <se:Rule>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:Function name="IsCurve">
+                <ogc:PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:geometry</ogc:PropertyName>
+              </ogc:Function>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>          
+          <se:LineSymbolizer>
+            <se:Stroke>
+              <se:SvgParameter name="stroke">#FFFF66</se:SvgParameter>
+              <se:SvgParameter name="stroke-width">2</se:SvgParameter> 
+              
+              <se:SvgParameter name="stroke-opacity">1.0</se:SvgParameter>
+              <se:SvgParameter name="stroke-linecap">round</se:SvgParameter>
+              
+            </se:Stroke>
+          </se:LineSymbolizer>           
+        </se:Rule>
+        
+        <se:Rule>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:Function name="IsPoint">
+                <ogc:PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:geometry</ogc:PropertyName>
+              </ogc:Function>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>          
+          <se:PointSymbolizer>
+            <se:Graphic>
+              <se:Mark>
+                <se:WellKnownName>square</se:WellKnownName>
+                <se:Fill>												
+                  <se:SvgParameter name="fill-opacity">1.0</se:SvgParameter>
+                  <se:SvgParameter name="fill">#FFFF66</se:SvgParameter>
+                </se:Fill>
+                <se:Stroke>
+                  <se:SvgParameter name="stroke">#000000</se:SvgParameter>
+                  <se:SvgParameter name="stroke-width">2</se:SvgParameter> 
+                  
+                  <se:SvgParameter name="stroke-opacity">1.0</se:SvgParameter>
+                  <se:SvgParameter name="stroke-linecap">round</se:SvgParameter>
+                  
+                </se:Stroke>
+              </se:Mark>
+              <se:Size>6</se:Size>
+              <se:Rotation>0</se:Rotation>
+            </se:Graphic>
+          </se:PointSymbolizer>
+        </se:Rule>
+        
+      </se:FeatureTypeStyle>
+    </sld:UserStyle>
+  </sld:NamedLayer>
+  -->
+  <!-- AM.WaterBodyForWFD -->
+  <!--
+  <sld:NamedLayer>
+    <se:Name>AM.WaterBodyForWFD</se:Name>
+    <sld:UserStyle>
+      <se:Name>AM.WaterBodyForWFD.Default</se:Name>
+      <sld:IsDefault>1</sld:IsDefault>
+      
+      <se:FeatureTypeStyle>
+        <se:Name>tFTSname</se:Name>
+        <se:Rule>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:Function name="IsSurface">
+                <ogc:PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:geometry</ogc:PropertyName>
+              </ogc:Function>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>          
+          <se:PolygonSymbolizer>
+            <se:Fill>												
+              <se:SvgParameter name="fill-opacity">0.5</se:SvgParameter>
+              <se:SvgParameter name="fill">#BED2FF</se:SvgParameter>
+            </se:Fill>
+            <se:Stroke>
+              <se:SvgParameter name="stroke">#BED2FF</se:SvgParameter>
+              <se:SvgParameter name="stroke-width">2</se:SvgParameter> 
+              
+              <se:SvgParameter name="stroke-opacity">1.0</se:SvgParameter>
+              <se:SvgParameter name="stroke-linecap">round</se:SvgParameter>
+              
+            </se:Stroke>
+          </se:PolygonSymbolizer>           
+        </se:Rule>
+        
+        <se:Rule>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:Function name="IsCurve">
+                <ogc:PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:geometry</ogc:PropertyName>
+              </ogc:Function>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>          
+          <se:LineSymbolizer>
+            <se:Stroke>
+              <se:SvgParameter name="stroke">#BED2FF</se:SvgParameter>
+              <se:SvgParameter name="stroke-width">2</se:SvgParameter> 
+              
+              <se:SvgParameter name="stroke-opacity">1.0</se:SvgParameter>
+              <se:SvgParameter name="stroke-linecap">round</se:SvgParameter>
+              
+            </se:Stroke>
+          </se:LineSymbolizer>           
+        </se:Rule>
+        
+        <se:Rule>
+          <ogc:Filter>
+            <ogc:PropertyIsEqualTo>
+              <ogc:Function name="IsPoint">
+                <ogc:PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:geometry</ogc:PropertyName>
+              </ogc:Function>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Filter>          
+          <se:PointSymbolizer>
+            <se:Graphic>
+              <se:Mark>
+                <se:WellKnownName>square</se:WellKnownName>
+                <se:Fill>												
+                  <se:SvgParameter name="fill-opacity">1.0</se:SvgParameter>
+                  <se:SvgParameter name="fill">#BED2FF</se:SvgParameter>
+                </se:Fill>
+                <se:Stroke>
+                  <se:SvgParameter name="stroke">#000000</se:SvgParameter>
+                  <se:SvgParameter name="stroke-width">2</se:SvgParameter> 
+                  
+                  <se:SvgParameter name="stroke-opacity">1.0</se:SvgParameter>
+                  <se:SvgParameter name="stroke-linecap">round</se:SvgParameter>
+                  
+                </se:Stroke>
+              </se:Mark>
+              <se:Size>6</se:Size>
+              <se:Rotation>0</se:Rotation>
+            </se:Graphic>
+          </se:PointSymbolizer>
+        </se:Rule>
+        
+      </se:FeatureTypeStyle>
+    </sld:UserStyle>
+  </sld:NamedLayer>
+  -->
+</sld:StyledLayerDescriptor>

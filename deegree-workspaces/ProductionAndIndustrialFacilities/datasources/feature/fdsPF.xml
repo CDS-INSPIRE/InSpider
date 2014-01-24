@@ -1,0 +1,81 @@
+<SQLFeatureStore xmlns="http://www.deegree.org/datasource/feature/sql" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  configVersion="3.2.0" 
+  xsi:schemaLocation="http://www.deegree.org/datasource/feature/sql http://schemas.deegree.org/datasource/feature/sql/3.2.0/sql.xsd"
+  xmlns:app="http://www.ipo.nl/InSpider" >
+
+  <JDBCConnId>conPF</JDBCConnId>
+
+  <FeatureTypeMapping xmlns:app="http://www.ipo.nl/InSpider" table="bron.production_facility" name="app:ProductionFacility_NL">
+    <FIDMapping>
+      <Column name="id" />
+    </FIDMapping>
+    
+    <Primitive path="app:inspire_id_dataset_code" mapping="inspire_id_dataset_code" />
+    <Primitive path="app:inspire_id_local_id" mapping="inspire_id_local_id" />
+    <Primitive path="app:production_facility_id" mapping="production_facility_id" />
+    <Primitive path="app:thematic_identifier" mapping="thematic_identifier" />
+    <Primitive path="app:thematic_identifier_scheme" mapping="thematic_identifier_scheme" />
+    <Primitive path="app:function_activity" mapping="function_activity" />
+    <Primitive path="app:function_input" mapping="function_input" />
+    <Primitive path="app:function_output" mapping="function_output" />
+    <Primitive path="app:function_description" mapping="function_description" />
+    <Primitive path="app:name" mapping="name" />
+    <Primitive path="app:status_type" mapping="status_type" />
+    <Primitive path="app:status_description" mapping="status_description" />
+    
+    <Geometry path="app:geometry" mapping="geometry">
+      <StorageCRS srid="28992">EPSG:28992</StorageCRS>
+    </Geometry>
+    <Geometry path="app:surface_geometry" mapping="surface_geometry">
+      <StorageCRS srid="28992">EPSG:28992</StorageCRS>      
+    </Geometry>
+  </FeatureTypeMapping>
+
+  <FeatureTypeMapping xmlns:app="http://www.ipo.nl/InSpider" table="bron.production_installation" name="app:ProductionInstallation_NL">
+    <FIDMapping>
+      <Column name="id" />
+    </FIDMapping>
+    
+    <Primitive path="app:inspire_id_dataset_code" mapping="inspire_id_dataset_code" />
+    <Primitive path="app:inspire_id_local_id" mapping="inspire_id_local_id" />
+    <Primitive path="app:production_facility_id" mapping="production_facility_id" />
+    <Primitive path="app:production_installation_id" mapping="production_installation_id" />
+    <Primitive path="app:thematic_identifier" mapping="thematic_identifier" />
+    <Primitive path="app:thematic_identifier_scheme" mapping="thematic_identifier_scheme" />
+    <Primitive path="app:name" mapping="name" />
+    <Primitive path="app:status_type" mapping="status_type" />
+    <Primitive path="app:status_description" mapping="status_description" />
+    <Primitive path="app:type" mapping="type" />
+    
+    <Geometry path="app:point_geometry" mapping="point_geometry">
+      <StorageCRS srid="28992">EPSG:28992</StorageCRS>
+    </Geometry> 
+    <Geometry path="app:surface_geometry" mapping="surface_geometry">
+      <StorageCRS srid="28992">EPSG:28992</StorageCRS>      
+    </Geometry>
+    <Geometry path="app:line_geometry" mapping="line_geometry">
+      <StorageCRS srid="28992">EPSG:28992</StorageCRS>      
+    </Geometry>
+    
+  </FeatureTypeMapping>
+  
+  <FeatureTypeMapping xmlns:app="http://www.ipo.nl/InSpider" table="bron.production_installation_part" name="app:ProductionInstallationPart_NL">
+    <FIDMapping>
+      <Column name="id" />
+    </FIDMapping>
+    
+    <Primitive path="app:inspire_id_dataset_code" mapping="inspire_id_dataset_code" />
+    <Primitive path="app:inspire_id_local_id" mapping="inspire_id_local_id" />
+    <Primitive path="app:production_installation_id" mapping="production_installation_id" />
+    <Primitive path="app:name" mapping="name" />
+    <Primitive path="app:status_type" mapping="status_type" />
+    <Primitive path="app:status_description" mapping="status_description" />
+    <Primitive path="app:type" mapping="type" />
+    <Primitive path="app:technique" mapping="technique" />
+    
+    <Geometry path="app:point_geometry" mapping="point_geometry">
+      <StorageCRS srid="28992">EPSG:28992</StorageCRS>
+    </Geometry> 
+  </FeatureTypeMapping>
+  
+</SQLFeatureStore>

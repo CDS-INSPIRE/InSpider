@@ -1,0 +1,146 @@
+#set($layerName='datasetconfig')
+<script type="text/javascript">
+require ([
+	'dijit/registry',
+	
+	"cds/ready!"
+], function () {
+    window.refresh = function (){
+    	var url = "#springUrl('/ba/datasetconfig/')$bronhouder.id";
+		location.href=url;
+    }
+    
+    window.removeDataset = function (id){
+    	var url = "#springUrl('/ba/remove_datasetconfig/')$bronhouder.id/?datasetId="+id;
+		location.href=url;
+    }
+    
+    dijit.byId ('thema').on ('change', function (e) {
+    	var theme = this.get ('value'),
+    		bronhouder = dijit.byId ('bronhouder').get ('value'),
+    		url = "#springUrl('/ba/datasetconfig/')" + bronhouder + '?thema=' + encodeURIComponent (theme);
+    	
+    	console.log ('Switching theme: ', bronhouder, theme);
+    	
+    	location.href = url;
+    });
+    dijit.byId ('bronhouder').on ('change', function (e) {
+    	var bronhouder = this.get ('value'),
+    		theme = dijit.byId ('thema').get ('value'),
+    		url = "#springUrl('/ba/datasetconfig/')" + bronhouder + '?thema=' + encodeURIComponent (theme);
+    	
+    	console.log ('Switching bronhouder: ', bronhouder, theme);
+    	
+    	location.href = url;
+    });
+});
+</script>
+#set($title = 'Bronhouder - ' + $bronhouder.naam)
+
+##<h2>Beheer datasets bronhouder #e($bronhouder.naam)</h2>
+	
+<br/>
+	<form name="dataset_form" method="POST" action="#springUrl('/ba/datasetconfig/')$bronhouder.id/">
+	<label>Bronhouder:&nbsp;&nbsp;&nbsp;
+	</label>
+    <select data-dojo-type="dijit/form/FilteringSelect" id="bronhouder" title="Provincie of bronhouder" name="bronhouder_Id" required="true" #if(! $authz.anyGranted("ROLE_BEHEERDER")) disabled #end>
+		<script type="dojo/method" data-dojo-event="onChange">
+			var bronhouderId = this.get('value');
+			var url = "#springUrl('/ba/datasetconfig/')" + bronhouderId;
+			location.href=url;
+		</script>
+		#foreach($b in $bronhouders)
+		    <option value="$b.id"#if ($b.id==$bronhouder.id) selected="selected"#end>$b.naam</option>
+		#end
+	</select>
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<label>Thema:&nbsp;&nbsp;&nbsp;
+	<select data-dojo-type="dijit/form/Select" id="thema" name="thema" required="true"  title="Thema waaronder datasets zijn gegroepeerd">
+		#foreach($thema in $themaList)
+		    <option value="#e($thema.naam)"#if($thema.naam == $currentThema.naam) selected="selected"#end>$thema.naam</option>
+		#end
+	</select>
+	</label>
+	<p></p>
+
+	<table class="cds-table" id="naw">
+		<thead>
+			<tr>				
+				<th title="Datasettype behorende tot het thema $!currentThema.naam" style="text-align:left">Type</th>
+				<th style="text-align:left">Naam</th>
+				<th title="UUID van de bij de dataset horende metadata, of http-URL verwijzing naar een metadatabestand" style="text-align:left;">UUID of URL metadata</th>
+				<th title="Configuratie van mappings tussen attributen in de bron WFS en het CDS">Attribuutconfiguratie</th>
+				<th title="Actief of inactief maken van datasets" style="text-align:center; border-width:1px; border-right-style:solid; border-right-color:gray; " >Actief</th>
+				<th title="Verwijderen of Toevoegen van datasets" style="text-align:center">Actie</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+		#foreach($bhds in $bronhouderDatasetList)
+			<tr>
+				<td width="5%">
+					<input name="bronhouderDatasets[$foreach.index].id" type="hidden" value="$!bhds.id"/>
+					<input style="width:50px" name="bronhouderDatasets[$foreach.index].type" type="hidden" value="$!bhds.type" />
+					<label> $!bhds.type </label> 
+				</td>
+				<td width="15%">
+					<input type="text" name="bronhouderDatasets[$foreach.index].naam" value="#e($bhds.naam)" style="width:250px" title="Naam van de dataset registratie" /> 
+				</td>				
+				<td width="25%">
+					<input type="text" name="bronhouderDatasets[$foreach.index].uuid" value="$!bhds.uuid" style="width:400px" title="UUID van de metadata of een http url naar de metadata voor dit dataset" /> 
+				</td>
+				<td>					
+					<em class="#if($bhds.validAttributeMappings>=$bhds.totalAttributeMappings)ok#else#**#error#end">$bhds.validAttributeMappings van $bhds.totalAttributeMappings attributen geconfigureerd</em><br> 
+					<a href="#springUrl('/ba/attributemapping/')$bhds.id">Attribuutconfiguratie bewerken</a>
+				</td>
+				<td width="5%" style="border-width:1px; border-right-style:solid; border-right-color:lightgray"  align="center">
+					<input name="bronhouderDatasets[$foreach.index].actief" data-dojo-type="dijit/form/CheckBox" title="Bepaal of de dataset $!bhds.type actief moet worden, dwz regelmatig gecheckt of er nieuwe data moet worden opgenomen in CDS"  
+					#if($bhds.isActief())
+					checked="checked"
+					#end
+					/>
+				</td>				
+				<td width="10%"  align="center">
+					<div id="stdButton"><button data-dojo-type="dijit/form/Button" 
+					onClick="if (window.confirm('Weet u zeker dat u dataset #e($esc.javascript($bhds.naam)) van type $!bhds.type wilt verwijderen?')){removeDataset($!bhds.id)}" 
+					name="verwijderen" value="$!bhds.type"
+					title="Verwijder datatset #e($bhds.naam) type $!bhds.type uit het CDS">
+					Verwijderen
+					</button></div>
+				</td>			
+				#if(!$bhds.uuid.isEmpty())	
+					<td width="25%">#if(!$bhds.uuid.startsWith("http://"))<a target="_blank" href="$pgrBaseUrl$bhds.uuid">Klik hier voor de PGR metadataset</a> #else <a target="_blank" href="#e($bhds.uuid)">Klik hier voor de metadataset</a>#end</td>
+				#else
+					<td width="25%"></td>
+				 #end
+			</tr>
+		#end
+			<tr>												
+				<td colspan="5" style="border-width:1px; border-right-style:solid; border-right-color:lightgray; border-left-style:solid; border-left-color:lightgray">&nbsp;</td>
+				<td colspan="2">&nbsp;</td>
+			</tr>
+		</tbody>
+		<tfoot>
+				<tr>										
+					<th colspan="5" style="text-align:center; border-width:1px; border-right-style:solid; border-right-color:gray; border-left-style:solid; border-left-color:gray">
+						<div id="stdButton">
+							<button data-dojo-type="dijit/form/Button" type="submit" title="Klik om aanpassingen aan UUID en Actief uit te voeren." name="Uitvoeren" value="Uitvoeren">Opslaan</button>
+						</div>
+					</th>
+					<th colspan="2">
+						<div id="stdButton">
+							<button data-dojo-type="dijit/form/Button" title="Selecteer om een nieuw dataset toe te voeren">Dataset toevoegen
+								<script type="dojo/method" data-dojo-event="onClick">
+									document.location.href = '#springUrl("/ba/add_datasetconfig/${bronhouder.id}?thema=${currentThema.naam}")'
+								</script>
+							</button>
+						</div>						
+					</th>
+				</tr>
+		</tfoot>
+	</table>
+	</form>						
+
+	
+	

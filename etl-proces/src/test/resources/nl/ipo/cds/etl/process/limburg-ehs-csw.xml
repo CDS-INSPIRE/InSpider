@@ -1,0 +1,912 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<csw:GetRecordByIdResponse xmlns:csw="http://www.opengis.net/cat/csw/2.0.2">
+	<gmd:MD_Metadata xmlns:gmd="http://www.isotc211.org/2005/gmd">
+		<gmd:fileIdentifier>
+			<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">79ae44d2-1bd9-487a-a622-80214051d5fa
+			</gco:CharacterString>
+		</gmd:fileIdentifier>
+		<gmd:language>
+			<gmd:LanguageCode codeList="#LanguageCode" codeListValue="dut" />
+		</gmd:language>
+		<gmd:characterSet>
+			<gmd:MD_CharacterSetCode codeList="MD_CharacterSetCode" codeListValue="utf8" />
+		</gmd:characterSet>
+		<gmd:hierarchyLevel>
+			<gmd:MD_ScopeCode codeList="http://www.isotc211.org/2005/resources/codeList.xml#MD_ScopeCode" codeListValue="dataset" />
+		</gmd:hierarchyLevel>
+		<gmd:contact>
+			<gmd:CI_ResponsibleParty>
+				<gmd:individualName>
+					<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">Geoloket
+					</gco:CharacterString>
+				</gmd:individualName>
+				<gmd:organisationName>
+					<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">Provincie
+						Limburg
+					</gco:CharacterString>
+				</gmd:organisationName>
+				<gmd:positionName>
+					<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">Contactpunt
+					</gco:CharacterString>
+				</gmd:positionName>
+				<gmd:contactInfo>
+					<gmd:CI_Contact>
+						<gmd:phone>
+							<gmd:CI_Telephone>
+								<gmd:voice>
+									<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">043-389 89
+										39
+									</gco:CharacterString>
+								</gmd:voice>
+							</gmd:CI_Telephone>
+						</gmd:phone>
+						<gmd:address>
+							<gmd:CI_Address>
+								<gmd:deliveryPoint>
+									<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">Postbus 5700
+									</gco:CharacterString>
+								</gmd:deliveryPoint>
+								<gmd:city>
+									<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">Maastricht
+									</gco:CharacterString>
+								</gmd:city>
+								<gmd:administrativeArea>
+									<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">Limburg
+									</gco:CharacterString>
+								</gmd:administrativeArea>
+								<gmd:postalCode>
+									<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">6202 MA
+									</gco:CharacterString>
+								</gmd:postalCode>
+								<gmd:country>
+									<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">Nederland
+									</gco:CharacterString>
+								</gmd:country>
+								<gmd:electronicMailAddress>
+									<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">geoloket@prvlimburg.nl
+									</gco:CharacterString>
+								</gmd:electronicMailAddress>
+							</gmd:CI_Address>
+						</gmd:address>
+						<gmd:onlineResource>
+							<gmd:CI_OnlineResource>
+								<gmd:linkage>
+									<gmd:URL>http://www.limburg.nl</gmd:URL>
+								</gmd:linkage>
+							</gmd:CI_OnlineResource>
+						</gmd:onlineResource>
+					</gmd:CI_Contact>
+				</gmd:contactInfo>
+				<gmd:role>
+					<gmd:CI_RoleCode codeList="http://www.isotc211.org/2005/resources/codeList.xml#CI_RoleCode" codeListValue="pointOfContact" />
+				</gmd:role>
+			</gmd:CI_ResponsibleParty>
+		</gmd:contact>
+		<gmd:dateStamp>
+			<gco:DateTime xmlns:gco="http://www.isotc211.org/2005/gco">2012-12-11T00:00:00.000
+			</gco:DateTime>
+		</gmd:dateStamp>
+		<gmd:metadataStandardName>
+			<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">ISO 19115
+			</gco:CharacterString>
+		</gmd:metadataStandardName>
+		<gmd:metadataStandardVersion>
+			<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">Nederlandse
+				metadata profiel op ISO 19115 voor geografie 1.2
+			</gco:CharacterString>
+		</gmd:metadataStandardVersion>
+		<gmd:referenceSystemInfo>
+			<gmd:MD_ReferenceSystem>
+				<gmd:referenceSystemIdentifier>
+					<gmd:RS_Identifier>
+						<gmd:code>
+							<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">28992
+							</gco:CharacterString>
+						</gmd:code>
+						<gmd:codeSpace>
+							<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">EPSG
+							</gco:CharacterString>
+						</gmd:codeSpace>
+					</gmd:RS_Identifier>
+				</gmd:referenceSystemIdentifier>
+			</gmd:MD_ReferenceSystem>
+		</gmd:referenceSystemInfo>
+		<gmd:referenceSystemInfo>
+			<gmd:MD_ReferenceSystem>
+				<gmd:referenceSystemIdentifier>
+					<gmd:RS_Identifier>
+						<gmd:code>
+							<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">5709
+							</gco:CharacterString>
+						</gmd:code>
+						<gmd:codeSpace>
+							<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">EPSG
+							</gco:CharacterString>
+						</gmd:codeSpace>
+					</gmd:RS_Identifier>
+				</gmd:referenceSystemIdentifier>
+			</gmd:MD_ReferenceSystem>
+		</gmd:referenceSystemInfo>
+		<gmd:identificationInfo>
+			<gmd:MD_DataIdentification id="b30e518f-f01b-4b94-a5c2-3bb408513989" uuid="b30e518f-f01b-4b94-a5c2-3bb408513989">
+				<gmd:citation>
+					<gmd:CI_Citation>
+						<gmd:title>
+							<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">Ecologische
+								Hoofdstructuur
+							</gco:CharacterString>
+						</gmd:title>
+						<gmd:alternateTitle>
+							<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">INSPIRE.EHS
+							</gco:CharacterString>
+						</gmd:alternateTitle>
+						<gmd:date>
+							<gmd:CI_Date>
+								<gmd:date>
+									<gco:DateTime xmlns:gco="http://www.isotc211.org/2005/gco">2012-11-30T00:00:00.000
+									</gco:DateTime>
+								</gmd:date>
+								<gmd:dateType>
+									<gmd:CI_DateTypeCode codeList="http://www.isotc211.org/2005/resources/codeList.xml#CI_DateTypeCode" codeListValue="revision" />
+								</gmd:dateType>
+							</gmd:CI_Date>
+						</gmd:date>
+						<gmd:edition>
+							<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">POL Actueel
+							</gco:CharacterString>
+						</gmd:edition>
+						<gmd:identifier>
+							<gmd:MD_Identifier>
+								<gmd:code>
+									<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">79ae44d2-1bd9-487a-a622-80214051d5fa
+									</gco:CharacterString>
+								</gmd:code>
+							</gmd:MD_Identifier>
+						</gmd:identifier>
+						<gmd:identifier>
+							<gmd:RS_Identifier>
+								<gmd:code>
+									<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">b30e518f-f01b-4b94-a5c2-3bb408513989
+									</gco:CharacterString>
+								</gmd:code>
+							</gmd:RS_Identifier>
+						</gmd:identifier>
+						<gmd:identifier>
+							<gmd:MD_Identifier>
+								<gmd:code>
+									<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">b30e518f-f01b-4b94-a5c2-3bb408513989
+									</gco:CharacterString>
+								</gmd:code>
+							</gmd:MD_Identifier>
+						</gmd:identifier>
+					</gmd:CI_Citation>
+				</gmd:citation>
+				<gmd:abstract>
+					<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">De Ecologische
+						hoofdstructuur (EHS, P1) omvat bestaande bos- en
+						natuurgebieden,
+						te ontwikkelen nieuwe
+						natuur- en beheersgebieden, ecologisch water
+						(Maasplassen) en beken met een
+						specifiek ecologische functie
+						(SEF-beken) (zie POL-aanvulling EHS, 2005).
+						Erbinnen liggen
+						bijzondere natuurgebieden
+						zoals Nationale Parken,
+						Natuurbeschermingswetgebieden, waardevolle bossen en de gebieden
+						die zijn aangewezen (of
+						aangemeld) als Vogel- en
+						Habitatrichtlijngebied. Het gaat in alle gevallen om gebieden van
+						nationale of Europese
+						betekenis. De EHS maakt onderdeel uit van de
+						Ruimtelijke hoofdstructuur volgens de Nota Ruimte. Binnen de EHS
+						komen
+						hier en daar op bestemmingsplanniveau andere bestemmingen en
+						functies voor variërend
+						van infrastructuur,
+						landbouwgronden tot
+						militaire terreinen, woningen en toeristische voorzieningen e.d.
+						In de POL-aanvulling EHS zijn
+						gedetailleerdere
+						kaarten (1:25.000)
+						opgenomen van P1 met daarbinnen onderscheiden de verschillende
+						gebiedstypen (zie
+						ook toelichting kaart 4b Groene Waarden).
+						Het
+						gaat in de
+						POL-aanvullingen om gedetailleerde en harde
+						gebiedsbegrenzingen.
+
+						Bos- en natuurgebied:
+						Deze categorie omvat de
+						bos- en natuurgebieden binnen de EHS (EHS is
+						perspectief 1).
+						Hiervoor is gebruik gemaakt van de bos- en
+						natuurcategorieën uit de
+						Stimuleringsplannen Natuur, Bos
+						en
+						Landschap. Door het schaalniveau
+						van de
+						kaart en door afrondingen
+						kunnen er ook kleinere
+						landbouwenclaves,
+						woonbebouwing,
+						bedrijfsgebouwen en toeristische
+						voorzieningen aanwezig zijn.
+						Bepaalde
+						gebieden zijn aangewezen als
+						Nationaal Park, Speciale
+						Beschermingszone in het kader van de
+						Habitat- en Vogelrichtlijn of
+						Beschermd (Staats)
+						natuurmonument op
+						grond van de
+						Natuurbeschermingswet. Zeer kleine solitair gelegen
+						bos- en
+						natuurelementen zijn niet
+						weergegeven.
+
+						Nieuwe natuurgebied:
+						De categorie omvat de
+						Nieuwe natuurgebieden binnen de EHS (EHS is
+						perspectief 1).
+						Deze gebieden zijn begrensd als Nieuwe Natuur in
+						de Stimuleringsplannen Natuur, Bos, en Landschap
+						op basis van de
+						SN (Subsidieregeling natuurbeheer 2000). Binnen het Maasdal
+						betreft dit ook natuurgerichte ontgrondingen of
+						ontgrondingen met
+						de na-bestemming
+						natuur. Binnen nieuwe natuurgebieden wordt
+						functiewijziging van landbouw naar
+						natuur nagestreefd.
+
+						Beheersgebied:
+						Deze categorie omvat de Beheersgebieden
+						binnen de
+						EHS (EHS is
+						perspectief 1). Deze
+						gebieden zijn begrensd als
+						Beheersgebied in
+						de Stimuleringsplannen Natuur, Bos en Landschap op
+						basis van de
+						SAN
+						(Subsidieregeling agrarisch natuurbeheer. Alle 1
+						op 1
+						begrensde beheersgebieden zijn onderdeel van de EHS.
+
+						Overige
+						functies in de EHS:
+						Alle Habitat-, Vogel- en
+						Natuurbeschermingswetgebieden in Limburg
+						maken onderdeel uit van de
+						EHS.
+						Binnen deze gebieden ligt nog een
+						beperkt aantal ecologisch
+						kwetsbaar gelegen gebieden
+						die niet
+						bestaan uit bos- en
+						natuurgebied, nieuwe natuurgebied of
+						beheersgebied. Deze gebieden
+						zijn op de kaart aangeduid als
+						'Overige functies
+						binnen de EHS'.
+
+						Ecologische water:
+						In de POL-aanvulling Zandmaas (2002) is voor de
+						Maasplassen een
+						scheiding gemaakt
+						tussen recreatief water en
+						ecologisch water. Bij
+						ecologisch water ligt het accent op het
+						behoud van natuurwaarden
+						en
+						wordt tevens gestreefd naar een
+						versterking van de
+						natuurfunctie. Op basis van het beleid
+						uit POL
+						Zandmaas wordt de
+						categorie ecologisch water tot de EHS gerekend.
+						Zie tevens de
+						POL-aanvulling Zandmaas en de POL-aanvulling EHS.
+					</gco:CharacterString>
+				</gmd:abstract>
+				<gmd:purpose>
+					<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">Provinciaal
+						Omgevingsplan Limburg (POL)/EHS
+					</gco:CharacterString>
+				</gmd:purpose>
+				<gmd:status>
+					<gmd:MD_ProgressCode codeList="http://www.isotc211.org/2005/resources/codeList.xml#MD_ProgressCode" codeListValue="completed" />
+				</gmd:status>
+				<gmd:pointOfContact>
+					<gmd:CI_ResponsibleParty>
+						<gmd:individualName>
+							<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">H.F. Groen
+							</gco:CharacterString>
+						</gmd:individualName>
+						<gmd:organisationName>
+							<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">Provincie
+								Limburg
+							</gco:CharacterString>
+						</gmd:organisationName>
+						<gmd:positionName>
+							<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">Programmamanager
+								POL
+							</gco:CharacterString>
+						</gmd:positionName>
+						<gmd:contactInfo>
+							<gmd:CI_Contact>
+								<gmd:phone>
+									<gmd:CI_Telephone>
+										<gmd:voice>
+											<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">043-389 74
+												24
+											</gco:CharacterString>
+										</gmd:voice>
+									</gmd:CI_Telephone>
+								</gmd:phone>
+								<gmd:address>
+									<gmd:CI_Address>
+										<gmd:deliveryPoint>
+											<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">Postbus
+												5700
+											</gco:CharacterString>
+										</gmd:deliveryPoint>
+										<gmd:city>
+											<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">Maastricht
+											</gco:CharacterString>
+										</gmd:city>
+										<gmd:administrativeArea>
+											<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">Limburg
+											</gco:CharacterString>
+										</gmd:administrativeArea>
+										<gmd:postalCode>
+											<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">6202 MA
+											</gco:CharacterString>
+										</gmd:postalCode>
+										<gmd:country>
+											<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">Nederland
+											</gco:CharacterString>
+										</gmd:country>
+										<gmd:electronicMailAddress>
+											<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">hf.groen@prvlimburg.nl
+											</gco:CharacterString>
+										</gmd:electronicMailAddress>
+									</gmd:CI_Address>
+								</gmd:address>
+								<gmd:onlineResource>
+									<gmd:CI_OnlineResource>
+										<gmd:linkage>
+											<gmd:URL>http://www.limburg.nl</gmd:URL>
+										</gmd:linkage>
+									</gmd:CI_OnlineResource>
+								</gmd:onlineResource>
+							</gmd:CI_Contact>
+						</gmd:contactInfo>
+						<gmd:role>
+							<gmd:CI_RoleCode codeList="http://www.isotc211.org/2005/resources/codeList.xml#CI_RoleCode" codeListValue="owner" />
+						</gmd:role>
+					</gmd:CI_ResponsibleParty>
+				</gmd:pointOfContact>
+				<gmd:pointOfContact>
+					<gmd:CI_ResponsibleParty>
+						<gmd:individualName>
+							<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">H.M. van
+								Steenwijk
+							</gco:CharacterString>
+						</gmd:individualName>
+						<gmd:organisationName>
+							<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">Provincie
+								Limburg
+							</gco:CharacterString>
+						</gmd:organisationName>
+						<gmd:positionName>
+							<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">Inhoudelijke
+								contactpersoon
+							</gco:CharacterString>
+						</gmd:positionName>
+						<gmd:contactInfo>
+							<gmd:CI_Contact>
+								<gmd:phone>
+									<gmd:CI_Telephone>
+										<gmd:voice>
+											<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">043-389 73
+												70
+											</gco:CharacterString>
+										</gmd:voice>
+									</gmd:CI_Telephone>
+								</gmd:phone>
+								<gmd:address>
+									<gmd:CI_Address>
+										<gmd:deliveryPoint>
+											<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">Postbus
+												5700
+											</gco:CharacterString>
+										</gmd:deliveryPoint>
+										<gmd:city>
+											<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">Maastricht
+											</gco:CharacterString>
+										</gmd:city>
+										<gmd:administrativeArea>
+											<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">Limburg
+											</gco:CharacterString>
+										</gmd:administrativeArea>
+										<gmd:postalCode>
+											<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">6202 MA
+											</gco:CharacterString>
+										</gmd:postalCode>
+										<gmd:country>
+											<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">Nederland
+											</gco:CharacterString>
+										</gmd:country>
+										<gmd:electronicMailAddress>
+											<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">hm.van.steenwijk@prvlimburg.nl
+											</gco:CharacterString>
+										</gmd:electronicMailAddress>
+									</gmd:CI_Address>
+								</gmd:address>
+								<gmd:onlineResource>
+									<gmd:CI_OnlineResource>
+										<gmd:linkage>
+											<gmd:URL>http://www.limburg.nl</gmd:URL>
+										</gmd:linkage>
+									</gmd:CI_OnlineResource>
+								</gmd:onlineResource>
+							</gmd:CI_Contact>
+						</gmd:contactInfo>
+						<gmd:role>
+							<gmd:CI_RoleCode codeList="http://www.isotc211.org/2005/resources/codeList.xml#CI_RoleCode" codeListValue="owner" />
+						</gmd:role>
+					</gmd:CI_ResponsibleParty>
+				</gmd:pointOfContact>
+				<gmd:graphicOverview>
+					<gmd:MD_BrowseGraphic>
+						<gmd:fileName>
+							<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">http://portal.prvlimburg.nl/geoservices/inspire?BBOX=150000,296000,223454,435000&amp;EXCEPTIONS=INIMAGE&amp;VERSION=1.1.1&amp;FORMAT=image/png&amp;SERVICE=WMS&amp;LAYERS=EcologischeHoofdstructuur&amp;REQUEST=GetMap&amp;SRS=EPSG:28992&amp;WIDTH=400&amp;HEIGHT=800
+							</gco:CharacterString>
+						</gmd:fileName>
+					</gmd:MD_BrowseGraphic>
+				</gmd:graphicOverview>
+				<gmd:descriptiveKeywords>
+					<gmd:MD_Keywords>
+						<gmd:keyword>
+							<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">natuur
+							</gco:CharacterString>
+						</gmd:keyword>
+						<gmd:keyword>
+							<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">bossen
+							</gco:CharacterString>
+						</gmd:keyword>
+						<gmd:keyword>
+							<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">beleid
+							</gco:CharacterString>
+						</gmd:keyword>
+						<gmd:keyword>
+							<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">structuurplannen
+							</gco:CharacterString>
+						</gmd:keyword>
+						<gmd:keyword>
+							<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">ecologische
+								hoofdstructuur
+							</gco:CharacterString>
+						</gmd:keyword>
+						<gmd:thesaurusName>
+							<gmd:CI_Citation>
+								<gmd:title>
+									<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">Interprovinciale
+										thesaurus
+									</gco:CharacterString>
+								</gmd:title>
+								<gmd:date>
+									<gmd:CI_Date>
+										<gmd:date>
+											<gco:DateTime xmlns:gco="http://www.isotc211.org/2005/gco">2010-11-05T00:00:00.000
+											</gco:DateTime>
+										</gmd:date>
+										<gmd:dateType>
+											<gmd:CI_DateTypeCode codeList="http://www.isotc211.org/2005/resources/codeList.xml#CI_DateTypeCode" codeListValue="publication" />
+										</gmd:dateType>
+									</gmd:CI_Date>
+								</gmd:date>
+							</gmd:CI_Citation>
+						</gmd:thesaurusName>
+					</gmd:MD_Keywords>
+				</gmd:descriptiveKeywords>
+				<gmd:descriptiveKeywords>
+					<gmd:MD_Keywords>
+						<gmd:keyword>
+							<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">Beschermde
+								gebieden
+							</gco:CharacterString>
+						</gmd:keyword>
+						<gmd:thesaurusName>
+							<gmd:CI_Citation>
+								<gmd:title>
+									<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">GEMET -
+										INSPIRE themes, version 1.0
+									</gco:CharacterString>
+								</gmd:title>
+								<gmd:date>
+									<gmd:CI_Date>
+										<gmd:date>
+											<gco:DateTime xmlns:gco="http://www.isotc211.org/2005/gco">2008-06-01T00:00:00.000
+											</gco:DateTime>
+										</gmd:date>
+										<gmd:dateType>
+											<gmd:CI_DateTypeCode codeList="http://www.isotc211.org/2005/resources/codeList.xml#CI_DateTypeCode" codeListValue="publication" />
+										</gmd:dateType>
+									</gmd:CI_Date>
+								</gmd:date>
+							</gmd:CI_Citation>
+						</gmd:thesaurusName>
+					</gmd:MD_Keywords>
+				</gmd:descriptiveKeywords>
+				<gmd:resourceConstraints>
+					<gmd:MD_LegalConstraints>
+						<gmd:accessConstraints>
+							<gmd:MD_RestrictionCode codeList="http://www.isotc211.org/2005/resources/codeList.xml#MD_RestrictionCode" codeListValue="otherRestrictions" />
+						</gmd:accessConstraints>
+						<gmd:otherConstraints>
+							<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">http://creativecommons.org/publicdomain/mark/1.0/deed.nl
+							</gco:CharacterString>
+						</gmd:otherConstraints>
+					</gmd:MD_LegalConstraints>
+				</gmd:resourceConstraints>
+				<gmd:resourceConstraints>
+					<gmd:MD_LegalConstraints>
+						<gmd:accessConstraints>
+							<gmd:MD_RestrictionCode codeList="http://www.isotc211.org/2005/resources/codeList.xml#MD_RestrictionCode" codeListValue="otherRestrictions" />
+						</gmd:accessConstraints>
+						<gmd:otherConstraints>
+							<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">Geen beperkingen</gco:CharacterString>
+						</gmd:otherConstraints>
+					</gmd:MD_LegalConstraints>
+				</gmd:resourceConstraints>
+				<gmd:resourceConstraints>
+					<gmd:MD_Constraints>
+						<gmd:useLimitation>
+							<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">Geen gebruiksbeperkingen</gco:CharacterString>
+						</gmd:useLimitation>
+					</gmd:MD_Constraints>
+				</gmd:resourceConstraints>
+				<gmd:spatialRepresentationType>
+					<gmd:MD_SpatialRepresentationTypeCode codeList="http://www.isotc211.org/2005/resources/codeList.xml#MD_SpatialRepresentationTypeCode"
+						codeListValue="vector" />
+				</gmd:spatialRepresentationType>
+				<gmd:spatialResolution>
+					<gmd:MD_Resolution>
+						<gmd:equivalentScale>
+							<gmd:MD_RepresentativeFraction>
+								<gmd:denominator>
+									<gco:Integer xmlns:gco="http://www.isotc211.org/2005/gco">25000</gco:Integer>
+								</gmd:denominator>
+							</gmd:MD_RepresentativeFraction>
+						</gmd:equivalentScale>
+					</gmd:MD_Resolution>
+				</gmd:spatialResolution>
+				<gmd:language>
+					<gmd:LanguageCode codeList="#LanguageCode" codeListValue="dut" />
+				</gmd:language>
+				<gmd:characterSet>
+					<gmd:MD_CharacterSetCode codeList="MD_CharacterSetCode" codeListValue="utf8" />
+				</gmd:characterSet>
+				<gmd:topicCategory>
+					<gmd:MD_TopicCategoryCode>environment</gmd:MD_TopicCategoryCode>
+				</gmd:topicCategory>
+				<gmd:extent>
+					<gmd:EX_Extent>
+						<gmd:temporalElement>
+							<gmd:EX_TemporalExtent>
+								<gmd:extent />
+							</gmd:EX_TemporalExtent>
+						</gmd:temporalElement>
+					</gmd:EX_Extent>
+				</gmd:extent>
+				<gmd:extent>
+					<gmd:EX_Extent>
+						<gmd:geographicElement>
+							<gmd:EX_GeographicDescription>
+								<gmd:geographicIdentifier>
+									<gmd:MD_Identifier>
+										<gmd:code>
+											<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">Limburg
+											</gco:CharacterString>
+										</gmd:code>
+									</gmd:MD_Identifier>
+								</gmd:geographicIdentifier>
+							</gmd:EX_GeographicDescription>
+						</gmd:geographicElement>
+					</gmd:EX_Extent>
+				</gmd:extent>
+				<gmd:extent>
+					<gmd:EX_Extent>
+						<gmd:geographicElement>
+							<gmd:EX_GeographicBoundingBox>
+								<gmd:extentTypeCode>
+									<gco:Boolean xmlns:gco="http://www.isotc211.org/2005/gco">1</gco:Boolean>
+								</gmd:extentTypeCode>
+								<gmd:westBoundLongitude>
+									<gco:Decimal xmlns:gco="http://www.isotc211.org/2005/gco">5.56</gco:Decimal>
+								</gmd:westBoundLongitude>
+								<gmd:eastBoundLongitude>
+									<gco:Decimal xmlns:gco="http://www.isotc211.org/2005/gco">6.24</gco:Decimal>
+								</gmd:eastBoundLongitude>
+								<gmd:southBoundLatitude>
+									<gco:Decimal xmlns:gco="http://www.isotc211.org/2005/gco">50.75</gco:Decimal>
+								</gmd:southBoundLatitude>
+								<gmd:northBoundLatitude>
+									<gco:Decimal xmlns:gco="http://www.isotc211.org/2005/gco">51.78</gco:Decimal>
+								</gmd:northBoundLatitude>
+							</gmd:EX_GeographicBoundingBox>
+						</gmd:geographicElement>
+					</gmd:EX_Extent>
+				</gmd:extent>
+			</gmd:MD_DataIdentification>
+		</gmd:identificationInfo>
+		<gmd:distributionInfo>
+			<gmd:MD_Distribution>
+				<gmd:distributionFormat>
+					<gmd:MD_Format>
+						<gmd:name>
+							<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">Shape
+							</gco:CharacterString>
+						</gmd:name>
+						<gmd:version>
+							<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">1.0
+							</gco:CharacterString>
+						</gmd:version>
+					</gmd:MD_Format>
+				</gmd:distributionFormat>
+				<gmd:transferOptions>
+					<gmd:MD_DigitalTransferOptions>
+						<gmd:unitsOfDistribution>
+							<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">Limburg
+							</gco:CharacterString>
+						</gmd:unitsOfDistribution>
+						<gmd:onLine>
+							<gmd:CI_OnlineResource>
+								<gmd:linkage>
+									<gmd:URL>http://portal.prvlimburg.nl/geoservices/inspire?
+									</gmd:URL>
+								</gmd:linkage>
+								<gmd:protocol>
+									<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">OGC:WMS
+									</gco:CharacterString>
+								</gmd:protocol>
+								<gmd:name>
+									<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">EcologischeHoofdstructuur
+									</gco:CharacterString>
+								</gmd:name>
+							</gmd:CI_OnlineResource>
+						</gmd:onLine>
+						<gmd:onLine>
+							<gmd:CI_OnlineResource>
+								<gmd:linkage>
+									<gmd:URL>http://portal.prvlimburg.nl/geoservices/inspire?</gmd:URL>
+								</gmd:linkage>
+								<gmd:protocol>
+									<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">OGC:WFS</gco:CharacterString>
+								</gmd:protocol>
+								<gmd:name>
+									<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">EcologischeHoofdstructuur</gco:CharacterString>
+								</gmd:name>
+							</gmd:CI_OnlineResource>
+						</gmd:onLine>
+					</gmd:MD_DigitalTransferOptions>
+				</gmd:transferOptions>
+			</gmd:MD_Distribution>
+		</gmd:distributionInfo>
+		<gmd:dataQualityInfo>
+			<gmd:DQ_DataQuality>
+				<gmd:scope>
+					<gmd:DQ_Scope>
+						<gmd:level>
+							<gmd:MD_ScopeCode codeList="http://www.isotc211.org/2005/resources/codeList.xml#MD_ScopeCode" codeListValue="dataset" />
+						</gmd:level>
+					</gmd:DQ_Scope>
+				</gmd:scope>
+				<gmd:report>
+					<gmd:DQ_DomainConsistency>
+						<gmd:result>
+							<gmd:DQ_ConformanceResult>
+								<gmd:specification>
+									<gmd:CI_Citation>
+										<gmd:title>
+											<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">INSPIRE
+												Data Specification on Protected sites - Guidelines
+											</gco:CharacterString>
+										</gmd:title>
+										<gmd:date>
+											<gmd:CI_Date>
+												<gmd:date>
+													<gco:DateTime xmlns:gco="http://www.isotc211.org/2005/gco">2010-04-26T00:00:00.000
+													</gco:DateTime>
+												</gmd:date>
+												<gmd:dateType>
+													<gmd:CI_DateTypeCode codeList="http://www.isotc211.org/2005/resources/codeList.xml#CI_DateTypeCode" codeListValue="publication" />
+												</gmd:dateType>
+											</gmd:CI_Date>
+										</gmd:date>
+									</gmd:CI_Citation>
+								</gmd:specification>
+								<gmd:explanation>
+									<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">Huidig
+										datamodel is niet conform INSPIRE specificaties
+									</gco:CharacterString>
+								</gmd:explanation>
+								<gmd:pass>
+									<gco:Boolean xmlns:gco="http://www.isotc211.org/2005/gco">false</gco:Boolean>
+								</gmd:pass>
+							</gmd:DQ_ConformanceResult>
+						</gmd:result>
+					</gmd:DQ_DomainConsistency>
+				</gmd:report>
+				<gmd:lineage>
+					<gmd:LI_Lineage>
+						<gmd:statement>
+							<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">De volgende
+								wijzigingen zijn doorgevoerd in deze versie van de
+								EHS: Robuuste
+								verbinding Schinveld-Mook,
+								Herziening V, VI, VII en VIII van het
+								stimuleringsplan, POL-aanvulling
+								beëindiging kalksteenwinning
+								Sint-Pietersberg, POL-aanvulling Klavertje Vier,
+								POL-aanvulling
+								Verstedelijking,
+								Gebiedsontwikkeling en Kwaliteitsverbetering,
+								Provinciaal Natuurbeheerplan d.d. 7 september 2010,
+								POL-actualisatie jan.
+								2011, Provinciaal Natuurbeheerplan d.d. 13
+								september 2011 en Provinciaal Natuurbeheerplan
+								d.d. 18 september
+								2012.
+							</gco:CharacterString>
+						</gmd:statement>
+						<gmd:processStep>
+							<gmd:LI_ProcessStep>
+								<gmd:description>
+									<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">Ecologisch
+										water: Voor deze categorie is gebruik gemaakt van
+										het bestand
+										ecologisch water uit de
+										POL-aanvulling zandmaas (2002).
+									</gco:CharacterString>
+								</gmd:description>
+								<gmd:processor>
+									<gmd:CI_ResponsibleParty>
+										<gmd:organisationName>
+											<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">Provincie
+												Limburg
+											</gco:CharacterString>
+										</gmd:organisationName>
+										<gmd:role>
+											<gmd:CI_RoleCode codeList="http://www.isotc211.org/2005/resources/codeList.xml#CI_RoleCode" codeListValue="processor" />
+										</gmd:role>
+									</gmd:CI_ResponsibleParty>
+								</gmd:processor>
+							</gmd:LI_ProcessStep>
+						</gmd:processStep>
+						<gmd:processStep>
+							<gmd:LI_ProcessStep>
+								<gmd:description>
+									<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">Beheersgebied:
+										Voor deze categorie is gebruik gemaakt van de
+										bestanden Fb
+										(ecologische verbindingszone
+										beheersgebied), Gb (kleinschalig
+										cultuurlandschap beheersgebied) en Hb
+										(open cultuurlandschap
+										beheersgebied) uit het Stimuleringsplan Natuur, Bos en
+										Landschap.
+									</gco:CharacterString>
+								</gmd:description>
+								<gmd:processor>
+									<gmd:CI_ResponsibleParty>
+										<gmd:organisationName>
+											<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">Provincie
+												Limburg
+											</gco:CharacterString>
+										</gmd:organisationName>
+										<gmd:role>
+											<gmd:CI_RoleCode codeList="http://www.isotc211.org/2005/resources/codeList.xml#CI_RoleCode" codeListValue="processor" />
+										</gmd:role>
+									</gmd:CI_ResponsibleParty>
+								</gmd:processor>
+							</gmd:LI_ProcessStep>
+						</gmd:processStep>
+						<gmd:processStep>
+							<gmd:LI_ProcessStep>
+								<gmd:description>
+									<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">Nieuwe
+										natuurgebied: Deze gebieden zijn begrensd in de
+										Stimuleringsplannen Natuur- Bos- en Landschap.
+										Het betreft de
+										categorieën C (nieuwe natuur), Cp (nieuwe natuur
+										particulier
+										natuurbeheer) en Cg (alleen Grensmaas, nieuwe natuur te
+										vergraven). Naast de
+										nieuwe natuur die
+										voortkomt uit de SN
+										kennen de stimuleringsplannen ook de categorie Co (nieuwe
+										natuur overig) en Cs (alleen
+										Grensmaas, nieuwe natuur
+										stroomgeulverbreding). Dit zijn natuurgebieden die veelal
+										gerealiseerd worden op basis
+										van landinrichting of middels
+										ontgronding. In het Maasdal vormen
+										-ontgrondingen en
+										vergravingen een essentieel
+										onderdeel van de realisering van
+										de EHS (natuurontwikkeling in het kader van Rivierpark
+										Grensmaas, het
+										project
+										Zandmaas/ Maasroute en Maascorridor).
+										Zij worden tot de EHS gerekend. Voor het Grensmaasgebied zijn
+										voor de
+										categorie Nieuwe natuur de tot natuur
+										te ontwikkelen
+										gebieden uit POL-Grensmaas opgevoerd.
+									</gco:CharacterString>
+								</gmd:description>
+								<gmd:processor>
+									<gmd:CI_ResponsibleParty>
+										<gmd:organisationName>
+											<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">Provincie
+												Limburg
+											</gco:CharacterString>
+										</gmd:organisationName>
+										<gmd:role>
+											<gmd:CI_RoleCode codeList="http://www.isotc211.org/2005/resources/codeList.xml#CI_RoleCode" codeListValue="processor" />
+										</gmd:role>
+									</gmd:CI_ResponsibleParty>
+								</gmd:processor>
+							</gmd:LI_ProcessStep>
+						</gmd:processStep>
+						<gmd:processStep>
+							<gmd:LI_ProcessStep>
+								<gmd:description>
+									<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">Bos- en
+										natuurgebied: Voor deze categorie zijn de categorieën
+										A
+										(natuur), B (bos met een belangrijke
+										natuurfunctie), AB
+										(natuur en bos met een belangrijke natuurfunctie), en
+										D
+										(multifunctioneel bos) uit de Stimuleringsplannen Natuur, Bos
+										en Landschap voor
+										zover gelegen binnen de PES
+										als basis
+										gebruik. Hieraan zijn toegevoegd de grotere bos en
+										natuurgebieden uit de L (groenzone) en F
+										(ecologische
+										verbindingszone) uit het stimuleringsplan. Tevens zijn natuur-
+										en bosgebieden buiten de PES die
+										logisch grenzen aan bos- en
+										natuurgebieden binnen de PES
+										hieraan toegevoegd. Zeer kleine
+										solitair gelegen bos-
+										en natuurelementen zijn verwijderd.
+									</gco:CharacterString>
+								</gmd:description>
+								<gmd:processor>
+									<gmd:CI_ResponsibleParty>
+										<gmd:organisationName>
+											<gco:CharacterString xmlns:gco="http://www.isotc211.org/2005/gco">Provincie
+												Limburg
+											</gco:CharacterString>
+										</gmd:organisationName>
+										<gmd:role>
+											<gmd:CI_RoleCode codeList="http://www.isotc211.org/2005/resources/codeList.xml#CI_RoleCode" codeListValue="processor" />
+										</gmd:role>
+									</gmd:CI_ResponsibleParty>
+								</gmd:processor>
+							</gmd:LI_ProcessStep>
+						</gmd:processStep>
+					</gmd:LI_Lineage>
+				</gmd:lineage>
+			</gmd:DQ_DataQuality>
+		</gmd:dataQualityInfo>
+	</gmd:MD_Metadata>
+</csw:GetRecordByIdResponse>

@@ -1,0 +1,150 @@
+#set($layout='layouts/report.vm')
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Job - #e($bronhouder.naam), #e($datasetType.naam), #e($job.createTime)</title>
+        <link rel="stylesheet" type="text/css" href="#springUrl('/styles/ba.css')" />
+    </head>
+    
+    <body>
+	<script type="text/javascript">
+		function formatDateTime(dateMilis){
+			var result = "";
+		    if(dateMilis > 0){  
+		    	d = new Date(dateMilis);
+		    	result = d.toLocaleString();
+		    }
+		    return result;
+		}
+	
+	</script>
+
+        <h1>&nbsp;Job: #e($bronhouder.naam), #e($datasetType.naam), <script> document.write(formatDateTime(#e($job.createTime.getTime()))) </script></h1>
+           
+        <br/>
+        
+        <h2>&nbsp;Job informatie</h2>
+
+        <table class="cds-table properties">
+            <tr>
+                <th>ID</th><td>#e($job.id)</td>
+            </tr>
+            <tr>
+                <th>Job type</th><td>#e($job.type)</td>
+            </tr>
+            <tr>
+                <th>Dataset type</th><td>#e($job.datasetType.naam)</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>
+                	#if($job.status == "ABORTED")
+                	Afgebroken door technische fout
+                	#else
+                		#if($job.status == "FINISHED")
+	                		#if($errorCount > 0)
+	                		Er zijn &eacute;&eacute;n of meerdere fouten opgetreden bij het valideren
+	                		#else
+	                		Succesvol#if($warningCount > 0) met waarschuwingen#end
+	                		#end
+	                	#else
+	                		#if($job.status == "CREATED")
+	                		nog niet gestart
+	                		#else
+	                		bezig
+							#end
+                		#end
+                	#end
+                </td>
+            </tr>
+            <tr>
+                <th>Prioriteit</th><td>#e($job.priority)</td>
+            </tr>
+            <tr>
+                <th>Creatie tijd</th><td><script> document.write(formatDateTime(#e($job.createTime.getTime()))) </script></td>
+            </tr>
+            <tr>
+                <th>Start tijd</th><td><script> document.write(formatDateTime(#e($job.startTime.getTime()))) </script></td>
+            </tr>
+            <tr>
+                <th>Eind tijd</th><td><script> document.write(formatDateTime(#e($job.finishTime.getTime()))) </script></td>
+            </tr>
+            #if($job.jobType.naam == "VALIDATE" || $job.jobType.naam == "IMPORT")
+            <tr>
+	            #if($job.jobType.naam == "VALIDATE")
+	                <th>Tijdstip van validatie</th>
+	            #end
+	            #if($job.jobType.naam == "IMPORT")
+	                <th>Tijdstip van import</th>
+	            #end
+                <td><script> document.write(formatDateTime(#e($job.finishTime.getTime()))) </script></td>
+            </tr>
+            #end          
+            #if($job.metadataUpdateDatum) ## When PGR was not used to retrieve the data, don't show pgr-info
+            <tr>
+                <th>Nieuwe revisie datum dataset</th><td><script> document.write(formatDateTime(#e($job.metadataUpdateDatum.getTime()))) </script></td>
+            </tr>
+            <tr>
+            	<th>Oude revisie datum dataset</th>
+            	<td>
+	            #if($lastJob)
+	            	<script> document.write(formatDateTime(#e($lastJob.metadataUpdateDatum.getTime())))</script> 
+	            #else
+	            	Geen
+	            #end
+            	</td>
+            </tr>
+            #end
+            <!--tr>
+            	<th>Metadata URL</th><td><a target="_blank" href="#e($pgrBaseUrl)#e($esc.url($job.uuid))">#e($pgrBaseUrl)#e($esc.url($job.uuid))</a></td>
+            </tr-->
+            #if($job.metadataUrl)
+            <tr>
+                <th>Metadata URL</th><td><a href="#e($!job.metadataUrl)">#e($!job.metadataUrl)</a></td>
+            </tr>  
+            #end          
+            #if($job.datasetUrl)
+            <tr>
+                <th>Dataset URL</th>
+                <td>
+                	#e($!job.datasetUrl)
+                </td>
+            </tr>
+            #end
+            <tr>
+            	<th>Aantal meldingen</th>
+            	<td>
+            		#e($messageCount) (#e($errorCount) fouten en #e($warningCount) waarschuwingen).
+            	</td>
+            </tr>
+            #if($job.featureCount)
+            <tr>
+            	<th>Aantal features</th><td>#e($job.featureCount)</td>
+            </tr>
+            #end
+            ## <tr>
+            ##     <th>Verversen</th><td>#if($job.verversen) ja #else nee #end</td>
+            ## </tr>
+        </table>
+
+        <br/>
+
+		#if($job.geometryErrorCount > 0)
+        <h2>&nbsp;Geometrie fouten</h2>
+        <table class="cds-table properties">
+			<tr>
+				<td><a href="#springUrl('/ba/download/shapefile/jobs/')$job.id" title="Een shapefile bestaat uit meerdere bestanden. Deze zijn samengevoegd in dit zip-bestand">Download shapefile</a>
+				</td>
+			</tr>
+		</table>        
+
+        <br/>
+        #end
+        
+        <h2>&nbsp;Meldingen</h2>
+
+        <div id="job-log-container">
+            $writer.write($writerContext)
+        </div>
+    </body>
+</html>

@@ -1,0 +1,8 @@
+#set($dataset = $datasets[0])
+#set($bronhouder = $job.bronhouder)
+L.S.
+
+De Centrale Data- en Services omgeving heeft een probleem geconstateerd bij het uitvoeren van een job. 
+
+Volg onderstaande link voor meer informatie:
+http://$host/admin/reports/bronhouders/$bronhouder.id/jobs/$job.id

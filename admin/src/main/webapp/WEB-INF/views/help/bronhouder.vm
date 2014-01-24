@@ -1,0 +1,454 @@
+<div class="contexthelp" id="contexthelp">
+	<div id="_ba_etloverzicht">
+        <h1>Overzicht</h1>
+        <h2>Overzicht van het etl-proces</h2>
+		<h3>
+			Dit scherm geeft een overzicht van alle datasets van een bronhouder. <br/>
+			U kunt het overzicht aanpassen door te filteren op thema, dataset, status import en/of voortgang
+		</h3>
+			De tabel met datasets zal in eerste instantie de datasets van het eerst beschikbare thema laten zien.<br/>
+			De diverse filters worden door een druk op de filter knop geactiveerd.<br/><br/>
+			Ga als volgt te werk bij het maken van een filtercombinatie:<br/>
+			<ol>
+				<li>Kies een thema (verplicht)</li>
+				<li>Kies een dataset of laat dit leeg om alle datasets uit een thema te tonen.</li>
+				<li>Kies een import status of laat dit leeg.</li>
+				<li>Kies in welke voortgangsfase datasets moeten worden getoond of laat dit leeg.</li>
+			</ol>
+			Na elke keuze wordt het scherm automatisch ververst.<br/><br/>
+			In de tabel onder de filters verschijnen de gekozen datasets.<br/>
+			Het kan zijn dat deze tabel leeg blijft door de gekozen filtercombinatie.<br/><br/>
+			De kolommen hebben de volgende betekenis:
+			<ul>
+				<li>
+					<em>Dataset</em>: Hier staat de naam van de gekozen datasets.<br/>
+					De naam is een link naar een overzichtspagina van alle jobs die voor deze dataset zijn of worden uitgevoerd.<br/>
+					In dit job overzicht ziet u de details per job. Om de jobstatus te tonen kunt u als volgt te werk gaan:<br/><br/>
+					Klik op de naam van de dataset, vervolgens krijgt u de jobs te zien voor die dataset:
+					<span class="note">Het overzicht is nu automatisch gefilterd op de datasetnaam.
+					U kunt het filter uitzetten door blanco te kiezen bij het filter &quot;Dateset&quot; .
+					</span>
+
+					De kolommen hebben de volgende betekenis:
+					<ul>
+					<li>&quot;Details&quot;: hier staat een knop om naar het Validatierapport te gaan.<br/></li>
+					<li>&quot;Type&quot;: het type job (validate, import of remove)</li>
+					<li>&quot;Verversen&quot;: <i>ja</i>, indien de revisiedatum in PGR nieuwer is dan de oude revisiedatum. <i>nee</i> als de data overeenkomen.</li>
+					<li>&quot;Creatietijd&quot;: de datum en tijd van de job.</li>
+					<li>&quot;Status&quot;: de status van de job (finished, created, aborted)</li>
+					<li>&quot;Datum dataset&quot;: de revisiedatum uit PGR</li>
+					<li>&quot;Dataseturl&quot;: GetFeature request  voor de WFS van de betreffende provincie</li>
+					</ul>
+					Klik op de knop <b>&lt; Terug naar datasets </b>om terug te keren naar het ETL Overzicht.<br/><br/>
+				</li>
+				<li><em>Actief</em> Er wordt regelmatig gecheckt of er nieuwe data moet worden opgenomen in het CDS.</li>				
+				<li><em>Metadata </em> Link naar de metadata gegevens in PGR.<br/>
+				Een pagina met deze gegevens verschijnt in een apart browser venster.</li>
+				<li><em>Laatste validatieresultaat </em> De resultaten van de laatste validatie op deze dataset.<br/>
+				De datum wordt aangepast na het uitvoeren van een validatie via de knop <b>Valideer</b>, of na het importeren van een dataset,<br />
+			waarbij automatisch de dataset wordt gevalideerd.<br/></li>
+				<li><em>Valideer </em> Hier staat een knop om een ad-hoc-validatie van de dataset uit te laten voeren.
+				De datasets die geladen zijn en actief zijn worden elke nacht automatisch gevalideerd en ge&iuml;mporteerd,<br>
+				indien de revisiedatum uit PGR nieuwer is dan de huidige datum van de datumset. Wilt u hier niet op wachten, <br/>
+				dan kunt u zelf de validatie of import starten. Gedurende de validatie blijft de knop uitgegrijsd<br>
+				tot het proces voltooid is. Het scherm wordt automatisch ververst als de validatie is voltooid.
+				</li>
+				<li><em>Status import</em> Geeft aan of een dataset ge&iuml;mporteerd en/of getransformeerd is.<br/></li>
+				<li><em>Importeer </em> Hier staat een knop om een import van de dataset uit te laten voeren.<br/>
+				De knop wordt uitgegrijsd en de import wordt gestart. Gedurende de import blijft de knop uitgegrijsd<br/>
+				tot het proces voltooid is. Het scherm wordt automatisch ververst als de import is voltooid.</li>
+				<li><em>Voortgang </em> Hier wordt aangegeven of een validatie of import nog bezig is. <br/>
+				Mogelijke waarden zijn:<br/>
+				<ul>
+					<li>Geen jobs in behandeling,</li>
+					<li>Wachten op validatie,</li>
+					<li>Bezig met valideren,</li>
+					<li>Wachten op import,</li>
+					<li>Bezig met importeren.</li>
+				</ul>
+			</ul>
+			De tabel met het overzicht van datasets wordt automatisch ververst.<br/><br/>
+
+			<div class="note"><b>NB</b> De keuzelijst voor bronhouder bovenin is alleen actief als men als beheerder is ingelogd.<br/>
+			Een beheerder kan de dataset overzichten van alle provincies inzien, een bronhouder alleen die van de eigen provincie.<br/>
+			ETL staat voor Extraction, Transformation en Load. Dit is het proces om de data te kunnen vastleggen in de Data store.
+			</div><br/>
+
+			<div class="note"><img src="#springUrl('/images/tip.png')" style="width:15px; height:15px" />
+			Gebruik de tooltip om de datum weer te geven van de import respectievelijk transformatie.<br/>
+			De revisiedatum is de datum, waarop de dataset het laatst is aangepast (volgens PGR).<br/>
+			De datum van de import is gekoppeld aan de betreffende dataset. <br/>
+			De import wordt uitgevoerd als de revisiedatum nieuwer is dan de oude revisie datum.<br/><br>
+			PGR heeft een datum format zonder uren specificering. Dit betekent dat u niet een import kunt doen<br/>
+			op dezelfde dag als de revisiedatum, of twee imports op een dag kunt uitvoeren.<br/>
+			Wel kunt u met de validatie tool checken of de data valide is. <br/><br/>
+			De datum van transformatie wordt aangepast, zodra iemand een import job van een willekeurige dataset draait.<br/>
+			De transformatie vindt namelijk altijd plaats om het kaartbeeld weer op te bouwen.<br/><br/>
+			</div><br/>
+
+    </div>
+    <hr/>
+	<div id="_ba_validation">
+		<h1>Validatie</h1>
+		<h2>Ad-hoc-valideren</h2>
+		<h3>Het validatie formulier wordt gebruikt voor het ad-hoc-valideren van datasets die <i>niet</i> in PGR staan.</h3><br/>
+		Gebruiksaanwijzing:<br/>
+		<ol>
+			<li>Geef een thema op</li>
+			<li>Kies een bij het thema behorende dataset</li>
+			<li>Geef de url op waar het dataset bestand staat (de feature set, dus niet de metadata)</li>
+			<li>Klik op de knop <b>Valideer</b></li>
+			<li>Volg het verloop en resultaat van de validatie.</li>
+		</ol>
+
+		<h2>Validatie rapport meldingen</h2>
+		<p>U kunt het validatierapport opvragen door te klikken op <u>Toon validatierapport</u> in de kolom &quot;Laatste validatieresultaat&quot;.<br/>
+		Ook bij een import wordt een validatie uitgevoerd en gerapporteerd via het validatierapport.<br/>
+		U kunt het validatierapport ook opvragen via het job-overzicht:<br><br/>
+		Klik op de Dataset naam en vervolgens op Details (of dubbelklik ergens in de rij) om het validatierapport te openen.
+		</p>
+		<div class="note"><img src="#springUrl('/images/tip.png')" style="width:15px; height:15px" />
+		Jobs ouder dan 4 maanden worden niet getoond. De gegevens ouder dan 4 maanden worden wel bewaard.
+		</div>
+		<h3>Toelichting:</h3>
+		<p>De &quot;ID&quot; is ter identificatie van de job. Deze ID kan gehanteerd worden bij communicatie met de beheerder.<br/>
+		Het &quot;Job type&quot; kan zijn VALIDATE voor een validatie job, IMPORT voor een importeer job of REMOVE voor een verwijder job<br/>
+		van de dataset. Binnen het proces is er nog het jobtype TRANSFORM. De transform job is echter automatisch gekoppeld <br/>
+		aan een import job en remove job en wordt daarom niet als apart type hier vermeld.<br/><br/>
+
+		De diverse waarden van de &quot;Status&quot; in het job detail rapport zijn afhankelijk van de interne job status. Deze kunnen zijn:
+		</p>
+		<ul>
+		<li>nog niet gestart,</li>
+		<li>bezig,</li>
+		<li>Succesvol,</li>
+		<li>Succesvol met waarschuwingen,</li>
+		<li>Er zijn een of meerdere fouten opgetreden bij het valideren,</li>
+		<li>Afgebroken door technische fout.</li>
+		</ul>
+
+		<p>
+		De &quot;Prioriteit&quot; is alleen van belang voor het interne proces en bepaalt de juiste volgorde binnen het proces.
+	    </p>
+		<p>
+		In onderstaande tabellen zijn alle meldingen opgenomen die in een validatie rapport kunnen voorkomen.<br/>
+		Op de plaatsen waar in de melding ${0}, ${1} of ${2} staat, wordt in het rapport een actuele waarde ingevuld.
+		</p>
+
+		<div class="note"><img src="#springUrl('/images/tip.png')" style="width:15px; height:15px" />
+		Alle geometrie fouten zijn blokkerend, behalve geometrie�n met verkeerde vertex volgorde.<br/>
+		Een geometrie met verkeerde vertex volgorde wordt aan de standaard aangepast.
+		</div><br/>
+
+		<div class="note"><img src="#springUrl('/images/tip.png')" style="width:15px; height:15px" />
+		Indien er geometrie fouten zijn geconstateerd in een validatie rapport, is middels een link in het rapport een shape file te downloaden.<br/>
+		Deze shape file geeft de locaties aan waar de geometrie fouten zich bevinden.
+		</div><br/>
+
+		<h3>Harvester</h3>
+		## width < 100 % is neccesary for IE7
+		<table style="width:97%" class="cds-table">
+		<thead>
+			<tr>
+				<th title="Melding" style="text-align:center" width="70%">Melding</th>
+				<th title="Opmerking" style="text-align:center" width="30%">Opmerking</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+			<td style="font-size: 9pt;">Niet gelukt om metadata in PGR te benaderen. Url: ${0}</td>
+			<td style="font-size: 9pt;">Check de verbinding met PGR</td></tr><tr>
+			<td style="font-size: 9pt;">Niet gelukt om metadata in PGR te benaderen. Url: ${0} . Http errorcode: ${1}</td>
+			<td style="font-size: 9pt;">Check de verbinding met PGR</td></tr><tr>
+			<td style="font-size: 9pt;">Niet gelukt om metadata in PGR te benaderen. Url: ${0} . Oorzaak: ${1}</td>
+			<td style="font-size: 9pt;">Check de verbinding met PGR</td></tr><tr>
+			<td style="font-size: 9pt;">Metadataset niet gevonden in PGR. Url naar metadataset: ${0}</td>
+			<td style="font-size: 9pt;">Check de metadata in PGR</td></tr><tr>
+			<td style="font-size: 9pt;">Metadataset niet gevonden in PGR. Url naar metadataset: ${0} . Oorzaak: ${1}.</td>
+			<td style="font-size: 9pt;">Check de metadata in PGR</td></tr><tr>
+			<td style="font-size: 9pt;">Metadata creatie- of revisiedatum niet beschikbaar in PGR. URL: ${0}. XPath expressie: ${1}. Oorzaak: ${2} </td>
+			<td style="font-size: 9pt;">Check de datums in de metadata</td></tr><tr>
+			<td style="font-size: 9pt;">Datumformaat onjuist van datum ${3}. Formaat moet zijn: ${4}. URL: ${0}. XPath expressie: ${1}. Oorzaak: ${2}</td>
+			<td style="font-size: 9pt;">Check de datums in de metadata</td></tr><tr>
+			<td style="font-size: 9pt;">WFS url niet beschikbaar in metadata PGR. URL: ${0}. XPath expressie: ${1}. Oorzaak: ${2}</td>
+			<td style="font-size: 9pt;">Check de WFS url in de metadata</td></tr><tr>
+			<td style="font-size: 9pt;">Metadata featuretype niet beschikbaar in PGR. URL: ${0}. XPath expressie: ${1}. Oorzaak: ${2}</td>
+			<td style="font-size: 9pt;">Check featuretype in de metadata</td></tr><tr>
+			<td style="font-size: 9pt;">Niet gelukt om WFS-capabilities te lezen met behulp van url uit metadata: ${0}</td>
+			<td style="font-size: 9pt;">Check de WFS url in de metadata</td></tr><tr>
+			<td style="font-size: 9pt;">Niet gelukt om WFS-capabilities te lezen met behulp van url uit metadata: ${0}. Http errorcode: ${1}</td>
+			<td style="font-size: 9pt;">Check de WFS url in de metadata</td></tr><tr>
+			<td style="font-size: 9pt;">Niet gelukt om WFS-capabilities te lezen met behulp van url uit metadata: ${0}. Oorzaak: ${1}</td>
+			<td style="font-size: 9pt;">Check de WFS url in de metadata</td></tr><tr>
+			<td style="font-size: 9pt;">WFS url niet beschikbaar in WFS GetCapabilities response. URL: ${0}. XPath expressie: ${1}. Oorzaak: ${2}</td>
+			<td style="font-size: 9pt;">Check de WFS url</td></tr><tr>
+			<td style="font-size: 9pt;">Niet gelukt om WFS te benaderen. Url: ${0}</td>
+			<td style="font-size: 9pt;">Check de WFS url</td></tr><tr>
+			<td style="font-size: 9pt;">Niet gelukt om WFS te benaderen. Url: ${0}. Http errorcode: ${1}</td>
+			<td style="font-size: 9pt;">Check de WFS url</td></tr><tr>
+			<td style="font-size: 9pt;">Niet gelukt om WFS te benaderen. Url: ${0}. Oorzaak: ${1}</td>
+			<td style="font-size: 9pt;">Check de WFS url</td>
+			</tr>
+
+		</tbody>
+		<tfoot>
+				<tr>
+					<th colspan="2">&nbsp;</th>
+				</tr>
+		</tfoot>
+	</table>
+
+		<br/>
+		<br/>
+		<h3>Process</h3>
+		## width < 100 % is neccesary for IE7
+		<table style="width:97%" class="cds-table">
+		<thead>
+			<tr>
+				<th title="Melding" style="text-align:center; width:70%" >Melding</th>
+				<th title="Opmerking" style="text-align:center; width:30%" >Opmerking</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+			<td style="font-size: 9pt;">0 features gevonden</td>
+			<td style="font-size: 9pt;">Geen features in bestand</td></tr><tr>
+			<td style="font-size: 9pt;">Fout bij lezen Features. Http errorcode: ${0} </td>
+			<td style="font-size: 9pt;"></td></tr><tr>
+			<td style="font-size: 9pt;">Fout bij parsen Features. Oorzaak: ${0} </td>
+			<td style="font-size: 9pt;"></td></tr><tr>
+			<td style="font-size: 9pt;">UUID ${0} is niet geconfigureerd voor provincie ${1}(${2})</td>
+			<td style="font-size: 9pt;"></td></tr><tr>
+			<td style="font-size: 9pt;">Fout bij parsen Features. OWS Exceptionreport: exceptionCode: ${0}, locator: ${1}, ExceptionText: ${2}</td>
+			<td style="font-size: 9pt;"></td></tr><tr>
+			<td style="font-size: 9pt;">Er is minimaal één blokkerende validatiefout opgetreden.</td>
+			<td style="font-size: 9pt;"></td></tr><tr>
+			<td style="font-size: 9pt;">Niet mogelijk om response van de WFS te verwerken.</td>
+			<td style="font-size: 9pt;"></td>
+			</tr>
+
+		</tbody>
+		<tfoot>
+				<tr>
+					<th colspan="2">&nbsp;</th>
+				</tr>
+		</tfoot>
+	</table>
+
+		<br/>
+		<br/>
+		<h3>Validatie</h3>
+		## width < 100 % is neccesary for IE7
+		<table style="width:97%" class="cds-table">
+		<thead>
+			<tr>
+				<th title="Melding" style="text-align:center" width="70%">Melding</th>
+				<th title="Opmerking" style="text-align:center" width="30%">Opmerking</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+
+			<td style="font-size: 9pt;">Element met de naam "inspireID" ontbreekt: feature: ${0}</td>
+			<td style="font-size: 9pt;"></td></tr><tr>
+			<td style="font-size: 9pt;">inspireID is niet uniek: feature: ${0}, inspireID: ${1}</td>
+			<td style="font-size: 9pt;"></td></tr><tr>
+			<td style="font-size: 9pt;">inspireID dient uit 4 delen te bestaan: feature: ${0}, inspireID: ${1}</td>
+			<td style="font-size: 9pt;"></td></tr><tr>
+			<td style="font-size: 9pt;">inspireID begint niet met NL: feature: ${0}, inspireID: ${1}</td>
+			<td style="font-size: 9pt;"></td></tr><tr>
+			<td style="font-size: 9pt;">inspireID bronhouder code is niet correct: feature: ${0}, inspireID: ${1}, code: ${1}, verwacht: ${2}</td>
+			<td style="font-size: 9pt;"></td></tr><tr>
+			<td style="font-size: 9pt;">inspireID dataset code is niet correct: feature: ${0}, inspireID: ${1}, code: ${1}, verwacht: ${2}</td>
+			<td style="font-size: 9pt;"></td></tr><tr>
+			<td style="font-size: 9pt;">inspireID bevat geen geldige uuid: feature: ${0}, inspireID: ${1}</td>
+			<td style="font-size: 9pt;"></td></tr><tr>
+
+			<td style="font-size: 9pt;">Element met de naam "legalFoundationDocument" ontbreekt: feature: ${0}</td>
+			<td style="font-size: 9pt;"></td></tr><tr>
+			<td style="font-size: 9pt;">legalFoundationDocument element leeg: feature: ${0}</td>
+			<td style="font-size: 9pt;"></td></tr><tr>
+			<td style="font-size: 9pt;">legalFoundationDocument is geen geldige url: feature: ${0}, url: ${1}</td>
+			<td style="font-size: 9pt;"></td></tr><tr>
+			<td style="font-size: 9pt;">legalFoundationDocument kon niet worden opgehaald: feature: ${0}, url: ${1}</td>
+			<td style="font-size: 9pt;"></td></tr><tr>
+			<td style="font-size: 9pt;">legalFoundationDocument verwijst naar een leeg document: feature: ${0}, url: ${1}</td>
+			<td style="font-size: 9pt;"></td></tr><tr>
+			<td style="font-size: 9pt;">Element met de naam "legalFoundationDate" ontbreekt, feature: ${0}</td>
+			<td style="font-size: 9pt;"></td></tr><tr>
+			<td style="font-size: 9pt;">legalFoundationDate bevat geen geldige datum, feature: ${0}, datum: ${1}</td>
+			<td style="font-size: 9pt;"></td></tr><tr>
+
+			<td style="font-size: 9pt;">Element met de naam "siteDesignation" ontbreekt, feature: ${0}</td>
+			<td style="font-size: 9pt;"></td></tr><tr>
+			<td style="font-size: 9pt;">legalFoundationDate bevat geen geldige datum, feature: ${0}, waarde: ${1}, verwacht: ${2}</td>
+			<td style="font-size: 9pt;"></td></tr><tr>
+
+			<td style="font-size: 9pt;">Element met de naam "siteProtectionClassification" ontbreekt, feature: ${0}</td>
+			<td style="font-size: 9pt;"></td></tr><tr>
+			<td style="font-size: 9pt;">siteProtectionClassification waarde is niet geldig, feature: ${0}, waarde: ${1}, verwacht: ${2}</td>
+			<td style="font-size: 9pt;"></td></tr><tr>
+
+			<td style="font-size: 9pt;">geometrie ontbreekt</td>
+			<td style="font-size: 9pt;"></td></tr><tr>
+			<td style="font-size: 9pt;">geometrie bevat duplicaat punten, locatie: ${0}, feature: ${1}</td>
+			<td style="font-size: 9pt;"></td></tr><tr>
+			<td style="font-size: 9pt;">geometrie bevat een buitenring met CW oriëntatie, feature: ${0}</td>
+			<td style="font-size: 9pt;"></td></tr><tr>
+			<td style="font-size: 9pt;">geometrie bevat een binnenring met CCW oriëntatie, feature: ${0}</td>
+			<td style="font-size: 9pt;"></td></tr><tr>
+			<td style="font-size: 9pt;">geometrie bevat lijnelementen die niet aansluiten, feature: ${0}</td>
+			<td style="font-size: 9pt;"></td></tr><tr>
+			<td style="font-size: 9pt;">geometrie bevat een lijn die zichzelf snijdt, locatie: ${0}, feature: ${1}</td>
+			<td style="font-size: 9pt;"></td></tr><tr>
+			<td style="font-size: 9pt;">geometrie bevat een niet gesloten ring, feature: ${0}</td>
+			<td style="font-size: 9pt;"></td></tr><tr>
+			<td style="font-size: 9pt;">geometrie bevat een ring die zichzelf snijdt, locatie: ${0}, feature: ${1}</td>
+			<td style="font-size: 9pt;"></td></tr><tr>
+			<td style="font-size: 9pt;">geometrie bevat een binnenring die zichzelf raakt, locatie: ${0}, feature: ${1}</td>
+			<td style="font-size: 9pt;"></td></tr><tr>
+			<td style="font-size: 9pt;">geometrie bevat een binnenring zichzelf snijdt, locatie: ${0}, feature: ${1}</td>
+			<td style="font-size: 9pt;"></td></tr><tr>
+			<td style="font-size: 9pt;">geometrie bevat een binnenring binnen een andere binnenring, feature: ${0}</td>
+			<td style="font-size: 9pt;"></td></tr><tr>
+			<td style="font-size: 9pt;">geometrie bevat een binnenring die een buitenring raakt, locatie: ${0}, feature: ${1}</td>
+			<td style="font-size: 9pt;"></td></tr><tr>
+			<td style="font-size: 9pt;">geometrie bevat een binnenring die een buitenring snijdt, locatie: ${0}, feature: ${1}</td>
+			<td style="font-size: 9pt;"></td></tr><tr>
+			<td style="font-size: 9pt;">geometrie bevat een binnenring die niet binnen een buitenring ligt, feature: ${0}</td>
+			<td style="font-size: 9pt;"></td></tr><tr>
+			<td style="font-size: 9pt;">Het attribuut "srsName" ontbreekt bij het geometrie-element, feature: ${0}</td>
+			<td style="font-size: 9pt;"></td></tr><tr>
+			<td colspan="2" style="font-size: 9pt;">Het attribuut "srsName" bij element "geometry" heeft een andere waarde dan "EPSG:28992" (RD_New), feature: ${0}</td>
+			</tr>
+
+		</tbody>
+		<tfoot>
+				<tr>
+					<th colspan="2">&nbsp;</th>
+				</tr>
+		</tfoot>
+	</table>
+
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+	</div>
+    <hr/>
+	<div id="_ba_naw">
+        <h1>NAW</h1>
+        <h2>Beheer van NAW gegevens</h2>
+		<h3>Invoer en aanpassen van naam en adres gegevens.
+		</h3>
+		<br/>
+			Voer hier uw naam en adres gegevens in.<br/>
+			De velden die zijn voorzien van * zijn verplicht<br/>
+			In het veld telefoon kunt u meerdere telefoon nummers opgeven gescheiden door een komma<br/>
+			<br/>
+			<div class="note">NB. De keuzelijst voor bronhouder bovenin is alleen actief als men als beheerder is ingelogd.<br/>
+			Een beheerder kan de naw gegevens van alle bronhouders inzien en aanpassen.</div>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+    </div>
+    <hr/>
+	<div id="_ba_datasetconfig">
+        <h1>Dataset configuratie</h1>
+        <h2>Configureren van datasets</h2>
+		<h3>
+			Hier word ingesteld of datasets opgenomen moeten worden in de CDS datastore.<br/>
+			U kunt datasets toevoegen, verwijderen, activeren en/of deactiveren.<br/>
+			Voor elke dataset kan de attribuutconfiguratie worden bewerkt.
+		</h3>
+
+		<p>
+			Kies een thema, voer &eacute;&eacute;n of meerdere handelingen uit zoals hieronder beschreven.
+		</p>
+		<br/>
+			Dataset toevoegen:
+			<ul>
+				<li>Ga naar de kolom <em>Actie</em> en druk op de knop &quot;Toevoegen&quot; bij de dataset die men wil toevoegen aan CDS.<br/>
+				</li>
+				<li>Vul daarna de UUID van de metadata van deze dataset in en klik op de knop <b>Opslaan</b> waarna de dataset in het ETL overzicht verschijnt.
+				<br/>
+				<div class="note"><img src="#springUrl('/images/tip.png')" style="width:15px; height:15px" />
+							Voordat u een dataset kunt toevoegen moet u de dataset hebben aangemeld bij het PGR, waarna de UUID wordt toegewezen.<br/>
+							De UUID blijft gekoppeld aan de betreffende dataset,ook als de dataset inhoudelijk wordt gewijzigd.
+				</div><br/>
+				</li>
+
+			</ul>
+			Dataset verwijderen:
+			<ul>
+				<li>Ga naar de kolom <em>Actie</em> en klik op de knop <b>Verwijderen</b> bij de dataset die u wilt verwijderen uit CDS.<br>
+			<div class="note"><img src="#springUrl('/images/tip.png')" style="width:15px; height:15px" />
+				Bij het verwijderen van een dataset worden de gegevens en de job-historie uit de database verwijderd.
+				De data is niet meer beschikbaar voor kaartbeeld.
+			</div><br/>
+			</li>
+			</ul>
+			Dataset (in)actief maken:
+			<ul>
+				<li>Vink het keuzevak aan of uit in de kolom <em>Actief</em> en klik op de knop <b>Opslaan</b>.<br/>
+					<div class="note"><img src="#springUrl('/images/tip.png')" style="width:15px; height:15px" />
+						Als een dataset actief is, wordt er regelmatig gecheckt
+						of de data van deze dataset is veranderd en opnieuw moet worden ge&iuml;mporteerd in CDS.<br/>
+						Als een dataset inactief is wordt deze check niet uitgevoerd en
+						kunt u desgewenst handmatig de data valideren en importeren in de ETL overzicht pagina.
+						Bij deactiveren blijft de data beschikbaar voor kaartbeeld (alleen mogelijk verouderd) en blijft de job-historie in tact.
+				</div>
+			</ul>
+			Dataset UUID wijzigen:
+			<ul>
+				<li>Voer een nieuwe UUID code voor de metadata in het betreffende tekstveld en druk op de knop &quot;Opslaan&quot;.<br/>
+				</li>
+			</ul>
+
+			Dataset attribuutconfiguratie bewerken:
+			<ul>
+				<li>Ga naar de kolom <em>Attribuutconfiguratie</em> en klik op de link <b>Attribuutconfiguratie bewerken</b>.<br/>
+				De tekst boven de link geeft aan hoeveel attributen van het totaal reeds zijn geconfigureerd.<br/>
+				Deze tekst wordt <span class="greenlight">groen</span> als alle attributen zijn geconfigureerd.<br/><br/>
+			<div class="note"><img src="#springUrl('/images/tip.png')" style="width:15px; height:15px" />
+				De Attribuutconfiguratie heeft een eigen help functie onder de knop "Uitleg".
+			</div>
+			<div class="note"><img src="#springUrl('/images/tip.png')" style="width:15px; height:15px" />
+				In de Attribuutconfiguratie pagina kunt u met de knop "Terug" weer naar het CDS tab menu.
+			</div><br/>
+			</li>
+			</ul>
+
+			<div class="note"><img src="#springUrl('/images/tip.png')" style="width:15px; height:15px" />
+				Indien gewenst kunt u voor de onder beheer zijnde Dataset direct de metadata gegevens van PGR ophalen<br/>
+				door de link "Klik hier voor de PGR metadataset" te gebruiken.
+				Deze gegevens worden dan in een nieuw browservenster getoond.
+				Indien er iets mis is (een verkeerde UUID bijvoorbeeld) krijgt u een leeg metadata bestand te zien, <br/>bijvoorbeeld "&lt;csw:GetRecordByIdResponse/&gt;"
+			</div><br/>
+			<div class="note">NB. De keuzelijst voor bronhouder bovenin is alleen actief als men als beheerder is ingelogd.<br/>
+			Een beheerder kan de dataset gegevens van alle bronhouders inzien en aanpassen.</div>
+		<br/>
+		<br/>
+    </div>
+    <hr/>
+</div>

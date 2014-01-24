@@ -1,0 +1,27 @@
+<div class="${baseClass}">
+	<div class="${baseClass}TopMargin" data-dojo-attach-point="marginTopNode"></div>
+	<div class="${baseClass}Center" data-dojo-attach-point="centerNode">
+		<div class="${baseClass}LeftMargin" data-dojo-attach-point="marginLeftNode"></div>
+		<div class="${baseClass}ContentContainer" data-dojo-attach-point="contentContainerNode">
+			<div class="${baseClass}Content dojoDndItem" data-dojo-attach-point="contentNode">
+				<span class="${baseClass}ErrorIcon" data-dojo-attach-point="errorIconNode"></span>
+				<a href="#" class="${baseClass}Delete" title="Verwijderen" data-dojo-attach-point="deleteNode" data-dojo-attach-event="click:_onClickDelete"><span>x</span></a>
+				<a href="#" class="${baseClass}Edit" title="Bewerken" data-dojo-attach-point="editNode" data-dojo-attach-event="click:_onClickEdit"><span>e</span></a>
+				<a href="#" class="${baseClass}Add" title="Conditie toevoegen" data-dojo-attach-point="addNode" data-dojo-attach-event="click:_onClickAddCondition"><span>+</span></a>
+				
+				<div class="${baseClass}TypeDescription" data-dojo-attach-point="typeDescriptionNode">
+					<span class="icon type-${outputType}" data-dojo-attach-point="outputTypeNode" title="${outputTypeDescription}"></span>
+					${typeDescription}
+				</div>
+				<div class="${baseClass}Title" data-dojo-attach-point="titleNode" title="${label}">${label}</div>
+				<div class="${baseClass}DataType">
+					
+				</div>
+			</div>
+		</div>
+		<div class="${baseClass}RightMargin" data-dojo-attach-point="marginRightNode"></div>
+	</div>
+	<div class="${baseClass}BottomMargin" data-dojo-attach-point="marginBottomNode"></div>
+	<div class="${baseClass}DownArrow" data-dojo-attach-point="downArrowNode"></div>
+	<div class="cdsAttributeMappingInputTypeInfo"></div>
+</div>

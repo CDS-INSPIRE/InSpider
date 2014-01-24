@@ -1,0 +1,79 @@
+<config xmlns="urn:cds-inspire:config:xml" xmlns:flat="urn:cds-inspire:flat">
+    <gmlVersion>GML_31</gmlVersion> 
+    <replace>
+        <!-- Algemeen -->
+        <flat:AardkundigeWaarden>flat:protectedSite</flat:AardkundigeWaarden>
+        <flat:EcologischeHoofdstructuur>flat:protectedSite</flat:EcologischeHoofdstructuur>
+        <flat:WAVGebieden>flat:protectedSite</flat:WAVGebieden>
+        <flat:StilteGebieden>flat:protectedSite</flat:StilteGebieden>
+        <flat:ProvincialeMonumenten>flat:protectedSite</flat:ProvincialeMonumenten>
+        <flat:NationaleLandschappen>flat:protectedSite</flat:NationaleLandschappen>
+
+        <!-- 9920, Groningen -->
+        <flat:Ecologische_Hoofdstructuur>flat:protectedSite</flat:Ecologische_Hoofdstructuur>
+        <flat:Aardkundige_waarden>flat:protectedSite</flat:Aardkundige_waarden>
+        <flat:Nationaal_landschap>flat:protectedSite</flat:Nationaal_landschap>
+        <flat:Verzuringsgevoelige_gebieden__WAV_>flat:protectedSite</flat:Verzuringsgevoelige_gebieden__WAV_>
+
+        <!-- 9921, Friesland -->
+        <flat:AardkundigeWaarden-AardkundigeWaarden>flat:protectedSite</flat:AardkundigeWaarden-AardkundigeWaarden>
+        <flat:EcologischeHoofdstructuur-EcologischeHoofdstructuur>flat:protectedSite</flat:EcologischeHoofdstructuur-EcologischeHoofdstructuur>
+        <flat:NationaleLandschappen-NationaleLandschappen>flat:protectedSite</flat:NationaleLandschappen-NationaleLandschappen>
+        <flat:StilteGebieden-StilteGebieden>flat:protectedSite</flat:StilteGebieden-StilteGebieden>
+        <flat:WAVGebieden-WAVGebieden>flat:protectedSite</flat:WAVGebieden-WAVGebieden>
+
+        <!-- 9922, Drenthe -->
+        <flat:AW-AW>flat:protectedSite</flat:AW-AW>     
+        <flat:EHS-EHS>flat:protectedSite</flat:EHS-EHS>     
+        <flat:NL-NL>flat:protectedSite</flat:NL-NL>     
+        <flat:PM-PM>flat:protectedSite</flat:PM-PM>     
+        <flat:ST-ST>flat:protectedSite</flat:ST-ST>
+        <flat:WAV-WAV>flat:protectedSite</flat:WAV-WAV>     
+
+        <!-- 9923, Overijssel -->
+        <flat:EHS>flat:protectedSite</flat:EHS>
+        <flat:nationale_landschappen-natlands>flat:protectedSite</flat:nationale_landschappen-natlands>
+        <flat:WAV-wav>flat:protectedSite</flat:WAV-wav>
+
+        <!-- 9924, Flevoland -->
+        <flat:INSPIRE_AARDKUNDIGEWAARDEN>flat:protectedSite</flat:INSPIRE_AARDKUNDIGEWAARDEN>
+        <flat:INSPIRE_EHS>flat:protectedSite</flat:INSPIRE_EHS>
+        <flat:INSPIRE_IJSSELDELTA>flat:protectedSite</flat:INSPIRE_IJSSELDELTA>
+        <flat:STILTEGEBIED>flat:protectedSite</flat:STILTEGEBIED>
+
+        <!-- 9925, Gelderland -->
+        <flat:Ecologische_Hoofdstructuur>flat:protectedSite</flat:Ecologische_Hoofdstructuur>
+        <flat:Stiltegebieden>flat:protectedSite</flat:Stiltegebieden>
+        <flat:WAV>flat:protectedSite</flat:WAV>
+
+        <!-- 9926, Utrecht -->
+        <flat:aardkundige_waarden>flat:protectedSite</flat:aardkundige_waarden>
+        <flat:ehs>flat:protectedSite</flat:ehs>
+        <flat:nationale_landschappen>flat:protectedSite</flat:nationale_landschappen>
+        <flat:stiltegebieden>flat:protectedSite</flat:stiltegebieden>
+        <flat:wav>flat:protectedSite</flat:wav>
+
+        <!-- 9927, Noord-Holland -->
+        <flat:Ecologische_Hoofdstructuur_Noord-Holland>flat:protectedSite</flat:Ecologische_Hoofdstructuur_Noord-Holland>
+		<flat:Aardkundige_Waarden_Noord-Holland>flat:protectedSite</flat:Aardkundige_Waarden_Noord-Holland>
+		<flat:Nationale_Landschappen_Noord-Holland>flat:protectedSite</flat:Nationale_Landschappen_Noord-Holland>
+		<flat:Provinciale_Monumenten_Noord-Holland>flat:protectedSite</flat:Provinciale_Monumenten_Noord-Holland>
+		<flat:Stiltegebieden_Noord-Holland>flat:protectedSite</flat:Stiltegebieden_Noord-Holland>
+
+        <!-- 9928, Zuid-Holland -->
+        <flat:Aardkundige_waarden>flat:protectedSite</flat:Aardkundige_waarden>
+        <flat:Ecologische_Hoofdstructuur>flat:protectedSite</flat:Ecologische_Hoofdstructuur>
+        <flat:Nationale_Landschappen>flat:protectedSite</flat:Nationale_Landschappen>
+        <flat:Beschermingsgebied_voor_stilte>flat:protectedSite</flat:Beschermingsgebied_voor_stilte>
+
+        <!-- 9929, Zeeland -->
+        <flat:WAV>flat:protectedSite</flat:WAV>
+        
+        <!-- 9930, Noord-Brabant -->
+        <flat:Ecologische_Hoofdstructuur>flat:protectedSite</flat:Ecologische_Hoofdstructuur>
+        <flat:WAV>flat:protectedSite</flat:WAV>
+        
+        <!-- 9931, Limburg -->
+
+    </replace>  
+</config>

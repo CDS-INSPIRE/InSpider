@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+      http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd
+      http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+      
+    <!-- Config dir configuration for external configuration properties: -->
+    <bean id="propertyPlaceholderConfigurer" class="nl.ipo.cds.properties.ConfigDirPropertyPlaceholderConfigurer" />
+
+	<bean id="nagiosStatusService" class="nl.ipo.cds.nagios.NagiosStatus">
+		<constructor-arg ref="filename"/>
+		<constructor-arg ref="hosts"/>
+		<constructor-arg ref="services"/>
+	</bean>
+	
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="nagios-status"/>
+		<property name="service" ref="nagiosStatusService"/>
+		<property name="serviceInterface" value="nl.ipo.cds.nagios.NagiosStatusService"/>
+		<property name="registryPort" value="${nagiosStatusRegistryPort}"/>
+	</bean>
+</beans>

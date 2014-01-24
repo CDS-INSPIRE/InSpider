@@ -1,0 +1,3 @@
+#foreach ($log in $logItems)
+$log.job;$log.message
+#end

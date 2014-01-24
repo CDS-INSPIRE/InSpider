@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:batch="http://www.springframework.org/schema/batch"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:util="http://www.springframework.org/schema/util"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+      http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd
+      http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+      http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch-2.1.xsd
+      http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+
+    <!-- Config dir configuration for external configuration properties: -->
+    <bean id="propertyPlaceholderConfigurer" class="nl.ipo.cds.properties.ConfigDirPropertyPlaceholderConfigurer" />
+    
+    <!-- Job log reporting: -->
+    <bean id="reportingVelocityEngine" class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
+        <property name="resourceLoaderPath" value="/WEB-INF/views/" />
+    </bean>
+    <bean id="baseConfiguration" class="nl.ipo.cds.admin.BaseConfiguration" abstract="true">
+    	<property name="cdsVersion" value="${cds.version}"/>
+    	<property name="mavenVersion" value="${parent.version}"/>
+    	<property name="build" value="${buildNumber}"/>
+    </bean>
+
+    <bean class="nl.ipo.cds.admin.reporting.ReportConfiguration" parent="baseConfiguration">
+    	<property name="pgrBaseUrl" value="${pgrBaseUrl}"/>
+    </bean>
+
+    <bean id="monitoringConfiguration" class="nl.ipo.cds.admin.ba.controller.MonitoringConfiguration">
+    	<property name="nagiosUrl" value="${nagiosUrl}"/>
+    	<property name="muninUrl" value="${muninUrl}"/>
+    	<property name="nagiosHosts" value="${nagiosHosts}"/>
+    	<property name="nagiosHostgroup" value="${nagiosHostgroup}"/>
+    	<property name="awstatsUrls" value="${awstatsUrls}"/>
+    	<property name="awstatsNames" value="${awstatsNames}"/>
+    </bean>
+    
+    <!-- <bean id="jobFaseLogWriter" class="nl.ipo.cds" -->
+
+	<bean id="inspireHost" class="java.lang.String">
+		<constructor-arg value="${inspireHost}"/>
+	</bean>
+	
+	<bean id="inspireGetCapabilitiesRequestTemplate" class="java.lang.String">
+		<constructor-arg value="${inspireGetCapabilitiesRequestTemplate}"/>
+	</bean>
+	
+	<bean id="inspireGetCapabilitiesRequestWMSVersion" class="java.lang.String">
+		<constructor-arg value="${inspireGetCapabilitiesRequestWMSVersion}"/>
+	</bean>
+
+	<bean id="inspireGetCapabilitiesRequestWFSVersion" class="java.lang.String">
+		<constructor-arg value="${inspireGetCapabilitiesRequestWFSVersion}"/>
+	</bean>
+	
+	<!-- An ApplicationListener must be declared (registered) as a bean.
+		Instead of a HttpSessionListener; Such a listener must be declared in web.xml.
+	-->
+	<bean id="cleanupListener" class="nl.ipo.cds.admin.ba.listener.CleanupListener"/>
+</beans>

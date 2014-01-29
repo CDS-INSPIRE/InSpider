@@ -1,0 +1,40 @@
+<SQLFeatureStore configVersion="3.4.0" xmlns="http://www.deegree.org/datasource/feature/sql" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.deegree.org/datasource/feature/sql http://schemas.deegree.org/datasource/feature/sql/3.4.0/sql.xsd"
+  xmlns:base="urn:x-inspire:specification:gmlas:BaseTypes:3.2" xmlns:gn="urn:x-inspire:specification:gmlas:GeographicalNames:3.0"
+  xmlns:hy="urn:x-inspire:specification:gmlas:HydroBase:3.0" xmlns:hy-n="urn:x-inspire:specification:gmlas:HydroNetwork:3.0"
+  xmlns:hy-p="urn:x-inspire:specification:gmlas:HydroPhysicalWaters:3.0" xmlns:lc="urn:x-inspire:specification:gmlas:LandCover:0.0"
+  xmlns:nrz="urn:x-inspire:specification:gmlas:NaturalRiskZones:0.0" xmlns:net="urn:x-inspire:specification:gmlas:Network:3.2"
+  xmlns:sr="urn:x-inspire:specification:gmlas:SeaRegions:0.0" xmlns:wfd="urn:x-inspire:specification:gmlas:WaterFrameworkDirective:0.0"
+  xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml/3.2">
+  <JDBCConnId>conHY</JDBCConnId>
+  <StorageCRS srid="0" dim="2D">EPSG:28992</StorageCRS>
+  <GMLSchema>http://www.inspire-provincies.nl/schemas/hy-n/3.0/HydroNetwork.xsd</GMLSchema>
+  <NullEscalation>true</NullEscalation>
+
+  <FeatureTypeMapping name="hy-n:HydroNode" table="inspire.hydro_node">
+    <FIDMapping prefix="HY_N_HYDRO_NODE_">
+      <Column name="gfid" type="string" />
+      <UUIDGenerator />
+    </FIDMapping>
+    <Complex path="net:inspireId">
+      <Complex path="base:Identifier">
+        <Primitive path="base:localId" mapping="inspire_id_local_id" />
+        <Primitive path="base:namespace" mapping="inspire_id_namespace" />
+      </Complex>
+    </Complex>
+  </FeatureTypeMapping>
+
+  <FeatureTypeMapping name="hy-n:WatercourseLink" table="inspire.watercourse_link">
+    <FIDMapping prefix="HY_N_WATERCOURSE_LINK_">
+      <Column name="gfid" type="string" />
+      <UUIDGenerator />
+    </FIDMapping>
+    <Complex path="net:inspireId">
+      <Complex path="base:Identifier">
+        <Primitive path="base:localId" mapping="inspire_id_local_id" />
+        <Primitive path="base:namespace" mapping="inspire_id_namespace" />
+      </Complex>
+    </Complex>
+  </FeatureTypeMapping>
+
+</SQLFeatureStore>

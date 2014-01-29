@@ -101,35 +101,6 @@ public class WatercourseLinkValidatorTest {
 	}
 
 	@Test
-	public void getThematicIdentifierValidator () throws Throwable {
-
-		WatercourseLink feature = new WatercourseLink();
-		feature.setThematicIdentifier("a");
-		feature.setThematicIdentifierScheme(null);
-		run ("thematicIdentifier")
-			.withFeature(feature )
-			.assertOnlyKey (ATTRIBUTE_GROUP_INCONSISTENT);
-
-		feature.setThematicIdentifier(null);
-		feature.setThematicIdentifierScheme("a");
-		run ("thematicIdentifier")
-			.withFeature(feature )
-			.assertOnlyKey (ATTRIBUTE_GROUP_INCONSISTENT);
-
-		feature.setThematicIdentifier(null);
-		feature.setThematicIdentifierScheme(null);
-		run ("thematicIdentifier")
-			.withFeature(feature )
-			.assertNoMessages ();
-
-		feature.setThematicIdentifier("a");
-		feature.setThematicIdentifierScheme("b");
-		run ("thematicIdentifier")
-			.withFeature(feature )
-			.assertNoMessages ();
-	}
-
-	@Test
 	public void testGeometry () throws Exception {
 
 		run ("geometry")
@@ -317,35 +288,6 @@ public class WatercourseLinkValidatorTest {
 		run ("surfaceGeometry")
 			.with (geom.multiPolygon())
 			.assertNoMessages ();
-	}
-
-	@Test
-	public void getStatusValidator () throws Throwable {
-
-		WatercourseLink feature = new WatercourseLink();
-		feature.setStatusDescription("a");
-		feature.setStatusType(null);
-		run ("status")
-			.withFeature(feature )
-			.assertOnlyKey (ATTRIBUTE_GROUP_INCONSISTENT);
-
-		feature = new WatercourseLink();
-		feature.setStatusDescription("a");
-		feature.setStatusType(new CodeType("b"));
-		run ("status")
-			.withFeature(feature )
-			.assertNoMessages();
-
-		feature = new WatercourseLink();
-		feature.setStatusType(new CodeType("b"));
-		run ("status")
-			.withFeature(feature )
-			.assertNoMessages();
-
-		feature = new WatercourseLink();
-		run ("status")
-			.withFeature(feature )
-			.assertNoMessages();
 	}
 
 	@Test

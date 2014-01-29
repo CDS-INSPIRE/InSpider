@@ -30,6 +30,10 @@
       <Primitive path="@xsi:nil" mapping="'true'"/>
       <Primitive path="@nilReason" mapping="'UNKNOWN'"/>
     </Complex>
+    <Complex path="net:inNetwork">
+      <Primitive path="@xsi:nil" mapping="'true'"/>
+      <Primitive path="@nilReason" mapping="'UNKNOWN'"/>
+    </Complex>    
     <Complex path="net:geometry">
       <Geometry path="." mapping="geometry"/>
     </Complex>
@@ -68,7 +72,7 @@
     </Complex>    
   </FeatureTypeMapping>
 
-  <FeatureTypeMapping name="hy-n:WatercourseLink" table="bron.watercourse_link">
+  <FeatureTypeMapping name="hy-n:WatercourseLink" table="inspire.watercourse_link">
     <FIDMapping prefix="HY_N_WATERCOURSE_LINK_">
       <Column name="inspire_id_local_id" type="string" />
       <UUIDGenerator />
@@ -80,34 +84,31 @@
     <Complex path="net:inspireId">
       <Complex path="base:Identifier">
         <Primitive path="base:localId" mapping="inspire_id_local_id" />
-        <Primitive path="base:namespace" mapping="inspire_id_dataset_code" />
+        <Primitive path="base:namespace" mapping="inspire_id_namespace" />
       </Complex>
     </Complex>
     <Complex path="net:endLifespanVersion">
       <Primitive path="@xsi:nil" mapping="'true'"/>
       <Primitive path="@nilReason" mapping="'UNKNOWN'"/>
     </Complex>
+    <Complex path="net:inNetwork">
+      <Primitive path="@xsi:nil" mapping="'true'"/>
+      <Primitive path="@nilReason" mapping="'UNKNOWN'"/>
+    </Complex>      
     <Complex path="net:centrelineGeometry">
       <Geometry path="." mapping="geometry"/>
     </Complex>
-    <!--Complex path="net:endNode">
-      <Primitive path="@owns" mapping="net_endnode_attr_owns"/>
-      <Primitive path="@nilReason" mapping="net_endnode_attr_nilreason"/>
-      <Primitive path="@gml:remoteSchema" mapping="net_endnode_attr_gml_remoteschema"/>
+    <Primitive path="net:fictitious" mapping="'false'"/>    
+    <Complex path="net:endNode">
       <Feature path=".">
-        <Join table="?" fromColumns="net_endnode_fk" toColumns="attr_gml_id"/>
-        <Href mapping="net_endnode_href"/>
+        <Href mapping="end_node_href"/>
       </Feature>
-    </Complex-->    
-    <!--Complex path="net:startNode">
-      <Primitive path="@owns" mapping="net_startnode_attr_owns"/>
-      <Primitive path="@nilReason" mapping="net_startnode_attr_nilreason"/>
-      <Primitive path="@gml:remoteSchema" mapping="net_startnode_attr_gml_remoteschema"/>
+    </Complex>
+    <Complex path="net:startNode">
       <Feature path=".">
-        <Join table="?" fromColumns="net_startnode_fk" toColumns="attr_gml_id"/>
-        <Href mapping="net_startnode_href"/>
+        <Href mapping="start_node_href"/>
       </Feature>
-    </Complex-->
+    </Complex>
     <Complex path="hy-n:geographicalName">
       <Complex path="gn:GeographicalName">
         <Complex path="gn:language">
@@ -137,6 +138,15 @@
         </Complex>
       </Complex>
     </Complex>
+    <Complex path="hy-n:flowDirection">
+      <Primitive path="@xsi:nil" mapping="'true'"/>
+      <Primitive path="@nilReason" mapping="'UNKNOWN'"/>
+    </Complex>
+    <Complex path="hy-n:length">
+      <Primitive path="@xsi:nil" mapping="'true'"/>
+      <Primitive path="@nilReason" mapping="'UNKNOWN'"/>
+      <Primitive path="@uom" mapping="'m'"/>      
+    </Complex>      
   </FeatureTypeMapping>
 
 </SQLFeatureStore>

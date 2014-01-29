@@ -4,7 +4,7 @@ create table bron.watercourse_link (
  	job_id bigint,
 	gfid text,
 
-	inspire_id_dataset_code text not null,
+	inspire_id_namespace text not null,
 	inspire_id_local_id text not null,
 	name text not null,
 	end_node_local_id text not null,

@@ -3,12 +3,7 @@ package nl.ipo.cds.etl.theme.hydronode;
 import static nl.ipo.cds.etl.theme.hydronode.Message.ATTRIBUTE_CODE_CODESPACE_INVALID;
 import static nl.ipo.cds.etl.theme.hydronode.Message.ATTRIBUTE_CODE_INVALID;
 import static nl.ipo.cds.etl.theme.hydronode.Message.ATTRIBUTE_EMPTY;
-import static nl.ipo.cds.etl.theme.hydronode.Message.ATTRIBUTE_GROUP_INCONSISTENT;
 import static nl.ipo.cds.etl.theme.hydronode.Message.ATTRIBUTE_NULL;
-import static nl.ipo.cds.etl.theme.hydronode.Message.GEOMETRY_EMPTY_MULTIGEOMETRY;
-import static nl.ipo.cds.etl.theme.hydronode.Message.GEOMETRY_ONLY_SURFACE_OR_MULTISURFACE;
-import static nl.ipo.cds.etl.theme.hydronode.Message.GEOMETRY_POINT_DUPLICATION;
-import static nl.ipo.cds.etl.theme.hydronode.Message.GEOMETRY_SELF_INTERSECTION;
 import static nl.ipo.cds.etl.theme.hydronode.Message.GEOMETRY_SRS_NOT_RD;
 import static nl.ipo.cds.etl.theme.hydronode.Message.GEOMETRY_SRS_NULL;
 
@@ -16,10 +11,6 @@ import java.util.Collections;
 
 import nl.ipo.cds.etl.test.GeometryConstants;
 import nl.ipo.cds.etl.test.ValidationRunner;
-import nl.ipo.cds.etl.theme.hydronode.Context;
-import nl.ipo.cds.etl.theme.hydronode.Message;
-import nl.ipo.cds.etl.theme.hydronode.HydroNode;
-import nl.ipo.cds.etl.theme.hydronode.HydroNodeValidator;
 
 import org.deegree.commons.tom.ows.CodeType;
 import org.junit.Before;
@@ -57,15 +48,15 @@ public class HydroNodeValidatorTest {
 		    .with (new CodeType("bogus"))
 		    .assertOnlyKey (ATTRIBUTE_CODE_CODESPACE_INVALID);
 
-		run ("inspireIdDatasetCode")
-		    .withCodeList ("http://www.inspire-provincies.nl/codeList/DatasetTypeCode/ProductionFacility", "lgrinr")
-	        .with (new CodeType("value1", "http://www.inspire-provincies.nl/codeList/DatasetTypeCode/ProductionFacility"))
-	        .assertOnlyKey (ATTRIBUTE_CODE_INVALID);
-
-		run ("inspireIdDatasetCode")
-		    .withCodeList ("http://www.inspire-provincies.nl/codeList/DatasetTypeCode/ProductionFacility", "lgrinr")
-	        .with (new CodeType("lgrinr", "http://www.inspire-provincies.nl/codeList/DatasetTypeCode/ProductionFacility"))
-            .assertNoMessages();
+//		run ("inspireIdDatasetCode")
+//		    .withCodeList ("http://www.inspire-provincies.nl/codeList/DatasetTypeCode/ProductionFacility", "lgrinr")
+//	        .with (new CodeType("value1", "http://www.inspire-provincies.nl/codeList/DatasetTypeCode/ProductionFacility"))
+//	        .assertOnlyKey (ATTRIBUTE_CODE_INVALID);
+//
+//		run ("inspireIdDatasetCode")
+//		    .withCodeList ("http://www.inspire-provincies.nl/codeList/DatasetTypeCode/ProductionFacility", "lgrinr")
+//	        .with (new CodeType("lgrinr", "http://www.inspire-provincies.nl/codeList/DatasetTypeCode/ProductionFacility"))
+//            .assertNoMessages();
 	}
 
 	@Test
@@ -102,22 +93,6 @@ public class HydroNodeValidatorTest {
 		run ("geometry")
 			.with (geom.point (1,2))
 			.assertNoMessages ();
-
-		run ("geometry")
-   			.with (geom.lineString ())
-   			.assertNoMessages ();
-
-		run ("geometry")
-			.with (geom.multiPolygon())
-			.assertNoMessages ();
-
-		run ("geometry")
-			.with (geom.lineStringDuplicatePoint ())
-			.assertOnlyKey (GEOMETRY_POINT_DUPLICATION);
-
-		run ("geometry")
-			.with (geom.lineStringSelfIntersection ())
-			.assertOnlyKey (GEOMETRY_SELF_INTERSECTION);
 	}
 
 	@Test
@@ -125,7 +100,7 @@ public class HydroNodeValidatorTest {
 
 		run ("name")
 			.with (null)
-			.assertNoMessages();
+			.assertOnlyKey (ATTRIBUTE_NULL);
 
 		run ("name")
 		    .with ("")

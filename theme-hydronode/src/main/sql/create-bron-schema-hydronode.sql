@@ -6,7 +6,9 @@ create table bron.hydro_node (
 
 	inspire_id_dataset_code text not null,
 	inspire_id_local_id text not null,
-	
+	name text not null,
+	category text not null,
+
 	primary key (id),
  	constraint fk_job_id foreign key (job_id) references manager.job (id)
 );

@@ -1,0 +1,42 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>nl.ipo.cds</groupId>
+		<artifactId>cds-parent</artifactId>
+		<version>2.2-SNAPSHOT</version>
+	</parent>
+	<artifactId>theme-watercourselink</artifactId>
+	<name>CDS - Theme WatercourseLink</name>
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<phase>package</phase>
+					</execution>
+				</executions>
+				<configuration>
+					<appendAssemblyId>true</appendAssemblyId>
+					<descriptors>
+						<descriptor>src/main/assembly/assembly-sql.xml</descriptor>
+					</descriptors>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>	
+	<dependencies>
+		<dependency>
+			<groupId>nl.ipo.cds</groupId>
+			<artifactId>etl-proces</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>nl.ipo.cds</groupId>
+			<artifactId>etl-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+</project>

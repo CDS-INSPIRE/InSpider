@@ -579,12 +579,14 @@
 	    <module>theme-areamanagement</module>
 	    <module>theme-exposedelements</module>          
 	    <module>theme-habitat</module>
+	    <module>theme-hydronode</module>
 	    <module>theme-hazardarea</module>	    
 	    <module>theme-productionfacility</module>
 	    <module>theme-productioninstallation</module>
 	    <module>theme-productioninstallationpart</module>
 	    <module>theme-protectedsites</module>	    	    
 	    <module>theme-riskzone</module>
+	    <module>theme-watercourselink</module>
 	    <module>validation</module>	    
 	</modules>
 </project>

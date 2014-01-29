@@ -11,28 +11,130 @@
   <GMLSchema>http://www.inspire-provincies.nl/schemas/hy-n/3.0/HydroNetwork.xsd</GMLSchema>
   <NullEscalation>true</NullEscalation>
 
-  <FeatureTypeMapping name="hy-n:HydroNode" table="inspire.hydro_node">
+  <FeatureTypeMapping name="hy-n:HydroNode" table="bron.hydro_node">
     <FIDMapping prefix="HY_N_HYDRO_NODE_">
-      <Column name="gfid" type="string" />
+      <Column name="inspire_id_local_id" type="string" />
       <UUIDGenerator />
     </FIDMapping>
+    <Complex path="net:beginLifespanVersion">
+      <Primitive path="@xsi:nil" mapping="'true'"/>
+      <Primitive path="@nilReason" mapping="'UNKNOWN'"/>
+    </Complex>    
     <Complex path="net:inspireId">
       <Complex path="base:Identifier">
         <Primitive path="base:localId" mapping="inspire_id_local_id" />
-        <Primitive path="base:namespace" mapping="inspire_id_namespace" />
+        <Primitive path="base:namespace" mapping="inspire_id_dataset_code" />
       </Complex>
     </Complex>
+    <Complex path="net:endLifespanVersion">
+      <Primitive path="@xsi:nil" mapping="'true'"/>
+      <Primitive path="@nilReason" mapping="'UNKNOWN'"/>
+    </Complex>
+    <Complex path="net:geometry">
+      <Geometry path="." mapping="geometry"/>
+    </Complex>
+    <Complex path="hy-n:geographicalName">
+      <Complex path="gn:GeographicalName">
+        <Complex path="gn:language">
+          <Primitive path="text()" mapping="'nl_nl'"/>
+        </Complex>
+        <Complex path="gn:nativeness">
+          <Primitive path="@xsi:nil" mapping="'true'"/>
+          <Primitive path="@nilReason" mapping="'UNKNOWN'"/>
+        </Complex>
+        <Complex path="gn:nameStatus">
+          <Primitive path="@xsi:nil" mapping="'true'"/>
+          <Primitive path="@nilReason" mapping="'UNKNOWN'"/>
+        </Complex>             
+        <Complex path="gn:sourceOfName">
+          <Primitive path="@xsi:nil" mapping="'true'"/>
+          <Primitive path="@nilReason" mapping="'UNKNOWN'"/>
+        </Complex>
+        <Complex path="gn:pronunciation">
+          <Primitive path="@xsi:nil" mapping="'true'"/>
+          <Primitive path="@nilReason" mapping="'UNKNOWN'"/>
+        </Complex>        
+        <Complex path="gn:spelling">
+          <Complex path="gn:SpellingOfName">
+            <Primitive path="gn:text" mapping="name"/>
+            <Primitive path="gn:script" mapping="'Latn'"/>
+          </Complex>
+        </Complex>
+      </Complex>
+    </Complex>
+    <Complex path="hy-n:hydroNodeCategory">
+      <Primitive path="text()" mapping="category"/>
+      <Primitive path="@codeSpace" mapping="'http://inspire.ec.europa.eu/codeList/HydroNodeCategoryValue'"/>
+    </Complex>    
   </FeatureTypeMapping>
 
-  <FeatureTypeMapping name="hy-n:WatercourseLink" table="inspire.watercourse_link">
+  <FeatureTypeMapping name="hy-n:WatercourseLink" table="bron.watercourse_link">
     <FIDMapping prefix="HY_N_WATERCOURSE_LINK_">
-      <Column name="gfid" type="string" />
+      <Column name="inspire_id_local_id" type="string" />
       <UUIDGenerator />
     </FIDMapping>
+    <Complex path="net:beginLifespanVersion">
+      <Primitive path="@xsi:nil" mapping="'true'"/>
+      <Primitive path="@nilReason" mapping="'UNKNOWN'"/>
+    </Complex>    
     <Complex path="net:inspireId">
       <Complex path="base:Identifier">
         <Primitive path="base:localId" mapping="inspire_id_local_id" />
-        <Primitive path="base:namespace" mapping="inspire_id_namespace" />
+        <Primitive path="base:namespace" mapping="inspire_id_dataset_code" />
+      </Complex>
+    </Complex>
+    <Complex path="net:endLifespanVersion">
+      <Primitive path="@xsi:nil" mapping="'true'"/>
+      <Primitive path="@nilReason" mapping="'UNKNOWN'"/>
+    </Complex>
+    <Complex path="net:centrelineGeometry">
+      <Geometry path="." mapping="geometry"/>
+    </Complex>
+    <!--Complex path="net:endNode">
+      <Primitive path="@owns" mapping="net_endnode_attr_owns"/>
+      <Primitive path="@nilReason" mapping="net_endnode_attr_nilreason"/>
+      <Primitive path="@gml:remoteSchema" mapping="net_endnode_attr_gml_remoteschema"/>
+      <Feature path=".">
+        <Join table="?" fromColumns="net_endnode_fk" toColumns="attr_gml_id"/>
+        <Href mapping="net_endnode_href"/>
+      </Feature>
+    </Complex-->    
+    <!--Complex path="net:startNode">
+      <Primitive path="@owns" mapping="net_startnode_attr_owns"/>
+      <Primitive path="@nilReason" mapping="net_startnode_attr_nilreason"/>
+      <Primitive path="@gml:remoteSchema" mapping="net_startnode_attr_gml_remoteschema"/>
+      <Feature path=".">
+        <Join table="?" fromColumns="net_startnode_fk" toColumns="attr_gml_id"/>
+        <Href mapping="net_startnode_href"/>
+      </Feature>
+    </Complex-->
+    <Complex path="hy-n:geographicalName">
+      <Complex path="gn:GeographicalName">
+        <Complex path="gn:language">
+          <Primitive path="text()" mapping="'nl_nl'"/>
+        </Complex>
+        <Complex path="gn:nativeness">
+          <Primitive path="@xsi:nil" mapping="'true'"/>
+          <Primitive path="@nilReason" mapping="'UNKNOWN'"/>
+        </Complex>
+        <Complex path="gn:nameStatus">
+          <Primitive path="@xsi:nil" mapping="'true'"/>
+          <Primitive path="@nilReason" mapping="'UNKNOWN'"/>
+        </Complex>             
+        <Complex path="gn:sourceOfName">
+          <Primitive path="@xsi:nil" mapping="'true'"/>
+          <Primitive path="@nilReason" mapping="'UNKNOWN'"/>
+        </Complex>
+        <Complex path="gn:pronunciation">
+          <Primitive path="@xsi:nil" mapping="'true'"/>
+          <Primitive path="@nilReason" mapping="'UNKNOWN'"/>
+        </Complex>        
+        <Complex path="gn:spelling">
+          <Complex path="gn:SpellingOfName">
+            <Primitive path="gn:text" mapping="name"/>
+            <Primitive path="gn:script" mapping="'Latn'"/>
+          </Complex>
+        </Complex>
       </Complex>
     </Complex>
   </FeatureTypeMapping>

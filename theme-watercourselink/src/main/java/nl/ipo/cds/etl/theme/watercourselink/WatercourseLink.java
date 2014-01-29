@@ -24,14 +24,20 @@ public class WatercourseLink extends PersistableFeature {
 	@Column(name = "name")
 	private String name;
 
+	@Column(name = "end_node_local_id")
+	private String endNodeLocalId;	
+
+	@Column(name = "start_node_local_id")
+	private String startNodeLocalId;	
+
 	@MappableAttribute
-	@CodeSpace("http://www.inspire-provincies.nl/codeList/DatasetTypeCode/ProductionFacility")
+	@CodeSpace("http://www.inspire-provincies.nl/codeList/DatasetTypeCode/WatercourseLink")
 	public CodeType getInspireIdDatasetCode() {
 		return inspireIdDatasetCode;
 	}
 
 	@MappableAttribute
-	@CodeSpace("http://www.inspire-provincies.nl/codeList/DatasetTypeCode/ProductionFacility")
+	@CodeSpace("http://www.inspire-provincies.nl/codeList/DatasetTypeCode/WatercourseLink")
 	public void setInspireIdDatasetCode(CodeType inspireIdDatasetCode) {
 		this.inspireIdDatasetCode = inspireIdDatasetCode;
 	}
@@ -56,15 +62,34 @@ public class WatercourseLink extends PersistableFeature {
 		this.geometry = geometry;
 	}
 
+	@MappableAttribute
+	public String getName() {
+		return name;
+	}
 
-//	@MappableAttribute
-//	public String getName() {
-//		return name;
-//	}
-//
-//	@MappableAttribute
-//	public void setName(String name) {
-//		this.name = name;
-//	}
+	@MappableAttribute
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	@MappableAttribute	
+	public String getEndNodeLocalId() {
+		return endNodeLocalId;
+	}
+
+	@MappableAttribute	
+	public void setEndNodeLocalId(String endNodeLocalId) {
+		this.endNodeLocalId = endNodeLocalId;
+	}
+
+	@MappableAttribute
+	public String getStartNodeLocalId() {
+		return startNodeLocalId;
+	}
+
+	@MappableAttribute
+	public void setStartNodeLocalId(String startNodeLocalId) {
+		this.startNodeLocalId = startNodeLocalId;
+	}
 
 }

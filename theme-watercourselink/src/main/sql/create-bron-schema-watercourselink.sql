@@ -6,6 +6,9 @@ create table bron.watercourse_link (
 
 	inspire_id_dataset_code text not null,
 	inspire_id_local_id text not null,
+	name text not null,
+	end_node_local_id text not null,
+	start_node_local_id text not null,
 	
 	primary key (id),
  	constraint fk_job_id foreign key (job_id) references manager.job (id)

@@ -1,32 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
 
-	<id>http://www.inspire-provincies.nl/codeList/DatasetTypeCode/ProductionFacility</id>
-	<title>DatasetTypeCode Production Facility</title>
+	<id>http://www.inspire-provincies.nl/codeList/DatasetTypeCode/HydroNode</id>
+	<title>DatasetTypeCode HydroNode</title>
 
 	<entry>
-		<id>http://www.inspire-provincies.nl/codeList/DatasetTypeCode/ProductionFacility/lgrinr</id>
-		<title>LGR Inrichtingen</title>
-		<category term="CodeListValue" />
-	</entry>
-	<entry>
-		<id>http://www.inspire-provincies.nl/codeList/DatasetTypeCode/ProductionFacility/lgrins</id>
-		<title>LGR Installaties</title>
-		<category term="CodeListValue" />
-	</entry>
-	<entry>
-		<id>http://www.inspire-provincies.nl/codeList/DatasetTypeCode/ProductionFacility/lgrput</id>
-		<title>LGR Put</title>
-		<category term="CodeListValue" />
-	</entry>
-	<entry>
-		<id>http://www.inspire-provincies.nl/codeList/DatasetTypeCode/ProductionFacility/lgrlus</id>
-		<title>LGR Bodemlus</title>
-		<category term="CodeListValue" />
-	</entry>
-	<entry>
-		<id>http://www.inspire-provincies.nl/codeList/DatasetTypeCode/ProductionFacility/rkinr</id>
-		<title>Risicokaart Inrichtingen</title>
+		<id>http://www.inspire-provincies.nl/codeList/DatasetTypeCode/HydroNode/hydronodesnl</id>
+		<title>HydroNodesNL</title>
 		<category term="CodeListValue" />
 	</entry>
 

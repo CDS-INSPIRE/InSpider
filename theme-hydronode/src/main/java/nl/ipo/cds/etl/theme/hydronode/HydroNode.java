@@ -24,14 +24,17 @@ public class HydroNode extends PersistableFeature {
 	@Column(name = "name")
 	private String name;
 
+	@Column(name = "category")
+	private CodeType category;
+
 	@MappableAttribute
-	@CodeSpace("http://www.inspire-provincies.nl/codeList/DatasetTypeCode/ProductionFacility")
+	@CodeSpace("http://www.inspire-provincies.nl/codeList/DatasetTypeCode/HydroNode")
 	public CodeType getInspireIdDatasetCode() {
 		return inspireIdDatasetCode;
 	}
 
 	@MappableAttribute
-	@CodeSpace("http://www.inspire-provincies.nl/codeList/DatasetTypeCode/ProductionFacility")
+	@CodeSpace("http://www.inspire-provincies.nl/codeList/DatasetTypeCode/HydroNode")
 	public void setInspireIdDatasetCode(CodeType inspireIdDatasetCode) {
 		this.inspireIdDatasetCode = inspireIdDatasetCode;
 	}
@@ -54,6 +57,28 @@ public class HydroNode extends PersistableFeature {
 	@MappableAttribute
 	public void setGeometry(Geometry geometry) {
 		this.geometry = geometry;
+	}
+
+	@MappableAttribute
+	public String getName() {
+		return name;
+	}
+
+	@MappableAttribute
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	@MappableAttribute
+	@CodeSpace("http://inspire.ec.europa.eu/codeList/HydroNodeCategoryValue")
+	public CodeType getCategory() {
+		return category;
+	}
+
+	@MappableAttribute
+	@CodeSpace("http://inspire.ec.europa.eu/codeList/HydroNodeCategoryValue")
+	public void setCategory(CodeType category) {
+		this.category = category;
 	}
 
 }

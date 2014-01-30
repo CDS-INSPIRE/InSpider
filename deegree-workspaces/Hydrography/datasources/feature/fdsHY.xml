@@ -1,0 +1,34 @@
+<SQLFeatureStore configVersion="3.2.0" xmlns="http://www.deegree.org/datasource/feature/sql" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.deegree.org/datasource/feature/sql http://schemas.deegree.org/datasource/feature/sql/3.2.0/sql.xsd">
+
+  <JDBCConnId>conHY</JDBCConnId>
+
+  <FeatureTypeMapping xmlns:app="http://www.ipo.nl/InSpider" table="bron.hydro_node" name="app:HydroNode_NL">
+    <FIDMapping>
+      <Column name="id" />
+    </FIDMapping>
+    <Primitive path="app:inspire_id_dataset_code" mapping="inspire_id_dataset_code" />
+    <Primitive path="app:inspire_id_local_id" mapping="inspire_id_local_id" />
+    <Primitive path="app:name" mapping="name" />
+    <Primitive path="app:category" mapping="category" />
+    <Geometry path="app:geometry" mapping="geometry">
+      <StorageCRS srid="28992">EPSG:28992</StorageCRS>
+    </Geometry>     
+  </FeatureTypeMapping>
+
+  <FeatureTypeMapping xmlns:app="http://www.ipo.nl/InSpider" table="inspire.watercourse_link" name="app:WatercourseLink_NL">
+    <FIDMapping>
+      <Column name="id" />
+    </FIDMapping>
+    <Primitive path="app:inspire_id_namespace" mapping="inspire_id_namespace" />
+    <Primitive path="app:inspire_id_local_id" mapping="inspire_id_local_id" />
+    <Primitive path="app:name" mapping="name" />
+    <Primitive path="app:end_node_href" mapping="end_node_href" />
+    <Primitive path="app:start_node_href" mapping="start_node_href" />    
+    <Geometry path="app:geometry" mapping="geometry">
+      <StorageCRS srid="28992">EPSG:28992</StorageCRS>
+    </Geometry>     
+  </FeatureTypeMapping>
+
+  
+</SQLFeatureStore>

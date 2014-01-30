@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deegreeServicesMetadata configVersion="3.4.0" xmlns="urn:cds-inspire:deegree-extension:metadata"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:cds-inspire:deegree-extension:metadata metadatadao.xsd">
+  <ApplicationContextHolder>cds-inspire</ApplicationContextHolder>
+
+  <ExtendedCapabilities protocolVersions="2.0.0">
+    <ows:ExtendedCapabilities xmlns:ows="http://www.opengis.net/ows/1.1">
+      <inspire_dls:ExtendedCapabilities
+        xmlns:inspire_dls="http://inspire.ec.europa.eu/schemas/inspire_dls/1.0"
+        xmlns:inspire_common="http://inspire.ec.europa.eu/schemas/common/1.0"
+        xsi:schemaLocation="http://inspire.ec.europa.eu/schemas/inspire_dls/1.0 http://inspire.ec.europa.eu/schemas/inspire_dls/1.0/inspire_dls.xsd http://inspire.ec.europa.eu/schemas/common/1.0 http://inspire.ec.europa.eu/schemas/common/1.0/common.xsd">
+        <inspire_common:MetadataUrl>
+          <inspire_common:URL>To be replaced by the DatabaseMetadataProvider</inspire_common:URL>
+          <inspire_common:MediaType>application/vnd.iso.19139+xml</inspire_common:MediaType>
+        </inspire_common:MetadataUrl>
+        <inspire_common:SupportedLanguages>
+          <inspire_common:DefaultLanguage>
+            <inspire_common:Language>dut</inspire_common:Language>
+          </inspire_common:DefaultLanguage>
+        </inspire_common:SupportedLanguages>
+        <inspire_common:ResponseLanguage>
+          <inspire_common:Language>dut</inspire_common:Language>
+        </inspire_common:ResponseLanguage>
+      </inspire_dls:ExtendedCapabilities>
+    </ows:ExtendedCapabilities>
+  </ExtendedCapabilities>
+  
+  <ExtendedCapabilities protocolVersions="1.1.0">  
+    <ows:ExtendedCapabilities xmlns:ows="http://www.opengis.net/ows">
+      <inspire_dls:ExtendedCapabilities
+        xmlns:inspire_dls="http://inspire.ec.europa.eu/schemas/inspire_dls/1.0"
+        xmlns:inspire_common="http://inspire.ec.europa.eu/schemas/common/1.0"
+        xsi:schemaLocation="http://inspire.ec.europa.eu/schemas/common/1.0 http://inspire.ec.europa.eu/schemas/common/1.0/common.xsd http://inspire.ec.europa.eu/schemas/inspire_dls/1.0 http://inspire.ec.europa.eu/schemas/inspire_dls/1.0/inspire_dls.xsd">
+        <inspire_common:MetadataUrl>
+          <inspire_common:URL>To be replaced by the DatabaseMetadataProvider</inspire_common:URL>
+          <inspire_common:MediaType>application/vnd.iso.19139+xml</inspire_common:MediaType>
+        </inspire_common:MetadataUrl>
+        <inspire_common:SupportedLanguages>
+          <inspire_common:DefaultLanguage>
+            <inspire_common:Language>dut</inspire_common:Language>
+          </inspire_common:DefaultLanguage>
+        </inspire_common:SupportedLanguages>
+        <inspire_common:ResponseLanguage>
+          <inspire_common:Language>dut</inspire_common:Language>
+        </inspire_common:ResponseLanguage>
+      </inspire_dls:ExtendedCapabilities>
+    </ows:ExtendedCapabilities>
+  </ExtendedCapabilities>
+
+</deegreeServicesMetadata>

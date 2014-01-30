@@ -30,19 +30,19 @@
     <url-pattern>/resources/*</url-pattern>
   </servlet-mapping>
   
-  <!--filter>
+  <filter>
     <filter-name>CrsFilter</filter-name>
-    <filter-class>nl.ipo.cds.webservices.CrsFilter</filter-class>
+    <filter-class>nl.idgis.commons.deegree.CrsFilter</filter-class>
   </filter>
     
   <filter-mapping>
     <filter-name>CrsFilter</filter-name>
     <url-pattern>/services/*</url-pattern>
-  </filter-mapping-->
+  </filter-mapping>
 
   <filter>
     <filter-name>QuirksFilter</filter-name>
-    <filter-class>nl.ipo.cds.webservices.QuirksFilter</filter-class>
+    <filter-class>nl.idgis.commons.deegree.QuirksFilter</filter-class>
   </filter>
     
   <filter-mapping>

@@ -38,8 +38,8 @@
 
   <repositories>
     <repository>
-      <id>idgis-repo</id>
-      <url>https://jenkins.occamlabs.de/nexus/content/groups/idgis/</url>
+      <id>deegree-repo</id>
+      <url>http://repo.deegree.org/content/groups/public/</url>
       <releases>
         <updatePolicy>never</updatePolicy>
       </releases>
@@ -48,34 +48,7 @@
       </snapshots>
     </repository>
   </repositories>
-
-  <distributionManagement>
-    <repository>
-      <id>idgis-releases</id>
-      <url>https://jenkins.occamlabs.de/nexus/content/repositories/idgis-releases/</url>
-    </repository>
-    <snapshotRepository>
-      <id>idgis-snapshots</id>
-      <url>https://jenkins.occamlabs.de/nexus/content/repositories/idgis-snapshots/</url>
-    </snapshotRepository>
-  </distributionManagement>
-
-	<pluginRepositories>
-		<pluginRepository>
-			<id>onejar-maven-plugin.googlecode.com</id>
-			<url>http://onejar-maven-plugin.googlecode.com/svn/mavenrepo</url>
-		</pluginRepository>
-		<pluginRepository>
-			<id>one-jar</id>
-			<url>http://onejar-maven-plugin.googlecode.com/svn/mavenrepo</url>
-		</pluginRepository>
-	</pluginRepositories>
-
-	<scm>
-		<connection>scm:svn:svn+ssh://repos.idgis.eu/cds-inspire/cds-parent/trunk</connection>
-		<developerConnection>scm:svn:svn+ssh://repos.idgis.eu/cds-inspire/cds-parent/trunk</developerConnection>
-	</scm>
-
+  
 	<!-- development organisation -->
 	<developers>
 		<developer>

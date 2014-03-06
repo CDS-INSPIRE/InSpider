@@ -20,8 +20,8 @@
 
   <repositories>
     <repository>
-      <id>idgis-repo</id>
-      <url>https://jenkins.occamlabs.de/nexus/content/groups/idgis/</url>
+      <id>deegree-repo</id>
+      <url>http://repo.deegree.org/content/groups/public/</url>
       <releases>
         <updatePolicy>never</updatePolicy>
       </releases>

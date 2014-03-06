@@ -1,0 +1,36 @@
+<deegreeWFS xmlns="http://www.deegree.org/services/wfs" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" configVersion="3.2.0" xsi:schemaLocation="http://www.deegree.org/services/wfs http://schemas.deegree.org/services/wfs/3.2.0/wfs_configuration.xsd">
+
+  <SupportedVersions>
+    <Version>2.0.0</Version>    
+  </SupportedVersions>
+
+  <FeatureStoreId>fdsInspireHY</FeatureStoreId>
+
+  <QueryCRS>EPSG:28992</QueryCRS> 
+  <QueryCRS>EPSG:4326</QueryCRS> 
+  <QueryCRS>EPSG:4258</QueryCRS> 
+  <QueryCRS>EPSG:3035</QueryCRS> 
+  <QueryCRS>EPSG:3034</QueryCRS> 
+  <QueryCRS>EPSG:2583</QueryCRS>
+  <QueryCRS>EPSG:25831</QueryCRS> 
+  <QueryCRS>EPSG:25832</QueryCRS> 
+  <QueryCRS>urn:ogc:def:crs:EPSG::28992</QueryCRS> 
+  <QueryCRS>urn:ogc:def:crs:EPSG::4326</QueryCRS> 
+  <QueryCRS>urn:ogc:def:crs:EPSG::4258</QueryCRS> 
+  <QueryCRS>urn:ogc:def:crs:EPSG::3035</QueryCRS> 
+  <QueryCRS>urn:ogc:def:crs:EPSG::3034</QueryCRS> 
+  <QueryCRS>urn:ogc:def:crs:EPSG::25830</QueryCRS> 
+  <QueryCRS>urn:ogc:def:crs:EPSG::25831</QueryCRS> 
+  <QueryCRS>urn:ogc:def:crs:EPSG::25832</QueryCRS>
+
+  <QueryMaxFeatures>-1</QueryMaxFeatures>
+
+  <GMLFormat gmlVersion="GML_32">
+    <MimeType>application/gml+xml; version=3.2</MimeType>
+    <MimeType>text/xml; subtype=gml/3.2.1</MimeType>
+    <GetFeatureResponse>
+      <DisableDynamicSchema>true</DisableDynamicSchema>
+    </GetFeatureResponse>
+  </GMLFormat>
+
+</deegreeWFS>

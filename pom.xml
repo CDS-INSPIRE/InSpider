@@ -108,20 +108,26 @@
 							<goal>create</goal>
 						</goals>
 					</execution>
-				</executions>
-				<configuration>
-					<format>rev. {0}</format>
-<!-- 					<format>{0} - {1,date,yyyy-MM-dd HH:mm:ss}</format> -->
-					<items>
-						<item>scmVersion</item>
-						<item>timestamp</item>
-					</items>
-				</configuration>
+				</executions>				
 			</plugin>
 		</plugins>
 
 		<pluginManagement>
 			<plugins>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>buildnumber-maven-plugin</artifactId>
+					<version>1.2</version>
+					<configuration>
+						<format>commit: {0}</format>
+						<items>
+							<item>buildNumber</item>
+							<shortRevisionLength>10</shortRevisionLength>
+							<getRevisionOnlyOnce>true</getRevisionOnlyOnce>
+						</items>
+					</configuration>
+				</plugin>
+			
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-compiler-plugin</artifactId>

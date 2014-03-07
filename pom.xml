@@ -121,7 +121,7 @@
 					<configuration>
 						<format>commit: {0}</format>
 						<items>
-							<item>buildNumber</item>
+							<item>scmVersion</item>
 							<shortRevisionLength>10</shortRevisionLength>
 							<getRevisionOnlyOnce>true</getRevisionOnlyOnce>
 						</items>

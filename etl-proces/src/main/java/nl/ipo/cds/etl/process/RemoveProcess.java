@@ -3,11 +3,7 @@ package nl.ipo.cds.etl.process;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 import javax.sql.DataSource;
 
@@ -49,20 +45,13 @@ public class RemoveProcess implements Process<RemoveJob> {
 
 		Connection connection = DataSourceUtils.getConnection(dataSource);
 
-		// / TODO loop over information_schema.tables
 		PreparedStatement bron;
 		try {
-			bron = connection.prepareStatement("select * from information_schema.tables where table_schema='bron'");
+			bron = connection.prepareStatement("select table_name from information_schema.tables where table_schema = 'bron' and table_type = 'BASE TABLE'");
 			ResultSet bronResultSet = bron.executeQuery();
-			// put all table names from bron in a list
-			List<String> bronTableNames = new ArrayList<String>();
 			while (bronResultSet.next()) {
-				bronTableNames.add(bronResultSet.getString("table_name"));
-			}
-			bron.close();
-
-			// loop over all tables in bron schema
-			for (String tableName : bronTableNames) {
+				String tableName = bronResultSet.getString(1);
+				
 				log.debug("delete from bron." + tableName);
 				try {
 					PreparedStatement stmt = connection.prepareStatement("delete from bron." + tableName
@@ -83,6 +72,9 @@ public class RemoveProcess implements Process<RemoveJob> {
 					throw new RuntimeException("Couldn't remove existing data from bron." + tableName, e);
 				}
 			}
+			
+			bronResultSet.close();
+			bron.close();
 		} catch (SQLException e1) {
 			log.debug("Failed selecting from information_schema.table ");
 			throw new RuntimeException("Couldn't select from information_schema.table ", e1);
@@ -92,21 +84,6 @@ public class RemoveProcess implements Process<RemoveJob> {
 		log.debug("removing dataset finished");
 
 		return true;
-	}
-
-	public List resultSetToArrayList(ResultSet rs) throws SQLException {
-		ResultSetMetaData md = rs.getMetaData();
-		int columns = md.getColumnCount();
-		ArrayList list = new ArrayList(50);
-		while (rs.next()) {
-			HashMap row = new HashMap(columns);
-			for (int i = 1; i <= columns; ++i) {
-				row.put(md.getColumnName(i), rs.getObject(i));
-			}
-			list.add(row);
-		}
-
-		return list;
 	}
 
 	@Override

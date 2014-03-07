@@ -49,6 +49,13 @@
     </repository>
   </repositories>
   
+	<scm>
+    	<connection>scm:git:git@github.com:CDS-INSPIRE/InSpider.git</connection>
+    	<developerConnection>scm:git:git@github.com:CDS-INSPIRE/InSpider.git</developerConnection>
+    	<url>https://github.com/CDS-INSPIRE/InSpider</url>
+    	<tag>HEAD</tag>
+  	</scm>
+	
 	<!-- development organisation -->
 	<developers>
 		<developer>

@@ -38,8 +38,8 @@
 
   <repositories>
     <repository>
-      <id>idgis-repo</id>
-      <url>https://jenkins.occamlabs.de/nexus/content/groups/idgis/</url>
+      <id>deegree-repo</id>
+      <url>http://repo.deegree.org/content/groups/public/</url>
       <releases>
         <updatePolicy>never</updatePolicy>
       </releases>
@@ -48,34 +48,14 @@
       </snapshots>
     </repository>
   </repositories>
-
-  <distributionManagement>
-    <repository>
-      <id>idgis-releases</id>
-      <url>https://jenkins.occamlabs.de/nexus/content/repositories/idgis-releases/</url>
-    </repository>
-    <snapshotRepository>
-      <id>idgis-snapshots</id>
-      <url>https://jenkins.occamlabs.de/nexus/content/repositories/idgis-snapshots/</url>
-    </snapshotRepository>
-  </distributionManagement>
-
-	<pluginRepositories>
-		<pluginRepository>
-			<id>onejar-maven-plugin.googlecode.com</id>
-			<url>http://onejar-maven-plugin.googlecode.com/svn/mavenrepo</url>
-		</pluginRepository>
-		<pluginRepository>
-			<id>one-jar</id>
-			<url>http://onejar-maven-plugin.googlecode.com/svn/mavenrepo</url>
-		</pluginRepository>
-	</pluginRepositories>
-
+  
 	<scm>
-		<connection>scm:svn:svn+ssh://repos.idgis.eu/cds-inspire/cds-parent/trunk</connection>
-		<developerConnection>scm:svn:svn+ssh://repos.idgis.eu/cds-inspire/cds-parent/trunk</developerConnection>
-	</scm>
-
+    	<connection>scm:git:git@github.com:CDS-INSPIRE/InSpider.git</connection>
+    	<developerConnection>scm:git:git@github.com:CDS-INSPIRE/InSpider.git</developerConnection>
+    	<url>https://github.com/CDS-INSPIRE/InSpider</url>
+    	<tag>HEAD</tag>
+  	</scm>
+	
 	<!-- development organisation -->
 	<developers>
 		<developer>
@@ -128,20 +108,26 @@
 							<goal>create</goal>
 						</goals>
 					</execution>
-				</executions>
-				<configuration>
-					<format>rev. {0}</format>
-<!-- 					<format>{0} - {1,date,yyyy-MM-dd HH:mm:ss}</format> -->
-					<items>
-						<item>scmVersion</item>
-						<item>timestamp</item>
-					</items>
-				</configuration>
+				</executions>				
 			</plugin>
 		</plugins>
 
 		<pluginManagement>
 			<plugins>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>buildnumber-maven-plugin</artifactId>
+					<version>1.2</version>
+					<configuration>
+						<format>commit: {0}</format>
+						<items>
+							<item>scmVersion</item>
+							<shortRevisionLength>10</shortRevisionLength>
+							<getRevisionOnlyOnce>true</getRevisionOnlyOnce>
+						</items>
+					</configuration>
+				</plugin>
+			
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-compiler-plugin</artifactId>

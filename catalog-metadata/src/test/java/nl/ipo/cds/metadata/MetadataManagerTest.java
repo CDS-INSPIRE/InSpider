@@ -1,6 +1,7 @@
 package nl.ipo.cds.metadata;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.InputStream;
 
 import java.nio.file.Files;
@@ -84,7 +85,7 @@ public class MetadataManagerTest {
 	public void testDelete() throws Exception {
 		String documentName = "protectedSites.xml";
 		
-		File f = new File(tempDir, documentName);		
+		File f = new File(tempDir, documentName);
 		assertTrue(f.createNewFile());
 		
 		f.deleteOnExit();
@@ -99,5 +100,20 @@ public class MetadataManagerTest {
 		documentNames = manager.listDocuments();
 		assertNotNull(documentNames);
 		assertTrue(documentNames.isEmpty());
+	}
+	
+	@Test
+	public void testRetrieve() throws Exception {
+		String documentName = "protectedSites.xml";
+		
+		File f = new File(tempDir, documentName);
+		FileOutputStream fos = new FileOutputStream(f);
+		fos.write(42);
+		fos.close();
+		
+		byte[] content = manager.retrieveDocument(documentName);
+		assertNotNull(content);
+		assertEquals(1, content.length);
+		assertEquals(42, content[0]);
 	}
 }

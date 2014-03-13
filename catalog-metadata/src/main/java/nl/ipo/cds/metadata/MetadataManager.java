@@ -84,6 +84,16 @@ public class MetadataManager {
 	public void storeDocument(final String documentName, final InputStream inputStream) throws ParserConfigurationException, SAXException, IOException, TransformerException {
 		storeDocument(documentName, IOUtils.toByteArray(inputStream));	
 	}
+	
+	public synchronized byte[] retrieveDocument(final String documentName) throws IOException {
+		final File f = getDocumentFile(documentName);
+		if(f.exists()) {
+			final FileInputStream fis = new FileInputStream(f);			
+			return IOUtils.toByteArray(fis);
+		} else {
+			throw new IllegalArgumentException("Document doesn't exists: " + documentName);
+		}
+	}
 
 	public synchronized void storeDocument(final String documentName, final byte[] bytes) throws ParserConfigurationException, SAXException, IOException, TransformerException {
 		final File f = getDocumentFile(documentName);

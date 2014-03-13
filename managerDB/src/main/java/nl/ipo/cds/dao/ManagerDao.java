@@ -19,6 +19,7 @@ import nl.ipo.cds.domain.Identity;
 import nl.ipo.cds.domain.JobLog;
 import nl.ipo.cds.domain.JobType;
 import nl.ipo.cds.domain.MappingOperation;
+import nl.ipo.cds.domain.MetadataDocument;
 import nl.ipo.cds.domain.Rol;
 import nl.ipo.cds.domain.Thema;
 
@@ -421,5 +422,10 @@ public interface ManagerDao {
 	void delete (CodeListMapping mapping);
 	
 	List<Object[]> getChangedMetadataDocuments();
-
+	List<MetadataDocument> getAllMetadataDocuments();
+	MetadataDocument getMetadataDocument(Long id);
+	
+	void create(MetadataDocument metatataDocument);
+	void update(MetadataDocument metatataDocument);
+	void delete(MetadataDocument metatataDocument);
 }

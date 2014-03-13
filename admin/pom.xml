@@ -291,6 +291,11 @@
         </dependency>
         <dependency>
         	<groupId>nl.ipo.cds</groupId>
+        	<artifactId>catalog-metadata</artifactId>
+        	<scope>compile</scope>
+        </dependency>
+        <dependency>
+        	<groupId>nl.ipo.cds</groupId>
         	<artifactId>metadataDB</artifactId>
         	<scope>compile</scope>
         </dependency>

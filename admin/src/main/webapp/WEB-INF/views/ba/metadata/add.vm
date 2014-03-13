@@ -1,0 +1,4 @@
+#set($title = 'Metadatadocument toevoegen')
+#set($action = '/ba/metadata/add')
+
+#parse("/ba/metadata/form.vm")

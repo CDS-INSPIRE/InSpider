@@ -6,6 +6,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ByteArrayInputStream;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -98,6 +100,27 @@ public class MetadataManager {
 		final FileOutputStream fos = new FileOutputStream(f);
 		t.transform(new DOMSource(d), new StreamResult(fos));
 		fos.close();
+	}
+	
+	public synchronized void deleteDocument(final String documentName) {
+		final File f = new File(metadataFolder, documentName);
+		if(f.exists()) {
+			f.delete();
+		} else {
+			throw new IllegalArgumentException("Document doesn't exists: " + documentName);
+		}
+	}
+	
+	public Set<String> listDocuments() {
+		final Set<String> documents = new HashSet<String>();
+		
+		for(final String fileName : metadataFolder.list()) {
+			if(fileName.toLowerCase().endsWith(".xml")) {
+				documents.add(fileName);
+			}
+		}
+		
+		return documents;
 	}
 	
 	protected XMLRewriter createRewriter(final InputStream inputStream) throws ParserConfigurationException, SAXException, IOException {

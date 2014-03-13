@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.InputStream;
 
 import java.nio.file.Files;
+import java.util.Set;
 
 import nl.ipo.cds.metadata.MetadataManager;
 import nl.ipo.cds.metadata.XMLRewriter;
@@ -11,6 +12,7 @@ import nl.ipo.cds.metadata.XMLRewriter;
 import org.junit.Test;
 import org.junit.Before;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
@@ -57,5 +59,45 @@ public class MetadataManagerTest {
 
 		manager.storeDocument(documentName, getInputStream(documentName));
 		assertTrue(f.exists());
+	}
+	
+	@Test
+	public void testList() throws Exception {
+		String documentName = "protectedSites.xml";
+		
+		Set<String> documentNames = manager.listDocuments();
+		assertNotNull(documentNames);
+		assertTrue(documentNames.isEmpty());
+		
+		File f = new File(tempDir, documentName);		
+		assertTrue(f.createNewFile());
+		
+		f.deleteOnExit();		
+		
+		documentNames = manager.listDocuments();
+		assertNotNull(documentNames);
+		assertEquals(1, documentNames.size());
+		assertTrue(documentNames.contains(documentName));
+	}
+	
+	@Test
+	public void testDelete() throws Exception {
+		String documentName = "protectedSites.xml";
+		
+		File f = new File(tempDir, documentName);		
+		assertTrue(f.createNewFile());
+		
+		f.deleteOnExit();
+		
+		Set<String> documentNames = manager.listDocuments();
+		assertNotNull(documentNames);
+		assertEquals(1, documentNames.size());
+		assertTrue(documentNames.contains(documentName));
+		
+		manager.deleteDocument(documentName);
+		
+		documentNames = manager.listDocuments();
+		assertNotNull(documentNames);
+		assertTrue(documentNames.isEmpty());
 	}
 }

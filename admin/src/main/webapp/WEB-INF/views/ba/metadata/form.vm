@@ -7,7 +7,7 @@ require([
    	"cds/ready!"
 ], function(domStyle, query, registry, on) {
 	on(registry.byId('cancelButton'), 'click', function() {
-		window.history.back();
+		window.location.href = '#springUrl("/ba/metadata")';
 	});
 });
 </script>
@@ -30,31 +30,37 @@ require([
 		<tr>
 			<td><label for="theme">Thema</label></td>
 			<td>
-				<select data-dojo-type="dijit/form/FilteringSelect" name="themeId">
-					<option value=""></option>
-					#foreach($theme in $themes)
-					<option value="$theme.id" #if($theme.id == $metadataForm.themeId)selected#end>#e($theme.naam)</option>
-					#end
-				</select>
+				#set($themeOptions = {"":""})
+				#foreach($theme in $themes)
+				#set($dummy = $themeOptions.put($theme.id, $theme.naam))
+				#end
+				#springFormSingleSelect("metadataForm.themeId" $themeOptions "data-dojo-type=dijit/form/FilteringSelect")				
+				#springShowErrors("<br>" "error")
 			</td>
 		</tr>
 		<tr>
 			<td><label for="documentType">Type</label></td>
 			<td>
-				<input data-dojo-type="dijit/form/RadioButton" type="radio" name="documentType" value="DATASET" #if($metadataForm.documentType == 'DATASET')checked#end>Dataset</input>
-				<input data-dojo-type="dijit/form/RadioButton" type="radio" name="documentType" value="SERVICE" #if($metadataForm.documentType == 'SERVICE')checked#end>Service</input>
+				#springFormRadioButtons("metadataForm.documentType" {"DATASET":"Dataset","SERVICE":"Service"} "" "data-dojo-type=dijit/form/RadioButton")
+				#springShowErrors("<br>" "error")
 			</td>
 		</tr>
 		<tr>
 			<td><label for="documentName">Naam</label></td>
-			<td>
-				<input type="text" name="documentName" #if($!metadataForm.documentName)readonly disabled#end value="#e($!metadataForm.documentName)"></input>
+			<td>				
+				#if($editing)
+				<input type="text" value="$metadataForm.documentName" readonly disabled>
+				#else
+				#springFormInput("metadataForm.documentName" "type=text")
+				#springShowErrors("<br>" "error")
+				#end
 			</td>
 		</tr>
 		<tr>
 			<td><label for="documentContent">Inhoud</label></td>
 			<td>
-				<textarea cols="80" rows="25" name="documentContent">#e($!metadataForm.documentContent)</textarea>
+				#springFormTextarea("metadataForm.documentContent" "cols=80 rows=25")
+				#springShowErrors("<br>" "error")
 			</td>
 		</tr>		
 	</tbody>

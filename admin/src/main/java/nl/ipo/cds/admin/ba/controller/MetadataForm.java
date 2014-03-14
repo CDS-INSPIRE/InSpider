@@ -1,6 +1,7 @@
 package nl.ipo.cds.admin.ba.controller;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 import nl.ipo.cds.domain.MetadataDocumentType;
 
@@ -18,10 +19,9 @@ public class MetadataForm {
 	@NotNull(groups={Add.class, Modify.class})
 	private MetadataDocumentType documentType;
 	
-	@NotNull(groups=Add.class)
+	@Pattern(groups=Add.class, regexp=".*\\.xml")	
 	private String documentName;
 	
-	@NotNull(groups={Add.class, Modify.class})
 	private String documentContent;
 	
 	public Long getId() {

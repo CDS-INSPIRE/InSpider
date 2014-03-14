@@ -5,6 +5,7 @@ import java.util.List;
 
 import nl.ipo.cds.dao.ManagerDao;
 import nl.ipo.cds.domain.MetadataDocument;
+import nl.ipo.cds.domain.MetadataDocumentType;
 import nl.ipo.cds.domain.Thema;
 import nl.ipo.cds.metadata.MetadataManager;
 
@@ -47,19 +48,29 @@ public class MetadataController {
 		return "/ba/metadata/index";
 	}
 	
+	private void validateDocument(final String documentContent, MetadataDocumentType documentType, final BindingResult bindingResult) throws Exception {
+		byte[] documentBytes = documentContent.getBytes("utf-8");
+		if(!metadataManager.validateDocument(documentBytes, documentType)) {
+			bindingResult.rejectValue("documentContent", "nl.ipo.cds.metadata.NotValid", "not valid");
+		}		
+	}
+	
 	@RequestMapping(value="/ba/metadata/edit", method=RequestMethod.POST)
 	public String edit(
 			@ModelAttribute("metadataForm") @Validated(MetadataForm.Modify.class) final MetadataForm metadataForm,
 			final BindingResult bindingResult,
 			final Model model) throws Exception {
-		
+	
 		logger.debug("Saving editted document " + metadataForm);
 		
-		MetadataDocument metadataDocument = managerDao.getMetadataDocument(metadataForm.getId());		
+		validateDocument(metadataForm.getDocumentContent(), metadataForm.getDocumentType(), bindingResult);
+		
+		MetadataDocument metadataDocument = managerDao.getMetadataDocument(metadataForm.getId());
 		
 		if(bindingResult.hasErrors()) {
 			logger.debug("hasErrors");
 			
+			model.addAttribute("editing", true);
 			model.addAttribute("themes", managerDao.getAllThemas());			
 			metadataForm.setDocumentName(metadataDocument.getDocumentName());
 			return "/ba/metadata/edit";
@@ -98,6 +109,7 @@ public class MetadataController {
 		metadataForm.setDocumentContent(documentContent);
 		
 		model.addAttribute("themes", managerDao.getAllThemas());
+		model.addAttribute("editing", true);
 		model.addAttribute("metadataForm", metadataForm);
 		
 		return "/ba/metadata/edit";
@@ -127,7 +139,13 @@ public class MetadataController {
 			final BindingResult bindingResult,
 			final Model model) throws Exception {
 		
-		logger.debug("Saving new document " + metadataForm);		
+		logger.debug("Saving new document " + metadataForm);
+		
+		validateDocument(metadataForm.getDocumentContent(), metadataForm.getDocumentType(), bindingResult);		
+		
+		if(!bindingResult.hasFieldErrors("documentName") && metadataManager.documentExists(metadataForm.getDocumentName())) {
+			bindingResult.rejectValue("documentName", "nl.ipo.cds.metadata.Exists", "document exists");
+		}
 		
 		if(bindingResult.hasErrors()) {
 			logger.debug("hasErrors");

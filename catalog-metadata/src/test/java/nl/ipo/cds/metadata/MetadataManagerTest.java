@@ -10,6 +10,7 @@ import java.util.Set;
 import nl.ipo.cds.metadata.MetadataManager;
 import nl.ipo.cds.metadata.XMLRewriter;
 
+import org.apache.axiom.attachments.utils.IOUtils;
 import org.junit.Test;
 import org.junit.Before;
 
@@ -58,7 +59,7 @@ public class MetadataManagerTest {
 		File f = new File(tempDir, documentName);
 		assertFalse(f.exists());
 
-		manager.storeDocument(documentName, getInputStream(documentName));
+		manager.storeDocument(documentName, IOUtils.getStreamAsByteArray(getInputStream(documentName)));
 		assertTrue(f.exists());
 	}
 	

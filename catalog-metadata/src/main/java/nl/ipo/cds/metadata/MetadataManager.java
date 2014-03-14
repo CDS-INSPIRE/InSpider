@@ -1,23 +1,17 @@
 package nl.ipo.cds.metadata;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.ByteArrayInputStream;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.xpath.XPathExpressionException;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.TransformerException;
+import javax.xml.xpath.XPathExpressionException;
 
 import nl.ipo.cds.domain.MetadataDocumentType;
 
@@ -25,8 +19,6 @@ import org.apache.commons.io.IOUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.xml.sax.SAXException;
-
-import org.w3c.dom.Document;
 
 public class MetadataManager {
 	
@@ -65,13 +57,7 @@ public class MetadataManager {
 		try {		
 			XMLRewriter rewriter = createRewriter(new FileInputStream(f));
 			
-			if(documentType == MetadataDocumentType.SERVICE) {
-				updateServiceMetadata(rewriter, dateTime);
-			} else if(documentType == MetadataDocumentType.DATASET){				
-				updateDatasetMetadata(rewriter, dateTime);
-			} else {
-				throw new IllegalArgumentException("Unknown type: " + documentType);
-			}
+			updateMetadata(documentType, dateTime, rewriter);
 			
 			FileOutputStream outputStream = new FileOutputStream(f);
 			rewriter.write(outputStream);
@@ -81,9 +67,17 @@ public class MetadataManager {
 		}
 	}
 
-	public void storeDocument(final String documentName, final InputStream inputStream) throws ParserConfigurationException, SAXException, IOException, TransformerException {
-		storeDocument(documentName, IOUtils.toByteArray(inputStream));	
-	}
+	private void updateMetadata(final MetadataDocumentType documentType,
+			final String dateTime, XMLRewriter rewriter)
+			throws XPathExpressionException {
+		if(documentType == MetadataDocumentType.SERVICE) {
+			updateServiceMetadata(rewriter, dateTime);
+		} else if(documentType == MetadataDocumentType.DATASET){				
+			updateDatasetMetadata(rewriter, dateTime);
+		} else {
+			throw new IllegalArgumentException("Unknown type: " + documentType);
+		}
+	}	
 	
 	public synchronized byte[] retrieveDocument(final String documentName) throws IOException {
 		final File f = getDocumentFile(documentName);
@@ -94,21 +88,28 @@ public class MetadataManager {
 			throw new IllegalArgumentException("Document doesn't exists: " + documentName);
 		}
 	}
+	
+	public synchronized boolean documentExists(final String documentName) {
+		final File f = getDocumentFile(documentName);
+		return f.exists();
+	}
+	
+	public boolean validateDocument(final byte[] bytes, final MetadataDocumentType documentType) {
+		try {
+			updateMetadata(documentType, "", createRewriter(new ByteArrayInputStream(bytes)));
+		} catch(Exception e) {
+			logger.debug("Not valid", e);
+			
+			return false;
+		}
+		
+		return true;
+	}
 
 	public synchronized void storeDocument(final String documentName, final byte[] bytes) throws ParserConfigurationException, SAXException, IOException, TransformerException {
 		final File f = getDocumentFile(documentName);
-
-		final DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-		dbf.setNamespaceAware(true);
-		final DocumentBuilder db = dbf.newDocumentBuilder();
-
-		final Document d = db.parse(new ByteArrayInputStream(bytes));
-
-		final TransformerFactory tf = TransformerFactory.newInstance();
-		final Transformer t = tf.newTransformer();
-
 		final FileOutputStream fos = new FileOutputStream(f);
-		t.transform(new DOMSource(d), new StreamResult(fos));
+		fos.write(bytes);
 		fos.close();
 	}
 	

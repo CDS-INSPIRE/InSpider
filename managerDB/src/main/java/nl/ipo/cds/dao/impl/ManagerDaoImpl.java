@@ -959,8 +959,7 @@ public class ManagerDaoImpl implements ManagerDao {
 	@Override
 	public List<Thema> getAllThemas() {
 		Query themaQuery = null;
-		themaQuery = entityManager.createQuery("from Thema as thema where thema.naam = ?1 order by thema.naam")
-				.setParameter (1, "Protected sites");
+		themaQuery = entityManager.createQuery("from Thema as thema order by thema.naam");		
 		return themaQuery.getResultList();
 	}
 	
@@ -968,11 +967,6 @@ public class ManagerDaoImpl implements ManagerDao {
 	public List<Thema> getAllThemas (final Bronhouder bronhouder) {
 		final TypedQuery<Thema> query = entityManager.createQuery ("select a.thema from ThemaBronhouderAuthorization a where a.bronhouder = ?1", Thema.class)
 				.setParameter (1, bronhouder);
-
-		/*
-		final TypedQuery<Thema> query = entityManager.createQuery ("from Thema as thema where thema.naam <> ?1 order by thema.naam", Thema.class)
-				.setParameter (1, "Protected sites");
-		*/
 		
 		return query.getResultList ();
 	}

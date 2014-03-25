@@ -5,6 +5,7 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
 import org.springframework.context.MessageSource;
+import org.springframework.context.NoSuchMessageException;
 
 public class Factory {
 	
@@ -39,8 +40,12 @@ public class Factory {
 					return "i18n: " + clazz.getCanonicalName();
 				}
 					
-				String code = method.getDeclaringClass().getCanonicalName() + "." + method.getName();				
-				return messageSource.getMessage(code, args, localeProvider.getLocale());
+				String code = method.getDeclaringClass().getSimpleName().toLowerCase() + "." + method.getName();
+				try {
+					return messageSource.getMessage(code, args, localeProvider.getLocale());
+				} catch(NoSuchMessageException e) {
+					return code;
+				}
 			}
 		});
 	}

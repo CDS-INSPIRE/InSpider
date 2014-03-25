@@ -18,7 +18,7 @@
 		<tbody>
 			<tr>
 				<td width="10%">
-					<label>Gebruikersnaam: </label><br />
+					<label>$i18n.login.username(): </label><br />
 				</td>
 				<td width="10%">
 					<input id="username" name="j_username" type="text" size="32" value="" /><br />

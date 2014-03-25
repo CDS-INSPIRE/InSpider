@@ -14,7 +14,13 @@ import nl.idgis.commons.mvc.config.annotation.EnableVelocityViewResolver;
 import nl.idgis.commons.mvc.config.annotation.VelocityViewConfiguration;
 import nl.ipo.cds.admin.BaseConfiguration;
 import nl.ipo.cds.admin.ba.ViewContextHandlerInterceptorAdapter;
+import nl.ipo.cds.admin.i18n.EnableI18N;
+import nl.ipo.cds.admin.i18n.LocaleProvider;
+import nl.ipo.cds.admin.i18n.SpringLocaleProvider;
+import nl.ipo.cds.admin.i18n.VelocityAdapter;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -38,6 +44,7 @@ import org.springframework.web.servlet.theme.FixedThemeResolver;
 
 @Configuration
 @EnableWebMvc
+@EnableI18N (basePackage = "nl.ipo.cds.admin.i18n.messages")
 @EnableJSONViewResolver (prefixJson = true)
 @EnableVelocityViewResolver (cache = true, layoutUrl = "layouts/baLayout.vm", reloadVelocityMacroLibrary = true, resourceLoaderPath = "/WEB-INF/views/", velocityMacroLibrary = "velocity-macros.vm")
 @ComponentScan (useDefaultFilters = false, basePackageClasses = nl.ipo.cds.admin.ba.controller.Package.class, includeFilters = {
@@ -51,7 +58,9 @@ public class AdminWebMvcConfig extends WebMvcConfigurerAdapter implements Veloci
 	
 	private @Inject BaseConfiguration baseConfiguration;
 	
-	private ServletContext servletContext;
+	private static final Log logger = LogFactory.getLog(AdminWebMvcConfig.class);
+	
+	private boolean hasDojoProduction;
 	
 	@Override
 	public void addResourceHandlers (final ResourceHandlerRegistry registry) {
@@ -103,7 +112,11 @@ public class AdminWebMvcConfig extends WebMvcConfigurerAdapter implements Veloci
 	public @Bean ReloadableResourceBundleMessageSource messageSource () {
 		final ReloadableResourceBundleMessageSource source = new ReloadableResourceBundleMessageSource ();
 		
-		source.setBasenames ("WEB-INF/i18n/messages", "WEB-INF/i18n/application");
+		if (!hasDojoProduction) {
+			source.setCacheSeconds (0);
+		}
+		
+		source.setBasenames ("WEB-INF/i18n/messages");
 		source.setFallbackToSystemLocale (false);
 		
 		return source;
@@ -184,22 +197,10 @@ public class AdminWebMvcConfig extends WebMvcConfigurerAdapter implements Veloci
 	}
 
 	@Override
-	public void setServletContext (final ServletContext servletContext) {
-		this.servletContext = servletContext;
-	}
-
-	/**
-	 * Adds default properties to each view. This method adds the 'dojoDebug' property based on which the
-	 * default layout decides to use a CDN version of dojo (debug) or a custom built version (production).
-	 * Tests whether a production build of dojo is available in the war.
-	 */
-	@Override
-	public Map<String, Object> getAttributes () {
-		
+	public void setServletContext (final ServletContext servletContext) {		
 		// Test whether a production build of dojo is available in the war:
 		final InputStream dojoStream = servletContext.getResourceAsStream ("/scripts/cds/dojo/dojo.js");
-		final boolean hasDojoProduction;
-		
+				
 		if (dojoStream != null) {
 			hasDojoProduction = true;
 			try {
@@ -209,6 +210,17 @@ public class AdminWebMvcConfig extends WebMvcConfigurerAdapter implements Veloci
 		} else {
 			hasDojoProduction = false;
 		}
+		
+		logger.info("Has Dojo production? " + (hasDojoProduction ? "Yes" : "No"));
+	}
+
+	/**
+	 * Adds default properties to each view. This method adds the 'dojoDebug' property based on which the
+	 * default layout decides to use a CDN version of dojo (debug) or a custom built version (production).
+	 * Tests whether a production build of dojo is available in the war.
+	 */
+	@Override
+	public Map<String, Object> getAttributes () {
 
 		// Return default properties for use in velocity views:
 		return new HashMap<String, Object> () {
@@ -218,7 +230,18 @@ public class AdminWebMvcConfig extends WebMvcConfigurerAdapter implements Veloci
 				put ("mavenVersion", baseConfiguration.getMavenVersion ());
 				put ("cdsVersion", baseConfiguration.getCdsVersion ());
 				put ("buildVersion", baseConfiguration.getBuild());
+				put ("i18n", velocityAdapter());
 			}
 		};
 	}
+	
+	@Bean
+	public LocaleProvider localeProvider() {
+		return new SpringLocaleProvider();
+	}
+	
+	@Bean
+	public VelocityAdapter velocityAdapter() {
+		return new VelocityAdapter();
+	}	
 }

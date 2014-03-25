@@ -17,8 +17,8 @@ public class TestConfig {
 	@Bean
 	MessageSource messageSource() {
 		StaticMessageSource messageSource = new StaticMessageSource();			
-		messageSource.addMessage("nl.ipo.cds.admin.i18n.messages.Login.username", Locale.ENGLISH, "Username");
-		messageSource.addMessage("nl.ipo.cds.admin.i18n.messages.Login.greeting", Locale.ENGLISH, "Greetings, {0}");
+		messageSource.addMessage("login.username", Locale.ENGLISH, "Username");
+		messageSource.addMessage("login.greeting", Locale.ENGLISH, "Greetings, {0}");
 		return messageSource;
 	}
 	

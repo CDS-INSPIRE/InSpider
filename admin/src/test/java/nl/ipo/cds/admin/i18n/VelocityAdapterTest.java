@@ -11,14 +11,25 @@ import nl.ipo.cds.admin.i18n.config.TestConfig;
 import nl.ipo.cds.admin.i18n.messages.Login;
 
 import org.junit.Test;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 
-@ContextConfiguration(classes = {TestConfig.class, VelocityAdapterConfiguration.class})
+@ContextConfiguration(classes = {TestConfig.class, VelocityAdapterTest.Config.class})
 public class VelocityAdapterTest extends AbstractJUnit4SpringContextTests {
 	
 	@Inject
 	VelocityAdapter velocityAdapter;
+	
+	@Configuration
+	static class Config {
+		
+		@Bean
+		public VelocityAdapter velocityAdapter() {
+			return new VelocityAdapter();
+		}
+	}
 
 	@Test
 	public void testLoginUsername() {

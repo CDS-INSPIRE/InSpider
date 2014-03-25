@@ -22,6 +22,6 @@ public class MessageInterfaceTest extends AbstractJUnit4SpringContextTests {
 	public void testInterface() {
 		String username = login.username();
 		assertEquals("Username", username);
-		assertEquals("Greetings, John Doe", login.greeting("John Doe"));
+		assertEquals("Logged in as: John Doe", login.loggedIn("John Doe"));
 	}
 }

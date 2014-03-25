@@ -18,7 +18,7 @@ public class TestConfig {
 	MessageSource messageSource() {
 		StaticMessageSource messageSource = new StaticMessageSource();			
 		messageSource.addMessage("login.username", Locale.ENGLISH, "Username");
-		messageSource.addMessage("login.greeting", Locale.ENGLISH, "Greetings, {0}");
+		messageSource.addMessage("login.loggedIn", Locale.ENGLISH, "Logged in as: {0}");
 		return messageSource;
 	}
 	

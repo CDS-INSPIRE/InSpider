@@ -108,7 +108,7 @@
 				#if($!authz.principal == "guest")
 					<div style="text-align:center; margin-left:280px; "></div>
 				#else
-					<div style="text-align:center; margin-left:280px; ">Ingelogd als: $!authz.principal 
+					<div style="text-align:center; margin-left:280px; ">$i18n.login.loggedIn($authz.principal) 
 					<span title="Klik hier als u zich wilt afmelden of wilt inloggen onder een andere gebruikersnaam">[ <a href="#springUrl('/logout')">Afmelden</a> ]</span>
 					<span title="Klik hier als u uw wachtwoord wilt wijzigen">[ <a href="#springUrl('/changePassword')">Wachtwoord wijzigen</a> ]</span></div>
 				#end

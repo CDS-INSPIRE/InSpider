@@ -41,11 +41,7 @@ public class Factory {
 				}
 					
 				String code = method.getDeclaringClass().getSimpleName().toLowerCase() + "." + method.getName();
-				try {
-					return messageSource.getMessage(code, args, localeProvider.getLocale());
-				} catch(NoSuchMessageException e) {
-					return code;
-				}
+				return messageSource.getMessage(code, args, code, localeProvider.getLocale());
 			}
 		});
 	}

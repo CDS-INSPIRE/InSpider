@@ -8,10 +8,13 @@ import nl.ipo.cds.domain.MetadataDocument;
 import nl.ipo.cds.domain.MetadataDocumentType;
 import nl.ipo.cds.domain.Thema;
 import nl.ipo.cds.metadata.MetadataManager;
+import nl.ipo.cds.metadata.ValidationResult;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -33,6 +36,9 @@ public class MetadataController {
 	@Autowired
 	private ManagerDao managerDao;
 	
+	@Autowired
+	private MessageSource messageSource;
+	
 	@RequestMapping("/ba/metadata/")
 	public String metadata() {
 		return "redirect:/ba/metadata";
@@ -50,9 +56,12 @@ public class MetadataController {
 	
 	private void validateDocument(final String documentContent, MetadataDocumentType documentType, final BindingResult bindingResult) throws Exception {
 		byte[] documentBytes = documentContent.getBytes("utf-8");
-		if(!metadataManager.validateDocument(documentBytes, documentType)) {
-			bindingResult.rejectValue("documentContent", "metadata.notValid", "not valid");
-		}		
+		
+		ValidationResult validationResult = metadataManager.validateDocument(documentBytes, documentType);
+		if(validationResult != ValidationResult.VALID) {
+			String invalidReason = messageSource.getMessage(validationResult.getCode(), null, validationResult.toString(), LocaleContextHolder.getLocale());			
+			bindingResult.rejectValue("documentContent", "metadata.notValid", new Object[]{invalidReason}, "not valid: {0}");
+		}
 	}
 	
 	@RequestMapping(value="/ba/metadata/edit", method=RequestMethod.POST)

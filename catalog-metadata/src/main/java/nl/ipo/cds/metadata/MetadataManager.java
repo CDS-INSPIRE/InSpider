@@ -94,16 +94,22 @@ public class MetadataManager {
 		return f.exists();
 	}
 	
-	public boolean validateDocument(final byte[] bytes, final MetadataDocumentType documentType) {
+	public ValidationResult validateDocument(final byte[] bytes, final MetadataDocumentType documentType) {
+		
+		XMLRewriter rewriter;
 		try {
-			updateMetadata(documentType, "", createRewriter(new ByteArrayInputStream(bytes)));
+			rewriter = createRewriter(new ByteArrayInputStream(bytes));
 		} catch(Exception e) {
-			logger.debug("Not valid", e);
-			
-			return false;
+			return ValidationResult.NOT_WELL_FORMED;
 		}
 		
-		return true;
+		try {
+			updateMetadata(documentType, "", rewriter);
+		} catch(Exception e) {
+			return ValidationResult.DATE_PATH_MISSING;
+		}
+		
+		return ValidationResult.VALID;
 	}
 
 	public synchronized void storeDocument(final String documentName, final byte[] bytes) throws ParserConfigurationException, SAXException, IOException, TransformerException {

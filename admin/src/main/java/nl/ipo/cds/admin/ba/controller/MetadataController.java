@@ -51,7 +51,7 @@ public class MetadataController {
 	private void validateDocument(final String documentContent, MetadataDocumentType documentType, final BindingResult bindingResult) throws Exception {
 		byte[] documentBytes = documentContent.getBytes("utf-8");
 		if(!metadataManager.validateDocument(documentBytes, documentType)) {
-			bindingResult.rejectValue("documentContent", "nl.ipo.cds.metadata.NotValid", "not valid");
+			bindingResult.rejectValue("documentContent", "metadata.notValid", "not valid");
 		}		
 	}
 	
@@ -144,7 +144,7 @@ public class MetadataController {
 		validateDocument(metadataForm.getDocumentContent(), metadataForm.getDocumentType(), bindingResult);		
 		
 		if(!bindingResult.hasFieldErrors("documentName") && metadataManager.documentExists(metadataForm.getDocumentName())) {
-			bindingResult.rejectValue("documentName", "nl.ipo.cds.metadata.Exists", "document exists");
+			bindingResult.rejectValue("documentName", "metadata.exists", "document exists");
 		}
 		
 		if(bindingResult.hasErrors()) {

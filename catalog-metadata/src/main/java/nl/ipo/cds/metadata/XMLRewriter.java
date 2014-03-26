@@ -1,15 +1,12 @@
 package nl.ipo.cds.metadata;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 
 import javax.xml.namespace.NamespaceContext;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
@@ -36,12 +33,8 @@ public class XMLRewriter {
 	private final HashMap<String, String> uris = new HashMap<String, String>();
 	private final HashMap<String, String> prefixes = new HashMap<String, String>();
 
-	public XMLRewriter(final InputStream inputStream) throws ParserConfigurationException, SAXException, IOException {
-		final DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-		dbf.setNamespaceAware(true);
-		
-		final DocumentBuilder db = dbf.newDocumentBuilder();
-		document = db.parse(inputStream);
+	public XMLRewriter(final Document document) throws ParserConfigurationException, SAXException, IOException {
+		this.document = document;
 		
 		final XPathFactory xpf = XPathFactory.newInstance();
 		xp = xpf.newXPath();
@@ -65,8 +58,6 @@ public class XMLRewriter {
 			}
 			
 		});
-		
-		inputStream.close();
 	}
 	
 	public void addNamespace(final String prefix, final String uri) {

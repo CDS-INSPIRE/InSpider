@@ -3,16 +3,19 @@ package nl.ipo.cds.metadata;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 
 import java.nio.file.Files;
 import java.util.Set;
 
+import nl.ipo.cds.domain.MetadataDocumentType;
 import nl.ipo.cds.metadata.MetadataManager;
 import nl.ipo.cds.metadata.XMLRewriter;
 
 import org.apache.axiom.attachments.utils.IOUtils;
-import org.junit.Test;
 import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -21,15 +24,22 @@ import static org.junit.Assert.assertNotNull;
 
 public class MetadataManagerTest {
 
-	File tempDir;	
-	MetadataManager manager;
+	static File tempDir;	
+	static MetadataManager manager;
 
-	@Before
-	public void setUp() throws Exception {
+	@BeforeClass
+	public static void setUp() throws Exception {
 		tempDir = Files.createTempDirectory("MetadataManagerTest").toFile();
 		tempDir.deleteOnExit();
 
 		manager = new MetadataManager(tempDir);
+	}
+	
+	@Before
+	public void cleanUp() {
+		for(File f : tempDir.listFiles()) {
+			f.delete();
+		}
 	}
 
 	private InputStream getInputStream(String documentName) throws Exception {
@@ -116,5 +126,57 @@ public class MetadataManagerTest {
 		assertNotNull(content);
 		assertEquals(1, content.length);
 		assertEquals(42, content[0]);
+	}
+	
+	@Test
+	public void testValidateNotWellFormed() throws UnsupportedEncodingException {
+		ValidationResult result = manager.validateDocument("<xml>/xml>".getBytes("utf-8"), MetadataDocumentType.DATASET);
+		
+		assertNotNull(result);
+		assertEquals(ValidationResult.NOT_WELL_FORMED, result);
+	}
+	
+	@Test
+	public void testValidateSchemaViolation() throws Exception {
+		InputStream inputStream = getInputStream("protectedSitesSchemaViolation.xml");
+		assertNotNull(inputStream);
+		
+		ValidationResult result = manager.validateDocument(IOUtils.getStreamAsByteArray(inputStream), MetadataDocumentType.DATASET);
+		
+		assertNotNull(result);
+		assertEquals(ValidationResult.SCHEMA_VIOLATION, result);
+	}
+	
+	@Test
+	public void testValidateGmd() throws Exception {
+		InputStream inputStream = getInputStream("protectedSites.xml");
+		assertNotNull(inputStream);
+		
+		ValidationResult result = manager.validateDocument(IOUtils.getStreamAsByteArray(inputStream), MetadataDocumentType.DATASET);
+		
+		assertNotNull(result);
+		assertEquals(ValidationResult.VALID, result);
+	}
+	
+	@Test
+	public void testValidateSrv() throws Exception {
+		InputStream inputStream = getInputStream("protectedSitesView.xml");
+		assertNotNull(inputStream);
+		
+		ValidationResult result = manager.validateDocument(IOUtils.getStreamAsByteArray(inputStream), MetadataDocumentType.SERVICE);
+		
+		assertNotNull(result);
+		assertEquals(ValidationResult.VALID, result);
+	}
+	
+	@Test
+	public void testValidateDatePathMissing() throws Exception {
+		InputStream inputStream = getInputStream("protectedSitesDateMissing.xml");
+		assertNotNull(inputStream);
+		
+		ValidationResult result = manager.validateDocument(IOUtils.getStreamAsByteArray(inputStream), MetadataDocumentType.DATASET);
+		
+		assertNotNull(result);
+		assertEquals(ValidationResult.DATE_PATH_MISSING, result);
 	}
 }

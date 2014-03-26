@@ -9,8 +9,17 @@ import java.io.InputStream;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.xml.XMLConstants;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.Source;
 import javax.xml.transform.TransformerException;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamSource;
+import javax.xml.validation.Schema;
+import javax.xml.validation.SchemaFactory;
+import javax.xml.validation.Validator;
 import javax.xml.xpath.XPathExpressionException;
 
 import nl.ipo.cds.domain.MetadataDocumentType;
@@ -18,6 +27,7 @@ import nl.ipo.cds.domain.MetadataDocumentType;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
 public class MetadataManager {
@@ -25,8 +35,9 @@ public class MetadataManager {
 	private static final Log logger = LogFactory.getLog(MetadataManager.class);
 
 	protected final File metadataFolder;
+	protected final Schema xmlSchema;
 	
-	public MetadataManager(final File metadataFolder) throws IOException {
+	public MetadataManager(final File metadataFolder) throws IOException, SAXException {
 		final String metadataFolderPath = metadataFolder.getCanonicalPath();
 		
 		logger.debug("Constructing MetadataManager with metadata folder: " + metadataFolderPath);
@@ -40,6 +51,17 @@ public class MetadataManager {
 		}
 		
 		this.metadataFolder = metadataFolder;
+		
+		final JarResourceResolver resolver = new JarResourceResolver("/META-INF/schemas");
+		resolver.addPath("http://schemas.opengis.net/iso/19139/20060504/", "19139/");		
+		resolver.addPath("http://www.w3.org/1999/xlink.xsd", "/xlink/xlink.xsd");
+		
+		final SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+		schemaFactory.setResourceResolver(resolver);
+		
+		xmlSchema = schemaFactory.newSchema(new Source[]{
+				new StreamSource("http://schemas.opengis.net/iso/19139/20060504/gmd/gmd.xsd"),
+				new StreamSource("http://schemas.opengis.net/iso/19139/20060504/srv/srv.xsd")});	
 	}
 
 	protected File getDocumentFile(final String documentName) {
@@ -96,14 +118,22 @@ public class MetadataManager {
 	
 	public ValidationResult validateDocument(final byte[] bytes, final MetadataDocumentType documentType) {
 		
-		XMLRewriter rewriter;
+		final Document document;
 		try {
-			rewriter = createRewriter(new ByteArrayInputStream(bytes));
+			document = createDocument(new ByteArrayInputStream(bytes));
 		} catch(Exception e) {
 			return ValidationResult.NOT_WELL_FORMED;
 		}
 		
 		try {
+			Validator validator = xmlSchema.newValidator();
+			validator.validate(new DOMSource(document));
+		} catch(Exception e) {
+			return ValidationResult.SCHEMA_VIOLATION;
+		}
+		
+		try {
+			final XMLRewriter rewriter = createRewriter(document);
 			updateMetadata(documentType, "", rewriter);
 		} catch(Exception e) {
 			return ValidationResult.DATE_PATH_MISSING;
@@ -140,13 +170,29 @@ public class MetadataManager {
 		return documents;
 	}
 	
-	protected XMLRewriter createRewriter(final InputStream inputStream) throws ParserConfigurationException, SAXException, IOException {
-		XMLRewriter rewriter = new XMLRewriter(inputStream);
+	protected XMLRewriter createRewriter(final Document document) throws ParserConfigurationException, SAXException, IOException {
+		XMLRewriter rewriter = new XMLRewriter(document);
 		rewriter.addNamespace("gmd", "http://www.isotc211.org/2005/gmd");
 		rewriter.addNamespace("gco", "http://www.isotc211.org/2005/gco");
 		rewriter.addNamespace("srv", "http://www.isotc211.org/2005/srv");
 		rewriter.addNamespace("gml", "http://www.opengis.net/gml");
 		return rewriter;
+	}
+	
+	protected Document createDocument(final InputStream inputStream) throws IOException, ParserConfigurationException, SAXException {
+		final DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+		dbf.setNamespaceAware(true);
+		
+		final DocumentBuilder db = dbf.newDocumentBuilder();
+		final Document document = db.parse(inputStream);
+		
+		inputStream.close();
+		
+		return document;
+	}
+	
+	protected XMLRewriter createRewriter(final InputStream inputStream) throws ParserConfigurationException, SAXException, IOException {		
+		return createRewriter(createDocument(inputStream));
 	}
 	
 	protected void updateServiceMetadata(final XMLRewriter rewriter, final String dateTime) throws XPathExpressionException {

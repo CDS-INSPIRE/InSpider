@@ -10,6 +10,7 @@ import nl.ipo.cds.metadata.MetadataTransformer;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.xml.sax.SAXException;
 
 @Configuration
 public class MetadataManagerConfiguration {
@@ -18,7 +19,7 @@ public class MetadataManagerConfiguration {
 	private File metadataFolder;
 	
 	@Bean
-	public MetadataManager metadataManager() throws IOException {
+	public MetadataManager metadataManager() throws IOException, SAXException {
 		return new MetadataManager(metadataFolder);
 	}
 	

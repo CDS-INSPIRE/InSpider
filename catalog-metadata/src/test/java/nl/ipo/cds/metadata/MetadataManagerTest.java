@@ -13,10 +13,12 @@ import nl.ipo.cds.metadata.MetadataManager;
 import nl.ipo.cds.metadata.XMLRewriter;
 
 import org.apache.axiom.attachments.utils.IOUtils;
-import org.junit.Before;
+import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import static org.junit.Assert.fail;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
@@ -30,15 +32,20 @@ public class MetadataManagerTest {
 	@BeforeClass
 	public static void setUp() throws Exception {
 		tempDir = Files.createTempDirectory("MetadataManagerTest").toFile();
-		tempDir.deleteOnExit();
-
 		manager = new MetadataManager(tempDir);
 	}
 	
-	@Before
-	public void cleanUp() {
+	@AfterClass
+	public static void deleteTempDir() {
+		tempDir.delete();
+	}
+	
+	@After
+	public void cleanUpTempDir() {
 		for(File f : tempDir.listFiles()) {
-			f.delete();
+			if(!f.delete()) {
+				fail("cleanup failed");
+			}
 		}
 	}
 
@@ -82,9 +89,7 @@ public class MetadataManagerTest {
 		assertTrue(documentNames.isEmpty());
 		
 		File f = new File(tempDir, documentName);		
-		assertTrue(f.createNewFile());
-		
-		f.deleteOnExit();		
+		assertTrue(f.createNewFile());		
 		
 		documentNames = manager.listDocuments();
 		assertNotNull(documentNames);
@@ -98,8 +103,6 @@ public class MetadataManagerTest {
 		
 		File f = new File(tempDir, documentName);
 		assertTrue(f.createNewFile());
-		
-		f.deleteOnExit();
 		
 		Set<String> documentNames = manager.listDocuments();
 		assertNotNull(documentNames);

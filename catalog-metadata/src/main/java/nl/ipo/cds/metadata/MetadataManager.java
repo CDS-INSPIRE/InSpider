@@ -105,7 +105,9 @@ public class MetadataManager {
 		final File f = getDocumentFile(documentName);
 		if(f.exists()) {
 			final FileInputStream fis = new FileInputStream(f);			
-			return IOUtils.toByteArray(fis);
+			byte[] retval = IOUtils.toByteArray(fis);
+			fis.close();
+			return retval;
 		} else {
 			throw new IllegalArgumentException("Document doesn't exists: " + documentName);
 		}

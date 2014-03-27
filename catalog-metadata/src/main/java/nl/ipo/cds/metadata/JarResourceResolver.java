@@ -4,16 +4,34 @@ import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
 import org.w3c.dom.ls.LSInput;
 import org.w3c.dom.ls.LSResourceResolver;
 
 class JarResourceResolver implements LSResourceResolver {
 	
+	private final ClassLoader classLoader;
+	
 	private final String basePath;
 	private final Map<String, String> localPaths = new HashMap<String, String>();
 	
+	private final Logger logger = Logger.getLogger(JarResourceResolver.class);
+	
 	JarResourceResolver(final String basePath) {
+		this(basePath, null);
+	}
+	
+	JarResourceResolver(final String basePath, final ClassLoader classLoader) {
 		this.basePath = basePath;
+		
+		if(classLoader == null) {
+			this.classLoader = Thread.currentThread().getContextClassLoader();
+		} else {		
+			this.classLoader = classLoader;
+		}
+		
+		logger.debug("basePath: " + this.basePath);
+		logger.debug("classLoader: " + this.classLoader);
 	}
 	
 	void addPath(final String remotePath, final String localPath) {
@@ -32,7 +50,8 @@ class JarResourceResolver implements LSResourceResolver {
 				final String filePart = baseURI.substring(remotePath.length());				
 				final String resourcePath = localPath + filePart;
 				
-				inputStream = getClass().getResourceAsStream(resourcePath);
+				logger.debug("loading resource: " + resourcePath);
+				inputStream = classLoader.getResourceAsStream(resourcePath);
 			}
 		}
 		

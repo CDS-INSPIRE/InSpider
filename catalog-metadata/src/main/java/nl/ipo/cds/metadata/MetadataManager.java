@@ -52,9 +52,9 @@ public class MetadataManager {
 		
 		this.metadataFolder = metadataFolder;
 		
-		final JarResourceResolver resolver = new JarResourceResolver("/META-INF/schemas");
+		final JarResourceResolver resolver = new JarResourceResolver("META-INF/schemas");
 		resolver.addPath("http://schemas.opengis.net/iso/19139/20060504/", "19139/");		
-		resolver.addPath("http://www.w3.org/1999/xlink.xsd", "/xlink/xlink.xsd");
+		resolver.addPath("http://www.w3.org/1999/xlink.xsd", "xlink/xlink.xsd");
 		
 		final SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
 		schemaFactory.setResourceResolver(resolver);

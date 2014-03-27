@@ -64,6 +64,7 @@ public class MetadataController {
 		}
 	}
 	
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping(value="/ba/metadata/edit", method=RequestMethod.POST)
 	public String edit(
 			@ModelAttribute("metadataForm") @Validated(MetadataForm.Modify.class) final MetadataForm metadataForm,
@@ -142,6 +143,7 @@ public class MetadataController {
 		return "/ba/metadata/add";
 	} 
 	
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping(value="/ba/metadata/add", method=RequestMethod.POST)
 	public String add(
 			@ModelAttribute("metadataForm") @Validated(MetadataForm.Add.class) final MetadataForm metadataForm,

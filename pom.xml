@@ -121,10 +121,10 @@
 					<configuration>
 						<format>commit: {0}</format>
 						<items>
-							<item>scmVersion</item>
-							<shortRevisionLength>10</shortRevisionLength>
-							<getRevisionOnlyOnce>true</getRevisionOnlyOnce>
+							<item>scmVersion</item>							
 						</items>
+						<shortRevisionLength>10</shortRevisionLength>
+						<getRevisionOnlyOnce>true</getRevisionOnlyOnce>
 					</configuration>
 				</plugin>
 			

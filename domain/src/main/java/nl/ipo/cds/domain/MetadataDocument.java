@@ -27,6 +27,10 @@ public class MetadataDocument {
 	
 	@ManyToOne
 	private Thema thema;
+	
+	public Long getId() {
+		return id;
+	}
 
 	public MetadataDocumentType getDocumentType() {
 		return documentType;

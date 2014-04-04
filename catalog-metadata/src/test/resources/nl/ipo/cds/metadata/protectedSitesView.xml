@@ -1,0 +1,503 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gmd:MD_Metadata xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:srv="http://www.isotc211.org/2005/srv" xmlns:gml="http://www.opengis.net/gml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gts="http://www.isotc211.org/2005/gts" xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:geonet="http://www.fao.org/geonetwork" xmlns:csw="http://www.opengis.net/cat/csw/2.0.2" xsi:schemaLocation="http://www.isotc211.org/2005/gmd http://schemas.opengis.net/csw/2.0.2/profiles/apiso/1.0.0/apiso.xsd" >
+<!--gmd:MD_Metadata xmlns:gmd="http://www.isotc211.org/2005/gmd"
+                 xmlns:srv="http://www.isotc211.org/2005/srv"
+                 xmlns:gml="http://www.opengis.net/gml"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xmlns:gts="http://www.isotc211.org/2005/gts"
+                 xmlns:gco="http://www.isotc211.org/2005/gco"
+                 xmlns:xlink="http://www.w3.org/1999/xlink"
+                 xmlns:geonet="http://www.fao.org/geonetwork"
+                 xmlns:csw="http://www.opengis.net/cat/csw/2.0.2"
+                 xsi:schemaLocation="http://www.isotc211.org/2005/gmd http://schemas.opengis.net/iso/19139/20060504/gmd/gmd.xsd http://www.isotc211.org/2005/srv http://schemas.opengis.net/csw/2.0.2/profiles/apiso/1.0.0/apiso.xsd" -->
+  <gmd:fileIdentifier>
+      <gco:CharacterString>5a69e9d5-611c-4818-a181-685ef4c81085</gco:CharacterString>
+  </gmd:fileIdentifier>
+  <gmd:language>
+    <!-- Codering van de metadata taal in 3 letterige ISO 639-2 code -->
+    <!-- attribuut codeList bevat de verwijzing naar de ISO 639-2 online codelijst -->
+    <!-- attribuut codeListValue bevat de 3 letter ISO 639-2 code voor de taal -->
+    <!-- Waarde van het element LanguageCode bevat de uitgeschreven waarde in de taal die wordt aangegeven door de codeListValue -->
+    <gmd:LanguageCode codeList="http://www.loc.gov/standards/iso639-2/" codeListValue="dut">Nederlands</gmd:LanguageCode>
+  </gmd:language>
+  <gmd:characterSet>
+      <gmd:MD_CharacterSetCode codeList="http://www.isotc211.org/2005/resources/codeList.xml#MD_CharacterSetCode"
+                               codeListValue="utf8"/>
+  </gmd:characterSet>
+  <gmd:hierarchyLevel>
+      <gmd:MD_ScopeCode codeList="http://www.isotc211.org/2005/resources/codeList.xml#MD_ScopeCode"
+                        codeListValue="service"/>
+  </gmd:hierarchyLevel>
+  <gmd:contact>
+      <gmd:CI_ResponsibleParty>
+         <gmd:individualName>
+            <gco:CharacterString>Functioneel beheerder CDS INSPIRE</gco:CharacterString>
+         </gmd:individualName>
+         <gmd:organisationName>
+            <gco:CharacterString>Interprovinciaal Overleg</gco:CharacterString>
+         </gmd:organisationName>
+         <gmd:contactInfo>
+            <gmd:CI_Contact>
+               <gmd:address>
+                  <gmd:CI_Address>
+                     <gmd:electronicMailAddress>
+                        <gco:CharacterString>inspire@gbo-provincies.nl</gco:CharacterString>
+                     </gmd:electronicMailAddress>
+                  </gmd:CI_Address>
+               </gmd:address>
+            </gmd:CI_Contact>
+         </gmd:contactInfo>
+         <gmd:role>
+            <gmd:CI_RoleCode codeList="http://www.isotc211.org/2005/resources/codeList.xml#CI_RoleCode"
+                             codeListValue="pointOfContact"/>
+         </gmd:role>
+      </gmd:CI_ResponsibleParty>
+  </gmd:contact>
+  <gmd:dateStamp>
+      <gco:Date>2013-12-03</gco:Date>
+  </gmd:dateStamp>
+  <gmd:metadataStandardName>
+      <gco:CharacterString>ISO 19119</gco:CharacterString>
+  </gmd:metadataStandardName>
+  <gmd:metadataStandardVersion>
+      <gco:CharacterString>Nederlandse metadata profiel op ISO 19119 voor services 1.2</gco:CharacterString>
+  </gmd:metadataStandardVersion>
+  <gmd:referenceSystemInfo>
+      <gmd:MD_ReferenceSystem>
+         <gmd:referenceSystemIdentifier>
+            <gmd:RS_Identifier>
+               <gmd:code/>
+            </gmd:RS_Identifier>
+         </gmd:referenceSystemIdentifier>
+      </gmd:MD_ReferenceSystem>
+  </gmd:referenceSystemInfo>
+  <gmd:identificationInfo>
+      <srv:SV_ServiceIdentification>
+         <gmd:citation>
+            <gmd:CI_Citation>
+               <gmd:title>
+                  <gco:CharacterString>INSPIRE View service Beschermde gebieden</gco:CharacterString>
+               </gmd:title>
+               <gmd:date>
+                  <gmd:CI_Date>
+                     <gmd:date>
+                        <gco:Date>2011-04-20</gco:Date>
+                     </gmd:date>
+                     <gmd:dateType>
+                        <gmd:CI_DateTypeCode codeList="http://www.isotc211.org/2005/resources/codeList.xml#CI_DateTypeCode"
+                                             codeListValue="creation"/>
+                     </gmd:dateType>
+                  </gmd:CI_Date>
+               </gmd:date>
+            </gmd:CI_Citation>
+         </gmd:citation>
+         <gmd:abstract>
+            <gco:CharacterString>Deze View service is gebaseerd op de geharmoniseerde provinciale datasets voor Beschermde Gebieden. Onderdeel van deze View service zijn datasets voor Aardkundige Waarden, Ecologische Hoofdstructuur, Provinciale Monumenten, Nationale Landschappen, Stiltegebieden en WAV gebieden</gco:CharacterString>
+         </gmd:abstract>
+         <gmd:pointOfContact>
+            <gmd:CI_ResponsibleParty>
+               <gmd:organisationName>
+                  <gco:CharacterString>Interprovinciaal Overleg</gco:CharacterString>
+               </gmd:organisationName>
+               <gmd:contactInfo>
+                  <gmd:CI_Contact>
+                     <gmd:address>
+                        <gmd:CI_Address>
+                           <gmd:electronicMailAddress>
+                              <gco:CharacterString>inspire@gbo-provincies.nl</gco:CharacterString>
+                           </gmd:electronicMailAddress>
+                        </gmd:CI_Address>
+                     </gmd:address>
+                  </gmd:CI_Contact>
+               </gmd:contactInfo>
+               <gmd:role>
+                  <gmd:CI_RoleCode codeList="http://www.isotc211.org/2005/resources/codeList.xml#CI_RoleCode"
+                                   codeListValue="pointOfContact"/>
+               </gmd:role>
+            </gmd:CI_ResponsibleParty>
+         </gmd:pointOfContact>
+         <gmd:graphicOverview>
+            <gmd:MD_BrowseGraphic>
+               <gmd:fileName>
+                  <gco:CharacterString>http://services.inspire-provincies.nl/ProtectedSites/services/view_PS?request=GetMap&amp;Service=WMS&amp;SRS=EPSG:28992&amp;CRS=EPSG:28992&amp;Bbox=0,305000,290000,625000&amp;Width=600&amp;Height=662&amp;Layers=PS.ProtectedSite&amp;Format=image/png&amp;Styles=PS.ProtectedSite.NL</gco:CharacterString>
+               </gmd:fileName>
+            </gmd:MD_BrowseGraphic>
+         </gmd:graphicOverview>
+         <gmd:descriptiveKeywords>
+            <gmd:MD_Keywords>
+               <gmd:keyword>
+                  <gco:CharacterString>infoMapAccessService</gco:CharacterString>
+               </gmd:keyword>
+            </gmd:MD_Keywords>
+         </gmd:descriptiveKeywords>
+         <gmd:descriptiveKeywords>
+            <gmd:MD_Keywords>
+               <gmd:keyword>
+                  <gco:CharacterString>behoud</gco:CharacterString>
+               </gmd:keyword>
+			   <gmd:keyword>
+                  <gco:CharacterString>archeologie</gco:CharacterString>
+               </gmd:keyword>
+			    <gmd:keyword>
+                  <gco:CharacterString>cultureel</gco:CharacterString>
+               </gmd:keyword>
+			     <gmd:keyword>
+                  <gco:CharacterString>geologie</gco:CharacterString>
+               </gmd:keyword>
+			   <gmd:keyword>
+                  <gco:CharacterString>landschap</gco:CharacterString>
+               </gmd:keyword>
+			     <gmd:keyword>
+                  <gco:CharacterString>lucht</gco:CharacterString>
+               </gmd:keyword>
+			   	<gmd:keyword>
+                  <gco:CharacterString>milieu</gco:CharacterString>
+               </gmd:keyword>
+			   	<gmd:keyword>
+                  <gco:CharacterString>natuurbescherming</gco:CharacterString>
+               </gmd:keyword>
+			      	<gmd:keyword>
+                  <gco:CharacterString>rustvorm</gco:CharacterString>
+               </gmd:keyword>
+			   	<gmd:keyword>
+                  <gco:CharacterString>water</gco:CharacterString>
+               </gmd:keyword>
+               <gmd:thesaurusName>
+                  <gmd:CI_Citation>
+                     <gmd:title>
+                        <gco:CharacterString>GEMET - Concepts, version 2.4</gco:CharacterString>
+                     </gmd:title>
+                     <gmd:date>
+                        <gmd:CI_Date>
+                           <gmd:date>
+                              <gco:Date>2010-01-13</gco:Date>
+                           </gmd:date>
+                           <gmd:dateType>
+                              <gmd:CI_DateTypeCode codeList="http://www.isotc211.org/2005/resources/codeList.xml#CI_DateTypeCode"
+                                                   codeListValue="publication"/>
+                           </gmd:dateType>
+                        </gmd:CI_Date>
+                     </gmd:date>
+                  </gmd:CI_Citation>
+               </gmd:thesaurusName>
+            </gmd:MD_Keywords>
+         </gmd:descriptiveKeywords>
+         <gmd:descriptiveKeywords>
+            <gmd:MD_Keywords>
+               <gmd:keyword>
+                  <gco:CharacterString>Beschermde gebieden</gco:CharacterString>
+               </gmd:keyword>
+               <gmd:thesaurusName>
+                  <gmd:CI_Citation>
+                     <gmd:title>
+                        <gco:CharacterString>GEMET - INSPIRE themes, version 1.0</gco:CharacterString>
+                     </gmd:title>
+                     <gmd:date>
+                        <gmd:CI_Date>
+                           <gmd:date>
+                              <gco:Date>2008-06-01</gco:Date>
+                           </gmd:date>
+                           <gmd:dateType>
+                              <gmd:CI_DateTypeCode codeList="http://www.isotc211.org/2005/resources/codeList.xml#CI_DateTypeCode"
+                                                   codeListValue="publication"/>
+                           </gmd:dateType>
+                        </gmd:CI_Date>
+                     </gmd:date>
+                  </gmd:CI_Citation>
+               </gmd:thesaurusName>
+            </gmd:MD_Keywords>
+         </gmd:descriptiveKeywords>
+         <gmd:resourceConstraints>
+            <gmd:MD_Constraints>
+               <gmd:useLimitation>
+            <!-- Moet overeenkomen met het element  WMS_Capabilities/Service/Fees in het Capabilities bestand-->
+            <!-- Als de service gratis is: geen gebruiksbeperkingen -->
+            <!-- Als de niet bekend is of er kosten aan het gebruik verbonden zijn: gebruiksbeperkingen onbekend  -->
+            <gco:CharacterString>Geen gebruiksbeperkingen</gco:CharacterString>
+               </gmd:useLimitation>
+            </gmd:MD_Constraints>
+         </gmd:resourceConstraints>
+         <gmd:resourceConstraints>
+            <gmd:MD_LegalConstraints>
+               <gmd:accessConstraints>
+            <!-- Moet overeenkomen met element WMS_Capabilities/Service/AccessConstraints in het Capabilities bestand -->
+            <!-- Als er geen gebruiksrestricties zijn: otherRestrictions bij element MD_RestrictionCode en "Geen beperkingen" bij otherConstraints -->
+            <!-- Anders een waarde uit de codelijst MD_RestrictionCode:  -->
+            <!-- copyright, patent, patentPending, trademark, license, 
+                intellectualPropertyRights, restricted, otherRestrictions -->
+            <gmd:MD_RestrictionCode codeList="http://www.isotc211.org/2005/resources/codeList.xml#MD_RestrictionCode"
+                                          codeListValue="otherRestrictions"/>
+               </gmd:accessConstraints>
+               <gmd:otherConstraints>
+                  <gco:CharacterString>Geen beperkingen</gco:CharacterString>
+               </gmd:otherConstraints>
+               <!-- Verwijzing naar een Geogedeeld Public Domain licentie -->
+          <gmd:otherConstraints>
+                  <gco:CharacterString>http://creativecommons.org/publicdomain/mark/1.0/deed.nl</gco:CharacterString>
+               </gmd:otherConstraints>
+            </gmd:MD_LegalConstraints>
+         </gmd:resourceConstraints>
+         <gmd:resourceConstraints>
+            <gmd:MD_SecurityConstraints>
+               <gmd:classification>
+                  <gmd:MD_ClassificationCode codeList="http://www.isotc211.org/2005/resources/codeList.xml#MD_ClassificationCode"
+                                             codeListValue="unclassified"/>
+               </gmd:classification>
+            </gmd:MD_SecurityConstraints>
+         </gmd:resourceConstraints>
+         <srv:serviceType>
+            <gco:LocalName>view</gco:LocalName>
+         </srv:serviceType>
+         <srv:serviceTypeVersion>
+            <gco:CharacterString>1.3.0</gco:CharacterString>
+         </srv:serviceTypeVersion>
+         <srv:extent>
+            <gmd:EX_Extent>
+               <gmd:description>
+                  <gco:CharacterString>Nederland</gco:CharacterString>
+               </gmd:description>
+               <gmd:geographicElement>
+                    <gmd:EX_GeographicBoundingBox>
+                     <gmd:westBoundLongitude>
+                        <gco:Decimal>3.207</gco:Decimal>
+                     </gmd:westBoundLongitude>
+                     <gmd:eastBoundLongitude>
+                        <gco:Decimal>7.240</gco:Decimal>
+                     </gmd:eastBoundLongitude>
+                     <gmd:southBoundLatitude>
+                        <gco:Decimal>50.734</gco:Decimal>
+                     </gmd:southBoundLatitude>
+                     <gmd:northBoundLatitude>
+                        <gco:Decimal>53.545</gco:Decimal>
+                     </gmd:northBoundLatitude>
+                  </gmd:EX_GeographicBoundingBox>
+               </gmd:geographicElement>
+               <gmd:temporalElement>
+                  <gmd:EX_TemporalExtent>
+                     <gmd:extent>
+                        <gml:TimePeriod gml:id="d27e339a1049886">
+                           <gml:begin>
+                              <gml:TimeInstant gml:id="d27e341a1049886">
+                                 <gml:timePosition>2011-11-08</gml:timePosition>
+                              </gml:TimeInstant>
+                           </gml:begin>
+                           <gml:end>
+                              <gml:TimeInstant gml:id="d27e344a1049886">
+                                 <gml:timePosition>2099-01-01</gml:timePosition>
+                              </gml:TimeInstant>
+                           </gml:end>
+                        </gml:TimePeriod>
+                     </gmd:extent>
+                  </gmd:EX_TemporalExtent>
+               </gmd:temporalElement>
+            </gmd:EX_Extent>
+         </srv:extent>
+		 <srv:coupledResource>
+            <srv:SV_CoupledResource>
+               <srv:operationName>
+                  <gco:CharacterString>GetMap</gco:CharacterString>
+               </srv:operationName>
+               <srv:identifier>
+                  <gco:CharacterString>3D8DE086-0A18-11E1-8198-C2074924019B</gco:CharacterString>
+               </srv:identifier>
+               <gco:ScopedName>PS.ProtectedSite</gco:ScopedName>
+            </srv:SV_CoupledResource>
+         </srv:coupledResource>
+         <srv:coupledResource>
+            <srv:SV_CoupledResource>
+               <srv:operationName>
+                  <gco:CharacterString>GetMap</gco:CharacterString>
+               </srv:operationName>
+               <srv:identifier>
+                  <gco:CharacterString>3d7995d3-a944-4842-8713-74f47997bfb5</gco:CharacterString>
+               </srv:identifier>
+               <gco:ScopedName>PS.ProtectedSiteAardkundigeWaarden</gco:ScopedName>
+            </srv:SV_CoupledResource>
+         </srv:coupledResource>
+         <srv:coupledResource>
+            <srv:SV_CoupledResource>
+               <srv:operationName>
+                  <gco:CharacterString>GetMap</gco:CharacterString>
+               </srv:operationName>
+               <srv:identifier>
+                  <gco:CharacterString>b4c63e7c-b73c-451a-8071-dbc9f28f0148</gco:CharacterString>
+               </srv:identifier>
+               <gco:ScopedName>PS.ProtectedSiteEcologischeHoofdstructuur</gco:ScopedName>
+            </srv:SV_CoupledResource>
+         </srv:coupledResource>
+         <srv:coupledResource>
+            <srv:SV_CoupledResource>
+               <srv:operationName>
+                  <gco:CharacterString>GetMap</gco:CharacterString>
+               </srv:operationName>
+               <srv:identifier>
+                  <gco:CharacterString>2b8e76fb-b45f-4037-bdad-681cd060d9e0</gco:CharacterString>
+               </srv:identifier>
+               <gco:ScopedName>PS.ProtectedSiteNationaleLandschappen</gco:ScopedName>
+            </srv:SV_CoupledResource>
+         </srv:coupledResource>
+         <srv:coupledResource>
+            <srv:SV_CoupledResource>
+               <srv:operationName>
+                  <gco:CharacterString>GetMap</gco:CharacterString>
+               </srv:operationName>
+               <srv:identifier>
+                  <gco:CharacterString>e18a678b-914e-4777-ad73-a9acc221f0b3</gco:CharacterString>
+               </srv:identifier>
+               <gco:ScopedName>PS.ProtectedSiteProvincialeMonumenten</gco:ScopedName>
+            </srv:SV_CoupledResource>
+         </srv:coupledResource>
+         <srv:coupledResource>
+            <srv:SV_CoupledResource>
+               <srv:operationName>
+                  <gco:CharacterString>GetMap</gco:CharacterString>
+               </srv:operationName>
+               <srv:identifier>
+                  <gco:CharacterString>f23e1f94-d7ee-46ff-a2e1-3647737a0528</gco:CharacterString>
+               </srv:identifier>
+               <gco:ScopedName>PS.ProtectedSiteStilteGebieden</gco:ScopedName>
+            </srv:SV_CoupledResource>
+         </srv:coupledResource>
+         <srv:coupledResource>
+            <srv:SV_CoupledResource>
+               <srv:operationName>
+                  <gco:CharacterString>GetMap</gco:CharacterString>
+               </srv:operationName>
+               <srv:identifier>
+                  <gco:CharacterString>5952b0eb-e39d-4bf1-953c-c1233de2067b</gco:CharacterString>
+               </srv:identifier>
+               <gco:ScopedName>PS.ProtectedSiteWAVGebieden</gco:ScopedName>
+            </srv:SV_CoupledResource>
+         </srv:coupledResource>
+         <srv:couplingType>
+            <srv:SV_CouplingType codeList="http://www.isotc211.org/2005/iso19119/resources/Codelist/gmxCodelists.xml#SV_CouplingType"
+                                 codeListValue="tight"/>
+         </srv:couplingType>
+         <srv:containsOperations>
+            <srv:SV_OperationMetadata>
+               <srv:operationName>
+                  <gco:CharacterString>GetCapabilities</gco:CharacterString>
+               </srv:operationName>
+               <srv:DCP>
+                  <srv:DCPList codeList="http://www.isotc211.org/2005/iso19119/resources/Codelist/gmxCodelists.xml#DCPList"
+                               codeListValue="WebServices"/>
+               </srv:DCP>
+               <srv:connectPoint>
+                  <gmd:CI_OnlineResource>
+                     <gmd:linkage>
+                        <gmd:URL>http://services.inspire-provincies.nl/ProtectedSites/services/view_PS</gmd:URL>
+                     </gmd:linkage>
+                  </gmd:CI_OnlineResource>
+               </srv:connectPoint>
+            </srv:SV_OperationMetadata>
+         </srv:containsOperations>
+         <srv:operatesOn uuidref="3d7995d3-a944-4842-8713-74f47997bfb5" xlink:href="http://www.nationaalgeoregister.nl/geonetwork/srv/nl/csw?Service=CSW&amp;Request=GetRecordById&amp;Version=2.0.2&amp;id=f002bfc5-7d87-46b6-819e-8415422b65c9&amp;outputSchema=http://www.isotc211.org/2005/gmd&amp;elementSetName=full"/>
+         <srv:operatesOn uuidref="b4c63e7c-b73c-451a-8071-dbc9f28f0148" xlink:href="http://www.nationaalgeoregister.nl/geonetwork/srv/nl/csw?Service=CSW&amp;Request=GetRecordById&amp;Version=2.0.2&amp;id=c7d8d77b-8c47-4309-8c58-9b12b086407f&amp;outputSchema=http://www.isotc211.org/2005/gmd&amp;elementSetName=full"/>
+         <srv:operatesOn uuidref="2b8e76fb-b45f-4037-bdad-681cd060d9e0" xlink:href="http://www.nationaalgeoregister.nl/geonetwork/srv/nl/csw?Service=CSW&amp;Request=GetRecordById&amp;Version=2.0.2&amp;id=60a2a7c2-d5b3-4ad5-b562-c448695357fb&amp;outputSchema=http://www.isotc211.org/2005/gmd&amp;elementSetName=full"/>
+         <srv:operatesOn uuidref="e18a678b-914e-4777-ad73-a9acc221f0b3" xlink:href="http://www.nationaalgeoregister.nl/geonetwork/srv/nl/csw?Service=CSW&amp;Request=GetRecordById&amp;Version=2.0.2&amp;id=ca94a0cb-7561-4a10-a7d6-b840e56c33ff&amp;outputSchema=http://www.isotc211.org/2005/gmd&amp;elementSetName=full"/>
+         <srv:operatesOn uuidref="f23e1f94-d7ee-46ff-a2e1-3647737a0528" xlink:href="http://www.nationaalgeoregister.nl/geonetwork/srv/nl/csw?Service=CSW&amp;Request=GetRecordById&amp;Version=2.0.2&amp;id=cc408b2d-09a6-4b2b-9aa3-b46bfe2f00a5&amp;outputSchema=http://www.isotc211.org/2005/gmd&amp;elementSetName=full"/>
+         <srv:operatesOn uuidref="5952b0eb-e39d-4bf1-953c-c1233de2067b" xlink:href="http://www.nationaalgeoregister.nl/geonetwork/srv/nl/csw?Service=CSW&amp;Request=GetRecordById&amp;Version=2.0.2&amp;id=998ba1dc-f6a6-49a3-a021-51f30d9b1d0e&amp;outputSchema=http://www.isotc211.org/2005/gmd&amp;elementSetName=full"/>
+		 <srv:operatesOn uuidref="3D8DE086-0A18-11E1-8198-C2074924019B" xlink:href="http://www.nationaalgeoregister.nl/geonetwork/srv/nl/csw?Service=CSW&amp;Request=GetRecordById&amp;Version=2.0.2&amp;id=ea980208-0a17-11e1-83c6-f2064924019b&amp;outputSchema=http://www.isotc211.org/2005/gmd&amp;elementSetName=full"/>
+      </srv:SV_ServiceIdentification>
+  </gmd:identificationInfo>
+  <gmd:distributionInfo>
+      <gmd:MD_Distribution>
+         <gmd:distributor>
+            <gmd:MD_Distributor>
+               <gmd:distributorContact>
+                  <gmd:CI_ResponsibleParty>
+                     <gmd:individualName>
+                        <gco:CharacterString>Functioneel beheerder CDS INSPIRE</gco:CharacterString>
+                     </gmd:individualName>
+                     <gmd:organisationName>
+                        <gco:CharacterString>Interprovinciaal Overleg</gco:CharacterString>
+                     </gmd:organisationName>
+                     <gmd:positionName>
+                        <gco:CharacterString>pointOfContact</gco:CharacterString>
+                     </gmd:positionName>
+                     <gmd:contactInfo/>
+                     <gmd:role>
+                        <gmd:CI_RoleCode codeList="http://www.isotc211.org/2005/resources/codeList.xml#CI_RoleCode"
+                                         codeListValue="pointOfContact"/>
+                     </gmd:role>
+                  </gmd:CI_ResponsibleParty>
+               </gmd:distributorContact>
+            </gmd:MD_Distributor>
+         </gmd:distributor>
+         <gmd:transferOptions>
+            <gmd:MD_DigitalTransferOptions>
+               <gmd:onLine>
+                  <gmd:CI_OnlineResource>
+                     <gmd:linkage>
+                        <gmd:URL>http://services.inspire-provincies.nl/ProtectedSites/services/view_PS</gmd:URL>
+                     </gmd:linkage>
+                     <gmd:protocol>
+                        <gco:CharacterString>OGC:WMS</gco:CharacterString>
+                     </gmd:protocol>
+                     <gmd:name>
+                        <gco:CharacterString>PS.ProtectedSite</gco:CharacterString>
+                     </gmd:name>
+                  </gmd:CI_OnlineResource>
+               </gmd:onLine>
+               <gmd:onLine>
+                  <gmd:CI_OnlineResource>
+                     <gmd:linkage>
+                        <gmd:URL>http://services.inspire-provincies.nl/ProtectedSites/services/download_PS</gmd:URL>
+                     </gmd:linkage>
+                     <gmd:protocol>
+                        <gco:CharacterString>OGC:WFS</gco:CharacterString>
+                     </gmd:protocol>
+                     <gmd:name>
+                        <gco:CharacterString>ps:ProtectedSite</gco:CharacterString>
+                     </gmd:name>
+                  </gmd:CI_OnlineResource>
+               </gmd:onLine>
+            </gmd:MD_DigitalTransferOptions>
+         </gmd:transferOptions>
+      </gmd:MD_Distribution>
+  </gmd:distributionInfo>
+  <gmd:dataQualityInfo>
+      <gmd:DQ_DataQuality>
+         <gmd:scope>
+            <gmd:DQ_Scope>
+               <gmd:level>
+                  <gmd:MD_ScopeCode codeList="http://www.isotc211.org/2005/resources/codeList.xml#MD_ScopeCode"
+                                    codeListValue="service"/>
+               </gmd:level>
+            </gmd:DQ_Scope>
+         </gmd:scope>
+         <gmd:report>
+            <gmd:DQ_DomainConsistency>
+               <gmd:result>
+                  <gmd:DQ_ConformanceResult>
+                     <gmd:specification>
+                        <gmd:CI_Citation>
+                           <gmd:title>
+                              <gco:CharacterString>Technical Guidance for the implementation of INSPIRE View Services 3.1</gco:CharacterString>
+                           </gmd:title>
+                           <gmd:date>
+                              <gmd:CI_Date>
+                                 <gmd:date>
+                                    <gco:Date>2011-11-07</gco:Date>
+                                 </gmd:date>
+                                 <gmd:dateType>
+                                    <gmd:CI_DateTypeCode codeList="http://www.isotc211.org/2005/resources/codeList.xml#CI_DateTypeCode"
+                                                         codeListValue="publication"/>
+                                 </gmd:dateType>
+                              </gmd:CI_Date>
+                           </gmd:date>
+                        </gmd:CI_Citation>
+                     </gmd:specification>
+                     <gmd:explanation>
+                        <gco:CharacterString>conformant</gco:CharacterString>
+                     </gmd:explanation>
+                     <gmd:pass>
+                        <gco:Boolean>true</gco:Boolean>
+                     </gmd:pass>
+                  </gmd:DQ_ConformanceResult>
+               </gmd:result>
+            </gmd:DQ_DomainConsistency>
+         </gmd:report>
+      </gmd:DQ_DataQuality>
+  </gmd:dataQualityInfo>
+</gmd:MD_Metadata>

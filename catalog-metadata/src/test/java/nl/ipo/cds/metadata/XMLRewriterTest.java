@@ -17,16 +17,8 @@ import org.w3c.dom.Node;
 
 public class XMLRewriterTest {
 	
-	private InputStream toInputStream(String s) throws Exception {
-		return toInputStream(s.getBytes("utf-8"));
-	}
-	
-	private InputStream toInputStream(ByteArrayOutputStream bos) {
-		return new ByteArrayInputStream(bos.toByteArray());
-	}
-	
-	private InputStream toInputStream(byte[] b) {
-		return new ByteArrayInputStream(b);
+	private Document toDocument(String content) throws Exception {
+		return toDocument(new ByteArrayInputStream(content.getBytes("utf-8")));
 	}
 	
 	private Document toDocument(InputStream inputStream) throws Exception {
@@ -45,7 +37,7 @@ public class XMLRewriterTest {
 
 	@Test
 	public void testModify() throws Exception {
-		XMLRewriter rewriter = new XMLRewriter(toInputStream(
+		XMLRewriter rewriter = new XMLRewriter(toDocument(
 				"<?xml version=\"1.0\" encoding=\"utf-8\"?>" +
 				"<a xmlns=\"http://idgis.eu/myNamespace\"><b>Foo</b><c>Bar</c></a>"));
 		
@@ -55,7 +47,7 @@ public class XMLRewriterTest {
 		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 		rewriter.write(outputStream);
 		
-		Document document = toDocument(toInputStream(outputStream));
+		Document document = toDocument(new ByteArrayInputStream(outputStream.toByteArray()));
 		assertNotNull(document);
 		
 		Node a = document.getFirstChild();
@@ -72,7 +64,7 @@ public class XMLRewriterTest {
 	
 	@Test(expected=IllegalArgumentException.class)
 	public void testNonSingleNodeException() throws Exception {
-		XMLRewriter rewriter = new XMLRewriter(toInputStream(
+		XMLRewriter rewriter = new XMLRewriter(toDocument(
 				"<?xml version=\"1.0\" encoding=\"utf-8\"?>" +
 				"<a xmlns=\"http://idgis.eu/myNamespace\"><b>Foo</b><c>Bar</c></a>"));
 		

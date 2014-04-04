@@ -1,0 +1,4 @@
+#set($title = 'Metadatadocument wijzigen')
+#set($action = '/ba/metadata/edit')
+
+#parse("/ba/metadata/form.vm")

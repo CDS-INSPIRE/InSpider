@@ -1,0 +1,879 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<MD_Metadata xmlns:gml="http://www.opengis.net/gml" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gco="http://www.isotc211.org/2005/gco" xsi:schemaLocation="http://www.isotc211.org/2005/gmd http://schemas.opengis.net/iso/19139/20060504/gmd/gmd.xsd" xmlns="http://www.isotc211.org/2005/gmd">
+  <fileIdentifier>
+    <gco:CharacterString>ea980208-0a17-11e1-83c6-f2064924019b</gco:CharacterString>
+  </fileIdentifier>
+ <language>
+    <LanguageCode codeList="http://www.loc.gov/standards/iso639-2/" codeListValue="dut">Nederlands</LanguageCode>
+  </language>
+  <characterSet>
+    <MD_CharacterSetCode codeList="./resources/codeList.xml#MD_CharacterSetCode" codeListValue="utf8" />
+  </characterSet>
+  <hierarchyLevel>
+    <MD_ScopeCode codeList="http://www.isotc211.org/2005/resources/codeList.xml#MD_ScopeCode" codeListValue="dataset" />
+  </hierarchyLevel>
+  <contact>
+    <CI_ResponsibleParty>
+      <individualName>
+        <gco:CharacterString>Landelijk functioneel beheerder CDS INSPIRE</gco:CharacterString>
+      </individualName>
+      <organisationName>
+        <gco:CharacterString>Interprovinciaal Overleg</gco:CharacterString>
+      </organisationName>
+      <positionName>
+        <gco:CharacterString>Technisch verantwoordelijk</gco:CharacterString>
+      </positionName>
+      <contactInfo>
+        <CI_Contact>
+          <phone />
+          <address>
+            <CI_Address>
+              <electronicMailAddress>
+                <gco:CharacterString>inspire@gbo-provincies.nl</gco:CharacterString>
+              </electronicMailAddress>
+            </CI_Address>
+          </address>
+          <onlineResource>
+            <CI_OnlineResource>
+              <linkage>
+                <URL>http://www.ipo.nl</URL>
+              </linkage>
+            </CI_OnlineResource>
+          </onlineResource>
+        </CI_Contact>
+      </contactInfo>
+      <role>
+        <CI_RoleCode codeList="./resources/codeList.xml#CI_RoleCode" codeListValue="pointOfContact" />
+      </role>
+    </CI_ResponsibleParty>
+  </contact>
+  <dateStamp>
+    <gco:DateTime>2013-11-20T00:00:00</gco:DateTime>
+  </dateStamp>
+  <metadataStandardName>
+    <gco:CharacterString>ISO 19115</gco:CharacterString>
+  </metadataStandardName>
+  <metadataStandardVersion>
+    <gco:CharacterString>Nederlandse metadata profiel op ISO 19115 voor geografie 1.2</gco:CharacterString>
+  </metadataStandardVersion>
+  <referenceSystemInfo>
+    <MD_ReferenceSystem>
+      <referenceSystemIdentifier>
+        <RS_Identifier>
+          <code>
+            <gco:CharacterString>28992</gco:CharacterString>
+          </code>
+          <codeSpace>
+            <gco:CharacterString>EPSG</gco:CharacterString>
+          </codeSpace>
+        </RS_Identifier>
+      </referenceSystemIdentifier>
+    </MD_ReferenceSystem>
+  </referenceSystemInfo>
+  <identificationInfo>
+    <MD_DataIdentification>
+      <citation>
+        <CI_Citation>
+          <title>
+            <gco:CharacterString>Beschermde gebieden provincies (NL)</gco:CharacterString>
+          </title>
+          <date>
+            <CI_Date>
+              <date>
+                <gco:DateTime>2011-11-08T00:00:00+01:00</gco:DateTime>
+              </date>
+              <dateType>
+                <CI_DateTypeCode codeList="./resources/codeList.xml#CI_DateTypeCode" codeListValue="creation" />
+              </dateType>
+            </CI_Date>
+          </date>
+          <!--date>
+            <CI_Date>
+              <date>
+                <gco:DateTime>2011-11-08T00:00:00+01:00</gco:DateTime>
+              </date>
+              <dateType>
+                <CI_DateTypeCode codeList="./resources/codeList.xml#CI_DateTypeCode" codeListValue="revision" />
+              </dateType>
+            </CI_Date>
+          </date-->
+          <identifier>
+            <MD_Identifier>
+              <code>
+                <gco:CharacterString>3D8DE086-0A18-11E1-8198-C2074924019B</gco:CharacterString>
+              </code>
+            </MD_Identifier>
+          </identifier>
+          <series>
+            <CI_Series />
+          </series>
+        </CI_Citation>
+      </citation>
+      <abstract>
+        <gco:CharacterString>Gebieden die worden aangeduid of beheerd in het kader van internationale en communautaire wetgeving of wetgeving van de lidstaten om specifieke doelstellingen op het vlak van milieubescherming te verwezenlijken. Dit bestand bevat de geharmoniseerde provinciale datasets voor Beschermde Gebieden. Onderdeel van deze datasets zijn landsdekkende datasets voor Aardkundige Waarden, Ecologische Hoofdstructuur, Provinciale Monumenten, Nationale Landschappen, Stiltegebieden en WAV gebieden. Dit bestand bevat informatie conform de INSPIRE dataspecificaties voor beschermde gebieden. Raadpleeg voor meer detailinformatie de bronbestanden van de desbetreffende provincie.</gco:CharacterString>
+      </abstract>
+      <purpose>
+        <gco:CharacterString>Dit bestand is vervaardigd uit provinciale bronbestanden om een landsdekkend bestand te kunnen aanbieden via het provinciaal georegister.</gco:CharacterString>
+      </purpose>
+      <status>
+        <MD_ProgressCode codeList="./resources/codeList.xml#MD_ProgressCode" codeListValue="completed" />
+      </status>
+      <pointOfContact>
+        <CI_ResponsibleParty>
+          <individualName>
+            <gco:CharacterString>Landelijk functioneel beheerder CDS INSPIRE</gco:CharacterString>
+          </individualName>
+          <organisationName>
+            <gco:CharacterString>Interprovinciaal Overleg</gco:CharacterString>
+          </organisationName>
+          <positionName>
+            <gco:CharacterString />
+          </positionName>
+          <contactInfo>
+            <CI_Contact>
+              <phone>
+                <CI_Telephone>
+                  <voice>
+                    <gco:CharacterString />
+                  </voice>
+                </CI_Telephone>
+              </phone>
+              <address>
+                <CI_Address>
+                  <electronicMailAddress>
+                    <gco:CharacterString>inspire@gbo-provincies.nl</gco:CharacterString>
+                  </electronicMailAddress>
+                </CI_Address>
+              </address>
+              <onlineResource>
+                <CI_OnlineResource>
+                  <linkage>
+                    <URL>http://www.ipo.nl</URL>
+                  </linkage>
+                </CI_OnlineResource>
+              </onlineResource>
+            </CI_Contact>
+          </contactInfo>
+          <role>
+            <CI_RoleCode codeList="./resources/codeList.xml#CI_RoleCode" codeListValue="custodian" />
+          </role>
+        </CI_ResponsibleParty>
+      </pointOfContact>
+      <pointOfContact>
+        <CI_ResponsibleParty>
+          <individualName>
+            <gco:CharacterString>Landelijk functioneel beheerder CDS INSPIRE</gco:CharacterString>
+          </individualName>
+          <organisationName>
+            <gco:CharacterString>Interprovinciaal Overleg</gco:CharacterString>
+          </organisationName>
+          <positionName>
+            <gco:CharacterString />
+          </positionName>
+          <contactInfo>
+            <CI_Contact>
+              <phone>
+                <CI_Telephone>
+                  <voice>
+                    <gco:CharacterString />
+                  </voice>
+                </CI_Telephone>
+              </phone>
+              <address>
+                <CI_Address>
+                  <electronicMailAddress>
+                    <gco:CharacterString>inspire@gbo-provincies.nl</gco:CharacterString>
+                  </electronicMailAddress>
+                </CI_Address>
+              </address>
+              <onlineResource>
+                <CI_OnlineResource>
+                  <linkage>
+                    <URL>http://www.ipo.nl</URL>
+                  </linkage>
+                </CI_OnlineResource>
+              </onlineResource>
+            </CI_Contact>
+          </contactInfo>
+          <role>
+            <CI_RoleCode codeList="./resources/codeList.xml#CI_RoleCode" codeListValue="owner" />
+          </role>
+        </CI_ResponsibleParty>
+      </pointOfContact>
+      <resourceMaintenance>
+        <MD_MaintenanceInformation>
+          <maintenanceAndUpdateFrequency>
+            <MD_MaintenanceFrequencyCode codeList="./resources/codeList.xml#MD_MaintenanceFrequencyCode" codeListValue="unknown" />
+          </maintenanceAndUpdateFrequency>
+        </MD_MaintenanceInformation>
+      </resourceMaintenance>
+      <graphicOverview>
+        <MD_BrowseGraphic>
+          <fileName>
+            <gco:CharacterString>http://services.inspire-provincies.nl/ProtectedSites/services?request=GetMap&amp;Service=WMS&amp;SRS=EPSG:28992&amp;CRS=EPSG:28992&amp;Bbox=55000,363000,255000,513000&amp;Width=800&amp;Height=600&amp;Layers=PS.ProtectedSite&amp;Format=image/gif&amp;Styles=PS.ProtectedSite.NL</gco:CharacterString>
+          </fileName>
+        </MD_BrowseGraphic>
+      </graphicOverview>
+      <descriptiveKeywords>
+        <MD_Keywords>
+          <keyword>
+            <gco:CharacterString>Beschermde gebieden</gco:CharacterString>
+          </keyword>
+          <keyword>
+            <gco:CharacterString>Bodem</gco:CharacterString>
+          </keyword>
+          <keyword>
+            <gco:CharacterString>Gebiedsbeheer, gebieden waar beperkingen gelden, gereguleerde gebieden en rapportage-eenheden</gco:CharacterString>
+          </keyword>
+          <thesaurusName>
+            <CI_Citation>
+              <title>
+                <gco:CharacterString>GEMET - INSPIRE themes, version 1.0</gco:CharacterString>
+              </title>
+              <date>
+                <CI_Date>
+                  <date>
+                    <gco:Date>2008-06-01</gco:Date>
+                  </date>
+                  <dateType>
+                    <CI_DateTypeCode codeList="./resources/codeList.xml#CI_DateTypeCode" codeListValue="publication" />
+                  </dateType>
+                </CI_Date>
+              </date>
+            </CI_Citation>
+          </thesaurusName>
+        </MD_Keywords>
+      </descriptiveKeywords>
+      <descriptiveKeywords>
+        <MD_Keywords>
+          <keyword>
+            <gco:CharacterString>CULTUUR</gco:CharacterString>
+          </keyword>
+          <keyword>
+            <gco:CharacterString>NATUUR</gco:CharacterString>
+          </keyword>
+          <keyword>
+            <gco:CharacterString>MILIEUBELEID</gco:CharacterString>
+          </keyword>
+          <thesaurusName>
+            <CI_Citation>
+              <title>
+                <gco:CharacterString>Interprovinciale thesaurus</gco:CharacterString>
+              </title>
+              <date>
+                <CI_Date>
+                  <date>
+                    <gco:Date>2010-11-05</gco:Date>
+                  </date>
+                  <dateType>
+                    <CI_DateTypeCode codeList="./resources/codeList.xml#CI_DateTypeCode" codeListValue="publication" />
+                  </dateType>
+                </CI_Date>
+              </date>
+            </CI_Citation>
+          </thesaurusName>
+        </MD_Keywords>
+      </descriptiveKeywords>
+      <resourceSpecificUsage>
+        <MD_Usage>
+          <specificUsage />
+          <userContactInfo />
+        </MD_Usage>
+      </resourceSpecificUsage>
+      <resourceConstraints>
+        <MD_Constraints>
+          <useLimitation>
+            <gco:CharacterString>Geen gebruiksbeperkingen</gco:CharacterString>
+          </useLimitation>
+        </MD_Constraints>
+      </resourceConstraints>
+      <resourceConstraints>
+        <MD_LegalConstraints>
+          <accessConstraints>
+            <MD_RestrictionCode codeList="./resources/codeList.xml#MD_RestrictionCode" codeListValue="otherRestrictions" />
+          </accessConstraints>
+          <otherConstraints>
+            <gco:CharacterString>Geen beperking</gco:CharacterString>
+          </otherConstraints>
+        </MD_LegalConstraints>
+      </resourceConstraints>
+      <resourceConstraints>
+        <MD_LegalConstraints>
+          <accessConstraints>
+            <MD_RestrictionCode codeList="./resources/codeList.xml#MD_RestrictionCode" codeListValue="otherRestrictions" />
+          </accessConstraints>
+          <otherConstraints>
+            <gco:CharacterString>http://creativecommons.org/publicdomain/mark/1.0/deed.nl</gco:CharacterString>
+          </otherConstraints>
+        </MD_LegalConstraints>
+      </resourceConstraints>
+      <spatialRepresentationType>
+        <MD_SpatialRepresentationTypeCode codeList="./resources/codeList.xml#MD_SpatialRepresentationTypeCode" codeListValue="vector" />
+      </spatialRepresentationType>
+      <spatialResolution>
+        <MD_Resolution>
+          <equivalentScale>
+            <MD_RepresentativeFraction>
+              <denominator>
+                <gco:Integer>10000</gco:Integer>
+              </denominator>
+            </MD_RepresentativeFraction>
+          </equivalentScale>
+        </MD_Resolution>
+      </spatialResolution>
+      <spatialResolution>
+        <MD_Resolution>
+          <equivalentScale>
+            <MD_RepresentativeFraction>
+              <denominator>
+                <gco:Integer>250000</gco:Integer>
+              </denominator>
+            </MD_RepresentativeFraction>
+          </equivalentScale>
+        </MD_Resolution>
+      </spatialResolution>
+     <language>
+    <LanguageCode codeList="http://www.loc.gov/standards/iso639-2/" codeListValue="dut">Nederlands</LanguageCode>
+  </language>
+      <characterSet>
+        <MD_CharacterSetCode codeList="./resources/codeList.xml#MD_CharacterSetCode" codeListValue="utf8" />
+      </characterSet>
+      <topicCategory>
+        <MD_TopicCategoryCode>environment</MD_TopicCategoryCode>
+      </topicCategory>
+      <extent>
+        <EX_Extent>
+          <geographicElement>
+            <EX_GeographicBoundingBox>
+              <westBoundLongitude>
+                <gco:Decimal>3.265</gco:Decimal>
+              </westBoundLongitude>
+              <eastBoundLongitude>
+                <gco:Decimal>7.110</gco:Decimal>
+              </eastBoundLongitude>
+              <southBoundLatitude>
+                <gco:Decimal>50.735</gco:Decimal>
+              </southBoundLatitude>
+              <northBoundLatitude>
+                <gco:Decimal>53.327</gco:Decimal>
+              </northBoundLatitude>
+            </EX_GeographicBoundingBox>
+          </geographicElement>
+          <geographicElement>
+            <EX_GeographicDescription>
+              <geographicIdentifier>
+                <MD_Identifier>
+                  <code>
+                    <gco:CharacterString>Nederland</gco:CharacterString>
+                  </code>
+                </MD_Identifier>
+              </geographicIdentifier>
+            </EX_GeographicDescription>
+          </geographicElement>
+          <temporalElement>
+            <EX_TemporalExtent>
+              <extent>
+                <gml:TimePeriod gml:id="tp1">
+                  <gml:begin>
+                    <gml:TimeInstant gml:id="ti1">
+                      <gml:timePosition>2011-11-08</gml:timePosition>
+                    </gml:TimeInstant>
+                  </gml:begin>
+                  <gml:end>
+                    <gml:TimeInstant gml:id="ti2">
+                      <gml:timePosition>2099-01-01</gml:timePosition>
+                    </gml:TimeInstant>
+                  </gml:end>
+                </gml:TimePeriod>
+              </extent>
+            </EX_TemporalExtent>
+          </temporalElement>
+        </EX_Extent>
+      </extent>
+    </MD_DataIdentification>
+  </identificationInfo>
+  <distributionInfo>
+    <MD_Distribution>
+      <distributor>
+        <MD_Distributor>
+          <distributorContact>
+            <CI_ResponsibleParty>
+              <individualName>
+                <gco:CharacterString>Landelijk functioneel beheerder CDS INSPIRE</gco:CharacterString>
+              </individualName>
+              <organisationName>
+                <gco:CharacterString>Interprovinciaal Overleg</gco:CharacterString>
+              </organisationName>
+              <positionName>
+                <gco:CharacterString />
+              </positionName>
+              <contactInfo>
+                <CI_Contact>
+                  <address>
+                    <CI_Address />
+                  </address>
+                  <onlineResource>
+                    <CI_OnlineResource>
+                      <linkage>
+                        <URL>http://www.ipo.nl</URL>
+                      </linkage>
+                    </CI_OnlineResource>
+                  </onlineResource>
+                </CI_Contact>
+              </contactInfo>
+              <role>
+                <CI_RoleCode codeList="./resources/codeList.xml#CI_RoleCode" codeListValue="distributor" />
+              </role>
+            </CI_ResponsibleParty>
+          </distributorContact>
+          <distributionOrderProcess>
+            <MD_StandardOrderProcess />
+          </distributionOrderProcess>
+        </MD_Distributor>
+      </distributor>
+      <transferOptions>
+        <MD_DigitalTransferOptions>
+          <onLine />
+          <onLine>
+            <CI_OnlineResource>
+              <linkage>
+                <URL>http://services.inspire-provincies.nl/ProtectedSites/services</URL>
+              </linkage>
+              <protocol>
+                <gco:CharacterString>OGC:WMS</gco:CharacterString>
+              </protocol>
+              <name>
+                <gco:CharacterString>PS.ProtectedSite</gco:CharacterString>
+              </name>
+            </CI_OnlineResource>
+          </onLine>
+          <onLine>
+            <CI_OnlineResource>
+              <linkage>
+                <URL>http://services.inspire-provincies.nl/ProtectedSites/services</URL>
+              </linkage>
+              <protocol>
+                <gco:CharacterString>OGC:WFS</gco:CharacterString>
+              </protocol>
+              <name>
+                <gco:CharacterString>ps:ProtectedSite</gco:CharacterString>
+              </name>
+            </CI_OnlineResource>
+          </onLine>
+          <offLine>
+            <MD_Medium>
+              <name>
+                <MD_MediumNameCode codeList="./resources/codeList.xml#MD_MediumNameCode" codeListValue="onLine" />
+              </name>
+            </MD_Medium>
+          </offLine>
+        </MD_DigitalTransferOptions>
+      </transferOptions>
+    </MD_Distribution>
+  </distributionInfo>
+  <dataQualityInfo>
+    <DQ_DataQuality>
+      <scope>
+        <DQ_Scope>
+          <level>
+            <MD_ScopeCode codeList="./resources/codeList.xml#MD_ScopeCode" codeListValue="dataset">dataset</MD_ScopeCode>
+          </level>
+        </DQ_Scope>
+      </scope>
+      <report>
+        <DQ_CompletenessOmission>
+          <result>
+            <DQ_QuantitativeResult>
+              <valueUnit gco:nilReason="inapplicable" />
+              <value>
+                <gco:Record>Niet alle provincies hebben beschermde gebieden aangewezen voor alle categorien.</gco:Record>
+              </value>
+            </DQ_QuantitativeResult>
+          </result>
+        </DQ_CompletenessOmission>
+      </report>
+      <report>
+        <DQ_DomainConsistency>
+          <result>
+            <DQ_ConformanceResult>
+              <specification>
+                <CI_Citation>
+                  <title>
+                    <gco:CharacterString>INSPIRE Data Specification on Protected Sites - Guidelines v 3.1.0</gco:CharacterString>
+                  </title>
+                  <date>
+                    <CI_Date>
+                      <date>
+                        <gco:Date>2010-05-03</gco:Date>
+                      </date>
+                      <dateType>
+                        <CI_DateTypeCode codeList="./resources/codeList.xml#CI_DateTypeCode" codeListValue="publication" />
+                      </dateType>
+                    </CI_Date>
+                  </date>
+                </CI_Citation>
+              </specification>
+              <explanation>
+                <gco:CharacterString>Data is conform de data specs. Tests om de conformiteit te bepalen zijn echter nog niet beschikbaar.</gco:CharacterString>
+              </explanation>
+              <pass>
+                <gco:Boolean>true</gco:Boolean>
+              </pass>
+            </DQ_ConformanceResult>
+          </result>
+        </DQ_DomainConsistency>
+      </report>
+      <lineage>
+        <LI_Lineage>
+          <statement>
+            <gco:CharacterString>Dit bestand is samengesteld uit bestanden met beschermde gebieden afkomstig van 12 provincies.</gco:CharacterString>
+          </statement>
+          <processStep>
+            <LI_ProcessStep>
+              <description>
+                <gco:CharacterString>Dit bestand is samengesteld uit bestanden met beschermde gebieden afkomstig van 12 provincies.</gco:CharacterString>
+              </description>
+              <dateTime>
+                <gco:DateTime>2011-11-08T00:00:00</gco:DateTime>
+              </dateTime>
+              <processor>
+                <CI_ResponsibleParty>
+                  <organisationName>
+                    <gco:CharacterString>Interprovinciaal Overleg</gco:CharacterString>
+                  </organisationName>
+                  <role>
+                    <CI_RoleCode codeList="./resources/codeList.xml#CI_RoleCode" codeListValue="processor" />
+                  </role>
+                </CI_ResponsibleParty>
+              </processor>
+            </LI_ProcessStep>
+          </processStep>
+          <source>
+            <LI_Source>
+              <description>
+                <gco:CharacterString>Beschermde gebieden Provincie Drenthe (NL)</gco:CharacterString>
+              </description>
+              <sourceStep>
+                <LI_ProcessStep>
+                  <description>
+                    <gco:CharacterString>Samenvoegen</gco:CharacterString>
+                  </description>
+                  <dateTime>
+                    <gco:DateTime>2011-11-08T00:00:00</gco:DateTime>
+                  </dateTime>
+                  <processor>
+                    <CI_ResponsibleParty>
+                      <organisationName>
+                        <gco:CharacterString>Interprovinciaal Overleg</gco:CharacterString>
+                      </organisationName>
+                      <role>
+                        <CI_RoleCode codeList="./resources/codeList.xml#CI_RoleCode" codeListValue="principalInvestigator" />
+                      </role>
+                    </CI_ResponsibleParty>
+                  </processor>
+                </LI_ProcessStep>
+              </sourceStep>
+            </LI_Source>
+          </source>
+          <source>
+            <LI_Source>
+              <description>
+                <gco:CharacterString>Beschermde gebieden Provincie Flevoland (NL)</gco:CharacterString>
+              </description>
+              <sourceStep>
+                <LI_ProcessStep>
+                  <description>
+                    <gco:CharacterString>Samenvoegen</gco:CharacterString>
+                  </description>
+                  <dateTime>
+                    <gco:DateTime>2011-11-08T00:00:00</gco:DateTime>
+                  </dateTime>
+                  <processor>
+                    <CI_ResponsibleParty>
+                      <organisationName>
+                        <gco:CharacterString>Interprovinciaal Overleg</gco:CharacterString>
+                      </organisationName>
+                      <role>
+                        <CI_RoleCode codeList="./resources/codeList.xml#CI_RoleCode" codeListValue="principalInvestigator" />
+                      </role>
+                    </CI_ResponsibleParty>
+                  </processor>
+                </LI_ProcessStep>
+              </sourceStep>
+            </LI_Source>
+          </source>
+          <source>
+            <LI_Source>
+              <description>
+                <gco:CharacterString>Beschermde gebieden Provincie Fryslan (NL)</gco:CharacterString>
+              </description>
+              <sourceStep>
+                <LI_ProcessStep>
+                  <description>
+                    <gco:CharacterString>Samenvoegen</gco:CharacterString>
+                  </description>
+                  <dateTime>
+                    <gco:DateTime>2011-11-08T00:00:00</gco:DateTime>
+                  </dateTime>
+                  <processor>
+                    <CI_ResponsibleParty>
+                      <organisationName>
+                        <gco:CharacterString>Interprovinciaal Overleg</gco:CharacterString>
+                      </organisationName>
+                      <role>
+                        <CI_RoleCode codeList="./resources/codeList.xml#CI_RoleCode" codeListValue="principalInvestigator" />
+                      </role>
+                    </CI_ResponsibleParty>
+                  </processor>
+                </LI_ProcessStep>
+              </sourceStep>
+            </LI_Source>
+          </source>
+          <source>
+            <LI_Source>
+              <description>
+                <gco:CharacterString>Beschermde gebieden Provincie Gelderland (NL)</gco:CharacterString>
+              </description>
+              <sourceStep>
+                <LI_ProcessStep>
+                  <description>
+                    <gco:CharacterString>Samenvoegen</gco:CharacterString>
+                  </description>
+                  <dateTime>
+                    <gco:DateTime>2011-11-08T00:00:00</gco:DateTime>
+                  </dateTime>
+                  <processor>
+                    <CI_ResponsibleParty>
+                      <organisationName>
+                        <gco:CharacterString>Interprovinciaal Overleg</gco:CharacterString>
+                      </organisationName>
+                      <role>
+                        <CI_RoleCode codeList="./resources/codeList.xml#CI_RoleCode" codeListValue="principalInvestigator" />
+                      </role>
+                    </CI_ResponsibleParty>
+                  </processor>
+                </LI_ProcessStep>
+              </sourceStep>
+            </LI_Source>
+          </source>
+          <source>
+            <LI_Source>
+              <description>
+                <gco:CharacterString>Beschermde gebieden Provincie Groningen (NL)</gco:CharacterString>
+              </description>
+              <sourceStep>
+                <LI_ProcessStep>
+                  <description>
+                    <gco:CharacterString>Samenvoegen</gco:CharacterString>
+                  </description>
+                  <dateTime>
+                    <gco:DateTime>2011-11-08T00:00:00</gco:DateTime>
+                  </dateTime>
+                  <processor>
+                    <CI_ResponsibleParty>
+                      <organisationName>
+                        <gco:CharacterString>Interprovinciaal Overleg</gco:CharacterString>
+                      </organisationName>
+                      <role>
+                        <CI_RoleCode codeList="./resources/codeList.xml#CI_RoleCode" codeListValue="principalInvestigator" />
+                      </role>
+                    </CI_ResponsibleParty>
+                  </processor>
+                </LI_ProcessStep>
+              </sourceStep>
+            </LI_Source>
+          </source>
+          <source>
+            <LI_Source>
+              <description>
+                <gco:CharacterString>Beschermde gebieden Provincie Limburg (NL)</gco:CharacterString>
+              </description>
+              <sourceStep>
+                <LI_ProcessStep>
+                  <description>
+                    <gco:CharacterString>Samenvoegen</gco:CharacterString>
+                  </description>
+                  <dateTime>
+                    <gco:DateTime>2011-11-08T00:00:00</gco:DateTime>
+                  </dateTime>
+                  <processor>
+                    <CI_ResponsibleParty>
+                      <organisationName>
+                        <gco:CharacterString>Interprovinciaal Overleg</gco:CharacterString>
+                      </organisationName>
+                      <role>
+                        <CI_RoleCode codeList="./resources/codeList.xml#CI_RoleCode" codeListValue="principalInvestigator" />
+                      </role>
+                    </CI_ResponsibleParty>
+                  </processor>
+                </LI_ProcessStep>
+              </sourceStep>
+            </LI_Source>
+          </source>
+          <source>
+            <LI_Source>
+              <description>
+                <gco:CharacterString>Beschermde gebieden Provincie Noord-Brabant (NL)</gco:CharacterString>
+              </description>
+              <sourceStep>
+                <LI_ProcessStep>
+                  <description>
+                    <gco:CharacterString>Samenvoegen</gco:CharacterString>
+                  </description>
+                  <dateTime>
+                    <gco:DateTime>2011-11-08T00:00:00</gco:DateTime>
+                  </dateTime>
+                  <processor>
+                    <CI_ResponsibleParty>
+                      <organisationName>
+                        <gco:CharacterString>Interprovinciaal Overleg</gco:CharacterString>
+                      </organisationName>
+                      <role>
+                        <CI_RoleCode codeList="./resources/codeList.xml#CI_RoleCode" codeListValue="principalInvestigator" />
+                      </role>
+                    </CI_ResponsibleParty>
+                  </processor>
+                </LI_ProcessStep>
+              </sourceStep>
+            </LI_Source>
+          </source>
+          <source>
+            <LI_Source>
+              <description>
+                <gco:CharacterString>Beschermde gebieden Provincie Noord-Holland (NL)</gco:CharacterString>
+              </description>
+              <sourceStep>
+                <LI_ProcessStep>
+                  <description>
+                    <gco:CharacterString>Samenvoegen</gco:CharacterString>
+                  </description>
+                  <dateTime>
+                    <gco:DateTime>2011-11-08T00:00:00</gco:DateTime>
+                  </dateTime>
+                  <processor>
+                    <CI_ResponsibleParty>
+                      <organisationName>
+                        <gco:CharacterString>Interprovinciaal Overleg</gco:CharacterString>
+                      </organisationName>
+                      <role>
+                        <CI_RoleCode codeList="./resources/codeList.xml#CI_RoleCode" codeListValue="principalInvestigator" />
+                      </role>
+                    </CI_ResponsibleParty>
+                  </processor>
+                </LI_ProcessStep>
+              </sourceStep>
+            </LI_Source>
+          </source>
+          <source>
+            <LI_Source>
+              <description>
+                <gco:CharacterString>Beschermde gebieden Provincie Overijssel (NL)</gco:CharacterString>
+              </description>
+              <sourceStep>
+                <LI_ProcessStep>
+                  <description>
+                    <gco:CharacterString>Samenvoegen</gco:CharacterString>
+                  </description>
+                  <dateTime>
+                    <gco:DateTime>2011-11-08T00:00:00</gco:DateTime>
+                  </dateTime>
+                  <processor>
+                    <CI_ResponsibleParty>
+                      <organisationName>
+                        <gco:CharacterString>Interprovinciaal Overleg</gco:CharacterString>
+                      </organisationName>
+                      <role>
+                        <CI_RoleCode codeList="./resources/codeList.xml#CI_RoleCode" codeListValue="principalInvestigator" />
+                      </role>
+                    </CI_ResponsibleParty>
+                  </processor>
+                </LI_ProcessStep>
+              </sourceStep>
+            </LI_Source>
+          </source>
+          <source>
+            <LI_Source>
+              <description>
+                <gco:CharacterString>Beschermde gebieden Provincie Utrecht (NL)</gco:CharacterString>
+              </description>
+              <sourceStep>
+                <LI_ProcessStep>
+                  <description>
+                    <gco:CharacterString>Samenvoegen</gco:CharacterString>
+                  </description>
+                  <dateTime>
+                    <gco:DateTime>2011-11-08T00:00:00</gco:DateTime>
+                  </dateTime>
+                  <processor>
+                    <CI_ResponsibleParty>
+                      <organisationName>
+                        <gco:CharacterString>Interprovinciaal Overleg</gco:CharacterString>
+                      </organisationName>
+                      <role>
+                        <CI_RoleCode codeList="./resources/codeList.xml#CI_RoleCode" codeListValue="principalInvestigator" />
+                      </role>
+                    </CI_ResponsibleParty>
+                  </processor>
+                </LI_ProcessStep>
+              </sourceStep>
+            </LI_Source>
+          </source>
+          <source>
+            <LI_Source>
+              <description>
+                <gco:CharacterString>Provincie Zeeland (NL)</gco:CharacterString>
+              </description>
+              <sourceStep>
+                <LI_ProcessStep>
+                  <description>
+                    <gco:CharacterString>Samenvoegen</gco:CharacterString>
+                  </description>
+                  <dateTime>
+                    <gco:DateTime>2011-11-08T00:00:00</gco:DateTime>
+                  </dateTime>
+                  <processor>
+                    <CI_ResponsibleParty>
+                      <organisationName>
+                        <gco:CharacterString>Interprovinciaal Overleg</gco:CharacterString>
+                      </organisationName>
+                      <role>
+                        <CI_RoleCode codeList="./resources/codeList.xml#CI_RoleCode" codeListValue="principalInvestigator" />
+                      </role>
+                    </CI_ResponsibleParty>
+                  </processor>
+                </LI_ProcessStep>
+              </sourceStep>
+            </LI_Source>
+          </source>
+          <source>
+            <LI_Source>
+              <description>
+                <gco:CharacterString>Beschermde gebieden Provincie Zuid-Holland (NL)</gco:CharacterString>
+              </description>
+              <sourceStep>
+                <LI_ProcessStep>
+                  <description>
+                    <gco:CharacterString>Samenvoegen</gco:CharacterString>
+                  </description>
+                  <dateTime>
+                    <gco:DateTime>2011-11-08T00:00:00</gco:DateTime>
+                  </dateTime>
+                  <processor>
+                    <CI_ResponsibleParty>
+                      <organisationName>
+                        <gco:CharacterString>Interprovinciaal Overleg</gco:CharacterString>
+                      </organisationName>
+                      <role>
+                        <CI_RoleCode codeList="./resources/codeList.xml#CI_RoleCode" codeListValue="principalInvestigator" />
+                      </role>
+                    </CI_ResponsibleParty>
+                  </processor>
+                </LI_ProcessStep>
+              </sourceStep>
+            </LI_Source>
+          </source>
+        </LI_Lineage>
+      </lineage>
+    </DQ_DataQuality>
+  </dataQualityInfo>
+</MD_Metadata>

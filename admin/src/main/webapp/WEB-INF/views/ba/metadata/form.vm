@@ -1,0 +1,79 @@
+<script type="text/javascript">
+require([		
+	"dojo/dom-style",
+	"dojo/query",
+	"dijit/registry",
+	"dojo/on",
+   	"cds/ready!"
+], function(domStyle, query, registry, on) {
+	on(registry.byId('cancelButton'), 'click', function() {
+		window.location.href = '#springUrl("/ba/metadata")';
+	});
+});
+</script>
+
+<div>
+
+<form action="#springUrl($action)" method="post">
+
+#if($metadataForm.id)
+<input type="hidden" name="id" value="$metadataForm.id">
+#end
+
+<table class="cds-table">
+	<thead>
+		<th>
+			<td colspan="2">$title</td>
+		</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td><label for="theme">Thema</label></td>
+			<td>
+				#set($themeOptions = {"":""})
+				#foreach($theme in $themes)
+				#set($dummy = $themeOptions.put($theme.id, $theme.naam))
+				#end
+				#springFormSingleSelect("metadataForm.themeId" $themeOptions "data-dojo-type=dijit/form/FilteringSelect")				
+				#springShowErrors("<br>" "error")
+			</td>
+		</tr>
+		<tr>
+			<td><label for="documentType">Type</label></td>
+			<td>
+				#springFormRadioButtons("metadataForm.documentType" {"DATASET":"Dataset","SERVICE":"Service"} "" "data-dojo-type=dijit/form/RadioButton")
+				#springShowErrors("<br>" "error")
+			</td>
+		</tr>
+		<tr>
+			<td><label for="documentName">Naam</label></td>
+			<td>				
+				#if($editing)
+				<input type="text" value="$metadataForm.documentName" readonly disabled>
+				#else
+				#springFormInput("metadataForm.documentName" "type=text")
+				#springShowErrors("<br>" "error")
+				#end
+			</td>
+		</tr>
+		<tr>
+			<td><label for="documentContent">Inhoud</label></td>
+			<td>
+				#springFormTextarea("metadataForm.documentContent" "cols=80 rows=25")
+				#springShowErrors("<br>" "error")
+			</td>
+		</tr>		
+	</tbody>
+	<tfoot>
+		<tr>
+			<td colspan="2">
+				<button data-dojo-type="dijit/form/Button" type="submit">Opslaan</button>
+				<button id="cancelButton" data-dojo-type="dijit/form/Button" type="button">Annuleren</button>
+			</td>
+		</tr>
+	</tfoot>
+</table>
+
+</form>
+
+</div>

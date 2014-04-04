@@ -179,6 +179,15 @@
 										</div>
 									</div>
 									#end
+									#if($authz.anyGranted("ROLE_BEHEERDER"))
+									<div id="tabs_ba_metadata_index" class="dijitTab">
+										<div class="dijitTabInnerDiv">
+											<div title="Beheren van metadata documenten" class="dijitTabContent" onClick="location.href='#springUrl('/ba/metadata')';">
+												<span class="tabLabel">Metadata</span>
+											</div>
+										</div>
+									</div>
+									#end
 							    </div>
 							</div>
 						</div>

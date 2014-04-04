@@ -27,8 +27,10 @@ public class ViewContextHandlerInterceptorAdapter extends
 			String overriddenViewName = (String)model.get(VIEW_NAME);
 			String viewName = StringUtils.isNotBlank(overriddenViewName) ? overriddenViewName : modelAndView.getViewName();
 			// add viewName to model
-			viewName = StringUtils.replace(viewName, "/", "_");
-			model.put(VIEW_NAME, viewName);
+			if(!viewName.startsWith("redirect:")) {
+				viewName = StringUtils.replace(viewName, "/", "_");
+				model.put(VIEW_NAME, viewName);
+			}
 
 			// Add security-context to model
 			AuthzImpl authz = new AuthzImpl();

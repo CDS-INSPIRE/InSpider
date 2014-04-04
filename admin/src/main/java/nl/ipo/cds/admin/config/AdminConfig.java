@@ -22,6 +22,7 @@ import nl.ipo.cds.etl.process.config.Processes;
 import nl.ipo.cds.etl.theme.ThemeDiscoverer;
 import nl.ipo.cds.etl.util.BlockingExecutor;
 import nl.ipo.cds.executor.ConfigDir;
+import nl.ipo.cds.metadata.config.MetadataManagerConfiguration;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -48,7 +49,8 @@ import org.springframework.context.annotation.ImportResource;
 	Processes.class,
 	FileCacheConfiguration.class,
 	Messages.class,
-	ScriptExecutorConfiguration.class
+	ScriptExecutorConfiguration.class,
+	MetadataManagerConfiguration.class
 })
 public class AdminConfig {
 	

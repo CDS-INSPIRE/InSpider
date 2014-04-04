@@ -35,7 +35,6 @@ import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.mvc.WebContentInterceptor;
 import org.springframework.web.servlet.theme.FixedThemeResolver;
-import org.springframework.web.servlet.theme.ThemeChangeInterceptor;
 
 @Configuration
 @EnableWebMvc
@@ -45,8 +44,7 @@ import org.springframework.web.servlet.theme.ThemeChangeInterceptor;
 	@ComponentScan.Filter (type = FilterType.ANNOTATION, value = Controller.class)
 })
 public class AdminWebMvcConfig extends WebMvcConfigurerAdapter implements VelocityViewConfiguration, ServletContextAware {
-
-	private @Inject ThemeChangeInterceptor themeChangeInterceptor;
+	
 	private @Inject LocaleChangeInterceptor localeChangeInterceptor;
 	private @Inject ViewContextHandlerInterceptorAdapter viewContextHandlerInterceptorAdapter;
 	private @Inject WebContentInterceptor webContentInterceptor;
@@ -71,8 +69,7 @@ public class AdminWebMvcConfig extends WebMvcConfigurerAdapter implements Veloci
 	
 	@Override
 	public void addInterceptors (final InterceptorRegistry registry) {
-		// register "global" interceptor beans to apply to all registered HandlerMappings
-		registry.addInterceptor (themeChangeInterceptor ());
+		// register "global" interceptor beans to apply to all registered HandlerMappings		
 		registry.addInterceptor (localeChangeInterceptor ());
 		registry.addInterceptor (viewContextHandlerInterceptorAdapter ());
 		registry.addInterceptor (webContentInterceptor ());
@@ -146,15 +143,6 @@ public class AdminWebMvcConfig extends WebMvcConfigurerAdapter implements Veloci
 	 */
 	public @Bean CommonsMultipartResolver multipartResolver () {
 		return new CommonsMultipartResolver ();
-	}
-
-	
-	public @Bean ThemeChangeInterceptor themeChangeInterceptor () {
-		if (this.themeChangeInterceptor == null) {
-			this.themeChangeInterceptor = new ThemeChangeInterceptor ();
-		}
-		
-		return themeChangeInterceptor;
 	}
 	
 	public @Bean LocaleChangeInterceptor localeChangeInterceptor () {

@@ -1,0 +1,86 @@
+#set($title = 'Configuratie metadata')
+
+<script type="text/javascript">
+require([
+	"dojo/query",
+	"dojo/dom-attr",
+	"dijit/registry",
+	"dojo/on",
+   	"cds/ready!"
+], function(query, domAttr, registry, on) {
+	query('#documentsTable .document').forEach(function(document) {		
+		var documentId = domAttr.get(document, 'data-document-id');
+		var documentTitle = domAttr.get(document, 'data-document-title');
+		
+		query('.removeButton', document).forEach(function(buttonNode) {
+			var button = registry.byNode(buttonNode);			
+			on(button, 'click', function() {
+				if(confirm('Weet u zeker dat u document \'' + documentTitle + '\' wilt verwijderen?')) {
+					window.location.href = 'metadata/delete/' + documentId;
+				}
+			});
+		});
+		
+		query('.editButton', document).forEach(function(buttonNode) {
+			var button = registry.byNode(buttonNode);			
+			on(button, 'click', function() {				
+				window.location.href = 'metadata/edit/' + documentId;
+			});
+		});
+	});
+			
+	var addButton = registry.byId('addButton');		
+	on(addButton, 'click', function() {
+		window.location.href = 'metadata/add';
+	});	
+});
+</script>
+
+<div>
+
+<h2>Metadata documenten</h2>
+
+<table id="documentsTable" class="cds-table">
+	<thead>
+		<tr>
+			<th>Naam</th>
+			<th>Type</th>
+			<th>Thema</th>
+			<th>Actie</th>
+		</tr>
+	</thead>
+	<tbody>
+#foreach($document in $documents)
+		<tr class="document" data-document-id="$document.id" data-document-title="$document.documentName">
+			<td>$document.documentName</td>
+			<td>
+				#if($document.documentType == 'DATASET')
+				Dataset
+				#elseif($document.documentType == 'SERVICE')
+				Service			
+				#end
+			</td>
+			<td>$document.thema.naam</td>
+			<td>
+				<button class="editButton" data-dojo-type="dijit/form/Button" type="button">
+					Wijzigen
+				</button>
+				<button class="removeButton" data-dojo-type="dijit/form/Button" type="button">
+					Verwijderen
+				</button>
+			</td>
+		</tr>	
+#end
+	</tbody>
+	<tfoot>
+		<tr>
+			<td colspan="4">
+				<button id="addButton" data-dojo-type="dijit/form/Button" type="button">
+					Toevoegen
+				</button>				
+			</td>
+		</tr>
+	</tfoot>
+<table>
+
+</div>

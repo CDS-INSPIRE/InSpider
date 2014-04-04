@@ -48,6 +48,7 @@ import nl.ipo.cds.domain.Identity;
 import nl.ipo.cds.domain.JobLog;
 import nl.ipo.cds.domain.JobType;
 import nl.ipo.cds.domain.MappingOperation;
+import nl.ipo.cds.domain.MetadataDocument;
 import nl.ipo.cds.domain.Rol;
 import nl.ipo.cds.domain.Thema;
 import nl.ipo.cds.utils.DateTimeUtils;
@@ -958,8 +959,7 @@ public class ManagerDaoImpl implements ManagerDao {
 	@Override
 	public List<Thema> getAllThemas() {
 		Query themaQuery = null;
-		themaQuery = entityManager.createQuery("from Thema as thema where thema.naam = ?1 order by thema.naam")
-				.setParameter (1, "Protected sites");
+		themaQuery = entityManager.createQuery("from Thema as thema order by thema.naam");		
 		return themaQuery.getResultList();
 	}
 	
@@ -967,11 +967,6 @@ public class ManagerDaoImpl implements ManagerDao {
 	public List<Thema> getAllThemas (final Bronhouder bronhouder) {
 		final TypedQuery<Thema> query = entityManager.createQuery ("select a.thema from ThemaBronhouderAuthorization a where a.bronhouder = ?1", Thema.class)
 				.setParameter (1, bronhouder);
-
-		/*
-		final TypedQuery<Thema> query = entityManager.createQuery ("from Thema as thema where thema.naam <> ?1 order by thema.naam", Thema.class)
-				.setParameter (1, "Protected sites");
-		*/
 		
 		return query.getResultList ();
 	}
@@ -1618,5 +1613,35 @@ public class ManagerDaoImpl implements ManagerDao {
 	public List<Object[]> getChangedMetadataDocuments() {
 		final Query query = entityManager.createNativeQuery("select * from manager.metadatadocument_update_datum");
 		return query.getResultList();
+	}
+	
+	@Transactional
+	public List<MetadataDocument> getAllMetadataDocuments() {
+		TypedQuery<MetadataDocument> metadataQuery = entityManager.createQuery("from MetadataDocument as md order by md.documentName", MetadataDocument.class);
+		return metadataQuery.getResultList();
+	}
+
+	@Override
+	@Transactional
+	public MetadataDocument getMetadataDocument(Long id) {
+		return entityManager.find(MetadataDocument.class, id);
+	}
+
+	@Override
+	@Transactional
+	public void create(MetadataDocument metatataDocument) {
+		entityManager.persist(metatataDocument);
+	}
+
+	@Override
+	@Transactional
+	public void update(MetadataDocument metatataDocument) {
+		entityManager.merge(metatataDocument);		
+	}
+
+	@Override
+	@Transactional
+	public void delete(MetadataDocument metatataDocument) {
+		entityManager.remove(metatataDocument);		
 	}
 }

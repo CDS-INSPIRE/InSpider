@@ -327,6 +327,13 @@
 			</dependency>
 			<dependency>
 				<groupId>nl.ipo.cds</groupId>
+				<artifactId>catalog-metadata</artifactId>
+				<version>2.2-SNAPSHOT</version>
+				<type>jar</type>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>nl.ipo.cds</groupId>
 				<artifactId>domain-metadata</artifactId>
 				<version>2.2-SNAPSHOT</version>
 				<type>jar</type>

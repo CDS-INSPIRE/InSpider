@@ -1,0 +1,13 @@
+#set($layerName='downloadservice')
+#set($title = 'DownloadService')
+
+
+<br/>
+#if(!$dlLinkList)
+	<h2>Geen download service configuraties beschikbaar.</h2> 
+#else
+	<h2>Beschikbare download service configuraties:</h2>
+	#foreach($dlLink in $dlLinkList.downloadLinkList)
+		<p>Link naar <a href="$dlLink.ref" target="_blank">$dlLink.text</a></p>
+	#end
+#end	

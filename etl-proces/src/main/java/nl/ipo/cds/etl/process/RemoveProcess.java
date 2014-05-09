@@ -10,6 +10,7 @@ import javax.sql.DataSource;
 import nl.idgis.commons.jobexecutor.Job;
 import nl.idgis.commons.jobexecutor.JobLogger;
 import nl.idgis.commons.jobexecutor.Process;
+import nl.ipo.cds.dao.ManagerDao;
 import nl.ipo.cds.domain.Bronhouder;
 import nl.ipo.cds.domain.DatasetType;
 import nl.ipo.cds.domain.RemoveJob;
@@ -32,19 +33,36 @@ public class RemoveProcess implements Process<RemoveJob> {
 	@Override
 	@Transactional
 	public boolean process(RemoveJob job, JobLogger logger) {
-		log.debug("removing dataset started");
+		log.debug("removing dataset and bron data started");
 
-		// remove data from bronschema, a transform job will then remove data
-		// from inspire schema
 		Bronhouder bronhouder = job.getBronhouder();
 		DatasetType datasetType = job.getDatasetType();
 		String uuid = job.getUuid();
 
 		log.debug("bronhouder: " + bronhouder);
 		log.debug("datasetType: " + datasetType);
+		log.debug("uuid: " + uuid);
 
 		Connection connection = DataSourceUtils.getConnection(dataSource);
+		
+		// remove dataset from manager schema
+		try {
+			PreparedStatement removeDataset 
+				= connection.prepareStatement("delete from manager.dataset where bronhouder_id = ? and type_id = ? and uuid=?");
+			removeDataset.setLong(1, bronhouder.getId());
+			removeDataset.setLong(2, datasetType.getId());
+			removeDataset.setString(3, uuid);
+			log.debug("delete from manager.dataset");
+			log.debug("delete sql statement: " + removeDataset);
+			log.debug("# of deleted datasets: " + removeDataset.executeUpdate());
+			removeDataset.close();
+		} catch (SQLException e2) {
+			log.debug("Failed deleting dataset from manager schema" );
+			throw new RuntimeException("Failed to remove dataset from manager schema" , e2);
+		}
 
+		// remove data from bron schema, 
+		// a transform job will then remove data from inspire schema
 		PreparedStatement bron;
 		try {
 			bron = connection.prepareStatement("select table_name from information_schema.tables where table_schema = 'bron' and table_type = 'BASE TABLE'");
@@ -81,9 +99,9 @@ public class RemoveProcess implements Process<RemoveJob> {
 		}
 		DataSourceUtils.releaseConnection(connection, dataSource);
 
-		log.debug("removing dataset finished");
+		log.debug("removing dataset and bron data finished");
 
-		return true;
+		return false;
 	}
 
 	@Override

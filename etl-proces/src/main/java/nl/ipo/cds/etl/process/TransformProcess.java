@@ -41,7 +41,7 @@ public class TransformProcess implements Process<TransformJob>, ApplicationConte
 			transformer.transform(themeNames);
 		}
 		log.debug("transformation finished");		
-		return true;
+		return false;
 	}
 
 	private List<String> getThemeNamesThatNeedTransformation () {

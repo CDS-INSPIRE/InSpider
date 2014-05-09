@@ -178,6 +178,8 @@ public interface ManagerDao {
 	public List<Dataset> getDatasetsByBronhouder(Bronhouder bronhouder);
 
 	public List<Dataset> getDatasetsByUUID(String uuid);
+
+	public Dataset getDataset(Bronhouder bronhouder, DatasetType datasetType, String uuid);
 	
 	public void update(Dataset dataSet); // U
 

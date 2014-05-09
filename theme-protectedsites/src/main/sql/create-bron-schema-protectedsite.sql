@@ -16,3 +16,5 @@ SELECT AddGeometryColumn ('bron','protected_site','geometry',28992,'GEOMETRY',2)
 -- ---------------------------------
 GRANT SELECT, INSERT, UPDATE, DELETE, TRIGGER ON bron.protected_site TO inspire;
 GRANT USAGE, SELECT, UPDATE ON SEQUENCE bron.protected_site_id_seq TO inspire;
+
+ALTER TABLE bron.protected_site ADD CONSTRAINT bron_protected_site_unique UNIQUE (inspire_id);

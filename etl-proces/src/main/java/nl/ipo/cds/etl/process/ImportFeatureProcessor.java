@@ -89,6 +89,7 @@ public class ImportFeatureProcessor extends ValidateFeatureProcessor {
 					"where j0.id = ? " +
 					"and j2.job_type = 'IMPORT' " +
 					"and j2.status = 'FINISHED' " +
+					"and j2.starttime is not null "+ // rule out jobs that have not started 
 					"ORDER BY j2.starttime DESC LIMIT 1)";
 			technicalLog.debug("delete query: " + query);
 			PreparedStatement stmt = connection.prepareStatement(query);

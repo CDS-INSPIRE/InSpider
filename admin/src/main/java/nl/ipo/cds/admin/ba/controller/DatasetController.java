@@ -189,9 +189,6 @@ public class DatasetController{
 			managerDao.create (transformJob);
 		}
 		
-//		this.managerDao.delete(dataset);// do this in RemoveJob
-		
-
 		redirectAttributes.addAttribute ("thema", themaNaam);
 		return "redirect:/ba/datasetconfig/" + bronhouder.getId();
 	}

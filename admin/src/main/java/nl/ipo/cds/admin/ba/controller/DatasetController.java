@@ -84,8 +84,25 @@ public class DatasetController{
 		// get the current thema
 		Thema thema = null ;
 		List<Thema> themaList = this.managerDao.getAllThemas(bronhouder);
+		List<String> notAuthorizedThemaList = new ArrayList<String>();
+		AuthzImpl authz = new AuthzImpl();
+		if (authz.anyGranted("ROLE_BEHEERDER")){
+			// add themas that are implicit in the datasetlist to the themalist
+			// this happens when the datasetlist contains more datasets than the themaAuthorization allows
+			for (Dataset dataset : datasetList) {
+				Thema datasetThema = dataset.getDatasetType().getThema();
+				if (!themaList.contains(datasetThema)){
+					themaList.add(datasetThema);
+					notAuthorizedThemaList.add(datasetThema.getNaam());
+				}
+			}
+		}
 		if (themaName != null && !themaName.isEmpty()){
 			thema = this.managerDao.getThemaByName(themaName);
+			if (!themaList.contains(thema)){
+				// sometimes when switching to another bronhouder the themaName does not match a thema of the new bronhouder
+				thema = themaList.get(0);
+			}
 		}else{
 			thema = themaList.get(0);
 		}
@@ -114,18 +131,39 @@ public class DatasetController{
 		 *  i.e. only the current bronhouder for role bronhouder 
 		 *  or all bronhouders for role beheerder 
 		 */
-		AuthzImpl authz = new AuthzImpl();
-		final List<Bronhouder> bronhouderList ;
+		
+		// Use BronhouderNAW instead of Bronhouder because of the need to flag when a bronhouder has more datasets than it is authorized for
+		final List<BronhouderNAW> bronhouderNAWList ;
+		bronhouderNAWList = new ArrayList<BronhouderNAW>();
 		if (authz.anyGranted("ROLE_BEHEERDER")){
-			bronhouderList = managerDao.getAllBronhouders();
+			// beheerder role sees all bronhouders
+			final List<Bronhouder> bronhouderList = managerDao.getAllBronhouders();
+			for (Bronhouder bronhouder2 : bronhouderList) {
+				List<Thema> themaList1 = this.managerDao.getAllThemas(bronhouder2);
+				List<Thema> themaList2 = new ArrayList<Thema>();
+				List <Dataset> datasetList2 = this.managerDao.getDatasetsByBronhouder(bronhouder2);
+				for (Dataset dataset2 : datasetList2) {
+					Thema datasetThema = dataset2.getDatasetType().getThema();
+					if (!themaList1.contains(datasetThema)){
+						themaList2.add(datasetThema);
+					}
+				}
+				if (themaList2.isEmpty()){
+					bronhouderNAWList.add(new BronhouderNAW (bronhouder2, false));
+				}else{
+					//flag this bronhouder as having datasets it is not authorized to have
+					bronhouderNAWList.add(new BronhouderNAW (bronhouder2, true));
+				}
+			}
 		}else{
-			bronhouderList = new ArrayList<Bronhouder>();
-			bronhouderList.add(bronhouder);
+			// bronhouder role only sees one bronhouder
+			bronhouderNAWList.add(new BronhouderNAW (bronhouder, false));
 		}
-		model.addAttribute("bronhouders", bronhouderList);
+		model.addAttribute("bronhouders", bronhouderNAWList);
 
 		model.addAttribute("bronhouder", bronhouder);
 		model.addAttribute("themaList", themaList);
+		model.addAttribute("notAuthorizedThemaList", notAuthorizedThemaList);
 		model.addAttribute("currentThema", thema);
 		model.addAttribute("bronhouderDatasetList", bronhouderDatasetList);
 		model.addAttribute("pgrBaseUrl", reportConfiguration.getPgrBaseUrl ());

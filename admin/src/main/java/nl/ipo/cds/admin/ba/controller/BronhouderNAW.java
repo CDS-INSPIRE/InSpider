@@ -6,9 +6,21 @@ import nl.ipo.cds.domain.Bronhouder;
 public class BronhouderNAW {
 
 	private Bronhouder bronhouder;
+	private boolean hasUnauthorizedThema = false;
 
 	public BronhouderNAW(Bronhouder bronhouder){
 		this.bronhouder = bronhouder;
+	}
+
+	/**
+	 * Make a wrapper class for bronhouder and set a flag when it has unauthorized datasets
+	 * @param bronhouder
+	 * @param hasUnauthorizedThema true if it has one or more datasets that do not belong to authorized themas<br>
+	 * default false 
+	 */
+	public BronhouderNAW(Bronhouder bronhouder, boolean hasUnauthorizedThema){
+		this.bronhouder = bronhouder;
+		this.hasUnauthorizedThema = hasUnauthorizedThema;
 	}
 
 	public Long getId() {
@@ -89,6 +101,14 @@ public class BronhouderNAW {
 
 	public void setBronhouder(Bronhouder bronhouder) {
 		this.bronhouder = bronhouder;
+	}
+
+	public boolean isHasUnauthorizedThema() {
+		return hasUnauthorizedThema;
+	}
+
+	public void setHasUnauthorizedThema(boolean hasUnauthorizedThema) {
+		this.hasUnauthorizedThema = hasUnauthorizedThema;
 	}
 
 }

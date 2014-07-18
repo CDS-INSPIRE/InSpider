@@ -50,7 +50,7 @@ require ([
 			location.href=url;
 		</script>
 		#foreach($b in $bronhouders)
-		    <option value="$b.id"#if ($b.id==$bronhouder.id) selected="selected"#end>$b.naam</option>
+		    <option value="$b.id"#if ($b.id==$bronhouder.id) selected="selected"#end>#if($b.hasUnauthorizedThema) !! #end $b.bronhouderNaam</option>
 		#end
 	</select>
 
@@ -58,7 +58,7 @@ require ([
 	<label>Thema:&nbsp;&nbsp;&nbsp;
 	<select data-dojo-type="dijit/form/Select" id="thema" name="thema" required="true"  title="Thema waaronder datasets zijn gegroepeerd">
 		#foreach($thema in $themaList)
-		    <option value="#e($thema.naam)"#if($thema.naam == $currentThema.naam) selected="selected"#end>$thema.naam</option>
+		    <option value="#e($thema.naam)"#if($thema.naam == $currentThema.naam) selected="selected"#end>#if($notAuthorizedThemaList.contains($thema.naam)) !! #end $thema.naam</option>
 		#end
 	</select>
 	</label>

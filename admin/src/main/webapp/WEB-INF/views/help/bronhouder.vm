@@ -447,6 +447,8 @@
 			</div><br/>
 			<div class="note">NB. De keuzelijst voor bronhouder bovenin is alleen actief als men als beheerder is ingelogd.<br/>
 			Een beheerder kan de dataset gegevens van alle bronhouders inzien en aanpassen.</div>
+			<div class="note">NB. Het kan voorkomen dat er datasets aan een bronhouder zijn toegekend terwijl dit niet bedoeld is.<br/>
+			Een beheerder ziet de betreffende bronhouder en dataset gemarkeerd met '!!' en kan de deze datasets verwijderen.</div>
 		<br/>
 		<br/>
     </div>

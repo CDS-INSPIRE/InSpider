@@ -1,4 +1,19 @@
-target
-.settings
-.project
+# ignore all bin directories
+# matches "bin" in any subfolder
+bin/
+
+# ignore all target directories
+target/
+
+# ignore all files ending with ~
+*~ 
+
+.metadata 
+
+# eclipse artifacts
 .classpath
+.project
+.settings/
+org.maven.ide.eclipse.prefs
+velocity.log
+dependency-reduced-pom.xml

@@ -664,6 +664,23 @@ public class ManagerDaoImpl implements ManagerDao {
 		return datasetQuery.getResultList();
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public Dataset getDataset(Bronhouder bronhouder, DatasetType datasetType, String uuid) {
+		Query datasetQuery = null;
+		datasetQuery = entityManager.createQuery(
+				"from Dataset as dataset where dataset.bronhouder.id = ?1 and dataset.type.id = ?2 and dataset.uuid = ?3")
+				.setParameter(1, bronhouder.getId ())
+				.setParameter(2, datasetType.getId ())
+				.setParameter(3, uuid);
+		List<Dataset> datasetList =  datasetQuery.getResultList();
+		if (datasetList.size()>0){
+			return datasetList.get(0);
+		}else{
+			return null;
+		}
+	}
+
 	@Override
 	@Transactional
 	public void update(Dataset dataSet) {
@@ -1644,4 +1661,5 @@ public class ManagerDaoImpl implements ManagerDao {
 	public void delete(MetadataDocument metatataDocument) {
 		entityManager.remove(metatataDocument);		
 	}
+
 }

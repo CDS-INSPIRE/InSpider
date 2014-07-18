@@ -83,7 +83,7 @@ public class RedirectingEntityResolver implements XMLEntityResolver {
 			return new XMLInputSource(null, systemId, redirectedSystemId, is,
 					null);
 		}
-		return new XMLInputSource(null, systemId, redirectedSystemId);
+		return new XMLInputSource(null, redirectedSystemId, null);
 	}
 
 }

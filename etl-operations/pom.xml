@@ -3,7 +3,7 @@
   <parent>
     <groupId>nl.ipo.cds</groupId>
     <artifactId>cds-parent</artifactId>
-    <version>2.2-SNAPSHOT</version>
+    <version>2.3-SNAPSHOT</version>
   </parent>
   <artifactId>etl-operations</artifactId>
   <name>CDS Inspire - ETL - Transform operations</name>
@@ -11,7 +11,7 @@
   	<dependency>
   		<groupId>nl.ipo.cds</groupId>
   		<artifactId>attributemapping</artifactId>
-  		<version>2.2-SNAPSHOT</version>
+  		<version>2.3-SNAPSHOT</version>
   	</dependency>
   	<dependency>
   		<groupId>junit</groupId>

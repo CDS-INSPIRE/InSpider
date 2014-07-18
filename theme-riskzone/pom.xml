@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>nl.ipo.cds</groupId>
 		<artifactId>cds-parent</artifactId>
-		<version>2.2-SNAPSHOT</version>
+		<version>2.3-SNAPSHOT</version>
 	</parent>
 	<artifactId>theme-riskzone</artifactId>
 	<name>CDS - Theme Riskzone</name>

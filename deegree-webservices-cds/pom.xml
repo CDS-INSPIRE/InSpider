@@ -105,7 +105,7 @@
     <dependency>
       <groupId>nl.idgis.commons</groupId>
 	  <artifactId>commons-deegree</artifactId>
-	  <version>0.0.9</version>				    	
+	  <version>0.1.9</version>				    	
     </dependency>
   </dependencies>
 </project>

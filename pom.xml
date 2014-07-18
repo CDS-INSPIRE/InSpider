@@ -38,15 +38,15 @@
 
 	<repositories>
         <repository>
-        <id>central</id>
-        <releases>
-            <updatePolicy>never</updatePolicy>
-        </releases>
-        <snapshots>
-            <updatePolicy>never</updatePolicy>
-        </snapshots>
-        <url>http://central.maven.org/maven2/</url>
-        </repository>
+	      <id>deegree-repo</id>
+	      <url>http://repo.deegree.org/content/groups/public/</url>
+	      <releases>
+	        <updatePolicy>never</updatePolicy>
+	      </releases>
+	      <snapshots>
+	        <enabled>true</enabled>
+	      </snapshots>
+	    </repository>
 	</repositories>
 		
 	<scm>

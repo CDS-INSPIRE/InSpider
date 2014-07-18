@@ -30,25 +30,25 @@
 		<dojo.version>1.8.3</dojo.version>
 
 		<!-- IDgis commons: -->
-		<nl.idgis.commons.version>0.0.9</nl.idgis.commons.version>
+		<nl.idgis.commons.version>0.1.9</nl.idgis.commons.version>
 
 		<!-- AspectJ: -->
 		<org.aspectj.version>1.6.11</org.aspectj.version>
 	</properties>
 
-  <repositories>
-    <repository>
-      <id>deegree-repo</id>
-      <url>http://repo.deegree.org/content/groups/public/</url>
-      <releases>
-        <updatePolicy>never</updatePolicy>
-      </releases>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-    </repository>
-  </repositories>
-  
+	<repositories>
+        <repository>
+        <id>central</id>
+        <releases>
+            <updatePolicy>never</updatePolicy>
+        </releases>
+        <snapshots>
+            <updatePolicy>never</updatePolicy>
+        </snapshots>
+        <url>http://central.maven.org/maven2/</url>
+        </repository>
+	</repositories>
+		
 	<scm>
     	<connection>scm:git:git@github.com:CDS-INSPIRE/InSpider.git</connection>
     	<developerConnection>scm:git:git@github.com:CDS-INSPIRE/InSpider.git</developerConnection>
@@ -56,34 +56,6 @@
     	<tag>HEAD</tag>
   	</scm>
 	
-	<!-- development organisation -->
-	<developers>
-		<developer>
-			<name>Reijer Copier</name>
-			<email>reijer.copier@IDgis.nl</email>
-			<roles>
-				<role>Developer</role>
-				<role>Designer</role>
-			</roles>
-		</developer>
-		<developer>
-			<name>Rob Stekelenburg</name>
-			<email>rob.stekelenburg@IDgis.nl</email>
-			<roles>
-				<role>Developer</role>
-				<role>Designer</role>
-			</roles>
-		</developer>
-		<developer>
-			<name>Erik Orbons</name>
-			<email>erik.orbons@IDgis.nl</email>
-			<roles>
-				<role>Developer</role>
-				<role>Designer</role>
-			</roles>
-		</developer>
-	</developers>
-
 	<!-- properties -->
 	<build>
 		<plugins>

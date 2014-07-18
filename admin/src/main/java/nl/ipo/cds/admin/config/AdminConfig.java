@@ -1,5 +1,7 @@
 package nl.ipo.cds.admin.config;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Executor;
 
@@ -8,6 +10,8 @@ import javax.inject.Inject;
 import nl.idgis.commons.jobexecutor.Job;
 import nl.idgis.commons.jobexecutor.JobLogger;
 import nl.ipo.cds.admin.ba.attributemapping.FeatureTypeCache;
+import nl.ipo.cds.admin.ba.controller.DownloadServiceLink;
+import nl.ipo.cds.admin.ba.controller.DownloadServiceLinkList;
 import nl.ipo.cds.attributemapping.operations.discover.PropertyBeanIntrospector;
 import nl.ipo.cds.etl.config.AttributeMapping;
 import nl.ipo.cds.etl.config.FeatureProcessors;
@@ -78,6 +82,23 @@ public class AdminConfig {
 	public Executor executer (final @Value("${numberOfThreads}") int numberOfThreads) {
 		return new BlockingExecutor (numberOfThreads);
 	}
+	
+	@Bean
+	public DownloadServiceLinkList downloadLinkList (final @Value("${dllink.text}") String[] dlLinkText, final @Value("${dllink.ref}") String[] dlLinkRef) {
+		DownloadServiceLinkList dlLinkList = new DownloadServiceLinkList();
+		DownloadServiceLink dlLink = null;
+		if (dlLinkText != null && dlLinkRef != null){
+			int len = Math.min(dlLinkText.length, dlLinkRef.length);
+			for (int i = 0; i < len; i++) {
+				dlLink = new DownloadServiceLink(dlLinkText[i], dlLinkRef[i]);
+				System.out.println("@Link " + dlLink.getText() + " --> " +dlLink.getRef()+ "");
+				dlLinkList.addLink(dlLink);
+			}
+		}
+		return dlLinkList;
+	}
+	
+	
 	
 	@Bean
 	public PropertyBeanIntrospector propertyBeanIntrospector () {

@@ -188,6 +188,15 @@
 										</div>
 									</div>
 									#end
+									#if($authz.anyGranted("ROLE_BEHEERDER"))
+									<div id="tabs_ba_downloadservice" class="dijitTab">
+										<div class="dijitTabInnerDiv">
+											<div title="Links naar configuratie voor Downloadservice" class="dijitTabContent" onClick="location.href='#springUrl('/ba/downloadservice')';">
+												<span class="tabLabel">Download service</span>
+											</div>
+										</div>
+									</div>
+									#end
 							    </div>
 							</div>
 						</div>

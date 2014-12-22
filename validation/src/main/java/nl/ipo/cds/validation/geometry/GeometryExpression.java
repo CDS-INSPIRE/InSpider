@@ -107,6 +107,18 @@ public class GeometryExpression<K extends Enum<K> & ValidationMessage<K, C>, C e
 		};
 	}
 
+	public Expression<K, C, Boolean> isPolygon() {
+		return new AbstractUnaryTestExpression<K, C, T>(this, "IsPolygon") {
+			@Override
+			public boolean test(final T value, final C context) {
+				if (value instanceof Polygon) {
+					return true;
+				}
+				return false;
+			}
+		};
+	}
+	
 	public Expression<K, C, Boolean> isSurfaceOrMultiSurface() {
 		return new AbstractUnaryTestExpression<K, C, T>(this, "IsSurfaceOrMultiSurface") {
 			@Override

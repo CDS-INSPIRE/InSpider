@@ -1,5 +1,6 @@
 package nl.ipo.cds.validation;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Set;
 
@@ -357,6 +358,10 @@ public class Validation<K extends Enum<K> & ValidationMessage<K, C>, C extends V
 	
 	public AttributeExpression<K, C, String> stringAttr (final String name) {
 		return new AttributeExpression<K, C, String> (name, String.class);
+	}
+	
+	public AttributeExpression<K, C, Timestamp> timestampAttr (final String name) {
+		return new AttributeExpression<K, C, Timestamp> (name, Timestamp.class);
 	}
 	
 	public <T> AttributeExpression<K, C, T> attr (final String name, final Class<T> type) {

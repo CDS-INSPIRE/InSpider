@@ -1,43 +1,49 @@
-/**
- * 
- */
 package nl.ipo.cds.domain;
 
-import java.io.UnsupportedEncodingException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+import javax.validation.Valid;
 
-import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.NotBlank;
 
-/**
- * @author Rob
- *
- */
-public class Gebruiker {
+public final class Gebruiker {
+	
+	@Valid
+	private final LdapGebruiker ldapGebruiker;
+	
+	@Valid
+	private final DbGebruiker dbGebruiker;
+	
+	public Gebruiker () {
+		this (new LdapGebruiker (), new DbGebruiker ());
+	}
+	
+	public Gebruiker (final LdapGebruiker ldapGebruiker, final DbGebruiker dbGebruiker) {
+		if (ldapGebruiker == null) {
+			throw new NullPointerException ("ldapGebruiker cannot be null");
+		}
+		if (dbGebruiker == null) {
+			throw new NullPointerException ("dbGebruiker cannot be null");
+		}
+		
+		this.ldapGebruiker = ldapGebruiker;
+		this.dbGebruiker = dbGebruiker;
+	}
 
-	@NotBlank(message="Verplicht")
-	private String gebruikersnaam;
-	
-	@NotBlank(message="Verplicht")
-	@Email(message="Geen geldig emailadres")
-	private String email;
-	
-	private String mobile;
-	
-	@NotBlank(message="Verplicht")
-	private String wachtwoordHash;
+	public LdapGebruiker getLdapGebruiker () {
+		return ldapGebruiker;
+	}
+
+	public DbGebruiker getDbGebruiker () {
+		return dbGebruiker;
+	}
 	
 	/**
 	 * Returns the username of this user. The username also corresponds with the 'uid' attribute in LDAP.
 	 * 
 	 * @return The username.
 	 */
-	public String getGebruikersnaam() {
-		return gebruikersnaam;
+	public String getGebruikersnaam () {
+		return ldapGebruiker.getGebruikersnaam ();
 	}
 	
 	/**
@@ -45,8 +51,9 @@ public class Gebruiker {
 	 * 
 	 * @param gebruikersnaam
 	 */
-	public void setGebruikersnaam(String gebruikersnaam) {
-		this.gebruikersnaam = gebruikersnaam;
+	public void setGebruikersnaam (final String gebruikersnaam) {
+		ldapGebruiker.setGebruikersnaam (gebruikersnaam);
+		dbGebruiker.setGebruikersnaam (gebruikersnaam);
 	}
 	
 	/**
@@ -54,8 +61,8 @@ public class Gebruiker {
 	 *  
 	 * @return This user's e-mail address
 	 */
-	public String getEmail() {
-		return email;
+	public String getEmail () {
+		return ldapGebruiker.getEmail ();
 	}
 	
 	/**
@@ -63,8 +70,8 @@ public class Gebruiker {
 	 * 
 	 * @param email The user's new e-mail address.
 	 */
-	public void setEmail(String email) {
-		this.email = email;
+	public void setEmail (final String email) {
+		ldapGebruiker.setEmail (email);
 	}
 	
 	/**
@@ -73,8 +80,8 @@ public class Gebruiker {
 	 * 
 	 * @return This users mobile phone number in ITU format, or null.
 	 */
-	public String getMobile() {
-		return mobile;
+	public String getMobile () {
+		return ldapGebruiker.getMobile ();
 	}
 	
 	/**
@@ -83,8 +90,8 @@ public class Gebruiker {
 	 * 
 	 * @param mobile This user's mobile phone number in ITU format, or null.
 	 */
-	public void setMobile(String mobile) {
-		this.mobile = mobile;
+	public void setMobile (final String mobile) {
+		ldapGebruiker.setMobile (mobile);
 	}
 	
 	/**
@@ -92,8 +99,8 @@ public class Gebruiker {
 	 * 
 	 * @return The password hash as a base64 encoded string.
 	 */
-	public String getWachtwoordHash() {
-		return wachtwoordHash;
+	public String getWachtwoordHash () {
+		return ldapGebruiker.getWachtwoordHash ();
 	}
 	
 	/**
@@ -101,8 +108,8 @@ public class Gebruiker {
 	 * 
 	 * @param wachtwoordHash as a base64 encoded string.
 	 */
-	public void setWachtwoordHash(String wachtwoordHash) {
-		this.wachtwoordHash = wachtwoordHash;
+	public void setWachtwoordHash (final String wachtwoordHash) {
+		ldapGebruiker.setWachtwoordHash (wachtwoordHash);
 	}
 	
 	/**
@@ -111,57 +118,34 @@ public class Gebruiker {
 	 * 
 	 * @param wachtwoord
 	 */
-	public void setWachtwoord (String wachtwoord) {
-		this.setWachtwoordHash (hashWachtwoord (wachtwoord));
+	public void setWachtwoord (final String wachtwoord) {
+		ldapGebruiker.setWachtwoord (wachtwoord);
 	}
 	
-	/**
-	 * Hashes a plaintext password and encodes it as base64.
-	 * 
-	 * @param plaintext The plaintext password.
-	 * @return The base64 encoded hash of the plaintext password.
-	 */
-    private String hashWachtwoord(final String plaintext) {
-		final MessageDigest md;
-		
-		try {
-			md = MessageDigest.getInstance("SHA");
-		} catch (NoSuchAlgorithmException e) {
-			throw new RuntimeException(e.getMessage());
-		}
-		
-		try {
-			md.update(plaintext.getBytes("UTF-8"));
-		} catch (UnsupportedEncodingException e) {
-			throw new RuntimeException (e.getMessage());
-		}
-		
-		return Base64.encodeBase64String(md.digest ());
+	@Override
+	public int hashCode () {
+		return new HashCodeBuilder ().
+			append (getGebruikersnaam ()).
+			toHashCode ();
 	}
 
 	@Override
-	public int hashCode() {
-		return new HashCodeBuilder().
-			append(this.getGebruikersnaam()).
-			toHashCode();
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
+	public boolean equals (final Object obj) {
+		if (this == obj) {
 			return true;
-		if (obj == null)
+		}
+		if (obj == null) {
 			return false;
-		if (! (obj instanceof GebruikersRol))
+		}
+		if (! (obj instanceof Gebruiker)) {
 			return false;
+		}
 		
 		final Gebruiker other = (Gebruiker) obj;
 
-		return new EqualsBuilder().
-			append(this.getGebruikersnaam(), other.getGebruikersnaam()).
-			isEquals();
+		return new EqualsBuilder ().
+			append (getGebruikersnaam (), other.getGebruikersnaam ()).
+			isEquals ();
 
-	}
-    
-    
+	}	
 }

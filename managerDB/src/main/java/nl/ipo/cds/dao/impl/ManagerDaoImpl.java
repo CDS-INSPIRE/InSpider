@@ -47,6 +47,7 @@ import nl.ipo.cds.domain.GebruikersRol;
 import nl.ipo.cds.domain.Identity;
 import nl.ipo.cds.domain.JobLog;
 import nl.ipo.cds.domain.JobType;
+import nl.ipo.cds.domain.LdapGebruiker;
 import nl.ipo.cds.domain.MappingOperation;
 import nl.ipo.cds.domain.MetadataDocument;
 import nl.ipo.cds.domain.Rol;
@@ -1217,7 +1218,7 @@ public class ManagerDaoImpl implements ManagerDao {
 	 * @param gebruiker
 	 * @param rebind
 	 */
-	private void bindGebruiker (Gebruiker gebruiker, boolean rebind) {
+	private void bindGebruiker (LdapGebruiker gebruiker, boolean rebind) {
 		final DistinguishedName dn = new DistinguishedName (getLdapSearchBasePeople ());
 		dn.add ("uid", gebruiker.getGebruikersnaam ());
 		
@@ -1242,7 +1243,7 @@ public class ManagerDaoImpl implements ManagerDao {
 	 */
 	@Override
 	public void create (Gebruiker gebruiker) {
-		bindGebruiker (gebruiker, false);
+		bindGebruiker (gebruiker.getLdapGebruiker (), false);
 	}
 	
 	/**
@@ -1259,7 +1260,7 @@ public class ManagerDaoImpl implements ManagerDao {
 			throw new IllegalArgumentException ("Gebruiker `" + gebruiker.getGebruikersnaam () + "` does not exist.");
 		}
 		
-		bindGebruiker (gebruiker, true);
+		bindGebruiker (gebruiker.getLdapGebruiker (), true);
 	}
 	
 	/**

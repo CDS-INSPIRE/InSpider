@@ -8,7 +8,7 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class ThemaBronhouderAuthorization implements Serializable {
+public class BronhouderThema implements Serializable {
 
 	private static final long serialVersionUID = 7722858810254006319L;
 
@@ -22,10 +22,10 @@ public class ThemaBronhouderAuthorization implements Serializable {
 	@ManyToOne
 	private Bronhouder bronhouder;
 
-	ThemaBronhouderAuthorization () {
+	BronhouderThema () {
 	}
 	
-	public ThemaBronhouderAuthorization (final Thema thema, final Bronhouder bronhouder) {
+	public BronhouderThema (final Thema thema, final Bronhouder bronhouder) {
 		assert (thema != null);
 		assert (bronhouder != null);
 		

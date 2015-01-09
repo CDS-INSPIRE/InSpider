@@ -17,3 +17,6 @@ target/
 org.maven.ide.eclipse.prefs
 velocity.log
 dependency-reduced-pom.xml
+
+#intellij articacts
+*.iml

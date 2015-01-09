@@ -1,7 +1,9 @@
 package nl.ipo.cds.etl.postvalidation;
 
-import nl.ipo.cds.etl.PersistableFeature;
+import org.deegree.geometry.Geometry;
 import org.springframework.stereotype.Service;
+
+import java.io.Serializable;
 
 /**
  * H2 Geometry Store implementation.
@@ -13,9 +15,11 @@ public class H2GeometryStore implements IGeometryStore {
 
     }
 
-    public void addToStore(final String uuId, PersistableFeature feature) {
+    @Override
+    public void addToStore(String uuId, Geometry geometry, Serializable feature) {
 
     }
+
 
     // TODO: Add method for executing query on store.
 }

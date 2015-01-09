@@ -4,7 +4,9 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.naming.NamingException;
 import javax.naming.directory.Attribute;
@@ -40,6 +42,7 @@ import nl.ipo.cds.domain.CodeListMapping;
 import nl.ipo.cds.domain.Dataset;
 import nl.ipo.cds.domain.DatasetFilter;
 import nl.ipo.cds.domain.DatasetType;
+import nl.ipo.cds.domain.DbGebruiker;
 import nl.ipo.cds.domain.EtlJob;
 import nl.ipo.cds.domain.FilterExpression;
 import nl.ipo.cds.domain.Gebruiker;
@@ -1235,6 +1238,14 @@ public class ManagerDaoImpl implements ManagerDao {
 		}
 	}
 	
+	private void createDbGebruiker (final DbGebruiker gebruiker) {
+		this.entityManager.persist (gebruiker);
+	}
+	
+	private void updateDbGebruiker (final DbGebruiker gebruiker) {
+		this.entityManager.merge (gebruiker);
+	}
+	
 	/**
 	 * Persists a new user. The user must have a value for all required fields and must be unique.
 	 * The user is created using an LDAP bind on the server.
@@ -1243,7 +1254,12 @@ public class ManagerDaoImpl implements ManagerDao {
 	 */
 	@Override
 	public void create (Gebruiker gebruiker) {
-		bindGebruiker (gebruiker.getLdapGebruiker (), false);
+		if (gebruiker.getLdapGebruiker () != null) {
+			bindGebruiker (gebruiker.getLdapGebruiker (), false);
+		}
+		if (gebruiker.getDbGebruiker () != null) {
+			createDbGebruiker (gebruiker.getDbGebruiker ());
+		}
 	}
 	
 	/**
@@ -1260,7 +1276,27 @@ public class ManagerDaoImpl implements ManagerDao {
 			throw new IllegalArgumentException ("Gebruiker `" + gebruiker.getGebruikersnaam () + "` does not exist.");
 		}
 		
-		bindGebruiker (gebruiker.getLdapGebruiker (), true);
+		if (gebruiker.getLdapGebruiker () != null) {
+			bindGebruiker (gebruiker.getLdapGebruiker (), true);
+		}
+		if (gebruiker.getDbGebruiker () != null) {
+			updateDbGebruiker (gebruiker.getDbGebruiker ());
+		}
+		
+	}
+	
+	private LdapGebruiker getLdapGebruiker (final String gebruikersnaam) {
+		final List<?> searchResult = ldapTemplate.search (
+				getLdapSearchBasePeople (),
+				String.format (getLdapFilterGebruiker (), gebruikersnaam),
+				new GebruikerAttributesMapper ()
+			);
+	
+		return searchResult.size () > 0 ? (LdapGebruiker)searchResult.get (0) : null;
+	}
+	
+	private DbGebruiker getDbGebruiker (final String gebruikersnaam) {
+		return this.entityManager.find (DbGebruiker.class, gebruikersnaam);
 	}
 	
 	/**
@@ -1272,24 +1308,19 @@ public class ManagerDaoImpl implements ManagerDao {
 	 */
 	@Override
 	public Gebruiker getGebruiker(String gebruikersnaam) {
-		final List<?> searchResult = ldapTemplate.search (
-				getLdapSearchBasePeople (),
-				String.format (getLdapFilterGebruiker (), gebruikersnaam),
-				new GebruikerAttributesMapper ()
-			);
+		final LdapGebruiker ldapGebruiker = getLdapGebruiker (gebruikersnaam);
+		final DbGebruiker dbGebruiker = getDbGebruiker (gebruikersnaam);
 		
-		return searchResult.size () > 0 ? (Gebruiker)searchResult.get (0) : null;
+		// LDAP user is mandatory, return null if the user doesn't exist in LDAP:
+		if (ldapGebruiker == null) {
+			return null;
+		}
+		
+		// DB user is optional, no need to check if it could be found.
+		return new Gebruiker (ldapGebruiker, dbGebruiker);
 	}
 	
-	/**
-	 * Returns a list containing all available users, ordered by username. An empty list is returned
-	 * if no users could be found.
-	 * 
-	 * @return A list containing all users.
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<Gebruiker> getAllGebruikers() {
+	private List<LdapGebruiker> getAllLdapGebruikers () {
 		final List<?> searchResult = ldapTemplate.search (
 				getLdapSearchBasePeople (),
 				getLdapFilterAllGebruikers (),
@@ -1299,11 +1330,44 @@ public class ManagerDaoImpl implements ManagerDao {
 		Collections.sort (searchResult, new Comparator<Object>() {
 			@Override
 			public int compare (Object a, Object b) {
-				return ((Gebruiker)a).getGebruikersnaam().compareTo (((Gebruiker)b).getGebruikersnaam ());
+				return ((LdapGebruiker)a).getGebruikersnaam().compareTo (((LdapGebruiker)b).getGebruikersnaam ());
 			}
 		});
 		
-		return (List<Gebruiker>)searchResult;
+		@SuppressWarnings("unchecked")
+		final List<LdapGebruiker> gebruikers = (List<LdapGebruiker>) searchResult;
+		
+		return Collections.<LdapGebruiker>unmodifiableList (gebruikers);
+		
+	}
+	
+	private List<DbGebruiker> getAllDbGebruikers () {
+		return entityManager.createQuery ("from Gebruiker as gebruiker order by gebruiker.gebruikersnaam", DbGebruiker.class).getResultList ();
+		
+	}
+	
+	/**
+	 * Returns a list containing all available users, ordered by username. An empty list is returned
+	 * if no users could be found.
+	 * 
+	 * @return A list containing all users.
+	 */
+	@Override
+	public List<Gebruiker> getAllGebruikers() {
+		final Map<String, DbGebruiker> dbGebruikers = new HashMap<> ();
+		
+		for (final DbGebruiker dbGebruiker: getAllDbGebruikers ()) {
+			dbGebruikers.put (dbGebruiker.getGebruikersnaam (), dbGebruiker);
+		}
+		
+		final List<LdapGebruiker> ldapGebruikers = getAllLdapGebruikers ();
+		final List<Gebruiker> gebruikers = new ArrayList<> (ldapGebruikers.size ());
+		
+		for (final LdapGebruiker ldapGebruiker: ldapGebruikers) {
+			gebruikers.add (new Gebruiker (ldapGebruiker, dbGebruikers.get (ldapGebruiker.getGebruikersnaam ())));
+		}
+		
+		return Collections.unmodifiableList (gebruikers);
 	}
 	
 	/**
@@ -1319,11 +1383,17 @@ public class ManagerDaoImpl implements ManagerDao {
 			throw new IllegalArgumentException ("Gebruiker `" + gebruiker.getGebruikersnaam () + "` does not exist.");
 		}
 			
-		final DistinguishedName dn = new DistinguishedName (getLdapSearchBasePeople ());
+		if (gebruiker.getLdapGebruiker () != null) {
+			final DistinguishedName dn = new DistinguishedName (getLdapSearchBasePeople ());
+			
+			dn.add ("uid", gebruiker.getLdapGebruiker ().getGebruikersnaam ());
+			
+			ldapTemplate.unbind (dn);
+		}
 		
-		dn.add ("uid", gebruiker.getGebruikersnaam ());
-		
-		ldapTemplate.unbind (dn);
+		if (gebruiker.getDbGebruiker () != null) {
+			entityManager.remove (gebruiker);
+		}
 	}
 	
 	/**

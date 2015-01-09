@@ -1,5 +1,7 @@
 package nl.ipo.cds.domain;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -11,7 +13,9 @@ import javax.validation.constraints.NotNull;
  *
  */
 @Entity
-public final class GebruikerThemaAutorisatie {
+public final class GebruikerThemaAutorisatie implements Serializable {
+	private static final long serialVersionUID = -7678955695408667947L;
+
 	@NotNull
 	@Id
 	@ManyToOne

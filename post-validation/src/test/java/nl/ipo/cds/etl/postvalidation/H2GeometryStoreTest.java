@@ -79,16 +79,20 @@ public class H2GeometryStoreTest {
         h2GeometryStore.addToStore(dataSource, g, ps );
 
         JdbcTemplate t = new JdbcTemplate(dataSource);
+
+        // Test if the Geometry can properly get stored/retrieved.
         Geometry g2 = (Polygon) reader.read(GeoDB.ST_AsText(t.queryForObject("SELECT geometry FROM geometries LIMIT 1", byte[].class)));
+        assertEquals(g.toString(), g2.toString());
 
-
+        // Test if the Feature can properly get stored/retrieved.
         ByteArrayInputStream bis = new ByteArrayInputStream(t.queryForObject("SELECT feature FROM geometries LIMIT 1", byte[].class));
 
         JAXBContext jaxbContext = JAXBContext.newInstance(ProtectedSite.class);
 
         Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
         ProtectedSite ps2 = (ProtectedSite) jaxbUnmarshaller.unmarshal(bis);
-        System.out.print(ps2);
+        assertEquals("Protected site IDs should equal.", ps.getId(), ps2.getId());
+        assertEquals("Protected site Geometries should be equal.", ps.getGeometry().toString(), ps2.getGeometry().toString());
 
 
 

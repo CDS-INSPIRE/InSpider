@@ -1,0 +1,34 @@
+<FeatureTypeStyle xmlns="http://www.opengis.net/se" xmlns:app="http://www.deegree.org/app" xmlns:ogc="http://www.opengis.net/ogc" xmlns:deegreeogc="http://www.deegree.org/ogc" xmlns:sed="http://www.deegree.org/se" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd http://www.deegree.org/se http://schemas.deegree.org/se/1.1.0/Symbolizer-deegree.xsd">
+  <Name>gebiedverwerving_provinciaal</Name>
+  <Description>
+    <Title>gebiedverwerving_provinciaal</Title>
+  </Description>
+  <FeatureTypeName>gebiedverwerving_provinciaal</FeatureTypeName>
+  <Rule>
+    <Name>gebiedverwerving_provinciaal</Name>
+    <Description>
+      <Title>gebiedverwerving_provinciaal</Title>
+    </Description>
+    <LineSymbolizer>
+      <Stroke>
+        <SvgParameter name="stroke">
+#00ff00
+        </SvgParameter>
+        <SvgParameter name="stroke-width">2</SvgParameter>
+      </Stroke>
+    </LineSymbolizer>
+    <PolygonSymbolizer>
+      <Fill>
+        <SvgParameter name="fill">
+#ffffee
+</SvgParameter>
+      </Fill>
+      <Stroke>
+	<SvgParameter name="stroke">
+#00ff00
+</SvgParameter>
+        <SvgParameter name="stroke-width">2</SvgParameter>
+      </Stroke>
+    </PolygonSymbolizer>
+  </Rule>
+</FeatureTypeStyle> 

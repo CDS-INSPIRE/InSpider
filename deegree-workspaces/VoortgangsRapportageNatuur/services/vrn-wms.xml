@@ -1,0 +1,18 @@
+<deegreeWMS xmlns="http://www.deegree.org/services/wms"
+xmlns:xlink="http://www.w3.org/1999/xlink"
+xmlns:dgws="http://www.deegree.org/webservices"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+configVersion="3.2.0"
+xsi:schemaLocation="http://www.deegree.org/services/wms http://schemas.deegree.org/services/wms/3.2.0/wms_configuration.xsd">
+  <SupportedVersions>
+    <Version>1.1.1</Version>
+  </SupportedVersions>
+  <ServiceConfiguration>
+    <DefaultLayerOptions>
+      <AntiAliasing>BOTH</AntiAliasing>
+      <MaxFeatures>500</MaxFeatures>
+    </DefaultLayerOptions>
+    <ThemeId>vrn</ThemeId>
+  </ServiceConfiguration>
+
+</deegreeWMS>

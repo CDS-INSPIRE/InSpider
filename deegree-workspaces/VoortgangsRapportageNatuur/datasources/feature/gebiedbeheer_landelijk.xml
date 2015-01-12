@@ -1,0 +1,25 @@
+<SQLFeatureStore xmlns="http://www.deegree.org/datasource/feature/sql" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" configVersion="3.2.0" xsi:schemaLocation="http://www.deegree.org/datasource/feature/sql http://schemas.deegree.org/datasource/feature/sql/3.2.0/sql.xsd">
+  <JDBCConnId>vrn</JDBCConnId>
+<FeatureTypeMapping xmlns:app="http://www.deegree.org/app" table="vrn.gebiedbeheer_landelijk" name="gebiedbeheer_landelijk">
+      <FIDMapping prefix="">
+        <Column name="id"/>
+    </FIDMapping>
+    <Primitive path="app:id" mapping="id"/>
+    <Primitive path="app:identificatie" mapping="identificatie"/>
+    <Primitive path="app:job_id" mapping="job_id"/>
+    <Primitive path="app:gfid" mapping="gfid"/>
+    <Primitive path="app:imna_bronhouder" mapping="imna_bronhouder"/>
+    <Primitive path="app:contractnummer" mapping="contractnummer"/>
+    <Primitive path="app:eenheidnummer" mapping="eenheidnummer"/>
+    <Primitive path="app:beheerpakket" mapping="beheerpakket"/>
+    <Primitive path="app:status_beheer" mapping="status_beheer"/>
+    <Primitive path="app:doelbeheer" mapping="doelbeheer"/>
+    <Primitive path="app:type_beheerder" mapping="type_beheerder"/>
+    <Primitive path="app:relatienummer" mapping="relatienummer"/>
+    <Primitive path="app:begintijd" mapping="begintijd"/>
+    <Primitive path="app:eindtijd" mapping="eindtijd"/>
+    <Geometry path="app:geometrie" mapping="geometrie">
+  		<StorageCRS srid="28992">EPSG:28992</StorageCRS>
+	</Geometry>
+  </FeatureTypeMapping>
+</SQLFeatureStore>

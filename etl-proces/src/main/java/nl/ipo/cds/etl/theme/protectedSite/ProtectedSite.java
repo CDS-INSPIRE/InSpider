@@ -5,7 +5,6 @@ import java.util.Arrays;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import nl.ipo.cds.etl.PersistableFeature;
 import nl.ipo.cds.etl.db.annotation.Column;
@@ -48,7 +47,6 @@ public class ProtectedSite extends PersistableFeature {
 	private String[] siteProtectionClassification;
 
 	@MappableAttribute
-	@XmlJavaTypeAdapter(JaxbGeometrySerializer.class)
 	public Geometry getGeometry() {
 		return geometry;
 	}

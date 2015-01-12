@@ -1,4 +1,4 @@
-package nl.ipo.cds.etl.theme.protectedSite;
+package nl.ipo.cds.etl.postvalidation;
 
 import org.apache.axiom.util.stax.XMLFragmentStreamReader;
 import org.deegree.commons.tom.gml.GMLObject;

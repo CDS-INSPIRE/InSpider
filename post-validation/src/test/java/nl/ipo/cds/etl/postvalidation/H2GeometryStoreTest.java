@@ -1,37 +1,32 @@
 package nl.ipo.cds.etl.postvalidation;
 
 import geodb.GeoDB;
-import nl.ipo.cds.etl.PersistableFeature;
-import nl.ipo.cds.etl.theme.protectedSite.ProtectedSite;
 import org.apache.commons.dbcp.BasicDataSource;
-import org.apache.commons.io.FileUtils;
 import org.deegree.geometry.Geometry;
 import org.deegree.geometry.io.WKTReader;
 import org.deegree.geometry.primitive.Polygon;
-import org.deegree.geometry.standard.primitive.DefaultPolygon;
-import org.junit.*;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.jdbc.support.rowset.SqlRowSet;
 
 import javax.sql.DataSource;
-import javax.sql.RowSet;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Unmarshaller;
 import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.IOException;
 import java.lang.reflect.Field;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 
 public class H2GeometryStoreTest {
+
+
 
     private H2GeometryStore h2GeometryStore;
     private BasicDataSource dataSource;
@@ -72,11 +67,11 @@ public class H2GeometryStoreTest {
     public void testAddToStore() throws Exception {
         WKTReader reader = new WKTReader(null);
         Geometry g = (Polygon) reader.read("SRID=28992;POLYGON((111446.5 566602,112035.5 566602,112035.5 566886,111446.5 566886,111446.5 566602))");
-        ProtectedSite ps = new ProtectedSite();
-        ps.setGeometry(g);
-        ps.setId("test-feature");
+        TestPersistableFeature tpf = new TestPersistableFeature();
+        tpf.setGeometry(g);
+        tpf.setId("test-feature");
 
-        h2GeometryStore.addToStore(dataSource, g, ps );
+        h2GeometryStore.addToStore(dataSource, g, tpf );
 
         JdbcTemplate t = new JdbcTemplate(dataSource);
 
@@ -87,12 +82,12 @@ public class H2GeometryStoreTest {
         // Test if the Feature can properly get stored/retrieved.
         ByteArrayInputStream bis = new ByteArrayInputStream(t.queryForObject("SELECT feature FROM geometries LIMIT 1", byte[].class));
 
-        JAXBContext jaxbContext = JAXBContext.newInstance(ProtectedSite.class);
+        JAXBContext jaxbContext = JAXBContext.newInstance(TestPersistableFeature.class);
 
         Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-        ProtectedSite ps2 = (ProtectedSite) jaxbUnmarshaller.unmarshal(bis);
-        assertEquals("Protected site IDs should equal.", ps.getId(), ps2.getId());
-        assertEquals("Protected site Geometries should be equal.", ps.getGeometry().toString(), ps2.getGeometry().toString());
+        TestPersistableFeature tpf2 = (TestPersistableFeature) jaxbUnmarshaller.unmarshal(bis);
+        assertEquals("Protected site IDs should equal.", tpf.getId(), tpf2.getId());
+        assertEquals("Protected site Geometries should be equal.", tpf.getGeometry().toString(), tpf2.getGeometry().toString());
 
 
 

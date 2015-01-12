@@ -1,5 +1,6 @@
 package nl.ipo.cds.validation;
 
+import java.math.BigInteger;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Set;
@@ -342,6 +343,10 @@ public class Validation<K extends Enum<K> & ValidationMessage<K, C>, C extends V
 	
 	public AttributeExpression<K, C, Long> longAttr (final String name) {
 		return new AttributeExpression<K, C, Long> (name, Long.class);
+	}
+
+	public AttributeExpression<K, C, BigInteger> bigIntegerAttr (final String name) {
+		return new AttributeExpression<K, C, BigInteger> (name, BigInteger.class);
 	}
 	
 	public AttributeExpression<K, C, Float> floatAttr (final String name) {

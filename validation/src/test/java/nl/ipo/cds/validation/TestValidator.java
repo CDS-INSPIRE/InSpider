@@ -3,6 +3,7 @@ package nl.ipo.cds.validation;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -51,6 +52,9 @@ public class TestValidator extends Validation<TestValidator.MessageKeys, TestVal
 		bean.setDoubleValue (1.0);
 		assertExpression (gte (doubleAttr ("doubleValue"), constant (0.0)), bean, true);
 		
+		bean.setIntValue (100);
+		assertExpression (lte (intAttr ("intValue"), constant (300)), bean, true);
+
 		bean.setIntValue (100);
 		assertExpression (lte (intAttr ("intValue"), constant (300)), bean, true);
 	}
@@ -144,6 +148,7 @@ public class TestValidator extends Validation<TestValidator.MessageKeys, TestVal
 		private int intValue;
 		private double doubleValue;
 		private boolean booleanValue;
+		private BigInteger bigIntegerValue;
 		
 		public String getStringValue() {
 			return stringValue;
@@ -175,6 +180,14 @@ public class TestValidator extends Validation<TestValidator.MessageKeys, TestVal
 		
 		public void setBooleanValue(boolean booleanValue) {
 			this.booleanValue = booleanValue;
+		}
+
+		public BigInteger getBigIntegerValue() {
+			return bigIntegerValue;
+		}
+
+		public void setBigIntegerValue(BigInteger bigIntegerValue) {
+			this.bigIntegerValue = bigIntegerValue;
 		}
 	}
 	

@@ -3,17 +3,20 @@ package nl.ipo.cds.etl.postvalidation;
 import nl.ipo.cds.etl.PersistableFeature;
 import org.deegree.geometry.Geometry;
 
-import java.io.Serializable;
+import javax.sql.DataSource;
 import java.sql.SQLException;
 
 /**
  * Geometry Store to temporarily store possible overlapping geometries.
  */
-public interface IGeometryStore<T extends Serializable> {
+public interface IGeometryStore {
 
-    public void createStore(final String uuId) throws SQLException;
+    public DataSource createStore(final String uuId) throws SQLException;
 
-    public void addToStore(final String uuId, Geometry geometry, T feature);
+    public DataSource loadStore(final String uuId) throws SQLException;
 
-    public void destroyStore(final String uuId);
+    public void addToStore(final DataSource dataSource, Geometry geometry, PersistableFeature feature) throws SQLException;
+
+    public void destroyStore(final DataSource dataSource) throws SQLException;
+
 }

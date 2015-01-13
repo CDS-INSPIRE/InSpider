@@ -1,5 +1,8 @@
 package nl.ipo.cds.etl.postvalidation;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.Serializable;
 import java.sql.Blob;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,18 +19,21 @@ import org.springframework.stereotype.Service;
  * Responsible for validating that geometries do not overlap.
  */
 @Service
-public class BulkValidator implements IBulkValidator {
+public class BulkValidator<T extends Serializable> implements IBulkValidator<T> {
 
 	/**
 	 * Detect if any of the geometries in the provided database have any
 	 * overlap.
 	 * 
 	 * @throws SQLException
+	 * @throws IOException 
+	 * @throws ClassNotFoundException 
 	 */
 	@Override
-    public List<OverlapValidationPair<Blob, Blob>> overlapValidation(final DataSource dataSource) throws SQLException {
+	@SuppressWarnings("unchecked")
+    public List<OverlapValidationPair<T, T>> overlapValidation(final DataSource dataSource) throws SQLException, IOException, ClassNotFoundException {
 
-    	List<OverlapValidationPair<Blob, Blob>> result = new java.util.ArrayList<OverlapValidationPair<Blob, Blob>>();
+    	List<OverlapValidationPair<T, T>> result = new java.util.ArrayList<OverlapValidationPair<T,T>>();
     	
     	String sql = "g1.id as id1, select g1.feature as feature1, g2.id as id2, g2.feature as feature2 " +
                      "from geometries g1 " +
@@ -40,9 +46,14 @@ public class BulkValidator implements IBulkValidator {
 			// write feature info with overlap error to context. 
 			ResultSet rs = preparedStatement.executeQuery(sql);
 			while (rs.next()) {
-			Blob feature1 = rs.getBlob(2);
-			Blob feature2 = rs.getBlob(4);
-			OverlapValidationPair<Blob, Blob> overlapEntry = new OverlapValidationPair<Blob, Blob>(feature1,feature2);
+				ObjectInputStream ois = new ObjectInputStream(rs.getBinaryStream(2));				
+				T feature1 = (T) ois.readObject();
+				ois.close();
+				ois = new ObjectInputStream(rs.getBinaryStream(4));
+				T feature2 = (T) ois.readObject();
+				ois.close();
+
+			OverlapValidationPair<T, T> overlapEntry = new OverlapValidationPair<T, T>(feature1,feature2);
 			result.add(overlapEntry);
 			}
 			preparedStatement.close();

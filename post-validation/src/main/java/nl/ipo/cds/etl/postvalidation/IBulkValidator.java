@@ -15,5 +15,5 @@ import nl.ipo.cds.validation.domain.OverlapValidationPair;
 
 public interface IBulkValidator<T extends Serializable> {
 
-    public List<OverlapValidationPair<T, T>> overlapValidation(DataSource dataSource) throws SQLException, IOException, ClassNotFoundException;
+    public List<OverlapValidationPair<T>> overlapValidation(DataSource dataSource) throws SQLException, IOException, ClassNotFoundException;
 }

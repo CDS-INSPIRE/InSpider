@@ -7,6 +7,7 @@ import java.sql.Blob;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -31,9 +32,9 @@ public class BulkValidator<T extends Serializable> implements IBulkValidator<T> 
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-    public List<OverlapValidationPair<T, T>> overlapValidation(final DataSource dataSource) throws SQLException, IOException, ClassNotFoundException {
+    public List<OverlapValidationPair<T>> overlapValidation(final DataSource dataSource) throws SQLException, IOException, ClassNotFoundException {
 
-    	List<OverlapValidationPair<T, T>> result = new java.util.ArrayList<OverlapValidationPair<T,T>>();
+    	List<OverlapValidationPair<T>> result = new ArrayList<>();
     	
     	String sql = "g1.id as id1, select g1.feature as feature1, g2.id as id2, g2.feature as feature2 " +
                      "from geometries g1 " +
@@ -53,8 +54,8 @@ public class BulkValidator<T extends Serializable> implements IBulkValidator<T> 
 				T feature2 = (T) ois.readObject();
 				ois.close();
 
-			OverlapValidationPair<T, T> overlapEntry = new OverlapValidationPair<T, T>(feature1,feature2);
-			result.add(overlapEntry);
+                OverlapValidationPair<T> overlapEntry = new OverlapValidationPair<>(feature1,feature2);
+                result.add(overlapEntry);
 			}
 			preparedStatement.close();
 			

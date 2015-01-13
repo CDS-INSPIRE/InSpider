@@ -16,6 +16,7 @@ import javax.sql.DataSource;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Unmarshaller;
 import java.io.ByteArrayInputStream;
+import java.io.ObjectInputStream;
 import java.lang.reflect.Field;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -28,7 +29,7 @@ public class H2GeometryStoreTest {
 
 
 
-    private H2GeometryStore h2GeometryStore;
+    private H2GeometryStore<TestPersistableFeature> h2GeometryStore;
     private BasicDataSource dataSource;
     private final static String DB_NAME = "test-db-1337";
 
@@ -37,7 +38,7 @@ public class H2GeometryStoreTest {
 
     @Before
     public void setUp() throws Exception {
-        h2GeometryStore = new H2GeometryStore();
+        h2GeometryStore = new H2GeometryStore<>();
         Field field = H2GeometryStore.class.getDeclaredField("JDBC_URL_FORMAT");
         field.setAccessible(true);
         field.set(h2GeometryStore, String.format("jdbc:h2:%s/", testFolder.getRoot()) + "%s");
@@ -82,12 +83,9 @@ public class H2GeometryStoreTest {
         // Test if the Feature can properly get stored/retrieved.
         ByteArrayInputStream bis = new ByteArrayInputStream(t.queryForObject("SELECT feature FROM geometries LIMIT 1", byte[].class));
 
-        JAXBContext jaxbContext = JAXBContext.newInstance(TestPersistableFeature.class);
-
-        Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-        TestPersistableFeature tpf2 = (TestPersistableFeature) jaxbUnmarshaller.unmarshal(bis);
-        assertEquals("Protected site IDs should equal.", tpf.getId(), tpf2.getId());
-        assertEquals("Protected site Geometries should be equal.", tpf.getGeometry().toString(), tpf2.getGeometry().toString());
+        ObjectInputStream ois = new ObjectInputStream(bis);
+        TestPersistableFeature tpf2 = (TestPersistableFeature) ois.readObject();
+        assertEquals(tpf, tpf2);
 
 
 

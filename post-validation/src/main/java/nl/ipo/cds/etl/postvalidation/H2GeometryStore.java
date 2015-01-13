@@ -2,8 +2,6 @@ package nl.ipo.cds.etl.postvalidation;
 
 import com.vividsolutions.jts.io.ParseException;
 import geodb.GeoDB;
-import nl.ipo.cds.etl.PersistableFeature;
-import nl.ipo.cds.etl.theme.protectedSite.ProtectedSite;
 import org.apache.commons.dbcp.BasicDataSource;
 import org.deegree.geometry.Geometry;
 import org.deegree.geometry.io.WKBWriter;
@@ -13,9 +11,6 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import javax.sql.DataSource;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
 import java.io.*;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -26,7 +21,7 @@ import java.util.Map;
  * H2 Geometry Store implementation.
  */
 @Service
-public class H2GeometryStore implements IGeometryStore {
+public class H2GeometryStore<T extends Serializable> implements IGeometryStore<T> {
 
 
     @Value("bulkValidator.jdbcUrlFormat")
@@ -41,7 +36,7 @@ public class H2GeometryStore implements IGeometryStore {
         DataSource dataSource = loadStore(uuId);
         GeoDB.InitGeoDB(dataSource.getConnection());
         JdbcTemplate t = new JdbcTemplate(dataSource);
-        t.execute("CREATE TABLE geometries (id INT AUTO_INCREMENT PRIMARY KEY, geometry BLOB, feature TEXT);");
+        t.execute("CREATE TABLE geometries (id INT AUTO_INCREMENT PRIMARY KEY, geometry BLOB, feature BLOB);");
         return dataSource;
     }
 
@@ -56,27 +51,22 @@ public class H2GeometryStore implements IGeometryStore {
     }
 
     @Override
-    public void addToStore(final DataSource dataSource, final Geometry geometry, final PersistableFeature feature) throws SQLException {
+    public void addToStore(final DataSource dataSource, final Geometry geometry, final T feature) throws SQLException, ParseException, IOException {
         final NamedParameterJdbcTemplate t = new NamedParameterJdbcTemplate(dataSource);
         final String insertStatement = "INSERT INTO geometries (geometry, feature) VALUES (:geometry, :feature)";
         final Map<String, byte[]> params = new HashMap<String, byte[]>();
         final ByteArrayOutputStream bos = new ByteArrayOutputStream();
 
         // srid=28992
-        try {
-            final JAXBContext jaxbContext = JAXBContext.newInstance(feature.getClass());
-            final Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
-            jaxbMarshaller.marshal(feature, bos);
+        params.put("geometry", GeoDB.ST_GeomFromWKB(WKBWriter.write(geometry), 28992)); //geometry.getCoordinateSystem().)
 
-            params.put("geometry", GeoDB.ST_GeomFromWKB(WKBWriter.write(geometry), 28992)); //geometry.getCoordinateSystem().)
-            params.put("feature", bos.toByteArray());
-            t.update(insertStatement, params);
-
-
-        } catch (ParseException | JAXBException e) {
-            e.printStackTrace();
-        }
-
+        ObjectOutputStream oos = new ObjectOutputStream(bos);
+        oos.writeObject(feature);
+        oos.flush();
+        params.put("feature", bos.toByteArray());
+        oos.close();
+        bos.close();
+        t.update(insertStatement, params);
     }
 
     @Override

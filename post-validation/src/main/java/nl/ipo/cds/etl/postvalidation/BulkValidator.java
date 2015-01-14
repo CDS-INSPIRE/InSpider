@@ -1,5 +1,6 @@
 package nl.ipo.cds.etl.postvalidation;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.Serializable;
@@ -9,11 +10,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.sql.DataSource;
 
 import nl.ipo.cds.validation.domain.OverlapValidationPair;
 
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 /**
@@ -36,30 +39,31 @@ public class BulkValidator<T extends Serializable> implements IBulkValidator<T> 
 
     	List<OverlapValidationPair<T>> result = new ArrayList<>();
     	
-    	String sql = "g1.id as id1, select g1.feature as feature1, g2.id as id2, g2.feature as feature2 " +
+    	String sql = "select g1.feature as feature1, g2.feature as feature2 " +
                      "from geometries g1 " +
                      ",    geometries g2 " +
-                     "where g1.id != g2.id " +
-                     "and ST_Overlaps(g1.geom,g2.geom) = true";
-    	
-			PreparedStatement preparedStatement = dataSource.getConnection().prepareStatement(sql);
-			// features with overlapping geometries.
-			// write feature info with overlap error to context. 
-			ResultSet rs = preparedStatement.executeQuery(sql);
-			while (rs.next()) {
-				ObjectInputStream ois = new ObjectInputStream(rs.getBinaryStream(2));				
-				T feature1 = (T) ois.readObject();
-				ois.close();
-				ois = new ObjectInputStream(rs.getBinaryStream(4));
-				T feature2 = (T) ois.readObject();
-				ois.close();
+                     "where g1.id < g2.id " +
+                     "and ST_Intersects(g1.geometry,g2.geometry)";
 
-                OverlapValidationPair<T> overlapEntry = new OverlapValidationPair<>(feature1,feature2);
-                result.add(overlapEntry);
-			}
-			preparedStatement.close();
-			
-			return result;
+        JdbcTemplate t = new JdbcTemplate(dataSource);
+        List<Map<String,Object>> res = t.queryForList(sql);
+
+        for (Map<String, Object> row : res) {
+            ByteArrayInputStream bis = new ByteArrayInputStream((byte[])row.get("FEATURE1"));
+            ObjectInputStream ois = new ObjectInputStream(bis);
+            T feature1 = (T) ois.readObject();
+            ois.close();
+
+            bis = new ByteArrayInputStream((byte[])row.get("FEATURE2"));
+            ois = new ObjectInputStream(bis);
+            T feature2 = (T)ois.readObject();
+            ois.close();
+
+            OverlapValidationPair<T> overlapEntry = new OverlapValidationPair<>(feature1,feature2);
+            result.add(overlapEntry);
+
+        }
+        return result;
 
     }
 }

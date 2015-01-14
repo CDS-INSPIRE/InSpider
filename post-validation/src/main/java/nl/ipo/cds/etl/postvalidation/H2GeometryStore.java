@@ -65,7 +65,6 @@ public class H2GeometryStore<T extends Serializable> implements IGeometryStore<T
         oos.flush();
         params.put("feature", bos.toByteArray());
         oos.close();
-        bos.close();
         t.update(insertStatement, params);
     }
 

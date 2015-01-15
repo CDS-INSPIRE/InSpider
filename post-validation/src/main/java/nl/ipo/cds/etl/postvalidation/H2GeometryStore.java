@@ -37,6 +37,7 @@ public class H2GeometryStore<T extends Serializable> implements IGeometryStore<T
         GeoDB.InitGeoDB(dataSource.getConnection());
         JdbcTemplate t = new JdbcTemplate(dataSource);
         t.execute("CREATE TABLE geometries (id INT AUTO_INCREMENT PRIMARY KEY, geometry BLOB, feature BLOB);");
+        GeoDB.CreateSpatialIndex(dataSource.getConnection(), null, "GEOMETRIES", "GEOMETRY", "28992");
         return dataSource;
     }
 

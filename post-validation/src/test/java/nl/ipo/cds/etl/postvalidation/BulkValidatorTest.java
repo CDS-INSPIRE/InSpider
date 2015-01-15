@@ -32,6 +32,8 @@ public class BulkValidatorTest {
 	private TestPersistableFeature tpf4;
 	private TestPersistableFeature tpf5;
 	private TestPersistableFeature tpf6;
+	private TestPersistableFeature tpf7;
+	private TestPersistableFeature tpf8;
 
 	@Rule
 	public final TemporaryFolder testFolder = new TemporaryFolder();
@@ -56,6 +58,10 @@ public class BulkValidatorTest {
 		tpf5.setId("test-feature5-is-contained-within-4");
 		tpf6 = new TestPersistableFeature();
 		tpf6.setId("test-feature6-is-free");
+		tpf7 = new TestPersistableFeature();
+		tpf7.setId("test-feature7-is-identical-to-5");
+		tpf8 = new TestPersistableFeature();
+		tpf8.setId("test-feature8-touches-4");
 	}
 	
     @Test
@@ -68,6 +74,8 @@ public class BulkValidatorTest {
 		tpf4.setGeometry(reader.read("POLYGON((100 100, 100 200, 200 200, 100 100))"));
 		tpf5.setGeometry(reader.read("POLYGON((110 110, 110 120, 120 120, 110 110))"));
 		tpf6.setGeometry(reader.read("POLYGON((300 300, 300 400, 400 400, 300 300))"));
+		tpf7.setGeometry(reader.read("POLYGON((110 110, 110 120, 120 120, 110 110))"));
+		tpf8.setGeometry(reader.read("POLYGON((100 200, 100 250, 200 250, 200 200))"));
 
 		h2GeometryStore.addToStore(ds, tpf.getGeometry(), tpf);
 		h2GeometryStore.addToStore(ds, tpf2.getGeometry(), tpf2);
@@ -75,11 +83,13 @@ public class BulkValidatorTest {
 		h2GeometryStore.addToStore(ds, tpf4.getGeometry(), tpf4);
 		h2GeometryStore.addToStore(ds, tpf5.getGeometry(), tpf5);
 		h2GeometryStore.addToStore(ds, tpf6.getGeometry(), tpf6);
+		h2GeometryStore.addToStore(ds, tpf7.getGeometry(), tpf7);
+		h2GeometryStore.addToStore(ds, tpf8.getGeometry(), tpf8);
 
 		List<OverlapValidationPair<TestPersistableFeature>> overlaps = validator.overlapValidation(ds);
 
 		// Check correct result. We should get the first 2 features in 1 overlap. Feature 3 does not have geometry which overlaps any of the others.
-		assertEquals(4, overlaps.size());
+		assertEquals(6, overlaps.size());
 
 		// 1 overlaps with 2.
 		OverlapValidationPair<TestPersistableFeature> pair = overlaps.get(0);
@@ -96,13 +106,25 @@ public class BulkValidatorTest {
 		assertEquals(tpf2, pair.f1);
 		assertEquals(tpf3, pair.f2);
 
-		// 5 is contained within 3 (also counts as overlap).
+		// 5 is contained within 4 (also counts as overlap).
 		pair = overlaps.get(3);
 		assertEquals(tpf4, pair.f1);
 		assertEquals(tpf5, pair.f2);
 
+		// 7 is contained within 4 (also counts as overlap).
+		pair = overlaps.get(4);
+		assertEquals(tpf4, pair.f1);
+		assertEquals(tpf7, pair.f2);
+
+		// 7 is identical to 5 (also counts as overlap).
+		pair = overlaps.get(5);
+		assertEquals(tpf5, pair.f1);
+		assertEquals(tpf7, pair.f2);
+
 
 		// 6 should not be returned in any combination.
+
+		// 8 should not be reported to clash with 4.
     }
 
 }

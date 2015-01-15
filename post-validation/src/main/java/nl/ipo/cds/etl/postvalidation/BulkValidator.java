@@ -43,10 +43,7 @@ public class BulkValidator<T extends Serializable> implements IBulkValidator<T> 
                      "from geometries g1 " +
                      ",    geometries g2 " +
                      "where g1.id < g2.id " +
-                     "and (ST_Overlaps(g1.geometry,g2.geometry) " +
-                          "or ST_Equals(g1.geometry, g2.geometry) " +
-                          "or ST_Within(g1.geometry, g2.geometry) " +
-                          "or ST_Within(g2.geometry, g1.geometry))";
+                     "and ST_Intersects(g1.geometry,g2.geometry) and not ST_Touches(g1.geometry, g2.geometry)";
 
         JdbcTemplate t = new JdbcTemplate(dataSource);
         List<Map<String,Object>> res = t.queryForList(sql);

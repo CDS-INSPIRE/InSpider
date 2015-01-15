@@ -24,7 +24,7 @@ import java.util.Map;
 public class H2GeometryStore<T extends Serializable> implements IGeometryStore<T> {
 
 
-    @Value("bulkValidator.jdbcUrlFormat")
+    @Value("${bulkValidator.jdbcUrlFormat}")
     private String JDBC_URL_FORMAT;
 
 

@@ -3,30 +3,42 @@
  */
 package nl.ipo.cds.admin.ba.controller;
 
+import static nl.ipo.cds.admin.ba.attributemapping.AttributeMappingUtils.getAttributeDescriptors;
+
 import java.security.Principal;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.Set;
 
 import javax.inject.Inject;
 import javax.validation.Valid;
 
 import nl.idgis.commons.jobexecutor.Job;
 import nl.idgis.commons.jobexecutor.JobCreator;
+import nl.ipo.cds.admin.ba.attributemapping.AttributeMappingUtils;
+import nl.ipo.cds.admin.ba.attributemapping.FeatureTypeCache;
+import nl.ipo.cds.admin.ba.attributemapping.OperationFactory;
+import nl.ipo.cds.admin.ba.controller.beans.mapping.Mapping;
 import nl.ipo.cds.admin.reporting.ReportConfiguration;
 import nl.ipo.cds.admin.security.AuthzImpl;
+import nl.ipo.cds.attributemapping.operations.discover.OperationDiscoverer;
 import nl.ipo.cds.dao.ManagerDao;
+import nl.ipo.cds.dao.attributemapping.AttributeMappingDao;
+import nl.ipo.cds.dao.attributemapping.OperationDTO;
 import nl.ipo.cds.domain.Bronhouder;
 import nl.ipo.cds.domain.Dataset;
 import nl.ipo.cds.domain.DatasetType;
+import nl.ipo.cds.domain.FeatureType;
 import nl.ipo.cds.domain.RemoveJob;
 import nl.ipo.cds.domain.Thema;
 import nl.ipo.cds.domain.TransformJob;
+import nl.ipo.cds.etl.process.HarvesterException;
+import nl.ipo.cds.etl.theme.AttributeDescriptor;
 import nl.ipo.cds.etl.theme.ThemeConfig;
 import nl.ipo.cds.etl.theme.ThemeDiscoverer;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -58,6 +70,15 @@ public class DatasetController{
 
 	@Inject
 	private ThemeDiscoverer themeDiscoverer;
+	
+	@Inject
+	private FeatureTypeCache featureTypeCache;
+	
+	@Inject
+	private OperationDiscoverer operationDiscoverer;
+	
+	@Inject
+	private ConversionService conversionService;
 	
 	@ModelAttribute("roleFunction")
 	String getRoleFunction(){
@@ -259,11 +280,12 @@ public class DatasetController{
 	}
 	
 	@RequestMapping(value ="/ba/add_datasetconfig/{bronhouderId}", method = RequestMethod.POST)
+	@Transactional
 	public String addDataset(@ModelAttribute Bronhouder bronhouder, 
 			@ModelAttribute("datasetForm") @Valid DatasetForm datasetForm,			
 			BindingResult bindingResult,
 			Model model,
-			final RedirectAttributes redirectAttributes) {
+			final RedirectAttributes redirectAttributes) throws ThemeNotFoundException, HarvesterException, MappingParserException {
 		
 		if(bindingResult.hasErrors()) {
 			return addDatasetForm(bronhouder, datasetForm.getThema(), model);
@@ -276,9 +298,45 @@ public class DatasetController{
 		dataset.setNaam(datasetForm.getNaam());
 		dataset.setDatasetType(this.managerDao.getDatasetType(datasetForm.getDatasettypeId()));
 		this.managerDao.create(dataset);		
-
+		// configure any dataset mapping templates
+		configureMappings(dataset);
+				
 		redirectAttributes.addAttribute ("thema", datasetForm.getThema ());
 		return "redirect:/ba/datasetconfig/" + bronhouder.getId();
 	}
-	
+
+	/**
+	 * Configure and persist any template mappings associated with the dataset.
+	 * 
+	 * @param dataset
+	 * @throws ThemeNotFoundException 
+	 * @throws HarvesterException 
+	 * @throws MappingParserException 
+	 */
+	private void configureMappings(Dataset dataset) throws ThemeNotFoundException, HarvesterException, MappingParserException {
+		final Set<AttributeDescriptor<?>> attributeDescriptors = getAttributeDescriptors(themeDiscoverer, dataset);
+		final FeatureType featureType = featureTypeCache.getFeatureType(dataset);
+		final AttributeMappingDao dao = new AttributeMappingDao(managerDao);
+		final ThemeConfig<?> themeConfig = themeDiscoverer.getThemeConfiguration(dataset.getDatasetType().getThema()
+				.getNaam());
+
+		for (AttributeDescriptor<?> attributeDescriptor : attributeDescriptors) {
+			 final Mapping mapping = themeConfig.getDefaultMappingForAttributeType(attributeDescriptor);
+			if (mapping==null) {
+				// skip mapping if no template is available
+				continue;
+			}
+			// Convert mapping to an operation tree used in the dao:
+			final OperationFactory factory = new OperationFactory (attributeDescriptor, operationDiscoverer.getOperationTypes(), featureType, conversionService);
+			
+			 final OperationDTO operationTree = factory.buildOperationCommand (mapping);
+			// Determine whether the mapping is valid:
+			final OperationDTO rootOperation = (OperationDTO) operationTree.getInputs().get(0).getOperation();
+			final boolean isValid = AttributeMappingUtils.isMappingValid(rootOperation, attributeDescriptor,
+					featureType);
+
+			// Save the mapping:
+			dao.putAttributeMapping(dataset, attributeDescriptor, rootOperation, isValid);
+		}
+	}
 }

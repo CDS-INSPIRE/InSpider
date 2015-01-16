@@ -520,4 +520,15 @@ public class ManagerDaoTest extends BaseManagerDaoTest {
     	assertEquals (1, ((MultiPolygon)geometry).size ());
     	assertTrue (((MultiPolygon)geometry).get (0).getArea (null).getValueAsDouble () > 3420000000.0);
     }
+    
+    @Test
+    public void testGetAllThemas () {
+    	entityManager.flush ();
+    	
+    	final List<Thema> themas = managerDao.getAllThemas ();
+    	
+    	assertNotNull (themas);
+    	assertEquals (1, themas.size ());
+    	assertEquals ("Protected sites", themas.get(0).getNaam());
+    }
 }

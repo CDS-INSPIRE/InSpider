@@ -12,10 +12,12 @@ import java.util.List;
 
 import nl.ipo.cds.dao.impl.ManagerDaoImpl;
 import nl.ipo.cds.domain.Bronhouder;
+import nl.ipo.cds.domain.BronhouderThema;
 import nl.ipo.cds.domain.DbGebruiker;
 import nl.ipo.cds.domain.Gebruiker;
 import nl.ipo.cds.domain.GebruikersRol;
 import nl.ipo.cds.domain.Rol;
+import nl.ipo.cds.domain.Thema;
 
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -366,5 +368,23 @@ public class GebruikerDaoTest extends BaseManagerDaoTest {
 		assertNotNull (dbGebruiker);
 		assertEquals ("overijssel", dbGebruiker.getGebruikersnaam ());
 		assertTrue (dbGebruiker.isSuperuser ());
+	}
+	
+	public @Test void testGetAllThemasForBronhouder () throws Throwable {
+		entityManager.flush ();
+		
+		final Thema thema = managerDao.getThemaByName ("Protected sites");
+		final Bronhouder bronhouder = managerDao.getBronhouderByCommonName ("overijssel");
+		final BronhouderThema bronhouderThema = new BronhouderThema (thema, bronhouder);
+		
+		entityManager.persist (bronhouderThema);
+		
+		entityManager.flush ();
+		
+		final List<Thema> themas = managerDao.getAllThemas (bronhouder);
+		
+		assertNotNull (themas);
+		assertEquals (1, themas.size ());
+		assertEquals ("Protected sites", themas.get (0).getNaam ());
 	}
 }

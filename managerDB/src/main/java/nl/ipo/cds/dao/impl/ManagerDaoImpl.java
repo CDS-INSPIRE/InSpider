@@ -986,7 +986,7 @@ public class ManagerDaoImpl implements ManagerDao {
 	
 	@Override
 	public List<Thema> getAllThemas (final Bronhouder bronhouder) {
-		final TypedQuery<Thema> query = entityManager.createQuery ("select a.thema from ThemaBronhouderAuthorization a where a.bronhouder = ?1", Thema.class)
+		final TypedQuery<Thema> query = entityManager.createQuery ("select a.thema from BronhouderThema a where a.bronhouder = ?1", Thema.class)
 				.setParameter (1, bronhouder);
 		
 		return query.getResultList ();

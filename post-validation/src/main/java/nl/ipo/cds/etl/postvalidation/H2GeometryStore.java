@@ -78,13 +78,47 @@ public class H2GeometryStore<T extends Serializable> implements IGeometryStore<T
 
         // Delete all objects, and delete the file when all connections close.
         JdbcTemplate t = new JdbcTemplate(dataSource);
-        t.execute("DROP ALL OBJECTS DELETE FILES;");
 
-        // Close all possible connections that are still on the store.
-        // The BasicDataSource actually provides a close() which closes all connections in the pool.
-        // However, we do not want to only accept a BasicDataSource, also other data sources.
-        // So in this case other connections might still be open. We assume this is managed by the caller.
-        dataSource.getConnection().close();
+        String url = dataSource.getConnection().getMetaData().getURL();
+        String path = url.substring(8);
+        final File filePath = new File(path);
+
+
+        // This does not work on Windows since the .lobs.db and .trace.db are still in use somehow. Also using SHUTDOWN and deleting the files manually does not work.
+        // Production environment is Linux however.
+        try {
+            t.execute("DROP ALL OBJECTS DELETE FILES;");
+            t.execute("SHUTDOWN IMMEDIATELY;");
+        } catch (Exception e) {
+            System.err.print(e.getMessage());
+
+        }
+
+        /*
+        String parent = filePath.getParent();
+
+        File folder = new File(parent != null ? parent : ".");
+
+        final File[] files = folder.listFiles( new FilenameFilter() {
+            @Override
+            public boolean accept( final File dir,
+                                   final String name ) {
+                return name.matches( filePath.getName() + ".*");
+            }
+        } );
+        for ( final File file : files ) {
+            if ( !file.delete() ) {
+                System.gc();
+                if (!file.delete()) {
+                    System.err.println("Can't remove " + file.getAbsolutePath());
+                }
+            }
+        }
+        */
+
+
+
+
 
     }
 }

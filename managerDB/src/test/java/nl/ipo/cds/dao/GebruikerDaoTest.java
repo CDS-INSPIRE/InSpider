@@ -12,6 +12,7 @@ import java.util.List;
 
 import nl.ipo.cds.dao.impl.ManagerDaoImpl;
 import nl.ipo.cds.domain.Bronhouder;
+import nl.ipo.cds.domain.DbGebruiker;
 import nl.ipo.cds.domain.Gebruiker;
 import nl.ipo.cds.domain.GebruikersRol;
 import nl.ipo.cds.domain.Rol;
@@ -341,4 +342,29 @@ public class GebruikerDaoTest extends BaseManagerDaoTest {
 		assertHasRol (gebruiker, Rol.BRONHOUDER, bronhouder);
 	}
 	*/
+	
+	/**
+	 * Verifies that a user initially has no database backing and that
+	 * a corresponding record is inserted into the database when
+	 * persisting.
+	 */
+	public @Test void testGebruikerCreateDatabaseBacking () throws Throwable {
+		final Gebruiker gebruiker = managerDao.getGebruiker ("overijssel");
+		
+		entityManager.flush ();
+		
+		assertNull (entityManager.find (DbGebruiker.class, gebruiker.getGebruikersnaam ()));
+		
+		gebruiker.setSuperuser (true);
+		
+		managerDao.update (gebruiker);
+		
+		entityManager.flush ();
+		
+		final DbGebruiker dbGebruiker = entityManager.find (DbGebruiker.class, gebruiker.getGebruikersnaam ());
+		
+		assertNotNull (dbGebruiker);
+		assertEquals ("overijssel", dbGebruiker.getGebruikersnaam ());
+		assertTrue (dbGebruiker.isSuperuser ());
+	}
 }

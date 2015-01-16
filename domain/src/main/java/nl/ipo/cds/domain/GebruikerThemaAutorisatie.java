@@ -8,9 +8,9 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
 /**
- * 
- * @author erik
- *
+ * This entity authorizes a {@link DbGebruiker} to access a {@link Thema} on behalf of a
+ * {@link Bronhouder}. A user is authorized on a {@link BronhouderThema}, which associates a bronhouder
+ * with a theme. 
  */
 @Entity
 public final class GebruikerThemaAutorisatie implements Serializable {
@@ -24,36 +24,52 @@ public final class GebruikerThemaAutorisatie implements Serializable {
 	@NotNull
 	@Id
 	@ManyToOne
-	private Thema thema;
+	private BronhouderThema bronhouderThema;
 	
 	@NotNull
 	private TypeGebruik typeGebruik;
 	
-	public GebruikerThemaAutorisatie (final DbGebruiker gebruiker, final Thema thema, final TypeGebruik typeGebruik) {
+	/**
+	 * Constructs a new authorization by providing the user, the bronhouder and theme.
+	 * 
+	 * @param gebruiker The user for the relation.
+	 * @param bronhouder Thema Provides the relation between bronhouder and thema
+	 * @param typeGebruik The type of authorization.
+	 */
+	public GebruikerThemaAutorisatie (final DbGebruiker gebruiker, final BronhouderThema bronhouderThema, final TypeGebruik typeGebruik) {
 		if (gebruiker == null) {
 			throw new NullPointerException ("gebruiker cannot be null");
 		}
-		if (thema == null) {
-			throw new NullPointerException ("thema cannot be null");
+		if (bronhouderThema == null) {
+			throw new NullPointerException ("bronhouderThema cannot be null");
 		}
 		if (typeGebruik == null) {
 			throw new NullPointerException ("typeGebruik cannot be null");
 		}
 		
 		this.gebruiker = gebruiker;
-		this.thema = thema;
+		this.bronhouderThema = bronhouderThema;
 		this.typeGebruik = typeGebruik;
 	}
 
-	public DbGebruiker getGebruiker() {
+	/**
+	 * @return The {@link DbGebruiker} associated with this authorization.
+	 */
+	public DbGebruiker getGebruiker () {
 		return gebruiker;
 	}
 
-	public Thema getThema() {
-		return thema;
+	/**
+	 * @return The {@link BronhouderThema} associated with this authorization.
+	 */
+	public BronhouderThema getBronhouderThema () {
+		return bronhouderThema;
 	}
 
-	public TypeGebruik getTypeGebruik() {
+	/**
+	 * @return The type of authorization.
+	 */
+	public TypeGebruik getTypeGebruik () {
 		return typeGebruik;
 	}
 }

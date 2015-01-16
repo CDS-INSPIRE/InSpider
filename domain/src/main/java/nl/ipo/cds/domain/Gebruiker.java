@@ -5,6 +5,13 @@ import javax.validation.Valid;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
+/**
+ * Describes a user by composing a {@link LdapGebruiker} and a {@link DbGebruiker}. All
+ * getters and setters are delegated to one of the backings.
+ * 
+ * Using the LDAP backing, common properties of the user are stored as an inetOrgPerson.
+ * Additional InSpider specific properties are stored in the optional database backing.
+ */
 public final class Gebruiker {
 	
 	@Valid
@@ -13,10 +20,19 @@ public final class Gebruiker {
 	@Valid
 	private final DbGebruiker dbGebruiker;
 	
+	/**
+	 * Creates a new user with an empty LDAP user and no DB backing.
+	 */
 	public Gebruiker () {
 		this (new LdapGebruiker (), null);
 	}
 	
+	/**
+	 * Creates a new user from the given LDAP and DB backings.
+	 * 
+	 * @param ldapGebruiker The LDAP backing of this user. Required attribute.
+	 * @param dbGebruiker The database backing of this user. Optional, can be null.
+	 */
 	public Gebruiker (final LdapGebruiker ldapGebruiker, final DbGebruiker dbGebruiker) {
 		if (ldapGebruiker == null) {
 			throw new NullPointerException ("ldapGebruiker cannot be null");
@@ -26,10 +42,22 @@ public final class Gebruiker {
 		this.dbGebruiker = dbGebruiker == null ? new DbGebruiker (ldapGebruiker.getGebruikersnaam ()) : dbGebruiker;
 	}
 
+	/**
+	 * Returns the LDAP backing of this user.
+	 * 
+	 * @see LdapGebruiker
+	 * @return The LDAP backing of this user.
+	 */
 	public LdapGebruiker getLdapGebruiker () {
 		return ldapGebruiker;
 	}
 
+	/**
+	 * Returns the DB backing of this user.
+	 * 
+	 * @see DbGebruiker
+	 * @return The database backing of this user.
+	 */
 	public DbGebruiker getDbGebruiker () {
 		return dbGebruiker;
 	}
@@ -117,6 +145,28 @@ public final class Gebruiker {
 	 */
 	public void setWachtwoord (final String wachtwoord) {
 		ldapGebruiker.setWachtwoord (wachtwoord);
+	}
+	
+	/**
+	 * Returns true if the user is a superuser. The superuser flag is stored in the database
+	 * backing of the user ({@link DbGebruiker}).
+	 * 
+	 * @see DbGebruiker
+	 * @return true if the user is a superuser, false otherwise.
+	 */
+	public boolean isSuperuser () {
+		return dbGebruiker.isSuperuser ();
+	}
+	
+	/**
+	 * Sets the superuser flag for this user. The superuser flag is stored in the datbase
+	 * backing of the user ({@link DbGebruiker}).
+	 * 
+	 * @see DbGebruiker
+	 * @param superuser
+	 */
+	public void setSuperuser (final boolean superuser) {
+		dbGebruiker.setSuperuser (superuser);
 	}
 	
 	@Override

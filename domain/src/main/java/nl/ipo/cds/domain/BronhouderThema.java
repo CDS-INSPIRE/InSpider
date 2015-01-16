@@ -7,6 +7,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
+/**
+ * BronhouderThema links a {@link Bronhouder} to a {@link Thema}.
+ */
 @Entity
 public class BronhouderThema implements Serializable {
 
@@ -33,10 +36,16 @@ public class BronhouderThema implements Serializable {
 		this.bronhouder = bronhouder;
 	}
 	
+	/**
+	 * @return The theme associated with this link.
+	 */
 	public Thema getThema() {
 		return thema;
 	}
 	
+	/**
+	 * @return The bronhouder associated with this link.
+	 */
 	public Bronhouder getBronhouder() {
 		return bronhouder;
 	}

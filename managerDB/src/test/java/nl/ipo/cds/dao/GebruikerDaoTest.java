@@ -81,6 +81,7 @@ public class GebruikerDaoTest extends BaseManagerDaoTest {
 		
 		LdapTestUtils.cleanAndSetup (ldapTemplate.getContextSource (), new DistinguishedName (), new ClassPathResource ("nl/ipo/cds/dao/testdata.ldif"));
 		
+		LdapTestUtils.loadLdif (ldapTemplate.getContextSource (), new ClassPathResource ("nl/ipo/cds/dao/bronhouders.ldif"));
 		((ManagerDaoImpl)managerDao).setLdapTemplate (ldapTemplate);
     }
 
@@ -386,5 +387,13 @@ public class GebruikerDaoTest extends BaseManagerDaoTest {
 		assertNotNull (themas);
 		assertEquals (1, themas.size ());
 		assertEquals ("Protected sites", themas.get (0).getNaam ());
+	}
+	
+	public @Test void testGetBronhoudersByUsername () throws Throwable {
+		final List<Bronhouder> bronhouders = managerDao.getBronhoudersByUsername ("limburg");
+		
+		assertNotNull (bronhouders);
+		assertEquals (1, bronhouders.size ());
+		assertEquals ("limburg", bronhouders.get (0).getCommonName ());
 	}
 }

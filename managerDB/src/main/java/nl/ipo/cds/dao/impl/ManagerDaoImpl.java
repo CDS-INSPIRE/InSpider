@@ -1354,14 +1354,14 @@ public class ManagerDaoImpl implements ManagerDao {
 	 */
 	@Override
 	public List<Gebruiker> getAllGebruikers() {
-		final Map<String, DbGebruiker> dbGebruikers = new HashMap<> ();
+		final Map<String, DbGebruiker> dbGebruikers = new HashMap<String, DbGebruiker> ();
 		
 		for (final DbGebruiker dbGebruiker: getAllDbGebruikers ()) {
 			dbGebruikers.put (dbGebruiker.getGebruikersnaam (), dbGebruiker);
 		}
 		
 		final List<LdapGebruiker> ldapGebruikers = getAllLdapGebruikers ();
-		final List<Gebruiker> gebruikers = new ArrayList<> (ldapGebruikers.size ());
+		final List<Gebruiker> gebruikers = new ArrayList<Gebruiker> (ldapGebruikers.size ());
 		
 		for (final LdapGebruiker ldapGebruiker: ldapGebruikers) {
 			gebruikers.add (new Gebruiker (ldapGebruiker, dbGebruikers.get (ldapGebruiker.getGebruikersnaam ())));

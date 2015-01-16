@@ -302,5 +302,10 @@
 			<groupId>nl.ipo.cds</groupId>
 			<artifactId>validation</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.deegree</groupId>
+			<artifactId>deegree2-base</artifactId>
+			<version>2.5</version>
+		</dependency>
 	</dependencies>
 </project>

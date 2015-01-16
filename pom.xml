@@ -545,6 +545,7 @@
 	    <module>metadataDB</module>
 	    <module>nagios-status</module>
 	    <module>postgresql</module>
+		<module>post-validation</module>
 	    <module>resources</module>
 	    <module>themes</module>
 	    <module>theme-areamanagement</module>

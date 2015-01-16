@@ -223,6 +223,10 @@
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>
+		 <dependency>
+        	<groupId>nl.ipo.cds</groupId>
+        	<artifactId>mappings</artifactId>
+        </dependency>
 		<dependency>
 			<groupId>nl.ipo.cds</groupId>
 			<artifactId>commons</artifactId>

@@ -71,18 +71,8 @@ public class H2GeometryStore<T extends Serializable> implements IGeometryStore<T
 
     @Override
     public void destroyStore(final DataSource dataSource) throws SQLException {
-        Connection conn = dataSource.getConnection();
-        final String connectString = conn.getMetaData().getURL();
-        final File connectPath = new File(connectString.substring(8));
-
-
         // Delete all objects, and delete the file when all connections close.
         JdbcTemplate t = new JdbcTemplate(dataSource);
-
-        String url = dataSource.getConnection().getMetaData().getURL();
-        String path = url.substring(8);
-        final File filePath = new File(path);
-
 
         // This does not work on Windows since the .lobs.db and .trace.db are still in use somehow. Also using SHUTDOWN and deleting the files manually does not work.
         // Production environment is Linux however.
@@ -93,32 +83,6 @@ public class H2GeometryStore<T extends Serializable> implements IGeometryStore<T
             System.err.print(e.getMessage());
 
         }
-
-        /*
-        String parent = filePath.getParent();
-
-        File folder = new File(parent != null ? parent : ".");
-
-        final File[] files = folder.listFiles( new FilenameFilter() {
-            @Override
-            public boolean accept( final File dir,
-                                   final String name ) {
-                return name.matches( filePath.getName() + ".*");
-            }
-        } );
-        for ( final File file : files ) {
-            if ( !file.delete() ) {
-                System.gc();
-                if (!file.delete()) {
-                    System.err.println("Can't remove " + file.getAbsolutePath());
-                }
-            }
-        }
-        */
-
-
-
-
 
     }
 }

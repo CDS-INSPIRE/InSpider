@@ -14,19 +14,16 @@ public final class Gebruiker {
 	private final DbGebruiker dbGebruiker;
 	
 	public Gebruiker () {
-		this (new LdapGebruiker (), new DbGebruiker ());
+		this (new LdapGebruiker (), null);
 	}
 	
 	public Gebruiker (final LdapGebruiker ldapGebruiker, final DbGebruiker dbGebruiker) {
 		if (ldapGebruiker == null) {
 			throw new NullPointerException ("ldapGebruiker cannot be null");
 		}
-		if (dbGebruiker == null) {
-			throw new NullPointerException ("dbGebruiker cannot be null");
-		}
 		
 		this.ldapGebruiker = ldapGebruiker;
-		this.dbGebruiker = dbGebruiker;
+		this.dbGebruiker = dbGebruiker == null ? new DbGebruiker (ldapGebruiker.getGebruikersnaam ()) : dbGebruiker;
 	}
 
 	public LdapGebruiker getLdapGebruiker () {

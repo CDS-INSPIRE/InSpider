@@ -1342,7 +1342,7 @@ public class ManagerDaoImpl implements ManagerDao {
 	}
 	
 	private List<DbGebruiker> getAllDbGebruikers () {
-		return entityManager.createQuery ("from Gebruiker as gebruiker order by gebruiker.gebruikersnaam", DbGebruiker.class).getResultList ();
+		return entityManager.createQuery ("from DbGebruiker as gebruiker order by gebruiker.gebruikersnaam", DbGebruiker.class).getResultList ();
 		
 	}
 	
@@ -1392,7 +1392,7 @@ public class ManagerDaoImpl implements ManagerDao {
 		}
 		
 		if (gebruiker.getDbGebruiker () != null) {
-			entityManager.remove (gebruiker);
+			entityManager.remove (gebruiker.getDbGebruiker ());
 		}
 	}
 	

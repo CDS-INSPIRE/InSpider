@@ -13,11 +13,15 @@ public final class DbGebruiker {
 	@NotNull
 	private String gebruikersnaam;
 
-	public String getGebruikersnaam() {
+	public DbGebruiker (final String gebruikersnaam) {
+		this.gebruikersnaam = gebruikersnaam;
+	}
+	
+	public String getGebruikersnaam () {
 		return gebruikersnaam;
 	}
 
-	public void setGebruikersnaam(String gebruikersnaam) {
+	public void setGebruikersnaam (final String gebruikersnaam) {
 		this.gebruikersnaam = gebruikersnaam;
 	}
 }

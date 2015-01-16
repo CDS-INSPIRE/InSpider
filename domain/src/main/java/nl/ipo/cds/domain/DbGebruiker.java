@@ -13,6 +13,12 @@ public final class DbGebruiker {
 	@NotNull
 	private String gebruikersnaam;
 
+	private boolean superuser;
+	
+	DbGebruiker () {
+		this.gebruikersnaam = null;
+	}
+	
 	public DbGebruiker (final String gebruikersnaam) {
 		this.gebruikersnaam = gebruikersnaam;
 	}
@@ -23,5 +29,13 @@ public final class DbGebruiker {
 
 	public void setGebruikersnaam (final String gebruikersnaam) {
 		this.gebruikersnaam = gebruikersnaam;
+	}
+
+	public boolean isSuperuser () {
+		return superuser;
+	}
+
+	public void setSuperuser (final boolean superuser) {
+		this.superuser = superuser;
 	}
 }

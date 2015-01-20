@@ -299,6 +299,12 @@
 			</dependency>
 			<dependency>
 				<groupId>nl.ipo.cds</groupId>
+				<artifactId>mappings</artifactId>
+				<version>2.3-SNAPSHOT</version>
+				<type>jar</type>
+			</dependency>
+			<dependency>
+				<groupId>nl.ipo.cds</groupId>
 				<artifactId>catalog-metadata</artifactId>
 				<version>2.3-SNAPSHOT</version>
 				<type>jar</type>
@@ -551,6 +557,7 @@
 	    <module>theme-productioninstallationpart</module>
 	    <module>theme-protectedsites</module>	    	    
 	    <module>theme-riskzone</module>
-	    <module>validation</module>	    
+	    <module>validation</module>
+	    <module>mappings</module>
 	</modules>
 </project>

@@ -263,6 +263,7 @@ public class AttributeMappingController {
 	}
 	
 	@RequestMapping (value = "/mapping", method = RequestMethod.GET, produces = "application/json")
+	@Transactional
 	@ResponseBody
 	public Mappings getAllMappings (final @ModelAttribute("dataset") Dataset dataset) throws ThemeNotFoundException, HarvesterException {
 		final Set<AttributeDescriptor<?>> attributeDescriptors = getAttributeDescriptors (themeDiscoverer, dataset);
@@ -305,9 +306,8 @@ public class AttributeMappingController {
 		final OperationDTO operationTree = makeOperationTree (operationDiscoverer, conversionService, dataset, attributeDescriptor, featureType, reader);
 		
 		// Determine whether the mapping is valid:
-		final OperationDTO rootOperation = (OperationDTO)operationTree.getInputs ().get (0).getOperation ();
-		final AttributeMappingValidator validator = new AttributeMappingValidator (attributeDescriptor, featureType, new AttributeMappingValidatorLogger ());
-		final boolean isValid = validator.isValid (new ValidateJob (), rootOperation);
+		final OperationDTO rootOperation = (OperationDTO) operationTree.getInputs().get(0).getOperation();
+		final boolean isValid = AttributeMappingUtils.isMappingValid(rootOperation, attributeDescriptor, featureType);
 		
 		// Save the mapping:
 		final AttributeMappingDao dao = new AttributeMappingDao (managerDao);

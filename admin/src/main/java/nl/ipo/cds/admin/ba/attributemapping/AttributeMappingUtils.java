@@ -21,6 +21,8 @@ import nl.ipo.cds.dao.attributemapping.OperationInputDTO;
 import nl.ipo.cds.dao.attributemapping.TransformOperationDTO;
 import nl.ipo.cds.domain.Dataset;
 import nl.ipo.cds.domain.FeatureType;
+import nl.ipo.cds.domain.ValidateJob;
+import nl.ipo.cds.etl.attributemapping.AttributeMappingValidator;
 import nl.ipo.cds.etl.process.HarvesterException;
 import nl.ipo.cds.etl.theme.AttributeDescriptor;
 import nl.ipo.cds.etl.theme.ThemeConfig;
@@ -79,6 +81,22 @@ public class AttributeMappingUtils {
 		return factory.buildOperationCommand (mapping);
 	}
 	
+	/**
+	 * Test whether a mapping is valid or not.
+	 * @param operationTree
+	 * @param attributeDescriptor
+	 * @param featureType
+	 * @return the validity.
+	 */
+	public static boolean isMappingValid(OperationDTO rootOperation, AttributeDescriptor<?> attributeDescriptor,
+			FeatureType featureType) {
+		
+		final AttributeMappingValidator validator = new AttributeMappingValidator(attributeDescriptor, featureType,
+				new AttributeMappingValidatorLogger());
+		final boolean isValid = validator.isValid(new ValidateJob(), rootOperation);
+		return isValid;
+	}
+
 	public static Set<AttributeDescriptor<?>> getAttributeDescriptors (final ThemeDiscoverer themeDiscoverer, final Dataset dataset) throws ThemeNotFoundException {
 		final ThemeConfig<?> themeConfig = themeDiscoverer.getThemeConfiguration (
 				dataset

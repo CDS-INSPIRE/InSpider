@@ -25,13 +25,7 @@ import nl.ipo.cds.attributemapping.operations.discover.OperationDiscoverer;
 import nl.ipo.cds.dao.ManagerDao;
 import nl.ipo.cds.dao.attributemapping.AttributeMappingDao;
 import nl.ipo.cds.dao.attributemapping.OperationDTO;
-import nl.ipo.cds.domain.Bronhouder;
-import nl.ipo.cds.domain.Dataset;
-import nl.ipo.cds.domain.DatasetType;
-import nl.ipo.cds.domain.FeatureType;
-import nl.ipo.cds.domain.RemoveJob;
-import nl.ipo.cds.domain.Thema;
-import nl.ipo.cds.domain.TransformJob;
+import nl.ipo.cds.domain.*;
 import nl.ipo.cds.etl.process.HarvesterException;
 import nl.ipo.cds.etl.theme.AttributeDescriptor;
 import nl.ipo.cds.etl.theme.ThemeConfig;
@@ -251,7 +245,47 @@ public class DatasetController{
 		redirectAttributes.addAttribute ("thema", themaNaam);
 		return "redirect:/ba/datasetconfig/" + bronhouder.getId();
 	}
-	
+
+	@Transactional
+	@RequestMapping(value ="/ba/tag_datasetconfig/{bronhouderId}", method = RequestMethod.GET)
+	public String tagDataset(@ModelAttribute Bronhouder bronhouder,
+								@RequestParam(value="datasetId", required=true)Long datasetId,
+								Model model,
+								final RedirectAttributes redirectAttributes) {
+
+		Dataset dataset = managerDao.getDataSet(datasetId);
+
+		final String themaNaam = dataset.getDatasetType().getThema().getNaam();
+		boolean taggable = themeDiscoverer.getThemeConfiguration(themaNaam).isTaggable();
+		redirectAttributes.addAttribute ("thema", themaNaam);
+
+		// We only continue with tagging if the corresponding theme is taggable.
+		if (!taggable) {
+			// We probably never get here through the interface, because the tag button is not visible for themes
+			// that are not taggable.
+			return "redirect:/ba/datasetconfig/" + bronhouder.getId();
+		}
+
+		// Tagging of a dataset is done using an ETL job "TagJob" and is not immediate.
+		final TagJob tagJob = new TagJob();
+		tagJob.setBronhouder(bronhouder);
+		tagJob.setDatasetType(dataset.getDatasetType());
+		tagJob.setUuid(dataset.getUuid());
+
+		jobCreator.putJob (tagJob);
+
+		// TODO: Is this required for tag jobs?
+		/* Check whether to create a transform Job, by checking if there is already a TRANSFORM job that
+		 * hasn't started yet
+		 */
+		/*if(this.managerDao.getLastTransformJob(Job.Status.CREATED) == null){
+			final TransformJob transformJob = new TransformJob ();
+			managerDao.create (transformJob);
+		}*/
+
+		return "redirect:/ba/datasetconfig/" + bronhouder.getId();
+	}
+
 	@RequestMapping(value ="/ba/add_datasetconfig/{bronhouderId}", method = RequestMethod.GET)
 	public String addDatasetForm(@ModelAttribute Bronhouder bronhouder,
 			@RequestParam(value="thema", required=true) String themaName,

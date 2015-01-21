@@ -130,4 +130,19 @@ public abstract class ThemeConfig<T extends PersistableFeature> implements Datas
 		return null;
 	}
 
+	/**
+	 * Whether or not the features in this theme are taggable.
+	 */
+	public boolean isTaggable() {
+		return false;
+	}
+
+	/**
+	 * TODO: See if this can be avoided.
+	 * Required to see in which schema to look for the relevant domain class table names.
+	 */
+	public String getSchemaName() {
+		return "bron";
+	}
+
 }

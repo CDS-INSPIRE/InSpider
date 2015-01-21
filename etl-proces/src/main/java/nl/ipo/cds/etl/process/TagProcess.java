@@ -1,5 +1,6 @@
 package nl.ipo.cds.etl.process;
 
+import com.google.common.base.Joiner;
 import nl.idgis.commons.jobexecutor.Job;
 import nl.idgis.commons.jobexecutor.JobLogger;
 import nl.idgis.commons.jobexecutor.Process;
@@ -55,12 +56,38 @@ public class TagProcess implements Process<TagJob> {
 
 
 
-		// Retrieve which
+		// Retrieve which feature set to tag.
 		Map<String, Object> tableJobDict = findFeatureSet(job, schemaName);
 		String tableName = (String) tableJobDict.get("table_name");
 		String jobId = Long.toString((Long) tableJobDict.get("job_id"));
+		int numRecords = (Integer) tableJobDict.get("num_records");
 
 		// Now return all columns for the features in the table.
+		Set<String> columnNames = retrieveColumns(schemaName, tableName);
+
+
+		String colStr = Joiner.on(',').join(columnNames);
+
+		// TODO: Do we change the destination job_id to the ID of the tag job ?
+		NamedParameterJdbcTemplate jdbc = new NamedParameterJdbcTemplate(dataSource);
+		Map<String, String> params = new HashMap<String, String>();
+		params = new HashMap<String, String>();
+		params.put("dest_table", String.format("%s.%s_tagged", schemaName, tableName));
+		params.put("src_table", String.format("%s.%s", schemaName, tableName));
+		params.put("tag", job.getTag());
+		params.put("job_id", jobId);
+		int numCopied = jdbc.update(String.format("insert into :dest_table (tag, %s) select :tag, %s from :src_table where job_id = :job_id", colStr, colStr), params);
+
+		if (numCopied != numRecords) {
+			throw new RuntimeException(String.format("Not all records where correctly copied to the _tagged table. Expected number of records: %d, actual: %d.", numRecords, numCopied));
+		}
+
+		log.debug("tagging dataset finished");
+
+		return false;
+	}
+
+	private Set<String> retrieveColumns(String schemaName, String tableName) {
 		NamedParameterJdbcTemplate jdbc = new NamedParameterJdbcTemplate(dataSource);
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("schema_name", schemaName);
@@ -74,12 +101,7 @@ public class TagProcess implements Process<TagJob> {
 				columnNames.add(columnName);
 			}
 		}
-		// TODO: continue here.
-
-
-		log.debug("tagging dataset finished");
-
-		return false;
+		return columnNames;
 	}
 
 	/**
@@ -105,7 +127,7 @@ public class TagProcess implements Process<TagJob> {
             String tableName = tableNameResultSet.getString("table_name");
 
             try {
-                sql = String.format("select distinct job_id, :table_name as table_name from %s.%s where job_id in (select id from manager.etljob where bronhouder_id=:bronhouder_id and datasettype_id=:datasettype_id and uuid=:uuid)", schemaName, tableName);
+                sql = String.format("select job_id, :table_name as table_name, count(*) as num_records from %s.%s where job_id in (select id from manager.etljob where bronhouder_id=:bronhouder_id and datasettype_id=:datasettype_id and uuid=:uuid) group by job_id", schemaName, tableName);
                 params = new HashMap<String, String>();
                 params.put("bronhouder_id", Long.toString(job.getBronhouder().getId()));
                 params.put("datasettype_id", Long.toString(job.getDatasetType().getId()));

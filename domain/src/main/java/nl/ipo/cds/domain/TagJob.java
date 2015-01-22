@@ -22,6 +22,10 @@ public class TagJob extends EtlJob {
 		return tag;
 	}
 
+	public void setTag(String tag) {
+		this.tag = tag;
+	}
+
 	public TagJob() {
 		super (PRIORITY);
 	}

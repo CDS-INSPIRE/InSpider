@@ -249,7 +249,8 @@ public class DatasetController{
 	@Transactional
 	@RequestMapping(value ="/ba/tag_datasetconfig/{bronhouderId}", method = RequestMethod.GET)
 	public String tagDataset(@ModelAttribute Bronhouder bronhouder,
-								@RequestParam(value="datasetId", required=true)Long datasetId,
+								@RequestParam(value="datasetId")Long datasetId,
+								@RequestParam(value="tag")String tag,
 								Model model,
 								final RedirectAttributes redirectAttributes) {
 
@@ -271,6 +272,7 @@ public class DatasetController{
 		tagJob.setBronhouder(bronhouder);
 		tagJob.setDatasetType(dataset.getDatasetType());
 		tagJob.setUuid(dataset.getUuid());
+		tagJob.setTag(tag);
 
 		jobCreator.putJob (tagJob);
 

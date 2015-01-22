@@ -207,7 +207,7 @@ public class GeometryExpression<K extends Enum<K> & ValidationMessage<K, C>, C e
 		return new AbstractUnaryTestExpression<K, C, T>(this, "HasValidCoordinateRD") {
 			@Override
 			public boolean test(T value, C context) {
-				Point xVal = new DefaultPoint( null, null, null , new double[] { -35995, 855885} );
+				Point xVal = new DefaultPoint( null, null, null , new double[] { (-35995), 855885} );
 				Point yVal = new DefaultPoint( null, null, null , new double[] { 291490, 305979} );
 				Geometry bBoxRd = new DefaultEnvelope(xVal, yVal);
 				if(value.isWithin(bBoxRd)){

@@ -201,7 +201,7 @@ public class GeometryExpression<K extends Enum<K> & ValidationMessage<K, C>, C e
 	}
 	
 	/**
-	 *  Een coördinaat in RD dat binnen de BBOX valt: west:-35995, south:305979, east:291490, north: 855885
+	 *  Een coordinaat in RD dat binnen de BBOX valt: west:-35995, south:305979, east:291490, north: 855885
 	 */
 	public Expression<K, C, Boolean> hasValidCoordinateRD() {
 		return new AbstractUnaryTestExpression<K, C, T>(this, "HasValidCoordinateRD") {

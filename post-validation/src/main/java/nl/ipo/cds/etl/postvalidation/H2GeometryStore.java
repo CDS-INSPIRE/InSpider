@@ -1,7 +1,9 @@
 package nl.ipo.cds.etl.postvalidation;
 
 import com.vividsolutions.jts.io.ParseException;
+
 import geodb.GeoDB;
+
 import org.apache.commons.dbcp.BasicDataSource;
 import org.deegree.geometry.Geometry;
 import org.deegree.geometry.io.WKBWriter;
@@ -11,6 +13,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import javax.sql.DataSource;
+
 import java.io.*;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -24,8 +27,11 @@ import java.util.Map;
 public class H2GeometryStore<T extends Serializable> implements IGeometryStore<T> {
 
 
-    @Value("${bulkValidator.jdbcUrlFormat}")
+    @Value("${bulkValidator.jdbcUrlFormat:jdbc\\:h2\\:%s}")
     private String JDBC_URL_FORMAT;
+    
+    @Value("${bulkValidator.jdbcDriverClassName:org.h2.Driver}")
+	private String driverClassName;
 
 
 
@@ -45,7 +51,7 @@ public class H2GeometryStore<T extends Serializable> implements IGeometryStore<T
     public DataSource loadStore(final String uuId) throws SQLException {
         BasicDataSource d = new BasicDataSource();
         d.setUrl(String.format(JDBC_URL_FORMAT, uuId));
-
+        d.setDriverClassName(driverClassName);
         // Initialize the DataSource.
         d.getConnection();
         return d;

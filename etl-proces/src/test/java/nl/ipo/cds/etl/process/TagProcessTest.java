@@ -37,12 +37,9 @@ import java.util.Properties;
  */
 public class TagProcessTest extends AbstractTransactionalJUnit4SpringContextTests {
 	
-	protected static final String ABORT_MESSAGE = "Abort this Job";
 
 	private EntityManager entityManager;
 
-	private Long jobId;
-	private Long themaId;
 
 	@Configuration
 	@ComponentScan (basePackageClasses = { nl.ipo.cds.etl.config.Package.class })
@@ -159,7 +156,7 @@ public class TagProcessTest extends AbstractTransactionalJUnit4SpringContextTest
 
 	@Test
 	public void testTagProcessor() {
-
+		tagProcess.process(tagJob, logger);
 	}
 	
 }

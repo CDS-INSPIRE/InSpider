@@ -14,16 +14,21 @@ public class TagJob extends EtlJob {
 
 	private final static int PRIORITY = 200;
 
-	/* We use a global parameters text field to store our tag. This field can be used to store other parameters for future job types. */
-	@Column(table = "etljob", name = "parameters")
-	private String tag;
 
+	/**
+	 * Utility getter to retrieve the tag from the job parameters.
+	 * @return The tag label.
+	 */
 	public String getTag() {
-		return tag;
+		return getParameters();
 	}
 
+	/**
+	 * Utility setter to set the tag in the job parameters.
+	 * @param tag A string representing the tag label.
+	 */
 	public void setTag(String tag) {
-		this.tag = tag;
+		setParameters(tag);
 	}
 
 	public TagJob() {

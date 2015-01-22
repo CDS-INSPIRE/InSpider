@@ -53,7 +53,13 @@ public abstract class EtlJob extends AbstractJob {
 	
 	@Column( name = "force_execution", table = "etljob", nullable = false, columnDefinition="bool default false" )
 	private Boolean forceExecution = false;
-	
+
+
+
+	/* We use a global parameters text field to store all kinds of job parameters. This field can be used to store other parameters for future job types. */
+	@Column(table = "etljob", name = "parameters", columnDefinition="TEXT")
+	private String parameters;
+
 	@Transient
 	private Integer maxFeatures = null;
 	
@@ -95,6 +101,8 @@ public abstract class EtlJob extends AbstractJob {
 	public void setBronhouder(Bronhouder bronhouder) {
 		this.bronhouder = bronhouder;
 	}
+
+
 
 	/**
 	 * @return the uuid
@@ -183,7 +191,22 @@ public abstract class EtlJob extends AbstractJob {
 	public void setDatasetUrl(String datasetUrl) {
 		this.datasetUrl = datasetUrl;
 	}
-	
+
+	/**
+	 *
+	 * @return the generic parameters column.
+	 */
+	public String getParameters() {
+		return parameters;
+	}
+
+	/**
+	 * Set the generic parameters column. To be interpreted by the caller.
+	 * @param parameters a string of parameters.
+	 */
+	public void setParameters(String parameters) {
+		this.parameters = parameters;
+	}
 	public Integer getFeatureCount() {
 		return featureCount;
 	}

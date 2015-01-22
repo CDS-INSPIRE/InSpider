@@ -10,6 +10,7 @@ import nl.idgis.commons.jobexecutor.JobLogger;
 import nl.ipo.cds.dao.ManagerDao;
 import nl.ipo.cds.etl.process.*;
 
+import nl.ipo.cds.etl.theme.ThemeDiscoverer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -56,7 +57,7 @@ public class Processes {
 
 	@Bean
 	@Inject
-	public TagProcess tagProcess (final DataSource dataSource) {
-		return new TagProcess(dataSource);
+	public TagProcess tagProcess (final DataSource dataSource, final ThemeDiscoverer themeDiscoverer) {
+		return new TagProcess(dataSource, themeDiscoverer);
 	}
 }

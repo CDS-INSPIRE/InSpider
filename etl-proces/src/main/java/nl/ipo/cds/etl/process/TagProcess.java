@@ -35,11 +35,11 @@ public class TagProcess implements Process<TagJob> {
 
 	private final DataSource dataSource;
 
-	@Inject
 	private ThemeDiscoverer themeDiscoverer;
 
-	public TagProcess(final DataSource dataSource) {
+	public TagProcess(final DataSource dataSource, final ThemeDiscoverer themeDiscoverer) {
 		this.dataSource = dataSource;
+		this.themeDiscoverer = themeDiscoverer;
 	}
 
 	@Override

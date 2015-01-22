@@ -4,29 +4,17 @@ import com.google.common.base.Joiner;
 import nl.idgis.commons.jobexecutor.Job;
 import nl.idgis.commons.jobexecutor.JobLogger;
 import nl.idgis.commons.jobexecutor.Process;
-import nl.ipo.cds.dao.ManagerDao;
-import nl.ipo.cds.domain.Bronhouder;
-import nl.ipo.cds.domain.Dataset;
-import nl.ipo.cds.domain.DatasetType;
 import nl.ipo.cds.domain.TagJob;
 import nl.ipo.cds.etl.theme.ThemeDiscoverer;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.dao.DataAccessException;
 import org.springframework.dao.IncorrectResultSizeDataAccessException;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.jdbc.datasource.DataSourceUtils;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.inject.Inject;
 import javax.sql.DataSource;
-import javax.sql.RowSet;
-import java.math.BigInteger;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.*;
 
 public class TagProcess implements Process<TagJob> {
@@ -43,7 +31,6 @@ public class TagProcess implements Process<TagJob> {
 	}
 
 	@Override
-	@Transactional
 	public boolean process(TagJob job, JobLogger logger) {
 		log.debug("tagging dataset started");
 		final String themaNaam = job.getDatasetType().getThema().getNaam();
@@ -59,32 +46,36 @@ public class TagProcess implements Process<TagJob> {
 		// Retrieve which feature set to tag.
 		Map<String, Object> tableJobDict = findFeatureSet(job, schemaName);
 		String tableName = (String) tableJobDict.get("table_name");
-		String jobId = Long.toString((Long) tableJobDict.get("job_id"));
-		int numRecords = (Integer) tableJobDict.get("num_records");
-
 		// Now return all columns for the features in the table.
 		Set<String> columnNames = retrieveColumns(schemaName, tableName);
 
-
-		String colStr = Joiner.on(',').join(columnNames);
-
-		// TODO: Do we change the destination job_id to the ID of the tag job ?
-		NamedParameterJdbcTemplate jdbc = new NamedParameterJdbcTemplate(dataSource);
-		Map<String, String> params = new HashMap<String, String>();
-		params = new HashMap<String, String>();
-		params.put("dest_table", String.format("%s.%s_tagged", schemaName, tableName));
-		params.put("src_table", String.format("%s.%s", schemaName, tableName));
-		params.put("tag", job.getTag());
-		params.put("job_id", jobId);
-		int numCopied = jdbc.update(String.format("insert into :dest_table (tag, %s) select :tag, %s from :src_table where job_id = :job_id", colStr, colStr), params);
-
-		if (numCopied != numRecords) {
-			throw new RuntimeException(String.format("Not all records where correctly copied to the _tagged table. Expected number of records: %d, actual: %d.", numRecords, numCopied));
-		}
+		copyData(job, schemaName, tableJobDict, tableName, columnNames);
 
 		log.debug("tagging dataset finished");
 
 		return false;
+	}
+
+	@Transactional
+	private void copyData(TagJob job, String schemaName, Map<String, Object> tableJobDict, String tableName, Set<String> columnNames) {
+		Long jobId = (Long) tableJobDict.get("job_id");
+		long numRecords = (Long)tableJobDict.get("num_records");
+
+
+		String colStr = Joiner.on(',').join(columnNames);
+		String destTable = String.format("%s.%s_tagged", schemaName, tableName);
+		String srcTable = String.format("%s.%s", schemaName, tableName);
+
+		// TODO: Do we change the destination job_id to the ID of the tag job ?
+		NamedParameterJdbcTemplate jdbc = new NamedParameterJdbcTemplate(dataSource);
+		MapSqlParameterSource namedParams = new MapSqlParameterSource();
+		namedParams.addValue("tag", job.getTag());
+		namedParams.addValue("job_id", jobId);
+		long numCopied = jdbc.update(String.format("insert into %s (tag, %s) select :tag, %s from %s where job_id = :job_id", destTable, colStr, colStr, srcTable), namedParams);
+
+		if (numCopied != numRecords) {
+			throw new RuntimeException(String.format("Not all records where correctly copied to the _tagged table. Expected number of records: %d, actual: %d.", numRecords, numCopied));
+		}
 	}
 
 	private Set<String> retrieveColumns(String schemaName, String tableName) {
@@ -127,13 +118,14 @@ public class TagProcess implements Process<TagJob> {
             String tableName = tableNameResultSet.getString("table_name");
 
             try {
+
                 sql = String.format("select job_id, :table_name as table_name, count(*) as num_records from %s.%s where job_id in (select id from manager.etljob where bronhouder_id=:bronhouder_id and datasettype_id=:datasettype_id and uuid=:uuid) group by job_id", schemaName, tableName);
-                params = new HashMap<String, String>();
-                params.put("bronhouder_id", Long.toString(job.getBronhouder().getId()));
-                params.put("datasettype_id", Long.toString(job.getDatasetType().getId()));
-                params.put("uuid", job.getUuid());
-                params.put("table_name", tableName);
-                tableJobDict = jdbc.queryForMap(sql, params);
+				MapSqlParameterSource namedParams = new MapSqlParameterSource();
+                namedParams.addValue("bronhouder_id", job.getBronhouder().getId());
+				namedParams.addValue("datasettype_id", job.getDatasetType().getId());
+				namedParams.addValue("uuid", job.getUuid());
+				namedParams.addValue("table_name", tableName);
+                tableJobDict = jdbc.queryForMap(sql, namedParams);
                 log.debug(String.format("Matching table found in %s.%s", schemaName, tableName));
 
                 // We found the table and the jobId, jump out of the loop.

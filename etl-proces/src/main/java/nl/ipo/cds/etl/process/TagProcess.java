@@ -42,6 +42,9 @@ public class TagProcess implements Process<TagJob> {
 		log.debug("tag: " + job.getTag());
 
 
+		// Get the table name to copy from.
+		// Copy and add tag.
+
 
 		// Retrieve which feature set to tag.
 		Map<String, Object> tableJobDict = findFeatureSet(job, schemaName);

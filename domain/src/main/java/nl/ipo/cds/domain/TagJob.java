@@ -1,18 +1,7 @@
 package nl.ipo.cds.domain;
 
-import org.codehaus.jackson.JsonGenerationException;
-import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.map.util.JSONWrappedObject;
-import org.codehaus.jackson.type.TypeReference;
-
-import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Tags a dataset with a certain label. This copies the dataset into a separate table.

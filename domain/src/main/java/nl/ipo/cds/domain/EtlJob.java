@@ -16,8 +16,7 @@ import javax.persistence.Transient;
 
 import nl.idgis.commons.jobexecutor.AbstractJob;
 import nl.idgis.commons.jobexecutor.JobTypeIntrospector;
-import org.codehaus.jackson.JsonGenerationException;
-import org.codehaus.jackson.JsonParseException;
+
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
 

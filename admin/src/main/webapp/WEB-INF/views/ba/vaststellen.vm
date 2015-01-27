@@ -1,0 +1,24 @@
+#set($layerName='vaststellen')
+<p></p>
+<br/>
+	<form method="POST" action="#springUrl('/ba/vaststellen/')">
+	
+	<label for="vaststelId">Vaststel Id</label>
+	<input type="text" value="#e($dto.tagId)" name="tagId" data-dojo-type="dijit/form/TextBox" required="true" data-dojo-props="trim:true" id="vaststelId" />
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<label>Thema:&nbsp;&nbsp;&nbsp;
+	<select data-dojo-type="dijit/form/Select" id="thema" name="thema" required="true"  title="Thema waaronder datasets zijn gegroepeerd">
+		#foreach($thema in $themas)
+		    <option value="#e($thema.naam)"#if($thema.naam == $currentThema.naam) selected="selected"#end>#if($notAuthorizedThemaList.contains($thema.naam)) !! #end $thema.naam</option>
+		#end
+	</select>
+	</label>
+	<p></p>
+	<div id="stdButton">
+		<button data-dojo-type="dijit/form/Button" type="submit" name="submit" value="submit" title="Selecteer om dataset vast te stellen">Vaststellen</button>
+	</div>
+	
+	</form>
+	
+	

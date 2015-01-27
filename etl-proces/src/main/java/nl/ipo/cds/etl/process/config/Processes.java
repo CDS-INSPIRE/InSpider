@@ -49,10 +49,8 @@ public class Processes {
 
 	@Bean
 	@Inject
-	public RemoveProcess removeProcess (final DataSource dataSource) {
-		final RemoveProcess process = new RemoveProcess (dataSource);
-
-		return process;
+	public RemoveProcess removeProcess (final DataSource dataSource, final ThemeDiscoverer themeDiscoverer) {
+		return new RemoveProcess (dataSource, themeDiscoverer);
 	}
 
 	@Bean

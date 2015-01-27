@@ -197,6 +197,15 @@
 										</div>
 									</div>
 									#end
+									#if($authz.anyGranted("ROLE_BEHEERDER"))
+									<div id="tabs_ba_vaststellen" class="dijitTab">
+										<div class="dijitTabInnerDiv">
+											<div title="Vaststellen tab om datasets te taggen" class="dijitTabContent" onClick="location.href='#springUrl('/ba/vaststellen')';">
+												<span class="tabLabel">Vaststellen</span>
+											</div>
+										</div>
+									</div>
+									#end
 							    </div>
 							</div>
 						</div>

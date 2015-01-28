@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- This file was created for the project RWS-VOS. Copyright (C) 2013 by Geodan. All rights reserved. -->
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+
+	<!-- memory: jdbc:h2:mem:~/vwn-local;DB_CLOSE_DELAY=-1;MODE=Oracle -->
+	<!-- server: jdbc:h2:tcp://localhost/~/vwn-local;MODE=Oracle -->
+	<!-- embedded (file): jdbc:h2:~/vwn-local;MODE=Oracle -->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="org.h2.Driver" />
+		<property name="url" value="jdbc:h2:mem:~/cds-local;DB_CLOSE_DELAY=-1;MODE=Oracle" />
+		<property name="username" value="sa" />
+		<property name="password" value="sa" />
+	</bean>
+
+	<!-- Let the Spring container act as a JPA container and inject an EnitityManager from the EntityManagerFactory into @PersistenceContext annotated properties/methods. -->
+	<bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
+
+	<!-- The entityManagerFactory creates the EntityManager's used by the DAO's -->
+	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="persistenceUnitName" value="cds" />
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+				<property name="showSql" value="false" />
+				<property name="generateDdl" value="true" />
+				<property name="databasePlatform" value="org.hibernate.dialect.PostgreSQLDialect" />
+			</bean>
+		</property>
+		<property name="dataSource" ref="dataSource" />
+		<property name="jpaDialect" ref="jpaDialect" />
+		<property name="jpaPropertyMap">
+			<props>
+				<prop key="hibernate.hbm2ddl.auto">validate</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="jpaDialect" class="org.springframework.orm.jpa.vendor.HibernateJpaDialect" />
+
+	<bean class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<!-- The JpaTransactionManager is responsible for creating EntityManagers opening transactions and binding them to the current thread context. -->
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<bean id="tagDao" class="nl.ipo.cds.dao.impl.TagDaoImpl">
+	</bean>
+
+</beans>

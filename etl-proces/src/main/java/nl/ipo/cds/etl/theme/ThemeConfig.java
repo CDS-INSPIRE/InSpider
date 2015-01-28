@@ -137,12 +137,4 @@ public abstract class ThemeConfig<T extends PersistableFeature> implements Datas
 		return false;
 	}
 
-	/**
-	 * TODO: See if this can be avoided.
-	 * Required to see in which schema to look for the relevant domain class table names.
-	 */
-	public String getSchemaName() {
-		return "bron";
-	}
-
 }

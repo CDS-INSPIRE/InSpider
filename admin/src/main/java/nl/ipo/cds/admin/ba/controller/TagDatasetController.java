@@ -11,6 +11,7 @@ import nl.idgis.commons.jobexecutor.JobCreator;
 import nl.ipo.cds.admin.reporting.ReportConfiguration;
 import nl.ipo.cds.dao.ManagerDao;
 import nl.ipo.cds.dao.TagDao;
+import nl.ipo.cds.domain.DatasetType;
 import nl.ipo.cds.domain.TagDTO;
 import nl.ipo.cds.domain.TagJob;
 import nl.ipo.cds.domain.Thema;
@@ -77,7 +78,7 @@ public class TagDatasetController {
 		// check if there is a job with the same tag already
 		Table table = themeConfig.getFeatureTypeClass().getAnnotation(Table.class);
 		Assert.notNull(table, "table Annotation could not be determined for thema " + themeConfig.getFeatureTypeClass());
-		Assert.isTrue(tagDao.doesTagExist(dto.tagId, table.schema(), table.name()), "the tag " + dto.getTagId()
+		Assert.isTrue(!tagDao.doesTagExist(dto.tagId, table.schema(), table.name()), "the tag " + dto.getTagId()
 		+ " already exists!");
 
 		// Check whether to create a transform Job, by checking if there is already a TRANSFORM job that hasn't started yet
@@ -86,7 +87,11 @@ public class TagDatasetController {
 			managerDao.create(transformJob);
 		}
 
+		DatasetType datasetType = new DatasetType();
+		datasetType.setNaam(dto.getThema());
+		datasetType.setThema(managerDao.getThemaByName(dto.getThema()));
 		final TagJob tagJob = new TagJob();
+		tagJob.setDatasetType(datasetType);
 		tagJob.setTag(dto.getTagId());
 		jobCreator.putJob(tagJob);
 		return "redirect:/ba/vaststellen/";

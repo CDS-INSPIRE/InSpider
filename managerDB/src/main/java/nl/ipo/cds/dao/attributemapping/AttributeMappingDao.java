@@ -20,7 +20,6 @@ import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 public class AttributeMappingDao {
@@ -56,7 +55,6 @@ public class AttributeMappingDao {
 		return unmarshalOperation (attributeMapping.getRootOperation ());
 	}
 
-	@Transactional (propagation = Propagation.MANDATORY)
 	private OperationDTO unmarshalOperation (final MappingOperation mappingOperation) {
 		if (mappingOperation == null) {
 			return null;
@@ -69,7 +67,6 @@ public class AttributeMappingDao {
 		}
 	}
 	
-	@Transactional (propagation = Propagation.MANDATORY)
 	private InputOperationDTO unmarshalInputOperation (final MappingOperation mappingOperation) {
 		if (mappingOperation == null) {
 			throw new NullPointerException ("mappingOperation cannot be null");
@@ -98,7 +95,6 @@ public class AttributeMappingDao {
 		return null;
 	}
 	
-	@Transactional (propagation = Propagation.MANDATORY)
 	private TransformOperationDTO unmarshalTransformOperation (final MappingOperation mappingOperation) {
 		if (mappingOperation == null || mappingOperation.getOperationName () == null) {
 			throw new NullPointerException ();
@@ -114,7 +110,6 @@ public class AttributeMappingDao {
 			);
 	}
 	
-	@Transactional (propagation = Propagation.MANDATORY)
 	private List<OperationInputDTO> unmarshalInputs (final List<MappingOperation> inputs) {
 		if (inputs == null) {
 			throw new NullPointerException ("inputs cannot be null");
@@ -129,7 +124,6 @@ public class AttributeMappingDao {
 		return result;
 	}
 	
-	@Transactional (propagation = Propagation.MANDATORY)
 	private Object unmarshalProperties (final String properties, final OperationType operationType) {
 		if (properties == null || operationType.getPropertyBeanClass () == null) {
 			return null;
@@ -167,7 +161,6 @@ public class AttributeMappingDao {
 		managerDao.update (attributeMapping);
 	}
 	
-	@Transactional (propagation = Propagation.MANDATORY)
 	private MappingOperation persistOperation (final OperationDTO operation, final MappingOperation existingMappingOperation) {
 		if (operation == null) {
 			// Delete an existing mapping operation:
@@ -197,7 +190,6 @@ public class AttributeMappingDao {
 		return mappingOperation;
 	}
 	
-	@Transactional (propagation = Propagation.MANDATORY)
 	private void mergeOperation (final OperationDTO operation, final MappingOperation mappingOperation) {
 		if (operation instanceof InputOperationDTO) {
 			mergeInputOperation ((InputOperationDTO)operation, mappingOperation);
@@ -208,7 +200,6 @@ public class AttributeMappingDao {
 		}
 	}
 	
-	@Transactional (propagation = Propagation.MANDATORY)
 	private void mergeInputOperation (final InputOperationDTO inputOperation, final MappingOperation operation) {
 		// If the operation previously had children, delete them:
 		for (final MappingOperation input: operation.getInputs ()) {
@@ -223,7 +214,6 @@ public class AttributeMappingDao {
 		operation.setProperties (null);
 	}
 	
-	@Transactional (propagation = Propagation.MANDATORY)
 	private void mergeTransformOperation (final TransformOperationDTO transformOperation, final MappingOperation operation) {
 		// Set properties:
 		operation.setOperationType (MappingOperationType.TRANSFORM_OPERATION);
@@ -254,7 +244,6 @@ public class AttributeMappingDao {
 		operation.setInputs (newChildren);
 	}
 	
-	@Transactional (propagation = Propagation.MANDATORY)
 	private void deleteChild (final MappingOperation mappingOperation) {
 		if (mappingOperation == null) {
 			return;
@@ -296,7 +285,6 @@ public class AttributeMappingDao {
 	 * @param attribute
 	 * @return An attribute mapping for the given dataset and attribute.
 	 */
-	@Transactional (propagation = Propagation.MANDATORY)
 	private AttributeMapping getOrCreateAttributeMapping (final Dataset dataset, final OutputOperationType attribute) {
 		final AttributeMapping existingMapping = managerDao.getAttributeMapping (dataset, attribute.getName ());
 		

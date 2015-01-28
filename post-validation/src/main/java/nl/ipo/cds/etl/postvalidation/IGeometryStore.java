@@ -20,6 +20,6 @@ public interface IGeometryStore<T extends Serializable> {
 
     public void addToStore(final DataSource dataSource, Geometry geometry, T feature) throws SQLException, ParseException, IOException;
 
-    public void destroyStore(final DataSource dataSource) throws SQLException;
+    public void destroyStore(final DataSource dataSource);
 
 }

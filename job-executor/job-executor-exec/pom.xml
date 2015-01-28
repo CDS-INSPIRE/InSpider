@@ -15,6 +15,10 @@
 			<artifactId>etl-proces</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>nl.ipo.cds</groupId>
+			<artifactId>post-validation</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
 			<scope>test</scope>

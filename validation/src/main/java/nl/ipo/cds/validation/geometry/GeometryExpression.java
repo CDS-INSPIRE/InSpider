@@ -25,6 +25,8 @@ import org.deegree.geometry.primitive.Point;
 import org.deegree.geometry.primitive.Polygon;
 import org.deegree.geometry.primitive.Ring;
 import org.deegree.geometry.primitive.Surface;
+import org.deegree.geometry.standard.DefaultEnvelope;
+import org.deegree.geometry.standard.primitive.DefaultPoint;
 import org.deegree.geometry.validation.GeometryValidator;
 
 import com.vividsolutions.jts.algorithm.RobustLineIntersector;
@@ -194,6 +196,24 @@ public class GeometryExpression<K extends Enum<K> & ValidationMessage<K, C>, C e
 			public boolean test(T a, String b, C context) {
 				return a != null && b != null && a.getCoordinateSystem() != null
 						&& a.getCoordinateSystem().getName().contains(b);
+			}
+		};
+	}
+	
+	/**
+	 *  Een coordinaat in RD dat binnen de BBOX valt: west:-35995, south:305979, east:291490, north: 855885
+	 */
+	public Expression<K, C, Boolean> hasValidCoordinateRD() {
+		return new AbstractUnaryTestExpression<K, C, T>(this, "HasValidCoordinateRD") {
+			@Override
+			public boolean test(T value, C context) {
+				Point xVal = new DefaultPoint( null, null, null , new double[] { (-35995), 855885} );
+				Point yVal = new DefaultPoint( null, null, null , new double[] { 291490, 305979} );
+				Geometry bBoxRd = new DefaultEnvelope(xVal, yVal);
+				if(value.isWithin(bBoxRd)){
+					return true;
+				}
+				return false;
 			}
 		};
 	}
@@ -380,6 +400,8 @@ public class GeometryExpression<K extends Enum<K> & ValidationMessage<K, C>, C e
 		};
 	}
 
+	
+	
 	public class SrsNameExpression extends AbstractExpression<K, C, String> {
 		@Override
 		public Class<String> getResultType() {

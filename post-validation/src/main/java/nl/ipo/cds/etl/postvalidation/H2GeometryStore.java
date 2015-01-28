@@ -76,7 +76,7 @@ public class H2GeometryStore<T extends Serializable> implements IGeometryStore<T
     }
 
     @Override
-    public void destroyStore(final DataSource dataSource) throws SQLException {
+    public void destroyStore(final DataSource dataSource) {
         // Delete all objects, and delete the file when all connections close.
         JdbcTemplate t = new JdbcTemplate(dataSource);
 

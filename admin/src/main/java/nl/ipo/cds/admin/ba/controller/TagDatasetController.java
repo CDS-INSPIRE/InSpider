@@ -86,12 +86,7 @@ public class TagDatasetController {
 			final TransformJob transformJob = new TransformJob();
 			managerDao.create(transformJob);
 		}
-
-		DatasetType datasetType = new DatasetType();
-		datasetType.setNaam(dto.getThema());
-		datasetType.setThema(managerDao.getThemaByName(dto.getThema()));
 		final TagJob tagJob = new TagJob();
-		tagJob.setDatasetType(datasetType);
 		tagJob.setTag(dto.getTagId());
 		jobCreator.putJob(tagJob);
 		return "redirect:/ba/vaststellen/";

@@ -43,7 +43,7 @@ public class TagProcess implements Process<TagJob> {
 		log.debug("tagging dataset started");
 		final String themaNaam = job.getDatasetType().getThema().getNaam();
 		Table table = themeDiscoverer.getThemeConfiguration(themaNaam).getFeatureTypeClass().getAnnotation(Table.class);
-		final String schemaName = table.name();
+		final String schemaName = table.schema();
 		log.debug("bronhouder: " + job.getBronhouder());
 		log.debug("datasetType: " + job.getDatasetType());
 		log.debug("uuid: " + job.getUuid());

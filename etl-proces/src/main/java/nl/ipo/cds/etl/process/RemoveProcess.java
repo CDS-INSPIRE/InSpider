@@ -41,7 +41,7 @@ public class RemoveProcess implements Process<RemoveJob> {
 
 		final String themaNaam = job.getDatasetType().getThema().getNaam();
 		Table table = themeDiscoverer.getThemeConfiguration(themaNaam).getFeatureTypeClass().getAnnotation(Table.class);
-		final String schemaName = table.name();
+		final String schemaName = table.schema();
 		Bronhouder bronhouder = job.getBronhouder();
 		DatasetType datasetType = job.getDatasetType();
 		String uuid = job.getUuid();

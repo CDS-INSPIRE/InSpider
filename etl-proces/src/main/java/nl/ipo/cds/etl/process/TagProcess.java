@@ -12,6 +12,7 @@ import nl.idgis.commons.jobexecutor.Job;
 import nl.idgis.commons.jobexecutor.JobLogger;
 import nl.idgis.commons.jobexecutor.Process;
 import nl.ipo.cds.domain.TagJob;
+import nl.ipo.cds.etl.db.annotation.Table;
 import nl.ipo.cds.etl.theme.ThemeDiscoverer;
 
 import org.apache.commons.logging.Log;
@@ -41,7 +42,8 @@ public class TagProcess implements Process<TagJob> {
 	public boolean process(TagJob job, JobLogger logger) {
 		log.debug("tagging dataset started");
 		final String themaNaam = job.getDatasetType().getThema().getNaam();
-		final String schemaName = themeDiscoverer.getThemeConfiguration(themaNaam).getSchemaName();
+		Table table = themeDiscoverer.getThemeConfiguration(themaNaam).getFeatureTypeClass().getAnnotation(Table.class);
+		final String schemaName = table.name();
 		log.debug("bronhouder: " + job.getBronhouder());
 		log.debug("datasetType: " + job.getDatasetType());
 		log.debug("uuid: " + job.getUuid());

@@ -12,9 +12,12 @@ import java.util.List;
 
 import nl.ipo.cds.dao.impl.ManagerDaoImpl;
 import nl.ipo.cds.domain.Bronhouder;
+import nl.ipo.cds.domain.BronhouderThema;
+import nl.ipo.cds.domain.DbGebruiker;
 import nl.ipo.cds.domain.Gebruiker;
 import nl.ipo.cds.domain.GebruikersRol;
 import nl.ipo.cds.domain.Rol;
+import nl.ipo.cds.domain.Thema;
 
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -78,6 +81,7 @@ public class GebruikerDaoTest extends BaseManagerDaoTest {
 		
 		LdapTestUtils.cleanAndSetup (ldapTemplate.getContextSource (), new DistinguishedName (), new ClassPathResource ("nl/ipo/cds/dao/testdata.ldif"));
 		
+		LdapTestUtils.loadLdif (ldapTemplate.getContextSource (), new ClassPathResource ("nl/ipo/cds/dao/bronhouders.ldif"));
 		((ManagerDaoImpl)managerDao).setLdapTemplate (ldapTemplate);
     }
 
@@ -341,4 +345,55 @@ public class GebruikerDaoTest extends BaseManagerDaoTest {
 		assertHasRol (gebruiker, Rol.BRONHOUDER, bronhouder);
 	}
 	*/
+	
+	/**
+	 * Verifies that a user initially has no database backing and that
+	 * a corresponding record is inserted into the database when
+	 * persisting.
+	 */
+	public @Test void testGebruikerCreateDatabaseBacking () throws Throwable {
+		final Gebruiker gebruiker = managerDao.getGebruiker ("overijssel");
+		
+		entityManager.flush ();
+		
+		assertNull (entityManager.find (DbGebruiker.class, gebruiker.getGebruikersnaam ()));
+		
+		gebruiker.setSuperuser (true);
+		
+		managerDao.update (gebruiker);
+		
+		entityManager.flush ();
+		
+		final DbGebruiker dbGebruiker = entityManager.find (DbGebruiker.class, gebruiker.getGebruikersnaam ());
+		
+		assertNotNull (dbGebruiker);
+		assertEquals ("overijssel", dbGebruiker.getGebruikersnaam ());
+		assertTrue (dbGebruiker.isSuperuser ());
+	}
+	
+	public @Test void testGetAllThemasForBronhouder () throws Throwable {
+		entityManager.flush ();
+		
+		final Thema thema = managerDao.getThemaByName ("Protected sites");
+		final Bronhouder bronhouder = managerDao.getBronhouderByCommonName ("overijssel");
+		final BronhouderThema bronhouderThema = new BronhouderThema (thema, bronhouder);
+		
+		entityManager.persist (bronhouderThema);
+		
+		entityManager.flush ();
+		
+		final List<Thema> themas = managerDao.getAllThemas (bronhouder);
+		
+		assertNotNull (themas);
+		assertEquals (1, themas.size ());
+		assertEquals ("Protected sites", themas.get (0).getNaam ());
+	}
+	
+	public @Test void testGetBronhoudersByUsername () throws Throwable {
+		final List<Bronhouder> bronhouders = managerDao.getBronhoudersByUsername ("limburg");
+		
+		assertNotNull (bronhouders);
+		assertEquals (1, bronhouders.size ());
+		assertEquals ("limburg", bronhouders.get (0).getCommonName ());
+	}
 }

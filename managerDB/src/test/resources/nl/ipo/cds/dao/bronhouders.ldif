@@ -1,95 +1,71 @@
 dn: cn=drenthe,ou=Group,dc=inspire,dc=idgis,dc=eu
-objectClass: bronhouder
 objectClass: groupOfNames
 objectClass: top
-bronhouderCode: 9922
 cn: drenthe
 member: uid=drenthe,ou=People,dc=inspire,dc=idgis,dc=eu
 
 dn: cn=flevoland,ou=Group,dc=inspire,dc=idgis,dc=eu
-objectClass: bronhouder
 objectClass: groupOfNames
 objectClass: top
-bronhouderCode: 9924
 cn: flevoland
 member: uid=flevoland,ou=People,dc=inspire,dc=idgis,dc=eu
 
 dn: cn=friesland,ou=Group,dc=inspire,dc=idgis,dc=eu
-objectClass: bronhouder
 objectClass: groupOfNames
 objectClass: top
-bronhouderCode: 9921
 cn: friesland
 member: uid=fryslan,ou=People,dc=inspire,dc=idgis,dc=eu
 
 dn: cn=gelderland,ou=Group,dc=inspire,dc=idgis,dc=eu
-objectClass: bronhouder
 objectClass: groupOfNames
 objectClass: top
-bronhouderCode: 9925
 cn: gelderland
 member: uid=gelderland,ou=People,dc=inspire,dc=idgis,dc=eu
 
 dn: cn=groningen,ou=Group,dc=inspire,dc=idgis,dc=eu
-objectClass: bronhouder
 objectClass: groupOfNames
 objectClass: top
-bronhouderCode: 9920
 cn: groningen
 member: uid=groningen,ou=People,dc=inspire,dc=idgis,dc=eu
 
 dn: cn=limburg,ou=Group,dc=inspire,dc=idgis,dc=eu
-objectClass: bronhouder
 objectClass: groupOfNames
 objectClass: top
-bronhouderCode: 9931
 cn: limburg
 member: uid=limburg,ou=People,dc=inspire,dc=idgis,dc=eu
 
 dn: cn=noordbrabant,ou=Group,dc=inspire,dc=idgis,dc=eu
-objectClass: bronhouder
 objectClass: groupOfNames
 objectClass: top
-bronhouderCode: 9930
 cn: noordbrabant
 member: uid=brabant,ou=People,dc=inspire,dc=idgis,dc=eu
 
 dn: cn=noordholland,ou=Group,dc=inspire,dc=idgis,dc=eu
-objectClass: bronhouder
 objectClass: groupOfNames
 objectClass: top
-bronhouderCode: 9927
 cn: noordholland
 member: uid=noord-holland,ou=People,dc=inspire,dc=idgis,dc=eu
 
 dn: cn=overijssel,ou=Group,dc=inspire,dc=idgis,dc=eu
-objectClass: bronhouder
 objectClass: groupOfNames
 objectClass: top
-bronhouderCode: 9923
 cn: overijssel
 member: uid=overijssel,ou=People,dc=inspire,dc=idgis,dc=eu
 
 dn: cn=utrecht,ou=Group,dc=inspire,dc=idgis,dc=eu
-objectClass: bronhouder
 objectClass: groupOfNames
 objectClass: top
-bronhouderCode: 9926
 cn: utrecht
 member: uid=utrecht,ou=People,dc=inspire,dc=idgis,dc=eu
 
 dn: cn=zeeland,ou=Group,dc=inspire,dc=idgis,dc=eu
-objectClass: bronhouder
 objectClass: groupOfNames
 objectClass: top
-bronhouderCode: 9929
 cn: zeeland
 member: uid=zeeland,ou=People,dc=inspire,dc=idgis,dc=eu
 
 dn: cn=zuidholland,ou=Group,dc=inspire,dc=idgis,dc=eu
-objectClass: bronhouder
 objectClass: groupOfNames
 objectClass: top
-bronhouderCode: 9928
 cn: zuidholland
 member: uid=zuid-holland,ou=People,dc=inspire,dc=idgis,dc=eu

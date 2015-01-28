@@ -10,12 +10,12 @@ import javax.sql.DataSource;
 import nl.idgis.commons.jobexecutor.Job;
 import nl.idgis.commons.jobexecutor.JobLogger;
 import nl.idgis.commons.jobexecutor.Process;
-import nl.ipo.cds.dao.ManagerDao;
 import nl.ipo.cds.domain.Bronhouder;
 import nl.ipo.cds.domain.DatasetType;
 import nl.ipo.cds.domain.RemoveJob;
-
+import nl.ipo.cds.etl.db.annotation.Table;
 import nl.ipo.cds.etl.theme.ThemeDiscoverer;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.jdbc.datasource.DataSourceUtils;
@@ -40,7 +40,8 @@ public class RemoveProcess implements Process<RemoveJob> {
 		log.debug("removing dataset and bron data started");
 
 		final String themaNaam = job.getDatasetType().getThema().getNaam();
-		final String schemaName = themeDiscoverer.getThemeConfiguration(themaNaam).getSchemaName();
+		Table table = themeDiscoverer.getThemeConfiguration(themaNaam).getFeatureTypeClass().getAnnotation(Table.class);
+		final String schemaName = table.name();
 		Bronhouder bronhouder = job.getBronhouder();
 		DatasetType datasetType = job.getDatasetType();
 		String uuid = job.getUuid();

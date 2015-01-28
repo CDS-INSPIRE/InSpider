@@ -11,7 +11,6 @@ import nl.idgis.commons.jobexecutor.JobCreator;
 import nl.ipo.cds.admin.reporting.ReportConfiguration;
 import nl.ipo.cds.dao.ManagerDao;
 import nl.ipo.cds.dao.TagDao;
-import nl.ipo.cds.domain.DatasetType;
 import nl.ipo.cds.domain.TagDTO;
 import nl.ipo.cds.domain.TagJob;
 import nl.ipo.cds.domain.Thema;

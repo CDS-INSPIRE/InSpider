@@ -1,21 +1,27 @@
 package nl.ipo.cds.etl.process;
 
-import com.google.common.base.Joiner;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeSet;
+
+import javax.sql.DataSource;
+
 import nl.idgis.commons.jobexecutor.Job;
 import nl.idgis.commons.jobexecutor.JobLogger;
 import nl.idgis.commons.jobexecutor.Process;
 import nl.ipo.cds.domain.TagJob;
 import nl.ipo.cds.etl.theme.ThemeDiscoverer;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.sql.DataSource;
-import java.util.*;
+import com.google.common.base.Joiner;
 
 @Transactional
 public class TagProcess implements Process<TagJob> {

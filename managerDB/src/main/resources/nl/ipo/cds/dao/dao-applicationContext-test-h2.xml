@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- This file was created for the project RWS-VOS. Copyright (C) 2013 by Geodan. All rights reserved. -->
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd">
 
 
 
@@ -10,7 +10,7 @@
 	<!-- embedded (file): jdbc:h2:~/vwn-local;MODE=Oracle -->
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="org.h2.Driver" />
-		<property name="url" value="jdbc:h2:mem:~/cds-local;DB_CLOSE_DELAY=-1;MODE=Oracle" />
+		<property name="url" value="jdbc:h2:mem:~/cds-local;DB_CLOSE_DELAY=-1;MODE=PostgreSQL" />
 		<property name="username" value="sa" />
 		<property name="password" value="sa" />
 	</bean>
@@ -51,5 +51,9 @@
 
 	<bean id="tagDao" class="nl.ipo.cds.dao.impl.TagDaoImpl">
 	</bean>
+
+	<jdbc:initialize-database data-source="dataSource">
+		<jdbc:script location="classpath:/nl/ipo/cds/dao/h2-test-data.sql" />
+	</jdbc:initialize-database>
 
 </beans>

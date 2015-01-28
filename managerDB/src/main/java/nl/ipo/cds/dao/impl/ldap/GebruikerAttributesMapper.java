@@ -8,15 +8,15 @@ import javax.naming.directory.Attributes;
 import javax.naming.directory.BasicAttribute;
 import javax.naming.directory.BasicAttributes;
 
+import nl.ipo.cds.domain.LdapGebruiker;
+
 import org.apache.commons.lang.StringUtils;
 
-import nl.ipo.cds.domain.Gebruiker;
-
-public class GebruikerAttributesMapper extends EntityAttributesMapper<Gebruiker> {
+public class GebruikerAttributesMapper extends EntityAttributesMapper<LdapGebruiker> {
 
 	@Override
-	public Gebruiker fromAttributes(Attributes attributes) throws NamingException {
-		final Gebruiker gebruiker = new Gebruiker ();
+	public LdapGebruiker fromAttributes(Attributes attributes) throws NamingException {
+		final LdapGebruiker gebruiker = new LdapGebruiker ();
 		
 		gebruiker.setGebruikersnaam (getString (attributes, "uid"));
 		gebruiker.setEmail (getString (attributes, "mail"));
@@ -27,7 +27,7 @@ public class GebruikerAttributesMapper extends EntityAttributesMapper<Gebruiker>
 	}
 	
 	@Override
-	public Attributes toAttributes (Gebruiker gebruiker) throws NamingException {
+	public Attributes toAttributes (final LdapGebruiker gebruiker) throws NamingException {
 		final Attributes attributes = new BasicAttributes ();
 		final BasicAttribute objectClass = new BasicAttribute ("objectclass");
 		

@@ -54,13 +54,6 @@
 			group-role-attribute="cn"
 			role-prefix="ROLE_"
 			user-details-class="inetOrgPerson" />
-		
-		<authentication-provider>
-			<user-service>
-				<!-- Convenience admin user -->
-				<user name="admin" password="12admin34" authorities="ROLE_BEHEERDER"/>
-			</user-service>
-		</authentication-provider>
 	</authentication-manager>
 	
 </beans:beans>

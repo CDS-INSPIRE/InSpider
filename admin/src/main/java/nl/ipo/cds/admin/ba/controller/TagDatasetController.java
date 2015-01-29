@@ -77,6 +77,9 @@ public class TagDatasetController {
 		Assert.notNull(table, "table Annotation could not be determined for thema " + themeConfig.getFeatureTypeClass());
 		Assert.isTrue(!tagDao.doesTagExist(dto.tagId, table.schema(), table.name()), "the tag " + dto.getTagId()
 		+ " already exists!");
+
+		// TODO Also check in manager.job (joined with manager.etljob) table for a job that has the chosen tag in its parameters and does have either one of the following status: CREATED, PREPARED, STARTED. (FINISHED and ABORTED jobs can be ignored).
+
 		final TagJob tagJob = new TagJob();
 		tagJob.setTag(dto.getTagId());
 		tagJob.setThema(dto.getThema());

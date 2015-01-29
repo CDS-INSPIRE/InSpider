@@ -41,32 +41,32 @@ public class TagProcess implements Process<TagJob> {
 	@Override
 	public boolean process(TagJob job, JobLogger logger) {
 		log.debug("tagging dataset started");
-		final String themaNaam = job.getDatasetType().getThema().getNaam();
-		Table table = themeDiscoverer.getThemeConfiguration(themaNaam).getFeatureTypeClass().getAnnotation(Table.class);
-		final String schemaName = table.schema();
+
+		final Table table = themeDiscoverer.getThemeConfiguration(job.getThema()).getFeatureTypeClass().getAnnotation(Table.class);
+
 		log.debug("bronhouder: " + job.getBronhouder());
 		log.debug("datasetType: " + job.getDatasetType());
 		log.debug("uuid: " + job.getUuid());
-		log.debug("schema name: " + schemaName);
+		log.debug("schema name: " + table.schema());
 		log.debug("tag: " + job.getTag());
-		log.debug("table: " + job.getThema());
+		log.debug("table: " + table.name());
 
 
 		// Now return all columns for the features in the table.
-		Set<String> columnNames = retrieveColumns(schemaName, job.getThema());
+		Set<String> columnNames = retrieveColumns(table);
 
 		// Actually copy the data.
-		copyData(job, schemaName, columnNames);
+		copyData(job, table, columnNames);
 
 		log.debug("tagging dataset finished");
 
 		return false;
 	}
 
-	private void copyData(TagJob job, String schemaName, Set<String> columnNames) {
+	private void copyData(TagJob job, Table table, Set<String> columnNames) {
 
 		String colStr = Joiner.on(',').join(columnNames);
-		String srcTable = String.format("%s.%s", schemaName, job.getThema());
+		String srcTable = String.format("%s.%s", table.schema(), table.name());
 		String destTable = String.format("%s_tagged", srcTable);
 
 		NamedParameterJdbcTemplate jdbc = new NamedParameterJdbcTemplate(dataSource);
@@ -84,11 +84,11 @@ public class TagProcess implements Process<TagJob> {
 	/**
 	 * Retrieve a set of columns for a table in a certain schema.
 	 */
-	private Set<String> retrieveColumns(String schemaName, String tableName) {
+	private Set<String> retrieveColumns(Table table) {
 		NamedParameterJdbcTemplate jdbc = new NamedParameterJdbcTemplate(dataSource);
 		Map<String, String> params = new HashMap<String, String>();
-		params.put("schema_name", schemaName);
-		params.put("table_name", tableName);
+		params.put("schema_name", table.schema());
+		params.put("table_name", table.name());
 
 		SqlRowSet columnResultSet = jdbc.queryForRowSet("select column_name from information_schema.columns where table_schema=:schema_name and table_name=:table_name", params);
 		SortedSet<String> columnNames = new TreeSet<String>();

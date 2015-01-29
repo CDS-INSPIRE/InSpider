@@ -32,19 +32,19 @@ public class TagJob extends EtlJob {
 
 
 	/**
-	 * Utility getter to retrieve the table to copy the datasets that need to be tagged from.
-	 * @return The name of the table.
+	 * theme that need to be tagged.
+	 * @return thema The name of the theme.
 	 */
-	public String getSourceTable() {
-		return (String)getParameter("table");
+	public String getThema() {
+		return (String)getParameter("thema");
 	}
 
 	/**
-	 * Set the table name of the table to copy the datasets that need to be tagged from.
-	 * @param table The name of the table.
+	 * Set the theme name of the table that need to be tagged from.
+	 * @param thema The name of the theme.
 	 */
-	public void setSourceTable(String table) {
-		setParameter("table", table);
+	public void setThema(String thema) {
+		setParameter("thema", thema);
 	}
 
 	public TagJob() {

@@ -49,11 +49,11 @@ public class TagProcess implements Process<TagJob> {
 		log.debug("uuid: " + job.getUuid());
 		log.debug("schema name: " + schemaName);
 		log.debug("tag: " + job.getTag());
-		log.debug("table: " + job.getSourceTable());
+		log.debug("table: " + job.getThema());
 
 
 		// Now return all columns for the features in the table.
-		Set<String> columnNames = retrieveColumns(schemaName, job.getSourceTable());
+		Set<String> columnNames = retrieveColumns(schemaName, job.getThema());
 
 		// Actually copy the data.
 		copyData(job, schemaName, columnNames);
@@ -66,7 +66,7 @@ public class TagProcess implements Process<TagJob> {
 	private void copyData(TagJob job, String schemaName, Set<String> columnNames) {
 
 		String colStr = Joiner.on(',').join(columnNames);
-		String srcTable = String.format("%s.%s", schemaName, job.getSourceTable());
+		String srcTable = String.format("%s.%s", schemaName, job.getThema());
 		String destTable = String.format("%s_tagged", srcTable);
 
 		NamedParameterJdbcTemplate jdbc = new NamedParameterJdbcTemplate(dataSource);

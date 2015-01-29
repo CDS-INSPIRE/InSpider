@@ -6,7 +6,6 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.validation.Valid;
 
-import nl.idgis.commons.jobexecutor.Job.Status;
 import nl.idgis.commons.jobexecutor.JobCreator;
 import nl.ipo.cds.admin.reporting.ReportConfiguration;
 import nl.ipo.cds.dao.ManagerDao;
@@ -14,7 +13,6 @@ import nl.ipo.cds.dao.TagDao;
 import nl.ipo.cds.domain.TagDTO;
 import nl.ipo.cds.domain.TagJob;
 import nl.ipo.cds.domain.Thema;
-import nl.ipo.cds.domain.TransformJob;
 import nl.ipo.cds.etl.db.annotation.Table;
 import nl.ipo.cds.etl.theme.ThemeConfig;
 import nl.ipo.cds.etl.theme.ThemeDiscoverer;
@@ -79,14 +77,9 @@ public class TagDatasetController {
 		Assert.notNull(table, "table Annotation could not be determined for thema " + themeConfig.getFeatureTypeClass());
 		Assert.isTrue(!tagDao.doesTagExist(dto.tagId, table.schema(), table.name()), "the tag " + dto.getTagId()
 		+ " already exists!");
-
-		// Check whether to create a transform Job, by checking if there is already a TRANSFORM job that hasn't started yet
-		if (this.managerDao.getLastTransformJob(Status.CREATED) == null) {
-			final TransformJob transformJob = new TransformJob();
-			managerDao.create(transformJob);
-		}
 		final TagJob tagJob = new TagJob();
 		tagJob.setTag(dto.getTagId());
+		tagJob.setThema(dto.getThema());
 		jobCreator.putJob(tagJob);
 		return "redirect:/ba/vaststellen/";
 	}

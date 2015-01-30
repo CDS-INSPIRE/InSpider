@@ -39,4 +39,14 @@ public class TagDaoImpl implements TagDao {
 		return res.intValue()>=1;
 	}
 
+
+	@Override
+	public Boolean doesTagJobWithIdExist(String tag) {
+		log.debug("entered method doesTagJobWithIdExist");
+		String sql = "select count(parameters) from manager.etljob where parameters= ?";
+		log.debug("query" + sql + " will be executed");
+		Integer res = jdbcTemplate.queryForObject(sql,Integer.class, tag);
+		return res.intValue()>=1;
+	}
+
 }

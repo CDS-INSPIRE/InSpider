@@ -65,23 +65,32 @@ public class TagDatasetController {
 	@Transactional
 	@RequestMapping(method = RequestMethod.POST)
 	public String tagTheme(@Valid @ModelAttribute("dto") TagDTO dto, Model model) {
+		model.addAttribute("themas", getVaststelThemas());
+		
 		// check if thema is taggable
 		ThemeConfig<?> themeConfig = themeDiscoverer.getThemeConfiguration(dto.getThema());
 		Assert.notNull(themeConfig, "Theme with name " + dto.getThema() + " does not exist.");
-		Assert.isTrue(themeConfig.isTaggable(), "Theme " + themeConfig.getThemeName() + " is not taggable!");
-
+		//Assert.isTrue(themeConfig.isTaggable(), "Theme " + themeConfig.getThemeName() + " is not taggable!");
+		if(!themeConfig.isTaggable()){
+			model.addAttribute("themaError", "Thema " + themeConfig.getThemeName() + " kan niet worden vastgesteld!");
+			return "/ba/vaststellen";
+		}
 		// FIXME TODO check that user is authorized to tag this thema
 
 		// check if there is a job with the same tag already
 		Table table = themeConfig.getFeatureTypeClass().getAnnotation(Table.class);
 		Assert.notNull(table, "table Annotation could not be determined for thema " + themeConfig.getFeatureTypeClass());
-		Assert.isTrue(!tagDao.doesTagExist(dto.tagId, table.schema(), table.name()), "the tag " + dto.getTagId()
-		+ " already exists!");
+		if(tagDao.doesTagExist(dto.tagId, table.schema(), table.name())){
+			model.addAttribute("tagIdError", "Het vaststel id " + dto.getTagId()+ " bestaat al!");
+			return "/ba/vaststellen";
+		}
 		final TagJob tagJob = new TagJob();
 		tagJob.setTag(dto.getTagId());
 		tagJob.setThema(dto.getThema());
 		jobCreator.putJob(tagJob);
-		return "redirect:/ba/vaststellen/";
+		model.addAttribute("success", "Het thema " + dto.getThema() + " zal worden vastgesteld met id " + dto.getTagId());
+		return "/ba/vaststellen";
+		
 	}
 
 }

@@ -37,4 +37,14 @@ public class TagDaoImplTest {
 		Assert.assertTrue(!doesNotExist);
 	}
 
+	
+	@Test
+	@Transactional
+	public void testDoesTagJobWithIdExist() {
+	boolean doesExist = tagDao.doesTagJobWithIdExist("testTag");
+	Assert.assertTrue(doesExist);
+	boolean doesNotExist = tagDao.doesTagJobWithIdExist("Deze niet");
+	Assert.assertTrue(!doesNotExist);
+		
+	}
 }

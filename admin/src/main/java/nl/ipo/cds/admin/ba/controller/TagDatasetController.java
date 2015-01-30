@@ -78,17 +78,14 @@ public class TagDatasetController {
 		// FIXME TODO check that user is authorized to tag this thema
 
 		// check if there is a job with the same tag already
+		// Also check in manager.job (joined with manager.etljob) table for a job that has the chosen tag in its parameters 
+		//and does have either one of the following status: CREATED, PREPARED, STARTED. (FINISHED and ABORTED jobs can be ignored).
 		Table table = themeConfig.getFeatureTypeClass().getAnnotation(Table.class);
 		Assert.notNull(table, "table Annotation could not be determined for thema " + themeConfig.getFeatureTypeClass());
-		if(tagDao.doesTagExist(dto.tagId, table.schema(), table.name())){
+		if(tagDao.doesTagExist(dto.tagId, table.schema(), table.name())|| tagDao.doesTagJobWithIdExist(dto.getTagId())){
 			model.addAttribute("tagIdError", "Het vaststel id " + dto.getTagId()+ " bestaat al!");
 			return "/ba/vaststellen";
 		}
-
-		//TODO Also check in manager.job (joined with manager.etljob) table for a job that has the chosen tag in its parameters and does have either one of the following status: CREATED, PREPARED, STARTED. (FINISHED and ABORTED jobs can be ignored).
-
-
-		// TODO Also check in manager.job (joined with manager.etljob) table for a job that has the chosen tag in its parameters and does have either one of the following status: CREATED, PREPARED, STARTED. (FINISHED and ABORTED jobs can be ignored).
 
 		final TagJob tagJob = new TagJob();
 		tagJob.setTag(dto.getTagId());

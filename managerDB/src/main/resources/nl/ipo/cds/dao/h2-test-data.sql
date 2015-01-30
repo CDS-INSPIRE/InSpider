@@ -23,4 +23,46 @@ VALUES      ('1',
              1 )
 ;
 
+create schema manager;
+
+CREATE TABLE manager.job(
+  job_type text NOT NULL,
+  id bigint NOT NULL,
+  priority integer NOT NULL,
+  result text,
+  status text
+)
+;
+
+CREATE TABLE manager.etljob(
+  id bigint NOT NULL,
+  parameters character varying(250)
+)
+;
+
+INSERT INTO manager.job(
+		job_type,
+		id,
+		priority,
+		result,
+		status)
+VALUES  ('TAG',
+		 12,
+		 200,
+		 'result',
+		 'PREPARED'
+);
+
+INSERT INTO manager.etljob(
+		id,
+		parameters)
+VALUES	(12,
+		'"{"tag":"testTag","thema":"LandelijkGebiedBeheer"}"' 	
+);		
+
+
+
+
+
+
 

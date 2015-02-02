@@ -4,10 +4,6 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd">
 
 
-
-	<!-- memory: jdbc:h2:mem:~/vwn-local;DB_CLOSE_DELAY=-1;MODE=Oracle -->
-	<!-- server: jdbc:h2:tcp://localhost/~/vwn-local;MODE=Oracle -->
-	<!-- embedded (file): jdbc:h2:~/vwn-local;MODE=Oracle -->
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="org.h2.Driver" />
 		<property name="url" value="jdbc:h2:mem:~/cds-local;DB_CLOSE_DELAY=-1;MODE=PostgreSQL" />

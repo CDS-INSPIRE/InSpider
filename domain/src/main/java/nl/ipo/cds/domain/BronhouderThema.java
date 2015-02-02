@@ -7,8 +7,11 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
+/**
+ * BronhouderThema links a {@link Bronhouder} to a {@link Thema}.
+ */
 @Entity
-public class ThemaBronhouderAuthorization implements Serializable {
+public class BronhouderThema implements Serializable {
 
 	private static final long serialVersionUID = 7722858810254006319L;
 
@@ -22,10 +25,10 @@ public class ThemaBronhouderAuthorization implements Serializable {
 	@ManyToOne
 	private Bronhouder bronhouder;
 
-	ThemaBronhouderAuthorization () {
+	BronhouderThema () {
 	}
 	
-	public ThemaBronhouderAuthorization (final Thema thema, final Bronhouder bronhouder) {
+	public BronhouderThema (final Thema thema, final Bronhouder bronhouder) {
 		assert (thema != null);
 		assert (bronhouder != null);
 		
@@ -33,10 +36,16 @@ public class ThemaBronhouderAuthorization implements Serializable {
 		this.bronhouder = bronhouder;
 	}
 	
+	/**
+	 * @return The theme associated with this link.
+	 */
 	public Thema getThema() {
 		return thema;
 	}
 	
+	/**
+	 * @return The bronhouder associated with this link.
+	 */
 	public Bronhouder getBronhouder() {
 		return bronhouder;
 	}

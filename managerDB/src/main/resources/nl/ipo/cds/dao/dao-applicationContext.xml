@@ -37,6 +37,10 @@
 	</bean>
 
 	<bean id="jpaDialect" class="org.springframework.orm.jpa.vendor.HibernateJpaDialect"/>
+	
+	<bean class="org.springframework.jdbc.core.JdbcTemplate" >
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
 
 	<!--
 		The JpaTransactionManager is responsible for creating EntityManagers
@@ -61,5 +65,8 @@
 	<bean id="jobDao" class="nl.ipo.cds.dao.impl.JobDaoImpl">
 		<constructor-arg ref="managerDao"/>
 	</bean>
+	<bean id="tagDao" class="nl.ipo.cds.dao.impl.TagDaoImpl">
+	</bean>
+	
 	
 </beans>

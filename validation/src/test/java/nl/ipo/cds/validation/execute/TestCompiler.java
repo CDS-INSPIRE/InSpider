@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
 
+import java.math.BigInteger;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -76,6 +77,7 @@ public class TestCompiler extends Validation<TestCompiler.MessageKeys, TestCompi
 		assertEquals ("Hello, World!", execute (stringAttr ("b")));
 		assertEquals (42, execute (intAttr ("a")));
 		assertEquals (1.0, (double)((Float)execute (floatAttr ("c"))), 0.01);
+		assertEquals(BigInteger.valueOf(123),execute(bigIntegerAttr("f")));
 	}
 	
 	@Test
@@ -230,6 +232,7 @@ public class TestCompiler extends Validation<TestCompiler.MessageKeys, TestCompi
 		bean.setC (i * 2.0f);
 		bean.setD (i % 2 == 0);
 		bean.setE (new Integer[] { 1, 2, 3, 4, i });
+		bean.setF(BigInteger.valueOf(i));
 		
 		return bean;
 	}
@@ -300,6 +303,7 @@ public class TestCompiler extends Validation<TestCompiler.MessageKeys, TestCompi
 		bean.setC (1.0f);
 		bean.setD (true);
 		bean.setE (new Integer[] { 1, 2, 3, 4 });
+		bean.setF(BigInteger.valueOf(123));
 		
 		final Context context = new Context (new StaticCodeListFactory (Collections.<String, CodeList>emptyMap ()), null);
 		context.setContextProperty ("Hello, World!");
@@ -352,6 +356,16 @@ public class TestCompiler extends Validation<TestCompiler.MessageKeys, TestCompi
 		private float c;
 		private boolean d;
 		private Integer[] e;
+
+		public BigInteger getF() {
+			return f;
+		}
+
+		public void setF(BigInteger f) {
+			this.f = f;
+		}
+
+		private BigInteger f;
 		
 		public int getA() {
 			return a;

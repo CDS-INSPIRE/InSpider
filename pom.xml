@@ -47,6 +47,16 @@
 	        <enabled>true</enabled>
 	      </snapshots>
 	    </repository>
+		<repository>
+			<id>geotools-repo</id>
+			<url>http://download.osgeo.org/webdav/geotools/</url>
+			<releases>
+				<updatePolicy>never</updatePolicy>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>		
 	</repositories>
 		
 	<scm>
@@ -299,6 +309,12 @@
 			</dependency>
 			<dependency>
 				<groupId>nl.ipo.cds</groupId>
+				<artifactId>mappings</artifactId>
+				<version>2.3-SNAPSHOT</version>
+				<type>jar</type>
+			</dependency>
+			<dependency>
+				<groupId>nl.ipo.cds</groupId>
 				<artifactId>catalog-metadata</artifactId>
 				<version>2.3-SNAPSHOT</version>
 				<type>jar</type>
@@ -444,6 +460,13 @@
 				<type>jar</type>
 				<scope>compile</scope>
 			</dependency>
+			<dependency>
+				<groupId>nl.ipo.cds</groupId>
+				<artifactId>post-validation</artifactId>
+				<version>2.3-SNAPSHOT</version>
+				<type>jar</type>
+				<scope>compile</scope>
+			</dependency>
 
 			<!-- workaround for broken pom.xml in deegree repository -->
 			<dependency>
@@ -539,6 +562,7 @@
 	    <module>metadataDB</module>
 	    <module>nagios-status</module>
 	    <module>postgresql</module>
+		<module>post-validation</module>
 	    <module>resources</module>
 	    <module>themes</module>
 	    <module>theme-areamanagement</module>
@@ -550,6 +574,7 @@
 	    <module>theme-productioninstallationpart</module>
 	    <module>theme-protectedsites</module>	    	    
 	    <module>theme-riskzone</module>
-	    <module>validation</module>	    
+	    <module>validation</module>
+	    <module>mappings</module>
 	</modules>
 </project>

@@ -1,0 +1,50 @@
+#set($layerName='vaststellen')
+	<style>
+		
+		
+		#errorbox span
+		{
+			font-weight: bold;
+			color: red;
+		}
+		
+		#successbox span
+		{
+			font-weight: bold;
+			color: green;
+		}
+		
+		#stdButton
+		{
+			margin: 15px 0px;
+		}
+	</style>
+	
+	<form method="POST" action="#springUrl('/ba/vaststellen/')">
+	
+	<div id="errorbox" style="#if(!$tagIdError && !$themaError) display: none; #end">
+		#if($tagIdError) <span>#e($tagIdError)</span> #end
+		#if($themaError) <span>#e($themaError)</span> #end
+	</div>
+	<div id="successbox" style="#if(!$success) display: none; #end">
+		#if($success) <span>#e($success)</span> #end
+	</div>
+	
+	<br />
+	
+	<label for="vaststelId">Vaststel Id:</label>
+	<input type="text" value="#e($dto.tagId)" name="tagId" data-dojo-type="dijit/form/TextBox" required="true" data-dojo-props="trim:true" id="vaststelId" />
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<label>Thema:&nbsp;&nbsp;&nbsp;
+	<select data-dojo-type="dijit/form/Select" id="thema" name="thema" required="true"  title="Thema waaronder datasets zijn gegroepeerd">
+		#foreach($thema in $themas)
+		    <option value="#e($thema.naam)"#if($thema.naam == $currentThema.naam) selected="selected"#end>#if($notAuthorizedThemaList.contains($thema.naam)) !! #end $thema.naam</option>
+		#end
+	</select>
+	</label>
+	
+	<div id="stdButton">
+		<button data-dojo-type="dijit/form/Button" type="submit" name="submit" value="submit" title="Selecteer om thema vast te stellen">Vaststellen</button>
+	</div>
+	</form>

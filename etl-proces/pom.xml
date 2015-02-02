@@ -223,6 +223,10 @@
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>
+		 <dependency>
+        	<groupId>nl.ipo.cds</groupId>
+        	<artifactId>mappings</artifactId>
+        </dependency>
 		<dependency>
 			<groupId>nl.ipo.cds</groupId>
 			<artifactId>commons</artifactId>
@@ -297,6 +301,11 @@
 		<dependency>
 			<groupId>nl.ipo.cds</groupId>
 			<artifactId>validation</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.deegree</groupId>
+			<artifactId>deegree2-base</artifactId>
+			<version>2.5</version>
 		</dependency>
 	</dependencies>
 </project>

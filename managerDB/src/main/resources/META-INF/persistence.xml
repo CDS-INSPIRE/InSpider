@@ -4,18 +4,21 @@
 	version="1.0">
 	<persistence-unit name="cds" transaction-type="RESOURCE_LOCAL">		
 		<class>nl.idgis.commons.jobexecutor.AbstractJob</class>
+		<class>nl.ipo.cds.domain.DbGebruiker</class>
 		<class>nl.ipo.cds.domain.JobType</class>		
 		<class>nl.ipo.cds.domain.Dataset</class>
 		<class>nl.ipo.cds.domain.DatasetType</class>
 		<class>nl.ipo.cds.domain.Bronhouder</class>
+		<class>nl.ipo.cds.domain.BronhouderThema</class>
+		<class>nl.ipo.cds.domain.GebruikerThemaAutorisatie</class>
 		<class>nl.ipo.cds.domain.Thema</class>
 		<class>nl.ipo.cds.domain.JobLog</class>
 		<class>nl.ipo.cds.domain.EtlJob</class>
 		<class>nl.ipo.cds.domain.ImportJob</class>
 		<class>nl.ipo.cds.domain.RemoveJob</class>
 		<class>nl.ipo.cds.domain.TransformJob</class>
+		<class>nl.ipo.cds.domain.TagJob</class>
 		<class>nl.ipo.cds.domain.ValidateJob</class>
-		<class>nl.ipo.cds.domain.ThemaBronhouderAuthorization</class>
 		<class>nl.ipo.cds.domain.CodeListMapping</class>
 		
 		<!-- Attribute mapping: -->

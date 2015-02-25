@@ -5,9 +5,7 @@ package nl.ipo.cds.admin.ba.controller;
 
 import java.security.Principal;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.inject.Inject;
 import javax.validation.Valid;
@@ -218,6 +216,8 @@ public class DatasetController{
 		deleteJob.setDatasetType(dataset.getDatasetType());
 		deleteJob.setUuid(dataset.getUuid());
 		jobCreator.putJob (deleteJob);
+		
+		managerDao.delete (dataset);
 
 		/* Check whether to create a transform Job, by checking if there is already a TRANSFORM job that
 		 * hasn't started yet

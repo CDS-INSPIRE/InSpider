@@ -1,8 +1,10 @@
 package nl.ipo.cds.etl.process;
 
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import nl.idgis.commons.jobexecutor.Job;
 import nl.idgis.commons.jobexecutor.JobLogger;
@@ -45,13 +47,18 @@ public class TransformProcess implements Process<TransformJob>, ApplicationConte
 	}
 
 	private List<String> getThemeNamesThatNeedTransformation () {
+		final Set<String> themeNames = new LinkedHashSet<String> ();
 		List<Thema> themas = managerDao.getImportedThemasWithoutSubsequentTransform();
-		List<String> themeNames = new ArrayList<String> (themas.size());
 		for (Thema thema : themas) {
-			log.debug("needs transformation: " + thema); 
+			log.debug("needs transformation (imported): " + thema); 
 			themeNames.add(thema.getNaam());
 		}
-		return themeNames;
+		themas = managerDao.getRemovedThemasWithoutSubsequentTransform();
+		for (Thema thema : themas) {			
+			log.debug("needs transformation (removed): " + thema); 
+			themeNames.add(thema.getNaam());
+		}
+		return new ArrayList<String>(themeNames);
 	}
 	
 	@Override

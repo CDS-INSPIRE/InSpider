@@ -146,6 +146,13 @@ public interface ManagerDao {
 	 * @return list of themas, for which data needs to be transformed
 	 */	
 	List<Thema> getImportedThemasWithoutSubsequentTransform();
+
+	/**
+	 * Returns all themas for which data has been successfully removed, but not transformed yet.
+	 * 
+	 * @return list of themas, for which data needs to be removed
+	 */		
+	List<Thema> getRemovedThemasWithoutSubsequentTransform();	
 	
 	/**
 	 * Returns the last completed jobs. Results are ordered by 'bronhouder'
@@ -430,4 +437,5 @@ public interface ManagerDao {
 	void create(MetadataDocument metatataDocument);
 	void update(MetadataDocument metatataDocument);
 	void delete(MetadataDocument metatataDocument);
+
 }

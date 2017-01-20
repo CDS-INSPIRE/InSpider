@@ -449,6 +449,33 @@ public class ManagerDaoImpl implements ManagerDao {
 			return null;
 		}
 	}	
+
+	@Override
+	public List<Thema> getRemovedThemasWithoutSubsequentTransform() {
+		final TypedQuery<Thema> query = entityManager.createQuery (
+				"select distinct thema " +		
+				"from " +
+					"EtlJob job " +
+					"join job.datasettype as dst " +
+					"join dst.thema as thema " +
+				"where " +
+					"job.status = ?1 " +
+					"and type (job) = RemoveJob " +
+					"and not exists(from EtlJob as transform " +
+						"where transform.status = ?1 " +
+						"and type (transform) = TransformJob " +
+						"and transform.startTime >= job.finishTime)",
+				Thema.class
+			);
+		query.setParameter (1, Job.Status.FINISHED);
+		try {
+			return query.getResultList();
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		} catch (NoResultException e) {
+			return null;
+		}
+	}
 	
 	@Override
 	public EtlJob getLastTransformJob(Job.Status jobStatus) {

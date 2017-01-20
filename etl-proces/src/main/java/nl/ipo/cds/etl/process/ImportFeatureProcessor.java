@@ -80,23 +80,17 @@ public class ImportFeatureProcessor extends ValidateFeatureProcessor {
 		DBWriterFactory<PersistableFeature> dbWriterFactory = datasetHandlers.getDBWriterFactory("job_id", "" + job.getId());
 		
 		try {
-			String query = 
-				"delete from " + dbWriterFactory.getTableName() + " " + 
-				"where job_id in (" +
-					"select j1.id from manager.etljob j0 " +
-					"join manager.etljob j1 on j0.uuid = j1.uuid " +
-					"join manager.job j2 on j1.id = j2.id " +
-					"where j0.id = ? " +
-					"and j2.job_type = 'IMPORT' " +
-					"and j2.status = 'FINISHED' " +
-					"and j2.starttime is not null "+ // rule out jobs that have not started 
-					"ORDER BY j2.starttime DESC LIMIT 1)";
-			technicalLog.debug("delete query: " + query);
-			PreparedStatement stmt = connection.prepareStatement(query);
-			stmt.setLong(1, job.getId());
-			technicalLog.debug("# of deleted features: " + stmt.executeUpdate());
-			stmt.close();
-		} catch(SQLException e) {
+           String query =
+                   "delete from " + dbWriterFactory.getTableName() + " " +
+                   "where job_id in (" +
+                       "select j0.id from manager.etljob j0 where j0.uuid = ? )";
+               PreparedStatement stmt = connection.prepareStatement(query);
+               stmt.setString(1, job.getUuid());                   
+               technicalLog.debug("delete query: " + query + ", uuid = " + job.getUuid());
+               int count = stmt.executeUpdate();
+               technicalLog.debug("# of deleted features: " + count);
+               stmt.close();
+   		} catch(SQLException e) {
 			throw new RuntimeException("Couldn't remove existing data", e);
 		}
 

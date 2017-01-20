@@ -18,6 +18,7 @@ import nl.ipo.cds.dao.ManagerDao;
 import nl.ipo.cds.domain.Bronhouder;
 import nl.ipo.cds.domain.Dataset;
 import nl.ipo.cds.domain.DatasetType;
+import nl.ipo.cds.domain.ImportJob;
 import nl.ipo.cds.domain.RemoveJob;
 import nl.ipo.cds.domain.Thema;
 import nl.ipo.cds.domain.TransformJob;
@@ -174,6 +175,7 @@ public class DatasetController{
 	 * The proper working depends on the lists having the order in which items appear on the html form.
 	 * @return view url
 	 */
+	@Transactional
 	@RequestMapping(value ="/ba/datasetconfig/{bronhouderId}", method = RequestMethod.POST)
 	public String updateDataset(@PathVariable Long bronhouderId, 
 			@RequestParam(value="thema", required=true) String themaName,  
@@ -188,7 +190,12 @@ public class DatasetController{
 				if (dataset.getDatasetType().getNaam().equals(bronhouderDataset.getType())) {
 					dataset.setNaam(bronhouderDataset.getNaam());
 					dataset.setActief(bronhouderDataset.isActief());
-					dataset.setUuid(bronhouderDataset.getUuid());
+					final String oldUuid = dataset.getUuid();
+					final String newUuid = bronhouderDataset.getUuid();
+					if (!oldUuid.equals(newUuid)) {
+						dataset.setUuid(newUuid);
+						removeAndReimportDataAfterUuidChange(dataset, oldUuid, newUuid);
+					}
 					this.managerDao.update(dataset);
 				}
 			}
@@ -197,6 +204,27 @@ public class DatasetController{
         // Redirect after POST pattern
 		redirectAttributes.addAttribute ("thema", themaName);
         return "redirect:/ba/datasetconfig/" + bronhouderId;
+	}
+
+	private void removeAndReimportDataAfterUuidChange(final Dataset dataset, final String oldUuid, final String newUuid ) {
+
+		final RemoveJob deleteJob = new RemoveJob ();
+		deleteJob.setBronhouder(dataset.getBronhouder());
+		deleteJob.setDatasetType(dataset.getDatasetType());
+		deleteJob.setUuid(oldUuid);
+		jobCreator.putJob (deleteJob);
+
+		final ImportJob job = new ImportJob ();
+		job.setBronhouder(dataset.getBronhouder());
+		job.setDatasetType(dataset.getDatasetType());
+		job.setUuid(newUuid);
+		job.setForceExecution(true);
+		jobCreator.putJob (job);
+
+		if(this.managerDao.getLastTransformJob(Job.Status.CREATED) == null){
+			final TransformJob transformJob = new TransformJob ();
+			managerDao.create (transformJob);
+		}
 	}
 	
 	@Transactional

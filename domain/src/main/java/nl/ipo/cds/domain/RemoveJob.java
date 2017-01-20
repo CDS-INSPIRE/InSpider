@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 @DiscriminatorValue ("REMOVE")
 public class RemoveJob extends EtlJob {
 
-	private final static int PRIORITY = 200;
+	private final static int PRIORITY = 250;
 	
 	public RemoveJob () {
 		super (PRIORITY);

@@ -12,6 +12,7 @@ import java.util.Set;
 
 import javax.annotation.PostConstruct;
 
+import nl.ipo.cds.admin.ba.controller.beans.mapping.Mapping;
 import nl.ipo.cds.domain.EtlJob;
 import nl.ipo.cds.etl.DatasetHandlersFactory;
 import nl.ipo.cds.etl.PersistableFeature;
@@ -117,6 +118,23 @@ public abstract class ThemeConfig<T extends PersistableFeature> implements Datas
 		}
 		
 		return candidates.toArray (new PropertyDescriptor[candidates.size ()]);
+	}
+
+	/**
+	 * Return initial mapping for a specific attribute; default is null, but can be overridden by subclass.
+	 * 
+	 * @param name
+	 * @return
+	 */
+	public Mapping getDefaultMappingForAttributeType(AttributeDescriptor<?> attributeDescriptor) {
+		return null;
+	}
+
+	/**
+	 * Whether or not the features in this theme are taggable.
+	 */
+	public boolean isTaggable() {
+		return false;
 	}
 
 }

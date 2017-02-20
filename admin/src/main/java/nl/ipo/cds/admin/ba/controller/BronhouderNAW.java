@@ -95,6 +95,14 @@ public class BronhouderNAW {
 		this.bronhouder.setContactEmailadres(emailadres);
 	}
 
+	public String getExtraemailadres() {
+		return this.bronhouder.getContactExtraEmailadres();
+	}
+
+	public void setExtraemailadres(String emailadres) {
+		this.bronhouder.setContactExtraEmailadres(emailadres);
+	}
+	
 	public Bronhouder getBronhouder() {
 		return bronhouder;
 	}

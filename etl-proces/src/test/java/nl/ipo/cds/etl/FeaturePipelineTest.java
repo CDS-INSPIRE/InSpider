@@ -140,6 +140,11 @@ public class FeaturePipelineTest {
 			@Override
 			public void finish () {
 			}
+
+			@Override
+			public boolean postProcess() {
+				return true;
+			}
 		};
 	}
 	
@@ -152,6 +157,11 @@ public class FeaturePipelineTest {
 			
 			@Override
 			public void finish () {
+			}
+
+			@Override
+			public boolean postProcess() {
+				return true;
 			}
 		};
 	}
@@ -171,6 +181,11 @@ public class FeaturePipelineTest {
 			@Override
 			public void finish () {
 			}
+
+			@Override
+			public boolean postProcess() {
+				return true;
+			}
 		};
 	}
 	
@@ -184,6 +199,11 @@ public class FeaturePipelineTest {
 			
 			@Override
 			public void finish () {
+			}
+
+			@Override
+			public boolean postProcess() {
+				return true;
 			}
 		};
 	}

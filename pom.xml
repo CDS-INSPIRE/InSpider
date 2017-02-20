@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>nl.ipo.cds</groupId>
 	<artifactId>cds-parent</artifactId>
-	<version>2.3-SNAPSHOT</version>
+    <version>2.4</version>
 	<packaging>pom</packaging>
 
 	<properties>
@@ -37,23 +37,41 @@
 	</properties>
 
 	<repositories>
-        <repository>
-	      <id>deegree-repo</id>
-	      <url>http://repo.deegree.org/content/groups/public/</url>
-	      <releases>
-	        <updatePolicy>never</updatePolicy>
-	      </releases>
-	      <snapshots>
-	        <enabled>true</enabled>
-	      </snapshots>
-	    </repository>
+	<repository>
+		<id>deegree-repo</id>
+		<url>http://repo.deegree.org/content/groups/public/</url>
+		<releases>
+			<updatePolicy>never</updatePolicy>
+		</releases>
+		<snapshots>
+			<enabled>true</enabled>
+		</snapshots>
+	</repository>
+	<repository>
+		<id>Atos-repo</id>
+		<url>http://nexus2.sdmc.ao-srv.com/content/repositories/inhouse_gbo_ipo_hosted/</url>
+		<releases>
+			<updatePolicy>never</updatePolicy>
+		</releases>
+		<snapshots>
+			<enabled>true</enabled>
+		</snapshots>
+	</repository>
 	</repositories>
+	
+	<distributionManagement>
+		<repository>
+			<id>deploymentRepo</id>
+			<name>Internal Releases</name>
+			<url>http://nexus2.sdmc.ao-srv.com/content/repositories/inhouse_gbo_ipo_hosted/</url>
+		</repository>
+	</distributionManagement>		
 		
 	<scm>
-    	<connection>scm:git:git@github.com:CDS-INSPIRE/InSpider.git</connection>
-    	<developerConnection>scm:git:git@github.com:CDS-INSPIRE/InSpider.git</developerConnection>
-    	<url>https://github.com/CDS-INSPIRE/InSpider</url>
-    	<tag>cds-parent-2.2</tag>
+    	<connection>scm:git:git@github.com:CDS-VRN/InSpider.git</connection>
+    	<developerConnection>scm:git:git@github.com:CDS-VRN/InSpider.git</developerConnection>
+    	<url>https://github.com/CDS-VRN/InSpider</url>
+  	  <tag>cds-parent-2.2-vrn-1.0</tag>
   	</scm>
 	
 	<!-- properties -->
@@ -62,9 +80,10 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-release-plugin</artifactId>
-				<version>2.4.1</version>
+				<version>2.5</version>
 				<configuration>
-					<goals>install</goals>
+					<!--  use -Dgoals=install to perform release without maven repository -->
+ 					<goals>install</goals> 
 					 <!-- no 'deploy' in order to be able to use release:perform without maven repository -->
 					<autoVersionSubmodules>true</autoVersionSubmodules>
 				</configuration>
@@ -82,10 +101,24 @@
 					</execution>
 				</executions>				
 			</plugin>
+			
 		</plugins>
 
 		<pluginManagement>
 			<plugins>
+			<!-- Need surefire-juni47 provider for use of @Category and -Dgroups parameterization of groups -->
+				<plugin>
+					  <groupId>org.apache.maven.plugins</groupId>
+					  <artifactId>maven-surefire-plugin</artifactId>
+					  <version>2.18.1</version><configuration />
+					  <dependencies>
+					    <dependency>
+					      <groupId>org.apache.maven.surefire</groupId>
+					      <artifactId>surefire-junit47</artifactId>
+					      <version>2.18.1</version>
+					    </dependency>
+					  </dependencies>
+					</plugin>
 				<plugin>
 					<groupId>org.codehaus.mojo</groupId>
 					<artifactId>buildnumber-maven-plugin</artifactId>
@@ -163,6 +196,12 @@
 
 	</build>
 	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		
 	</dependencies>
 
 	<dependencyManagement>
@@ -175,7 +214,6 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
-
 			<dependency>
 				<groupId>dom4j</groupId>
 				<artifactId>dom4j</artifactId>
@@ -247,7 +285,7 @@
 			<dependency>
 				<groupId>nl.ipo.cds</groupId>
 				<artifactId>postgresql</artifactId>
-				<version>2.3-SNAPSHOT</version>
+                <version>2.4</version>
 				<scope>compile</scope>
 			</dependency>
 			<dependency>
@@ -258,7 +296,7 @@
 			<dependency>
 				<groupId>nl.ipo.cds</groupId>
 				<artifactId>admin</artifactId>
-				<version>2.3-SNAPSHOT</version>
+                <version>2.4</version>
 				<type>war</type>
 				<scope>compile</scope>
 			</dependency>
@@ -272,14 +310,14 @@
 			<dependency>
 				<groupId>nl.ipo.cds</groupId>
 				<artifactId>cds-test</artifactId>
-				<version>2.3-SNAPSHOT</version>
+                <version>2.4</version>
 				<type>jar</type>
 				<scope>compile</scope>
 			</dependency>
 			<dependency>
 				<groupId>nl.ipo.cds</groupId>
 				<artifactId>commons</artifactId>
-				<version>2.3-SNAPSHOT</version>
+                <version>2.4</version>
 				<type>jar</type>
 				<scope>compile</scope>
 			</dependency>
@@ -293,42 +331,48 @@
 			<dependency>
 				<groupId>nl.ipo.cds</groupId>
 				<artifactId>domain</artifactId>
-				<version>2.3-SNAPSHOT</version>
+                <version>2.4</version>
 				<type>jar</type>
 				<scope>compile</scope>
 			</dependency>
 			<dependency>
 				<groupId>nl.ipo.cds</groupId>
+				<artifactId>mappings</artifactId>
+                <version>2.4</version>
+				<type>jar</type>
+			</dependency>
+			<dependency>
+				<groupId>nl.ipo.cds</groupId>
 				<artifactId>catalog-metadata</artifactId>
-				<version>2.3-SNAPSHOT</version>
+                <version>2.4</version>
 				<type>jar</type>
 				<scope>compile</scope>
 			</dependency>
 			<dependency>
 				<groupId>nl.ipo.cds</groupId>
 				<artifactId>domain-metadata</artifactId>
-				<version>2.3-SNAPSHOT</version>
+                <version>2.4</version>
 				<type>jar</type>
 				<scope>compile</scope>
 			</dependency>
 			<dependency>
 				<groupId>nl.ipo.cds</groupId>
 				<artifactId>etl-proces</artifactId>
-				<version>2.3-SNAPSHOT</version>
+                <version>2.4</version>
 				<type>jar</type>
 				<scope>compile</scope>
 			</dependency>
 			<dependency>
 				<groupId>nl.ipo.cds</groupId>
 				<artifactId>etl-reporting</artifactId>
-				<version>2.3-SNAPSHOT</version>
+                <version>2.4</version>
 				<type>jar</type>
 				<scope>compile</scope>
 			</dependency>
 			<dependency>
 				<groupId>nl.ipo.cds</groupId>
 				<artifactId>etl-reporting</artifactId>
-				<version>2.3-SNAPSHOT</version>
+                <version>2.4</version>
 				<classifier>tests</classifier>
 				<type>jar</type>
 				<scope>test</scope>
@@ -336,21 +380,21 @@
 			<dependency>
 				<groupId>nl.ipo.cds</groupId>
 				<artifactId>managerDB</artifactId>
-				<version>2.3-SNAPSHOT</version>
+                <version>2.4</version>
 				<type>jar</type>
 				<scope>compile</scope>
 			</dependency>
 			<dependency>
 				<groupId>nl.ipo.cds</groupId>
 				<artifactId>metadataDB</artifactId>
-				<version>2.3-SNAPSHOT</version>
+                <version>2.4</version>
 				<type>jar</type>
 				<scope>compile</scope>
 			</dependency>
 			<dependency>
 				<groupId>nl.ipo.cds</groupId>
 				<artifactId>resources</artifactId>
-				<version>2.3-SNAPSHOT</version>
+                <version>2.4</version>
 				<type>jar</type>
 				<scope>compile</scope>
 			</dependency>
@@ -364,7 +408,7 @@
 			<dependency>
 				<groupId>nl.ipo.cds</groupId>
 				<artifactId>managerDB</artifactId>
-				<version>2.3-SNAPSHOT</version>
+                <version>2.4</version>
 				<type>zip</type>
 				<classifier>sql</classifier>
 				<scope>compile</scope>
@@ -372,21 +416,21 @@
 			<dependency>
 				<groupId>nl.ipo.cds</groupId>
 				<artifactId>resources</artifactId>
-				<version>2.3-SNAPSHOT</version>
+                <version>2.4</version>
 				<classifier>tst</classifier>
 				<scope>compile</scope>
 			</dependency>
 			<dependency>
 				<groupId>nl.ipo.cds</groupId>
 				<artifactId>resources</artifactId>
-				<version>2.3-SNAPSHOT</version>
+                <version>2.4</version>
 				<classifier>prod</classifier>
 				<scope>compile</scope>
 			</dependency>
 			<dependency>
 				<groupId>nl.ipo.cds</groupId>
 				<artifactId>etl-proces</artifactId>
-				<version>2.3-SNAPSHOT</version>
+                <version>2.4</version>
 				<type>jar</type>
 				<classifier>manager</classifier>
 				<scope>compile</scope>
@@ -394,7 +438,7 @@
 			<dependency>
 				<groupId>nl.ipo.cds</groupId>
 				<artifactId>job-executor</artifactId>
-				<version>2.3-SNAPSHOT</version>
+                <version>2.4</version>
 				<type>jar</type>
 				<classifier>manager</classifier>
 				<scope>compile</scope>
@@ -402,7 +446,7 @@
 			<dependency>
 				<groupId>nl.ipo.cds</groupId>
 				<artifactId>etl-proces</artifactId>
-				<version>2.3-SNAPSHOT</version>
+                <version>2.4</version>
 				<type>zip</type>
 				<classifier>sql</classifier>
 				<scope>compile</scope>
@@ -418,7 +462,7 @@
 			<dependency>
 				<groupId>nl.ipo.cds</groupId>
 				<artifactId>resources</artifactId>
-				<version>2.3-SNAPSHOT</version>
+                <version>2.4</version>
 				<type>jar</type>
 				<classifier>tests</classifier>
 				<scope>compile</scope>
@@ -426,21 +470,28 @@
 			<dependency>
 				<groupId>nl.ipo.cds</groupId>
 				<artifactId>nagios-status</artifactId>
-				<version>2.3-SNAPSHOT</version>
+                <version>2.4</version>
 				<type>jar</type>
 				<scope>compile</scope>
 			</dependency>
 			<dependency>
 				<groupId>nl.ipo.cds</groupId>
 				<artifactId>validation</artifactId>
-				<version>2.3-SNAPSHOT</version>
+                <version>2.4</version>
 				<type>jar</type>
 				<scope>compile</scope>
 			</dependency>
 			<dependency>
 				<groupId>nl.ipo.cds</groupId>
 				<artifactId>etl-test</artifactId>
-				<version>2.3-SNAPSHOT</version>
+                <version>2.4</version>
+				<type>jar</type>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>nl.ipo.cds</groupId>
+				<artifactId>post-validation</artifactId>
+                <version>2.4</version>
 				<type>jar</type>
 				<scope>compile</scope>
 			</dependency>
@@ -539,6 +590,7 @@
 	    <module>metadataDB</module>
 	    <module>nagios-status</module>
 	    <module>postgresql</module>
+		<module>post-validation</module>
 	    <module>resources</module>
 	    <module>themes</module>
 	    <module>theme-areamanagement</module>
@@ -551,5 +603,6 @@
 	    <module>theme-protectedsites</module>	    	    
 	    <module>theme-riskzone</module>
 	    <module>validation</module>	    
+	    <module>mappings</module>
 	</modules>
 </project>

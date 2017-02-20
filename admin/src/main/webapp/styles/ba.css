@@ -425,3 +425,28 @@ table.log-items .loglevel {
 	color: #4aae00;
 	font-weight: bold;
 }
+
+.cds-tab-container {
+	display: block;
+	margin: 10px;
+}
+
+.cds-tab-container .cds-tab-strip {
+	display: block;
+	width: 100%; 
+	margin: 0; 
+	padding: 0;	
+}
+
+.cds-tab-container .cds-tab-content {
+	display: block;
+	border-left: solid 1px #b5bcc7; 
+	border-right: solid 1px #b5bcc7; 
+	border-bottom: solid 1px #b5bcc7; 
+	padding: 10px;"	
+}
+
+.cds-tab-container .tabLabel {
+	text-decoration: none;
+	color: black;
+}

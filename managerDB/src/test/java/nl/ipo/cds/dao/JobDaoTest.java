@@ -14,12 +14,14 @@ import javax.persistence.PersistenceContext;
 
 import nl.idgis.commons.jobexecutor.Job;
 import nl.idgis.commons.jobexecutor.JobDao;
+import nl.ipo.cds.categories.IntegrationTests;
 import nl.ipo.cds.domain.Dataset;
 import nl.ipo.cds.domain.EtlJob;
 import nl.ipo.cds.domain.ImportJob;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.springframework.orm.jpa.JpaObjectRetrievalFailureException;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -27,6 +29,7 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @TransactionConfiguration(defaultRollback = true)
+@Category(IntegrationTests.class)
 public class JobDaoTest extends BaseManagerDaoTest {
 
     @PersistenceContext(unitName = "cds")

@@ -12,6 +12,7 @@ import javax.persistence.PersistenceContext;
 import nl.idgis.commons.jobexecutor.Job;
 import nl.idgis.commons.jobexecutor.JobLogger;
 import nl.idgis.commons.jobexecutor.JobLogger.LogLevel;
+import nl.ipo.cds.categories.IntegrationTests;
 import nl.ipo.cds.dao.impl.JobDaoImpl;
 import nl.ipo.cds.domain.ImportJob;
 import nl.ipo.cds.domain.JobLog;
@@ -19,6 +20,7 @@ import nl.ipo.cds.domain.JobLog;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -30,6 +32,7 @@ import org.springframework.transaction.annotation.Transactional;
 	"classpath:/nl/ipo/cds/dao/dataSource-applicationContext.xml",
 	"classpath:/nl/ipo/cds/context/propertyConfigurer-test.xml" })
 @TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true)
+@Category(IntegrationTests.class)
 public class JobLogTest  {
 	private static final Log logger = LogFactory.getLog(JobLogTest.class); // developer log
 	

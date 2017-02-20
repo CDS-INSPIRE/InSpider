@@ -3,15 +3,40 @@ package nl.ipo.cds.etl;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 
+import javax.inject.Inject;
+
+import static nl.ipo.cds.domain.RefreshPolicy.*;
+import nl.ipo.cds.dao.ManagerDao;
+import nl.ipo.cds.domain.Dataset;
 import nl.ipo.cds.domain.DatasetType;
 import nl.ipo.cds.domain.EtlJob;
 
+
+
+
+
+//import nl.idgis.commons.jobexecutor.Job;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
 
-class RefreshPolicyGuard {
+
+public class RefreshPolicyGuard {
+	
 	
 	private static final Log technicalLog = LogFactory.getLog(RefreshPolicyGuard.class);
+	
+	private ManagerDao managerDao;
+	
+	public RefreshPolicyGuard() {
+		super();
+	}
+
+	public RefreshPolicyGuard(ManagerDao managerDao) {
+		super();
+		this.managerDao = managerDao;
+	}
 
 	/**
 	 * Checks whether a data refresh is allowed for the given job. 
@@ -23,7 +48,8 @@ class RefreshPolicyGuard {
 	 * @return
 	 *         <code>true</code>, if refresh is allowed, <code>false</code> otherwise
 	 */
-	boolean isRefreshAllowed (final EtlJob current, final EtlJob lastSuccess) {
+	boolean isRefreshAllowed (final EtlJob current, final EtlJob lastSuccess)  {
+		
 		technicalLog.debug("lastSuccessfulJob: " + lastSuccess);
 		if (current.isForceExecution()) {
 			technicalLog.debug("refresh ok: execution has been forced interactively");
@@ -32,9 +58,14 @@ class RefreshPolicyGuard {
 			technicalLog.debug("refresh ok: no prior successful execution");
 			return true;
 		}
-		DatasetType datasetType = current.getDatasetType();		
+		
+		//DatasetType datasetType = current.getDatasetType();
+		//W1502 019
+		technicalLog.debug("managerDao +++++++++++++++++++++++ " + this.managerDao);
+		Dataset dataset = this.managerDao.getDatasetBy(current.getBronhouder(), current.getDatasetType(), current.getUuid());
+		
 		boolean isRefreshAllowed = false;		
-		switch (datasetType.getRefreshPolicy()){
+		switch (dataset.getRefreshPolicy()){
 		case IF_MODIFIED_METADATA:
 		case IF_MODIFIED_HTTP_HEADER:			
 			isRefreshAllowed = hasMetadataUpdateDatumChanged (current, lastSuccess);
@@ -53,7 +84,7 @@ class RefreshPolicyGuard {
 			}			
 			break;
 		default:
-			throw new RuntimeException("Internal error: Unhandled case '" + datasetType.getRefreshPolicy() + "'");	
+			throw new RuntimeException("Internal error: Unhandled case '" + dataset.getRefreshPolicy() + "'");	
 		}
 		return isRefreshAllowed;
 	}

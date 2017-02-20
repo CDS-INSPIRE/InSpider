@@ -74,6 +74,9 @@ public class Bronhouder implements Identity {
 	@Column (name = "common_name", unique = true, nullable = false)
 	private String commonName;
 
+	@Column (name = "contact_extraemailadres")
+	private String contactExtraEmailadres;
+	
 	/**
 	 * @return the id
 	 */
@@ -230,7 +233,15 @@ public class Bronhouder implements Identity {
 	}
 
 	public String toString(){
-		return "## Bronhouder (id: " + id + ", contactNaam: " + contactNaam + ", contactAdres: " + contactAdres + ", " + contactPostcode + ", " + contactPlaats + ", email: " + contactEmailadres + ")";		
+		return "## Bronhouder (id: " + id + ", contactNaam: " + contactNaam + ", contactAdres: " + contactAdres + ", " + contactPostcode + ", " + contactPlaats + ", email: " + contactEmailadres + ", extraemail: " + contactExtraEmailadres + ")";		
+	}
+
+	public String getContactExtraEmailadres() {
+		return contactExtraEmailadres;
+	}
+
+	public void setContactExtraEmailadres(String contactExtraEmailadres) {
+		this.contactExtraEmailadres = contactExtraEmailadres;
 	}
 
 	@Override  

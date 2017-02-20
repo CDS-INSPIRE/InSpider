@@ -1,17 +1,12 @@
 package nl.ipo.cds.etl.theme.schema;
 
-import static nl.ipo.cds.etl.process.HarvesterMessageKey.METADATA_FEATURETYPE_HTTP_ERROR;
-import static nl.ipo.cds.etl.process.HarvesterMessageKey.METADATA_FEATURETYPE_INVALID;
-
-import java.io.IOException;
-import java.io.InputStream;
-
 import nl.ipo.cds.etl.featuretype.GMLFeatureTypeParser;
 import nl.ipo.cds.etl.featuretype.ParseSchemaException;
 import nl.ipo.cds.etl.process.DatasetMetadata;
 import nl.ipo.cds.etl.process.HarvesterException;
 import nl.ipo.cds.utils.HttpUtils;
-
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -20,13 +15,30 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.deegree.feature.types.AppSchema;
 
+import java.io.IOException;
+import java.io.InputStream;
+
+import static nl.ipo.cds.etl.process.HarvesterMessageKey.METADATA_FEATURETYPE_HTTP_ERROR;
+import static nl.ipo.cds.etl.process.HarvesterMessageKey.METADATA_FEATURETYPE_INVALID;
+
 public class WfsSchemaHarvester implements SchemaHarvester {
 
+	private static final Log log = LogFactory.getLog(WfsSchemaHarvester.class);
 	@Override
 	public AppSchema parseApplicationSchema (final DatasetMetadata metadata) throws HarvesterException {
+
 		final String url = metadata.getSchemaUrl ();
 		try {
-			final DefaultHttpClient httpClient = HttpUtils.createHttpClient ();
+			DefaultHttpClient httpClient = null;
+			if (url.startsWith("http://")) {
+				httpClient = HttpUtils.createHttpClient();
+			} else if (url.startsWith("https://")) {
+				try {
+					httpClient = HttpUtils.createHttpsClient();
+				} catch (Exception e) {
+					log.error(e.toString());
+				}
+			}
 			final HttpGet httpRequest = new HttpGet (url);
 			final HttpResponse httpResponse = httpClient.execute (httpRequest);
 			final StatusLine statusLine = httpResponse.getStatusLine ();

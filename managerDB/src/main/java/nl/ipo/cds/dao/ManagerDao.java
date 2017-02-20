@@ -7,6 +7,7 @@ import nl.idgis.commons.jobexecutor.Job;
 import nl.idgis.commons.jobexecutor.JobLogger.LogLevel;
 import nl.ipo.cds.domain.AttributeMapping;
 import nl.ipo.cds.domain.Bronhouder;
+import nl.ipo.cds.domain.BronhouderThema;
 import nl.ipo.cds.domain.CodeListMapping;
 import nl.ipo.cds.domain.Dataset;
 import nl.ipo.cds.domain.DatasetFilter;
@@ -14,14 +15,15 @@ import nl.ipo.cds.domain.DatasetType;
 import nl.ipo.cds.domain.EtlJob;
 import nl.ipo.cds.domain.FilterExpression;
 import nl.ipo.cds.domain.Gebruiker;
-import nl.ipo.cds.domain.GebruikersRol;
+import nl.ipo.cds.domain.GebruikerThemaAutorisatie;
 import nl.ipo.cds.domain.Identity;
 import nl.ipo.cds.domain.JobLog;
 import nl.ipo.cds.domain.JobType;
 import nl.ipo.cds.domain.MappingOperation;
 import nl.ipo.cds.domain.MetadataDocument;
-import nl.ipo.cds.domain.Rol;
+import nl.ipo.cds.domain.RefreshPolicy;
 import nl.ipo.cds.domain.Thema;
+import nl.ipo.cds.domain.TypeGebruik;
 
 import org.deegree.geometry.Geometry;
 
@@ -192,6 +194,104 @@ public interface ManagerDao {
 
 	public void delete(Dataset dataSet); // D
 
+	// BronhouderThema:
+	/**
+	 * Persists a new {@link BronhouderThema} instance to the database.
+	 * 
+	 * @param bronhouderThema The BronhouderThema instance to persist.
+	 */
+	void create (BronhouderThema bronhouderThema);
+	
+	/**
+	 * Deletes an existing {@link BronhouderThema} from the datase. Any
+	 * related instances of {@link GebruikerThemaAutorisatie} are also removed.
+	 * 
+	 * @param bronhouderThema The {@link BronhouderThema} instance to remove from the database.
+	 */
+	void delete (BronhouderThema bronhouderThema);
+	
+	/**
+	 * Returns a specific {@link BronhouderThema} instance, or null if it doesn't exist.
+	 * 
+	 * @param bronhouder The bronhouder of the {@link BronhouderThema}
+	 * @param thema The thema of the {@link BronhouderThema}
+	 * @return The {@link BronhouderThema} instance containing the given bronhouder and theme, or null if it doesn't exist.
+	 */
+	BronhouderThema getBronhouderThema (Bronhouder bronhouder, Thema thema);
+	
+	/**
+	 * Returns all bronhouder themas. The list is ordered primarily by bronhouder name, then
+	 * by thema name.
+	 * 
+	 * @return A list of all BronhouderThema instances, ordered by bronhouder then by thema.
+	 */
+	List<BronhouderThema> getBronhouderThemas ();
+	
+	/**
+	 * Returns all bronhouder themas associated with the given bronhouder.
+	 * 
+	 * @param bronhouder	The bronhouder to which the BronhouderThema instances must belong.
+	 * @return				All BronhouderThema instances for the given bronhouder, ordered by theme name.
+	 */
+	List<BronhouderThema> getBronhouderThemas (Bronhouder bronhouder);
+	
+	/**
+	 * Returns all bronhouder themas associated with the given theme.
+	 * 
+	 * @param thema			The theme to which the BronhouderThema instances must belong.
+	 * @return				All BronhouderThema instances for the given bronhouder, ordered by bronhouder name.
+	 */
+	List<BronhouderThema> getBronhouderThemas (Thema thema);
+	
+	/**
+	 * Creates a new {@link GebruikerThemaAutorisatie} and stores it to the database.
+	 * 
+	 * @param gebruiker The user for which the authorization is stored. Cannot be null.
+	 * @param bronhouderThema The {@link BronhouderThema} instance which describes the link between a bronhouder and a theme. Cannot be null.
+	 * @param typeGebruik The role to assign to the user. Cannot be null.
+	 * @return The newly created {@link GebruikerThemaAutorisatie} object.
+	 */
+	GebruikerThemaAutorisatie createGebruikerThemaAutorisatie (Gebruiker gebruiker, BronhouderThema bronhouderThema, TypeGebruik typeGebruik);
+	
+	/**
+	 * Removes an existing {@link GebruikerThemaAutorisatie} from the database.
+	 * 
+	 * @param gebruikerThemaAutorisatie The authorization object to remove. Cannot be null.
+	 */
+	void delete (GebruikerThemaAutorisatie gebruikerThemaAutorisatie);
+
+	/**
+	 * Lists all {@link GebruikerThemaAutorisatie}, ordered by user, then by
+	 * theme and then by bronhouder.
+	 * 
+	 * @return A list of {@link GebruikerThemaAutorisatie}, ordered by user, then by theme and then by bronhouder.
+	 */
+	List<GebruikerThemaAutorisatie> getGebruikerThemaAutorisatie ();
+	
+	/**
+	 * Lists all {@link GebruikerThemaAutorisatie} for the given user. Ordered by theme, then by bronhouder.
+	 * 
+	 * @param gebruiker The use whose {@link GebruikerThemaAutorisatie}'s are listed. Cannot be null.
+	 * @return	A list of {@link GebruikerThemaAutorisatie}, ordered by theme and then by bronhouder.
+	 */
+	List<GebruikerThemaAutorisatie> getGebruikerThemaAutorisatie (Gebruiker gebruiker);
+	
+	/**
+	 * Lists all {@link GebruikerThemaAutorisatie} for the given bronhouder. Ordered by user, then by theme.
+	 * 
+	 * @param bronhouder The bronhouder whose {@link GebruikerThemaAutorisatie}'s are listed. Cannnot be null.
+	 * @return A list of {@link GebruikerThemaAutorisatie}, ordered by user, then by theme.
+	 */
+	List<GebruikerThemaAutorisatie> getGebruikerThemaAutorisatie (Bronhouder bronhouder);
+	
+	/**
+	 * Lists all {@link GebruikerThemaAutorisatie} for the given theme. Ordered by user, then by bronhouder.
+	 * 
+	 * @param thema The theme whose {@link GebruikerThemaAutorisatie}'s are listed. Cannot be null.
+	 * @return A list of {@link GebruikerThemaAutorisatie}, ordered by user, then by bronhouder.
+	 */
+	List<GebruikerThemaAutorisatie> getGebruikerThemaAutorisatie (Thema thema);
+	
 	// -------------
 	// Stam tabellen
 	// -------------
@@ -221,7 +321,14 @@ public interface ManagerDao {
 
 	public Bronhouder getBronhouderByCommonName(String code); // R
 	
-	public List<Bronhouder> getBronhoudersByUsername(String username); // R
+	/**
+	 * Looks up a bronhouder by (unique) code. Returns the bronhouder with the given code, or
+	 * null if no such bronhouder exists.
+	 *  
+	 * @param code	The bronhouder code. Cannot be null.
+	 * @return		The bronhouder with the given code, or null if no such bronhouder exists.
+	 */
+	Bronhouder getBronhouderByCode (String code);
 
 	public void delete(Bronhouder bronhouder); // D
 	
@@ -275,34 +382,6 @@ public interface ManagerDao {
 	 */
 	public boolean authenticate (String gebruikersNaam, String wachtwoord);
 	
-	// GEBRUIKERSROL
-	/**
-	 * Creates a new relation between a user, a role and a 'bronhouder'. If the role is 'BEHEERDER', the bronhouder argument
-	 * must be null. Otherwise, if the role is 'BRONHOUDER', the bronhouder argument must be set to a bronhouder instance.
-	 * The relation can only be added if it doesn't currently exist.
-	 * 
-	 * @param gebruiker
-	 * @param rol
-	 * @param bronhouder
-	 * @return A new GebruikersRol instance representing the relation.
-	 */
-	public GebruikersRol createGebruikersRol (Gebruiker gebruiker, Rol rol, Bronhouder bronhouder);
-
-	/**
-	 * Deletes the given user role. The role can only be removed if it currently exists (e.g. it can't be deleted twice).
-	 * 
-	 * @param gebruikersRol The role to delete.
-	 */
-	public void delete(GebruikersRol gebruikersRol);
-
-	/**
-	 * Returns all roles for the given user. If the user has no roles, an empty array is returned.
-	 * 
-	 * @param gebruiker
-	 * @return A list containing all roles for this user.
-	 */
-	public List<GebruikersRol> getGebruikersRollenByGebruiker(Gebruiker gebruiker);
-	
 	// DATASET_TYPE
 	public void create(DatasetType datasetType); // C
 
@@ -311,8 +390,12 @@ public interface ManagerDao {
 	public List<DatasetType> getAllDatasetTypes();
 
 	public DatasetType getDatasetTypeByName(String naam); // R
+	
+	//public DatasetType getDatasetType(RefreshPolicy refreshPolicy);
 
 	public List<DatasetType> getDatasetTypesByThema(Thema thema); //R
+	
+	//public void update(DatasetType datasetType);
 
 	public void delete(DatasetType datasetType); // D
 
@@ -347,10 +430,26 @@ public interface ManagerDao {
 
 	public long getJobFaseLogCount (AbstractJob job);
 
-	public boolean isUserAuthorizedForBronhouder(Bronhouder bronhouder, String userName);
+	/**
+	 * Returns true if the given user is authorized to modify the given bronhouder.
+	 * 
+	 * @param bronhouder	The bronhouder
+	 * @param userName		The username (uid) of the user to look for.
+	 * @return				True if the user has the requested authorization.
+	 */
+	boolean isUserAuthorizedForBronhouder(Bronhouder bronhouder, String userName);
 
-	public Bronhouder getFirstAuthorizedBronhouder(String userName);
-
+	/**
+	 * Tests whether the user with the given username (uid) has permissions on the given theme.
+	 *  
+	 * @param bronhouder	The bronhouder to test.
+	 * @param theme			The theme to test.
+	 * @param username		The username to look for.
+	 * @param typeGebruik	The authorization type to test.
+	 * @return				True if the user has the requested authorization.
+	 */
+	boolean isUserAuthorizedForThema (Bronhouder bronhouder, Thema theme, String username, TypeGebruik typeGebruik);
+	
 	/**
 	 * Returns the last validated job for the given arguments, or
 	 * null if no such job exists.
@@ -438,4 +537,8 @@ public interface ManagerDao {
 	void update(MetadataDocument metatataDocument);
 	void delete(MetadataDocument metatataDocument);
 
+	//w1502 019
+	public Dataset getDatasetBy(Bronhouder bronhouder, DatasetType datasetType, String uuid);
+
+		
 }

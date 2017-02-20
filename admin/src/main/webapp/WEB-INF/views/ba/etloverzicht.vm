@@ -56,6 +56,7 @@ require ([
 	#if(!$jobsMode)
 
 		// DATASETinfoS
+#if($authz.anyGranted("ROLE_DATABEHEERDER"))
 	    window.doValidate = function (url){
 	        var validationUrl = "#springUrl('/')"+url;
 			dojo.xhrGet({
@@ -79,13 +80,15 @@ require ([
 			    }
 			});
 	    };
+#end
 	
 	    dojo.ready(function() {
 			refreshDatasetInfoMap();
 		});
 
 		function refreshDatasetInfoMap(){
-		    var datasetInfosUrl = docroot + "ba/bronhouders/${bronhouder.id}/datasetInfos?datasetTypeId=$!datasetTypeId&datasetStatusImport=$!datasetStatusImport&progress=$!progress";
+		//w1502 019
+		  var datasetInfosUrl = docroot + "ba/bronhouders/${bronhouder.id}/datasetInfos?datasetId=$!datasetId&datasetStatusImport=$!datasetStatusImport&progress=$!progress";
 			dojo.xhrGet({
 			    // The URL of the request
 			    url: datasetInfosUrl,
@@ -378,7 +381,7 @@ require ([
 				<tbody>
 			        <tr>
 			            <td title="Filter op Bronhouder" width="20%">
-			                <select data-dojo-type="dijit/form/FilteringSelect" id="bronhouderId" name="bronhouderId" required="true" #if(! $authz.anyGranted("ROLE_BEHEERDER")) disabled #end  style="width:90%">
+			                <select data-dojo-type="dijit/form/FilteringSelect" id="bronhouderId" name="bronhouderId" required="true" #if($bronhouders.size() == 1) disabled #end  style="width:90%">
 								<script type="dojo/method" data-dojo-event="onChange">
 									this.getParent().submit();
 								</script>
@@ -388,7 +391,7 @@ require ([
 							</select>
 			            </td>
 			            <td title="Filter op Thema" width="20%">
-			                <select data-dojo-type="dijit/form/Select" id="themaId" name="themaId" required="true"  style="width:90%;border-width:1px; border-style:solid; border-color:black">
+			                <select data-dojo-type="dijit/form/Select" id="themaId" name="themaId" required="true" #if($themas.size() == 1) disabled #end style="width:90%;border-width:1px; border-style:solid; border-color:black">
 								<script type="dojo/method" data-dojo-event="onChange">
 									this.getParent().submit();
 								</script>
@@ -507,9 +510,13 @@ require ([
 						<th class="actief" title="Is de dataset actief, dan wordt regelmatig gecheckt of er nieuwe data moet worden opgenomen in CDS" >Actief</th>						
 						<th class="metadata" title="Klik op de link om de metadata gegevens van een dataset te bekijken" >Metadata</th>
 						<th class="resultaten" title="Meest recente validatie resultaat">Laatste validatieresultaat</th>
+						#if($authz.anyGranted("ROLE_DATABEHEERDER"))
 						<th class="valideren" title="Ad-hoc-valideren van een dataset">Valideer</th>
+						#end
 						<th class="status" title="Meest recente import status">Status import</th>
+						#if($authz.anyGranted("ROLE_DATABEHEERDER"))
 						<th class="importeren" title="Ad-hoc-importeren van een dataset">Importeer</th>
+						#end
 						<th class="voortgang" title="Actuele weergave van de voortgang van het validatie of import proces">Voortgang</th>
 					</tr>
 				</thead>
@@ -531,14 +538,18 @@ require ([
 						#end
 						<td id="datasetInfo_${datasetInfo.id}_lastValidationResult" class="resultaten" title="Meest recente validatie resultaat van dataset $datasetInfo.datasetType.naam " >
 						</td>
+						#if($authz.anyGranted("ROLE_DATABEHEERDER"))
 						<td class="valideren" title="Druk op de knop Valideer om de dataset $datasetInfo.datasetType.naam te valideren" >
 							<button id="datasetInfo_${datasetInfo.id}_validateButton" disabled data-dojo-type="dijit/form/Button" onclick="doValidate('ba/bronhouders/$bronhouder.id/validate?datasetType=$datasetInfo.datasetType.id&amp;uuid=$esc.url($datasetInfo.uuid)');">Valideer</button>
 						</td>
+						#end						
 						<td id="datasetInfo_${datasetInfo.id}_statusImport" class="statusImport" title="Meest recente import status van dataset $datasetInfo.datasetType.naam " >
 						</td>
+						#if($authz.anyGranted("ROLE_DATABEHEERDER"))
 						<td class="importeren" title="Druk op de knop Importeer om de dataset $datasetInfo.datasetType.naam te importeren" >
 							<button id="datasetInfo_${datasetInfo.id}_importButton" disabled data-dojo-type="dijit/form/Button" onclick="doImport('ba/bronhouders/$bronhouder.id/import?datasetType=$datasetInfo.datasetType.id&amp;uuid=$esc.url($datasetInfo.uuid)');">Importeer</button>
 						</td>
+						#end
 						<td id="datasetInfo_${datasetInfo.id}_progress" class="voortgang" title="Actuele weergave van de voortgang van het validatie of import proces van dataset $datasetInfo.datasetType.naam "></td>
 					</tr>
 					#end

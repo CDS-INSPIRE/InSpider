@@ -11,4 +11,5 @@ delete from manager.thema;
 insert into manager.jobtype (id, naam, prioriteit) select nextval('manager.hibernate_sequence'), 'VALIDATE', '300';
 insert into manager.jobtype (id, naam, prioriteit) select nextval('manager.hibernate_sequence'), 'REMOVE', '200';
 insert into manager.jobtype (id, naam, prioriteit) select nextval('manager.hibernate_sequence'), 'IMPORT', '200';
+insert into manager.jobtype (id, naam, prioriteit) select nextval('manager.hibernate_sequence'), 'TAG', '200';
 insert into manager.jobtype (id, naam, prioriteit) select nextval('manager.hibernate_sequence'), 'TRANSFORM', '100';

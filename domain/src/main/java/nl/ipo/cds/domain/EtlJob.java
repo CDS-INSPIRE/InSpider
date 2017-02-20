@@ -1,6 +1,11 @@
 package nl.ipo.cds.domain;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.sql.Timestamp;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,6 +16,9 @@ import javax.persistence.Transient;
 
 import nl.idgis.commons.jobexecutor.AbstractJob;
 import nl.idgis.commons.jobexecutor.JobTypeIntrospector;
+
+import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.type.TypeReference;
 
 @Entity
 @SecondaryTable (name = "etljob"/*, pkJoinColumns = @PrimaryKeyJoinColumn (name = "id")*/)
@@ -53,7 +61,13 @@ public abstract class EtlJob extends AbstractJob {
 	
 	@Column( name = "force_execution", table = "etljob", nullable = false, columnDefinition="bool default false" )
 	private Boolean forceExecution = false;
-	
+
+
+
+	/* We use a global parameters text field to store all kinds of job parameters. This field can be used to store other parameters for future job types. */
+	@Column(table = "etljob", name = "parameters", columnDefinition="TEXT")
+	private String parameters;
+
 	@Transient
 	private Integer maxFeatures = null;
 	
@@ -95,6 +109,8 @@ public abstract class EtlJob extends AbstractJob {
 	public void setBronhouder(Bronhouder bronhouder) {
 		this.bronhouder = bronhouder;
 	}
+
+
 
 	/**
 	 * @return the uuid
@@ -183,7 +199,46 @@ public abstract class EtlJob extends AbstractJob {
 	public void setDatasetUrl(String datasetUrl) {
 		this.datasetUrl = datasetUrl;
 	}
-	
+
+	private Map<String,Object> readParameters() {
+		if (parameters == null || parameters.isEmpty()) {
+			return new HashMap<>();
+		}
+		ObjectMapper mapper = new ObjectMapper();
+		ByteArrayInputStream bis = new ByteArrayInputStream(parameters.getBytes());
+		try {
+			Map<String, Object> params = mapper.readValue(bis, new TypeReference<Map<String, Object>>() {});
+			bis.close();
+			return params;
+
+		} catch (IOException e) {
+			throw new RuntimeException("Error reading job parameters from string field.", e);
+		}
+	}
+
+	private void writeParameters(Map<String, Object> params) {
+		ObjectMapper mapper = new ObjectMapper();
+		ByteArrayOutputStream bos = new ByteArrayOutputStream();
+		try {
+			mapper.writeValue(bos, params);
+			bos.flush();
+			parameters = bos.toString();
+			bos.close();
+		} catch (IOException e) {
+			throw new RuntimeException("Error writing job parameters to string field.", e);
+		}
+	}
+
+	protected void setParameter(String key, Object value) {
+		Map<String, Object> params = readParameters();
+		params.put(key, value);
+		writeParameters(params);
+	}
+
+	protected Object getParameter(String key) {
+		return readParameters().get(key);
+	}
+
 	public Integer getFeatureCount() {
 		return featureCount;
 	}

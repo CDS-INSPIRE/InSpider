@@ -11,14 +11,10 @@ import java.util.List;
 import nl.ipo.cds.dao.ManagerDao;
 import nl.ipo.cds.domain.Bronhouder;
 import nl.ipo.cds.domain.Gebruiker;
-import nl.ipo.cds.domain.GebruikersRol;
-import nl.ipo.cds.domain.Rol;
 
-import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -81,14 +77,9 @@ public class GebruikersBeheerController {
 		List<GebruikerWrapper> wrappedUsers = new ArrayList<GebruikerWrapper>(users.size());
 		for (Iterator<Gebruiker> iterator = users.iterator(); iterator.hasNext();) {
 			Gebruiker gebruiker = (Gebruiker) iterator.next();
-			List<GebruikersRol> gebruikersRollen = this.managerDao.getGebruikersRollenByGebruiker(gebruiker);
-			// For now (CDS-INSPIRE) there can only be one role
-			Assert.isTrue(CollectionUtils.size(gebruikersRollen) >= 1);
-			GebruikersRol gebruikersRol = gebruikersRollen.get(0);
-			boolean beheerder = gebruikersRol.getRol().equals(Rol.BEHEERDER)? true : false;
-			Bronhouder bronhouder = gebruikersRollen.get(0).getBronhouder();
+			boolean beheerder = gebruiker.isSuperuser ();
 
-			GebruikerWrapper gebruikerWrapper = new GebruikerWrapper(gebruiker, bronhouder != null ? bronhouder.getNaam() : null, beheerder);
+			GebruikerWrapper gebruikerWrapper = new GebruikerWrapper(gebruiker, beheerder);
 			wrappedUsers.add(gebruikerWrapper);
 		}
 		return wrappedUsers;
@@ -98,15 +89,12 @@ public class GebruikersBeheerController {
 
 		private Gebruiker gebruiker;
 
-		private String naam;
-		
 		private boolean beheerder;
 		
-		public GebruikerWrapper(Gebruiker gebruiker, String naam,
+		public GebruikerWrapper(Gebruiker gebruiker,
 				boolean beheerder) {
 			super();
 			this.gebruiker = gebruiker;
-			this.naam = naam;
 			this.beheerder = beheerder;
 		}
 
@@ -137,10 +125,5 @@ public class GebruikersBeheerController {
 		public boolean isBeheerder() {
 			return beheerder;
 		}
-
-		public String getNaam() {
-			return naam;
-		}
-		
 	}
 }

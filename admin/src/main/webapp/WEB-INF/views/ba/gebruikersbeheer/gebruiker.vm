@@ -8,23 +8,8 @@ require ([
     var docroot = window.docroot = "#springUrl('/')";
 	
 	dojo.ready(function() {
-
-		setBeheerderCheckBoxEvents();
 		setChangePasswordCheckBoxEvents();
-		
 	});
-
-	function setBeheerderCheckBoxEvents(){
-		var beheerderCheckBox = dijit.byId("beheerder");
-		var bronhouderFilteringSelect = dijit.byId("bronhouder");
-		var beheerderCheckBoxHandle = dojo.connect(beheerderCheckBox, "onChange", function(evt){
-			if(beheerderCheckBox.checked){
-				bronhouderFilteringSelect.set('disabled',true);
-			} else {
-				bronhouderFilteringSelect.set('disabled',false);
-			}
-		});
-	}
 
 	function setChangePasswordCheckBoxEvents(){
 		var changePasswordCheckBox = dijit.byId("changePassword");
@@ -86,34 +71,12 @@ require ([
 					</td>
 				</tr>
 				<tr>
-					<th><label for="beheerder">Beheerder:</label></th>
+					<th><label for="gebruiker.superuser">Beheerder:</label></th>
 					<td colspan="5">
-						#springBind("gebruikerForm.beheerder")
+						#springBind("gebruikerForm.gebruiker.superuser")
 						<div data-dojo-type="dijit/form/CheckBox" id="${status.expression}" name="${status.expression}" title="Selecteer indien deze gebruiker een beheerder is" #if(${status.value} == true)checked="checked"#end ></div>
 						#springShowErrors("<br>" "error")
 					</td>
-				</tr>
-				<tr>
-					<th><label for="gebruikersRollen">Bronhouder:</label></th>
-					<td colspan="5">
-						#springBind("gebruikerForm.bronhouder")
-					    <select id="${status.expression}" name="${status.expression}" data-dojo-type="dijit/form/FilteringSelect" #if(${gebruikerForm.beheerder} == true)disabled="disabled"#end>
-						    <option #if($status.value == $null) selected="selected"#end></option>
-					        #foreach($bronhouderItem in $bronhouders)
-					            <option value="${bronhouderItem.id}"
-					            #if("$!status.value" == "${bronhouderItem.id}")
-					                selected="selected"
-					            #end>
-					            $bronhouderItem.naam
-					            </option>
-					        #end
-					    </select>
-						#springShowErrors("<br>" "error")
-						#springBind("gebruikerForm.bronhouderMandatoryValid")
-						#springShowErrors("<br>" "error")
-						#springBind("gebruikerForm.bronhouderDisallowedValid")
-						#springShowErrors("<br>" "error")
-					</td> 
 				</tr>
 				<tr>
 				#if($!gebruikersNaam != "_new")

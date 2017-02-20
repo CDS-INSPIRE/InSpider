@@ -168,7 +168,9 @@ require ([
 		    <option value="$s.id" #if ($s.id==$service.id) selected="selected" #end>$s.description</option>
 		#end
 	</select>
-	#if($service.serviceIdentification.serviceType.toLowerCase()=="wms")
+	#if($service.serviceIdentification.serviceType.toLowerCase()=="wfs" && $service.serviceIdentification.servicePath == "ProtectedSites/services/wfs_PS_NL")
+	#set($serviceVersion = "1.1.0")
+	#elseif($service.serviceIdentification.serviceType.toLowerCase()=="wms")
 	#set($serviceVersion = $inspireGetCapabilitiesRequestWMSVersion)
 	#elseif($service.serviceIdentification.serviceType.toLowerCase()=="wfs")
 	#set($serviceVersion = $inspireGetCapabilitiesRequestWFSVersion)
@@ -435,23 +437,58 @@ require ([
 									#springShowErrors("<br>" "error")
 								</td>
 							</tr>
-							#if($service.serviceIdentification.serviceType.toLowerCase()=="wfs")
-							<tr>
-								<td style="white-space: nowrap">SpatialDataSetIdentifier Code</td>
-								<td width="100%">
-									#springFormInput("service.extendedCapabilities.spatialDataSetIdentifier.code" 'data-dojo-type="dijit/form/TextBox" style="width:100%"')
+							</tbody>
+							<table class="cds-table">							
+							<tbody>
+								#if("$service.serviceIdentification.serviceType.toLowerCase()"=="wfs")
+									<tr>
+										<td style="white-space: nowrap">Featuretype</td>
+										<td style="white-space: nowrap width: 50%">DS Identifier</td>
+										<td style="white-space: nowrap width: 50%">MD Identifier</td>
+									</tr>
+								#elseif("$service.serviceIdentification.serviceType.toLowerCase()"=="wms")
+									<tr>
+										<td style="white-space: nowrap">Kaartlaag</td>
+										<td style="white-space: nowrap width: 50%">DS Identifier</td>
+										<td style="white-space: nowrap width: 50%">MD Identifier</td>
+									</tr>
+								#end
+								
+							#foreach($spatialDatasetinfo in $service.spatialDatasetinfos)
+							#if("$service.spatialDatasetinfos[$foreach.index].type.toLowerCase()"=="wfs")
+								<tr>
+									<td>
+									<label>$spatialDatasetinfo.name</label>
+									<input type="hidden" value="$spatialDatasetinfo.name" name="spatialDatasetinfos[$foreach.index].name"/>
+									</td>
+									<td>
+									#springFormInput("service.spatialDatasetinfos[$foreach.index].code" 'data-dojo-type="dijit/form/TextBox" style="width:50%"')
 									#springShowErrors("<br>" "error")
-								</td>
-							</tr>
-							<tr>
-								<td style="white-space: nowrap">SpatialDataSetIdentifier Namespace</td>
-								<td width="100%">
-									#springFormInput("service.extendedCapabilities.spatialDataSetIdentifier.namespace" 'data-dojo-type="dijit/form/TextBox" style="width:100%"')
+									</td>
+									<td>
+									#springFormInput("service.spatialDatasetinfos[$foreach.index].namespace" 'data-dojo-type="dijit/form/TextBox" style="width:50%"')
 									#springShowErrors("<br>" "error")
-								</td>
-							</tr>
-							#end							
-						</tbody>
+									</td>
+								</tr>
+							#elseif("$service.spatialDatasetinfos[$foreach.index].type.toLowerCase()"=="wms")
+								<tr>
+									<td>
+									<label>$spatialDatasetinfo.name</label>
+									<input type="hidden" value="$spatialDatasetinfo.name" name="spatialDatasetinfos[$foreach.index].name"/>
+									</td>
+									<td>
+									#springFormInput("service.spatialDatasetinfos[$foreach.index].code" 'data-dojo-type="dijit/form/TextBox" style="width:50%"')
+									#springShowErrors("<br>" "error")
+									</td>
+							
+									<td>
+									#springFormInput("service.spatialDatasetinfos[$foreach.index].namespace" 'data-dojo-type="dijit/form/TextBox" style="width:50%"')
+									#springShowErrors("<br>" "error")
+									</td>
+								</tr>
+							#end
+							#end	
+					    </tbody>
 					</table>
 				</div>
 		</div>
@@ -460,6 +497,5 @@ require ([
 	<div id="stdButton">
 		<button data-dojo-type="dijit/form/Button" type="submit" name="submit" value="Submit" title="Druk op deze knop om de wijzigingen van Service gegevens op te slaan">Opslaan</button>
 	</div>
-	
 	#end
 </div>

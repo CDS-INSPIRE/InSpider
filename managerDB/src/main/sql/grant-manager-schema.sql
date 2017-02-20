@@ -10,7 +10,7 @@ GRANT SELECT, INSERT, UPDATE, DELETE, TRIGGER ON manager.JobType TO inspire;
 GRANT SELECT, INSERT, UPDATE, DELETE, TRIGGER ON manager.Thema TO inspire;
 GRANT SELECT, INSERT, UPDATE, DELETE, TRIGGER ON manager.bronhouder_geometry TO inspire;
 
-GRANT SELECT, INSERT, UPDATE, DELETE, TRIGGER ON manager.themabronhouderauthorization TO inspire;
+GRANT SELECT, INSERT, UPDATE, DELETE, TRIGGER ON manager.bronhouderthema TO inspire;
 GRANT SELECT, INSERT, UPDATE, DELETE, TRIGGER ON manager.codelistmapping TO inspire;
 GRANT SELECT, INSERT, UPDATE, DELETE, TRIGGER ON manager.datasetfilter TO inspire;
 GRANT SELECT, INSERT, UPDATE, DELETE, TRIGGER ON manager.filterexpression TO inspire;
@@ -43,4 +43,6 @@ grant select on manager.joblog_overview to inspire;
 --grant select on manager.joblog_report_last to inspire;
 --grant select on manager.joblog_report_last_import to inspire;
 --grant select on manager.joblog_report_last_validate to inspire;
+
+grant select on manager.themabronhouderauthorization to inspire;
 -- ----------------------------------

@@ -19,7 +19,9 @@ import nl.idgis.commons.jobexecutor.AbstractJob;
 import nl.idgis.commons.jobexecutor.Job;
 import nl.idgis.commons.jobexecutor.JobLogger.LogLevel;
 import nl.idgis.commons.utils.DateTimeUtils;
+import nl.ipo.cds.categories.IntegrationTests;
 import nl.ipo.cds.domain.Bronhouder;
+import nl.ipo.cds.domain.BronhouderThema;
 import nl.ipo.cds.domain.Dataset;
 import nl.ipo.cds.domain.DatasetType;
 import nl.ipo.cds.domain.EtlJob;
@@ -33,6 +35,7 @@ import org.deegree.geometry.Geometry;
 import org.deegree.geometry.multi.MultiPolygon;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -42,6 +45,7 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @TransactionConfiguration(defaultRollback = true, transactionManager = "transactionManager")
+@Category(IntegrationTests.class)
 public class ManagerDaoTest extends BaseManagerDaoTest {
     @Autowired
     private DataSource dataSource;
@@ -519,5 +523,112 @@ public class ManagerDaoTest extends BaseManagerDaoTest {
     	
     	assertEquals (1, ((MultiPolygon)geometry).size ());
     	assertTrue (((MultiPolygon)geometry).get (0).getArea (null).getValueAsDouble () > 3420000000.0);
+    }
+    
+    @Test
+    public void testGetAllThemas () {
+    	entityManager.flush ();
+    	
+    	final List<Thema> themas = managerDao.getAllThemas ();
+    	
+    	assertNotNull (themas);
+    	assertEquals (2, themas.size ());
+    	assertEquals ("Protected sites", themas.get(0).getNaam());
+    	assertEquals ("Thema 2", themas.get (1).getNaam ());
+    }
+    
+    @Test
+    public void testGetBronhouderThemas () {
+    	entityManager.flush ();
+    	
+    	final List<BronhouderThema> bronhouderThemas = managerDao.getBronhouderThemas ();
+    	
+    	assertEquals (4, bronhouderThemas.size ());
+    	
+    	assertEquals ("Drenthe", bronhouderThemas.get (0).getBronhouder ().getNaam ());
+    	assertEquals ("Limburg", bronhouderThemas.get (1).getBronhouder ().getNaam ());
+    	assertEquals ("Noord-Holland", bronhouderThemas.get (2).getBronhouder ().getNaam ());
+    	assertEquals ("Overijssel", bronhouderThemas.get (3).getBronhouder ().getNaam ());
+    	
+    	assertEquals ("Protected sites", bronhouderThemas.get (0).getThema ().getNaam ());
+    	assertEquals ("Protected sites", bronhouderThemas.get (1).getThema ().getNaam ());
+    	assertEquals ("Thema 2", bronhouderThemas.get (2).getThema ().getNaam ());
+    	assertEquals ("Thema 2", bronhouderThemas.get (3).getThema ().getNaam ());
+    }
+    
+    @Test
+    public void testGetBronhouderThemasByBronhouder () {
+    	entityManager.flush ();
+    	
+    	final List<BronhouderThema> bronhouderThemas1 = managerDao.getBronhouderThemas (managerDao.getBronhouderByNaam ("Limburg"));
+    	final List<BronhouderThema> bronhouderThemas2 = managerDao.getBronhouderThemas (managerDao.getBronhouderByNaam ("Overijssel"));
+    	
+    	assertEquals (1, bronhouderThemas1.size ());
+    	assertEquals (1, bronhouderThemas2.size ());
+    	
+    	assertEquals ("Limburg", bronhouderThemas1.get (0).getBronhouder ().getNaam ());
+    	assertEquals ("Protected sites", bronhouderThemas1.get (0).getThema ().getNaam ());
+    	
+    	assertEquals ("Overijssel", bronhouderThemas2.get (0).getBronhouder ().getNaam ());
+    	assertEquals ("Thema 2", bronhouderThemas2.get (0).getThema ().getNaam ());
+    }
+    
+    @Test
+    public void testGetBronhouderByThema () {
+    	entityManager.flush ();
+    	
+    	final List<BronhouderThema> bronhouderThemas1 = managerDao.getBronhouderThemas (managerDao.getThemaByName ("Protected sites"));
+    	final List<BronhouderThema> bronhouderThemas2 = managerDao.getBronhouderThemas (managerDao.getThemaByName ("Thema 2"));
+    	
+    	assertEquals (2, bronhouderThemas1.size ());
+    	assertEquals (2, bronhouderThemas2.size ());
+    	
+    	assertEquals ("Protected sites", bronhouderThemas1.get (0).getThema ().getNaam ());
+    	assertEquals ("Protected sites", bronhouderThemas1.get (1).getThema ().getNaam ());
+    	assertEquals ("Drenthe", bronhouderThemas1.get (0).getBronhouder ().getNaam ());
+    	assertEquals ("Limburg", bronhouderThemas1.get (1).getBronhouder ().getNaam ());
+    	
+    	assertEquals ("Thema 2", bronhouderThemas2.get (0).getThema ().getNaam ());
+    	assertEquals ("Thema 2", bronhouderThemas2.get (1).getThema ().getNaam ());
+    	assertEquals ("Noord-Holland", bronhouderThemas2.get (0).getBronhouder ().getNaam ());
+    	assertEquals ("Overijssel", bronhouderThemas2.get (1).getBronhouder ().getNaam ());
+    }
+
+    @Test
+    public void testCreateBronhouderThema () {
+    	final BronhouderThema bt = new BronhouderThema (thema, managerDao.getBronhouderByNaam ("Overijssel"));
+    	
+    	managerDao.create (bt);
+    	
+    	entityManager.flush ();
+    	
+    	assertEquals (5, managerDao.getBronhouderThemas ().size ());
+    }
+    
+    @Test
+    public void testDeleteBronhouderThema () {
+    	entityManager.flush ();
+    	
+    	final BronhouderThema bt = managerDao.getBronhouderThemas ().get (0);
+    	
+    	managerDao.delete (bt);
+    	
+    	entityManager.flush ();
+    	
+    	assertEquals (3, managerDao.getBronhouderThemas ().size ());
+    }
+    
+    @Test
+    public void testGetBronhouderThema () {
+    	entityManager.flush ();
+    	
+    	final BronhouderThema bronhouderThema = managerDao.getBronhouderThema (
+    			managerDao.getBronhouderByNaam ("Drenthe"), 
+    			managerDao.getThemaByName ("Protected sites")
+    		);
+    	
+    	assertNotNull (bronhouderThema);
+    	assertEquals ("Drenthe", bronhouderThema.getBronhouder ().getNaam ());
+    	assertEquals ("Protected sites", bronhouderThema.getThema ().getNaam ());
     }
 }

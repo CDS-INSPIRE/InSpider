@@ -1,7 +1,7 @@
 package nl.ipo.cds.etl;
 
 import static java.lang.Integer.MAX_VALUE;
-import static nl.ipo.cds.domain.RefreshPolicy.IF_MODIFIED_HTTP_HEADER;
+import static nl.ipo.cds.domain.RefreshPolicy.*;
 import static nl.ipo.cds.utils.UrlUtils.getLastModifiedHeader;
 import static org.springframework.transaction.annotation.Propagation.REQUIRES_NEW;
 
@@ -20,6 +20,7 @@ import nl.idgis.commons.jobexecutor.JobLogger.LogLevel;
 import nl.idgis.commons.jobexecutor.JobTypeIntrospector;
 import nl.idgis.commons.jobexecutor.Process;
 import nl.ipo.cds.dao.ManagerDao;
+import nl.ipo.cds.domain.Dataset;
 import nl.ipo.cds.domain.DatasetType;
 import nl.ipo.cds.domain.EtlJob;
 import nl.ipo.cds.etl.FeatureProcessor.ValidationException;
@@ -173,11 +174,16 @@ public abstract class AbstractProcess<T extends EtlJob> implements Process<T>, A
 	}
 
 	private void updateVerversen(T job) {
-		DatasetType datasetType = job.getDatasetType();
-		if (datasetType.getRefreshPolicy() == IF_MODIFIED_HTTP_HEADER) {
+		//w1502 019 refreshpolicy from dataset entity class
+		technicalLog.debug("abstract process managerDao +++++++++++++++++++++++ " + this.managerDao);
+		technicalLog.debug("abstract process managerDao:  " + managerDao);
+		Dataset dataset = managerDao.getDatasetBy(job.getBronhouder(), job.getDatasetType(), job.getUuid());
+		
+		//DatasetType datasetType = job.getDatasetType();
+		if ((dataset.getRefreshPolicy() == IF_MODIFIED_HTTP_HEADER)) {
 			setMetadataUpdateDatumFromLastModifiedHeader (job);
 		}		
-		RefreshPolicyGuard guard = new RefreshPolicyGuard();
+		RefreshPolicyGuard guard = new RefreshPolicyGuard(this.managerDao);
 		EtlJob lastSuccess = managerDao.getLastSuccessfullImportJob(job);		
 		boolean needsRefresh =	guard.isRefreshAllowed(job, lastSuccess);
 		job.setVerversen(needsRefresh);

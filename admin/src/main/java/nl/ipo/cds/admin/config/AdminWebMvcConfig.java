@@ -231,6 +231,8 @@ public class AdminWebMvcConfig extends WebMvcConfigurerAdapter implements Veloci
 				put ("cdsVersion", baseConfiguration.getCdsVersion ());
 				put ("buildVersion", baseConfiguration.getBuild());
 				put ("i18n", velocityAdapter());
+				put ("requestAuthorizationPrompt", baseConfiguration.getRequestAuthorizationPrompt ());
+				put ("requestAuthorizationHref", baseConfiguration.getRequestAuthorizationHref ());
 			}
 		};
 	}

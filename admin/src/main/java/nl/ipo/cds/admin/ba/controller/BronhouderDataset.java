@@ -1,6 +1,7 @@
 package nl.ipo.cds.admin.ba.controller;
 
 import nl.ipo.cds.domain.Dataset;
+import nl.ipo.cds.domain.RefreshPolicy;
 
 public class BronhouderDataset {
 
@@ -9,6 +10,7 @@ public class BronhouderDataset {
 	private String naam = "";
 	private boolean actief = false;
 	private String uuid;
+	private RefreshPolicy refreshPolicy;
 	
 	private final int validAttributeMappings;
 	private final int totalAttributeMappings;
@@ -19,12 +21,13 @@ public class BronhouderDataset {
 	}
 
 	public BronhouderDataset(Dataset dataset, int validAttributeMappings, int totalAttributeMappings){
+		
 		this.id = dataset.getId();
 		this.type = dataset.getDatasetType().getNaam();
 		this.naam = dataset.getNaam();
 		this.uuid = dataset.getUuid();
 		this.actief = dataset.getActief();
-		
+		this.refreshPolicy = dataset.getRefreshPolicy();		//W1502 019 
 		this.validAttributeMappings = validAttributeMappings;
 		this.totalAttributeMappings = totalAttributeMappings;
 	}
@@ -76,4 +79,14 @@ public class BronhouderDataset {
 	public void setActief(boolean actief) {
 		this.actief = actief;
 	}	
+	
+	//W1502 019
+	
+	public void setRefreshPolicy(RefreshPolicy refreshPolicy){
+		this.refreshPolicy = refreshPolicy;
+	}
+	
+	public RefreshPolicy getRefreshPolicy(){
+		return refreshPolicy;
+	}
 }

@@ -33,10 +33,16 @@ import nl.ipo.cds.etl.filtering.FeatureClipper;
 import nl.ipo.cds.etl.theme.AttributeDescriptor;
 import nl.ipo.cds.etl.theme.ThemeConfigException;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.deegree.geometry.Envelope;
 
 public class ValidateFeatureProcessor implements FeatureProcessor {
-	
+
+
+
+	private static final Log technicalLog = LogFactory.getLog(ValidateFeatureProcessor.class);
+
 	private final AttributeMappingFactory attributeMappingFactory;
 	private final DatasetFiltererFactory datasetFilterFactory;
 	
@@ -78,6 +84,11 @@ public class ValidateFeatureProcessor implements FeatureProcessor {
 
 				@Override
 				public void finish () {
+				}
+
+				@Override
+				public boolean postProcess() {
+					return true;
 				}
 			});
 		}
@@ -148,22 +159,32 @@ public class ValidateFeatureProcessor implements FeatureProcessor {
 				outputStream, 
 				errorStream
 			);
-		
+
 		try {
-			if (attributeMapper.isValid () && filterer.isValid ()) {
-				attributeMapper.processFeatures (features, attributeMapperStream);
-			} else if (job.isIgnoreInvalidMapping ()) {
-				for (@SuppressWarnings("unused") final GenericFeature feature: features) {
-				}
+			// This should be in a try-finally to make sure DB locks are released for a rollback upon exception throw.
+			if (attributeMapper.isValid() && filterer.isValid()) {
+				attributeMapper.processFeatures(features, attributeMapperStream);
 			}
 		} finally {
-			pipeline.finish ();
-			
-			if (errorStream.getFeatureCount () > 0) {
-				throw new ValidationException ("Validator encountered errors");
+			// Release resources (database locks etc.).
+			try {
+				pipeline.finish();
+			} catch(RuntimeException e) {
+				// We suppress run time exceptions during clean up, or else they mask the exception thrown in the
+				// outer-try-catch block.
+				technicalLog.debug("Not all resources have been properly freed (Database locks might already been " +
+						"freed because of PSQLException up stream).",	e);
 			}
 		}
-		
+
+		// Post processing (after job validation etc.). This will only trigger when no exceptions in the regular
+		// feature processing occur.
+		boolean success = pipeline.postProcess();
+
+		if (!success || errorStream.getFeatureCount() > 0) {
+			throw new ValidationException("Validator encountered errors");
+		}
+
 		return counter.getFeatureCount ();
 	}
 	

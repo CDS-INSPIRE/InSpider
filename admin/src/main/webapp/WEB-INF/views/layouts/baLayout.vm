@@ -122,7 +122,7 @@
 						<div style="width: 100%; height:100%;" class="dijitTabListContainer-top dijitAlignTop dijitLayoutContainer">
 						    <div style="width: 100%; height:100%;"  class="dijitTabListWrapper dijitTabContainerTopStrip dijitAlignClient">
 						    	<div style="width: 100%; height:100%;" class="nowrapTabStrip dijitTabContainerTop-tabs">
-									#if($authz.anyGranted("ROLE_BEHEERDER"))
+									#if($authz.anyGranted("ROLE_SUPERUSER"))
 							    	<div id="tabs_ba_monitoring" class="dijitTab">
 									    <div class='dijitTabInnerDiv'>
 									        <div title="Monitor pagina van het etl proces" class='dijitTabContent' onClick="location.href='#springUrl('/ba/monitoring')';">
@@ -131,13 +131,16 @@
 									    </div>
 									</div>
 									#end
+									#if($authz.anyGranted("ROLE_RAADPLEGER"))
 							    	<div id="tabs_ba_etloverzicht" class="dijitTab">
 									    <div class='dijitTabInnerDiv'>
 									        <div title="Overzichtspagina met actuele status van datasets" class='dijitTabContent' onClick="location.href='#springUrl('/ba/etloverzicht')';">
 								                <span class='tabLabel'>ETL Overzicht</span>
 									        </div>
 									    </div>
-									</div>							    	
+									</div>
+									#end
+									#if($authz.anyGranted("ROLE_DATABEHEERDER"))
 							    	<div id="tabs_ba_naw" class="dijitTab">
 									    <div class='dijitTabInnerDiv'>
 									        <div title="Contact informatie beheren" class='dijitTabContent' onClick="location.href='#springUrl('/ba/naw')';">
@@ -145,6 +148,17 @@
 									        </div>
 									    </div>
 									</div>
+									#end
+									#if($authz.anyGranted("ROLE_SUPERUSER"))
+							    	<div id="tabs_ba_emailteksten" class="dijitTab">
+									    <div class='dijitTabInnerDiv'>
+									        <div title="Email teksten informatie beheren" class='dijitTabContent' onClick="location.href='#springUrl('/ba/emailteksten')';">
+								                <span class='tabLabel'>Email teksten</span>
+									        </div>
+									    </div>
+									</div>
+									#end
+									#if($authz.anyGranted("ROLE_DATABEHEERDER"))
 							    	<div id="tabs_ba_datasetconfig" class="dijitTab">
 									    <div class='dijitTabInnerDiv'>
 									        <div title="Datasets configureren" class='dijitTabContent' onClick="location.href='#springUrl('/ba/datasetconfig')';">
@@ -152,7 +166,8 @@
 									        </div>
 									    </div>
 									</div>
-									#if($authz.anyGranted("ROLE_BEHEERDER"))
+									#end
+									#if($authz.anyGranted("ROLE_SUPERUSER"))
 							    	<div id="tabs_ba_gebruikersbeheer_gebruikers" class="dijitTab">
 									    <div class='dijitTabInnerDiv'>
 									        <div title="Gebruikers en rollen beheren" class='dijitTabContent' onClick="location.href='#springUrl('/ba/gebruikersbeheer/gebruikers')';">
@@ -161,7 +176,7 @@
 									    </div>
 									</div>
 									#end
-									#if($authz.anyGranted("ROLE_BEHEERDER"))
+									#if($authz.anyGranted("ROLE_SUPERUSER"))
 							    	<div id="tabs_ba_vdconfig" class="dijitTab">
 									    <div class='dijitTabInnerDiv'>
 									        <div title="Configureren van gegevens voor view en download service capabilities" class='dijitTabContent' onClick="location.href='#springUrl('/ba/vdconfig')';">
@@ -170,7 +185,7 @@
 									    </div>
 									</div>
 									#end
-									#if($authz.anyGranted("ROLE_BEHEERDER"))
+									#if($authz.anyGranted("ROLE_SUPERUSER"))
 									<div id="tabs_ba_codelists_form" class="dijitTab">
 										<div class="dijitTabInnerDiv">
 											<div title="Configureren mappings voor code lijsten" class="dijitTabContent" onClick="location.href='#springUrl('/ba/codelists')';">
@@ -179,7 +194,7 @@
 										</div>
 									</div>
 									#end
-									#if($authz.anyGranted("ROLE_BEHEERDER"))
+									#if($authz.anyGranted("ROLE_SUPERUSER"))
 									<div id="tabs_ba_metadata_index" class="dijitTab">
 										<div class="dijitTabInnerDiv">
 											<div title="Beheren van metadata documenten" class="dijitTabContent" onClick="location.href='#springUrl('/ba/metadata')';">
@@ -188,11 +203,20 @@
 										</div>
 									</div>
 									#end
-									#if($authz.anyGranted("ROLE_BEHEERDER"))
+									#if($authz.anyGranted("ROLE_SUPERUSER"))
 									<div id="tabs_ba_downloadservice" class="dijitTab">
 										<div class="dijitTabInnerDiv">
 											<div title="Links naar configuratie voor Downloadservice" class="dijitTabContent" onClick="location.href='#springUrl('/ba/downloadservice')';">
 												<span class="tabLabel">Download service</span>
+											</div>
+										</div>
+									</div>
+									#end
+									#if($authz.anyGranted("ROLE_VASTSTELLER"))
+									<div id="tabs_ba_vaststellen" class="dijitTab">
+										<div class="dijitTabInnerDiv">
+											<div title="Vaststellen tab om datasets te taggen" class="dijitTabContent" onClick="location.href='#springUrl('/ba/vaststellen')';">
+												<span class="tabLabel">Vaststellen</span>
 											</div>
 										</div>
 									</div>

@@ -14,6 +14,7 @@ import nl.idgis.commons.jobexecutor.AbstractJob;
 import nl.idgis.commons.jobexecutor.Job;
 import nl.idgis.commons.jobexecutor.JobDao;
 import nl.idgis.commons.jobexecutor.JobLogger;
+import nl.ipo.cds.categories.IntegrationTests;
 import nl.ipo.cds.dao.ManagerDao;
 import nl.ipo.cds.dao.attributemapping.AttributeMappingDao;
 import nl.ipo.cds.domain.Bronhouder;
@@ -31,6 +32,7 @@ import nl.ipo.cds.executor.ConfigDir;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -42,6 +44,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 @ContextConfiguration(classes = ProcessTransactionTest.Config.class)
+@Category(IntegrationTests.class)
 /**
  * NOT extending AbstractTransactionalJUnit4SpringContextTests to be able to test transactionality
  */

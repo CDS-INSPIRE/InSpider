@@ -21,6 +21,7 @@ import nl.ipo.cds.attributemapping.executer.OperationExecuter;
 import nl.ipo.cds.attributemapping.operations.OperationInputType;
 import nl.ipo.cds.attributemapping.operations.OperationType;
 import nl.ipo.cds.attributemapping.operations.OutputOperationType;
+import nl.ipo.cds.categories.IntegrationTests;
 import nl.ipo.cds.dao.BaseManagerDaoTest;
 import nl.ipo.cds.domain.AttributeMapping;
 import nl.ipo.cds.domain.AttributeType;
@@ -31,12 +32,14 @@ import nl.ipo.cds.domain.QName;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @TransactionConfiguration(defaultRollback = true, transactionManager = "transactionManager")
+@Category(IntegrationTests.class)
 public class AttributeMappingDaoTest extends BaseManagerDaoTest {
 
 	private AttributeMappingDao dao;

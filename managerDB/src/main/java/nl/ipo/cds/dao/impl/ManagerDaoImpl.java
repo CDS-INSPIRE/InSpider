@@ -4,7 +4,11 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import javax.naming.NamingException;
 import javax.naming.directory.Attribute;
@@ -13,6 +17,7 @@ import javax.naming.directory.BasicAttribute;
 import javax.naming.directory.DirContext;
 import javax.naming.directory.ModificationItem;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityNotFoundException;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -34,23 +39,27 @@ import nl.ipo.cds.dao.ManagerDao;
 import nl.ipo.cds.dao.SortField;
 import nl.ipo.cds.dao.SortOrder;
 import nl.ipo.cds.dao.impl.ldap.GebruikerAttributesMapper;
+import nl.ipo.cds.dao.impl.ldap.GebruikerContextMapper;
 import nl.ipo.cds.domain.AttributeMapping;
 import nl.ipo.cds.domain.Bronhouder;
+import nl.ipo.cds.domain.BronhouderThema;
 import nl.ipo.cds.domain.CodeListMapping;
 import nl.ipo.cds.domain.Dataset;
 import nl.ipo.cds.domain.DatasetFilter;
 import nl.ipo.cds.domain.DatasetType;
+import nl.ipo.cds.domain.DbGebruiker;
 import nl.ipo.cds.domain.EtlJob;
 import nl.ipo.cds.domain.FilterExpression;
 import nl.ipo.cds.domain.Gebruiker;
-import nl.ipo.cds.domain.GebruikersRol;
+import nl.ipo.cds.domain.GebruikerThemaAutorisatie;
 import nl.ipo.cds.domain.Identity;
 import nl.ipo.cds.domain.JobLog;
 import nl.ipo.cds.domain.JobType;
+import nl.ipo.cds.domain.LdapGebruiker;
 import nl.ipo.cds.domain.MappingOperation;
 import nl.ipo.cds.domain.MetadataDocument;
-import nl.ipo.cds.domain.Rol;
 import nl.ipo.cds.domain.Thema;
+import nl.ipo.cds.domain.TypeGebruik;
 import nl.ipo.cds.utils.DateTimeUtils;
 
 import org.deegree.geometry.Geometry;
@@ -59,6 +68,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.ldap.core.AttributesMapper;
 import org.springframework.ldap.core.DistinguishedName;
 import org.springframework.ldap.core.LdapTemplate;
+import org.springframework.orm.jpa.JpaObjectRetrievalFailureException;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
@@ -69,15 +79,23 @@ public class ManagerDaoImpl implements ManagerDao {
 
 	private EntityManager entityManager;
 	private LdapTemplate ldapTemplate;
+	
+	/**
+	 * The base DN for the LDAP server.
+	 */
 	private String ldapBase = "dc=inspire,dc=idgis,dc=eu";
-	private String ldapSearchBasePeople = "ou=People";
-	private String ldapSearchBaseGroup = "ou=Group";
-	private String ldapFilterGebruiker = "(&(objectClass=inetOrgPerson)(uid=%s))";
-	private String ldapFilterAllGebruikers = "(objectClass=inetOrgPerson)";
-	private String ldapFilter = "(&(objectClass=groupOfNames)(member=uid=%s,ou=People,%s))";
-	private String ldapFilterBronhouderByCommonName = "(&(objectClass=groupOfNames)(cn=%s))";
-	private String ldapFilterGroupsByUid = "(&(objectClass=groupOfNames)(member=uid=%s,ou=People,%s))";
-
+	
+	/**
+	 * The DN of the LDAP group that contains all CDS users. Any inetOrgPerson that is a member of this group
+	 * has access to the CDS.
+	 */
+	private String ldapGroupDn = "cn=cds-gebruikers,ou=Group";
+	
+	/**
+	 * Base DN to use when creating new users. Existing users are persisted using their original DN.
+	 */
+	private String ldapPeopleBaseDn = "ou=People";
+	
 	@PersistenceContext(unitName = "cds")
 	public void setEntityManager(EntityManager entityManager) {
 		this.entityManager = entityManager;
@@ -98,69 +116,29 @@ public class ManagerDaoImpl implements ManagerDao {
 	public LdapTemplate getLdapTemplate () {
 		return ldapTemplate;
 	}
+
+	public void setLdapBase (final String ldapBase) {
+		this.ldapBase = ldapBase;
+	}
 	
 	public String getLdapBase () {
 		return ldapBase;
 	}
 	
-	public void setLdapBase (final String ldapBase) {
-		this.ldapBase = ldapBase;
+	public void setLdapGroupDn (final String ldapGroupDn) {
+		this.ldapGroupDn = ldapGroupDn;
 	}
 	
-	public String getLdapSearchBaseGroup () {
-		return ldapSearchBaseGroup;
+	public String getLdapGroupDn () {
+		return ldapGroupDn;
 	}
 	
-	public void setLdapSearchBaseGroup (String ldapSearchBaseGroup) {
-		this.ldapSearchBaseGroup = ldapSearchBaseGroup;
-	}
-
-	public String getLdapSearchBasePeople () {
-		return ldapSearchBasePeople;
+	public void setLdapPeopleBaseDn (final String baseDn) {
+		this.ldapPeopleBaseDn = baseDn;
 	}
 	
-	public void setLdapSearchBasePeople (String ldapSearchBasePeople) {
-		this.ldapSearchBasePeople = ldapSearchBasePeople;
-	}
-	
-	public String getLdapFilter () {
-		return ldapFilter;
-	}
-	
-	public void setLdapFilter (String ldapFilter) {
-		this.ldapFilter = ldapFilter;
-	}
-	
-	public String getLdapFilterGebruiker () {
-		return ldapFilterGebruiker;
-	}
-	
-	public void setLdapFilterGebruiker (final String ldapFilterGebruiker) {
-		this.ldapFilterGebruiker = ldapFilterGebruiker;
-	}
-	
-	public String getLdapFilterAllGebruikers () {
-		return ldapFilterAllGebruikers;
-	}
-	
-	public void setLdapFilterAllGebruikers (final String ldapFilterAllGebruikers) {
-		this.ldapFilterAllGebruikers = ldapFilterAllGebruikers;
-	}
-	
-	public String getLdapFilterBronhouderByCommonName () {
-		return ldapFilterBronhouderByCommonName;
-	}
-	
-	public void setLdapFilterBronhouderByCommonName (final String ldapFilterBronhouderByCommonName) {
-		this.ldapFilterBronhouderByCommonName = ldapFilterBronhouderByCommonName;
-	}
-	
-	public String getLdapFilterGroupsByUid () {
-		return ldapFilterGroupsByUid;
-	}
-	
-	public void setLdapFilterGroupsByUid (final String ldapFilterGroupsByUid) {
-		this.ldapFilterGroupsByUid = ldapFilterGroupsByUid;
+	public String getLdapPeopleBaseDn () {
+		return ldapPeopleBaseDn;
 	}
 	
 	// -------------
@@ -707,7 +685,25 @@ public class ManagerDaoImpl implements ManagerDao {
 			return null;
 		}
 	}
-
+	
+	//W1502 019
+		@SuppressWarnings("unchecked")
+		@Override
+		public Dataset getDatasetBy(Bronhouder bronhouder, DatasetType datasetType, String uuid) {
+			Query datasetQuery = null;
+			datasetQuery = entityManager.createQuery(
+					"from Dataset as dataset where dataset.bronhouder.id = ?1 and dataset.type.id = ?2 and dataset.uuid = ?3 and dataset.actief=true")
+					.setParameter(1, bronhouder.getId ())
+					.setParameter(2, datasetType.getId ())
+					.setParameter(3, uuid);
+			List<Dataset> datasetList =  datasetQuery.getResultList();
+			if (datasetList.size()>0){
+				return datasetList.get(0);
+			}else{
+				return null;
+			}
+		}
+	
 	@Override
 	@Transactional
 	public void update(Dataset dataSet) {
@@ -834,77 +830,129 @@ public class ManagerDaoImpl implements ManagerDao {
 		return bronhouder ;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	public List<Bronhouder> getBronhoudersByUsername(String username) {
+	public Bronhouder getBronhouderByCode (final String code) {
+		if (code == null) {
+			return null;
+		}
 		
-		// Perform a query on the LDAP server, the username is substituted in the LDAP query string:
-		List<?> searchResult = ldapTemplate.search (
-				getLdapSearchBaseGroup (),
-				String.format (getLdapFilter (), username, getLdapBase ()), 
-				new AttributesMapper() {
-					@Override
-					public Object mapFromAttributes(Attributes attributes)
-							throws NamingException {
+		final List<Bronhouder> bronhouders = entityManager
+				.createQuery("from Bronhouder as bronhouder where bronhouder.code = ?1", Bronhouder.class)
+				.setParameter (1, code)
+				.getResultList ();
 
-						return getBronhouderByCommonName (attributes.get ("cn").get ().toString ());
-					}
-				});
+		// Code has a unique constraint, therefore there can be at most one bronhouder
+		// in the list.
+		return bronhouders.isEmpty () ? null : bronhouders.get (0);
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean isUserAuthorizedForBronhouder (Bronhouder bronhouder, String userName) {
+		if (bronhouder == null) {
+			throw new NullPointerException ("bronhouder shouldn't be null");
+		}
+		if (userName == null) {
+			throw new NullPointerException ("userName cannot be null");
+		}
+		
+		final Gebruiker gebruiker = getGebruiker (userName);
+		
+		return gebruiker != null && gebruiker.isSuperuser ();
+	}
 
-		// Filter 'bronhouder' instances from the LDAP search results:
-		List<Bronhouder> bronhouders = new ArrayList<Bronhouder> ();
-		for (Object o: searchResult) {
-			if (o != null && o instanceof Bronhouder) {
-				bronhouders.add ((Bronhouder)o);
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean isUserAuthorizedForThema (final Bronhouder bronhouder, final Thema theme, final String username, final TypeGebruik typeGebruik) {
+		if (bronhouder == null) {
+			throw new NullPointerException ("bronhouder cannot be null");
+		}
+		if (theme == null) {
+			throw new NullPointerException ("theme cannot be null");
+		}
+		if (username == null) {
+			throw new NullPointerException ("username cannot be null");
+		}
+		if (typeGebruik == null) {
+			throw new NullPointerException ("typeGebruik cannot be null");
+		}
+		
+		final Gebruiker gebruiker = getGebruiker (username);
+		final BronhouderThema bronhouderThema = getBronhouderThema (bronhouder, theme);
+		if (gebruiker == null || bronhouderThema == null) {
+			return false;
+		}
+		
+		for (final GebruikerThemaAutorisatie gta: getGebruikerThemaAutorisatie (gebruiker)) {
+			if (gta.getBronhouderThema ().equals (bronhouderThema) && gta.getTypeGebruik ().isAllowed (typeGebruik)) {
+				return true;
 			}
 		}
 		
-		return bronhouders;
-	}
-	
-	@Override
-	public Bronhouder getFirstAuthorizedBronhouder (String userName) {
-		Assert.notNull(userName, "UserName shouldn't be null");
-		
-		Bronhouder bronhouder = null;
-		
-		// Get all bronhouders this user is authorized for
-		final List<Bronhouder> userBronhouders = this.getBronhoudersByUsername(userName);
-		
-		// Try to set the bronhouder to the first bronhouder of all bronhouders this user is authorized for
-		if(userBronhouders.size() >= 1){
-			bronhouder = userBronhouders.get(0);
-		} else {
-			// if this fails (e.g. a beheerder is not authorized for any bronhouder),
-			// pick the first from the list of all bronhouders)
-			List<Bronhouder> bronhouderList = this.getAllBronhouders();
-			bronhouder = bronhouderList.get(0);
-		}
-
-		return bronhouder;
+		return false;
 	}
 
-	@Override
-	public boolean isUserAuthorizedForBronhouder (Bronhouder bronhouder, String userName) {
-		Assert.notNull(bronhouder, "bronhouder shouldn't be null");
-		
-		boolean authorized = false;
-		
-		// Get all bronhouders this user is authorized for
-		final List<Bronhouder> userBronhouders = this.getBronhoudersByUsername(userName);
-		
-		// check if user is authorized for requested bronhouderId
-		if (userBronhouders.contains (bronhouder)) {
-			authorized = true;
-		}
-		
-		return authorized;
-	}
-
+	/**
+	 * Deletes the given bronhouder, as well as related entities from the following entity types:
+	 * - bronhouder geometry
+	 * - BronhouderTheme
+	 * - Dataset
+	 * - EtlJob
+	 * - GebruikerThemaAutorisatie
+	 * - JobLog
+	 * - Job
+	 */
 	@Transactional
 	@Override
 	public void delete(Bronhouder bronhouder) {
-		Bronhouder bronhouderToDelete = this.entityManager.getReference(Bronhouder.class, bronhouder.getId());
-		this.entityManager.remove(bronhouderToDelete);
+		// Delete joblog:
+		entityManager
+			.createNativeQuery ("delete from manager.joblog where job_id in (select job_id from manager.etljob where bronhouder_id = ?1)")
+			.setParameter (1, bronhouder.getId ())
+			.executeUpdate ();
+		
+		// Delete jobs:
+		entityManager
+			.createNativeQuery ("select id into temporary table delete_job_id_temp from manager.etljob where bronhouder_id = ?1")
+			.setParameter (1, bronhouder.getId ())
+			.executeUpdate ();
+		
+		entityManager
+			.createNativeQuery ("delete from manager.etljob where id in (select id from delete_job_id_temp)")
+			.executeUpdate ();
+		
+		entityManager
+			.createNativeQuery ("delete from manager.job where id in (select id from delete_job_id_temp)")
+			.executeUpdate ();
+		
+		// Delete authorization:
+		entityManager
+			.createNativeQuery ("delete from manager.gebruikerthemaautorisatie where bronhouderthema_bronhouder_id = ?1")
+			.setParameter (1, bronhouder.getId ())
+			.executeUpdate ();
+		
+		// Delete bronhouderthema:
+		entityManager
+			.createNativeQuery ("delete from manager.bronhouderthema where bronhouder_id = ?1")
+			.setParameter (1, bronhouder.getId ())
+			.executeUpdate ();
+		
+		// Delete bronhouder geometry:
+		entityManager
+			.createNativeQuery ("delete from manager.bronhouder_geometry where bronhouder_id = ?1")
+			.setParameter (1, bronhouder.getId ())
+			.executeUpdate ();
+		
+		// Delete the bronhouder itself:
+		final Bronhouder bronhouderToDelete = this.entityManager.getReference (Bronhouder.class, bronhouder.getId ());
+		this.entityManager.remove (bronhouderToDelete);
 	}
 
 	@Override
@@ -919,8 +967,10 @@ public class ManagerDaoImpl implements ManagerDao {
 			value = (byte[])query.getSingleResult ();
 		} catch (NoResultException e) {
 			return null;
+		} catch (EmptyResultDataAccessException e) {
+			return null;
 		}
-		
+
 		try {
 			return WKBReader.read (value, null);
 		} catch (ParseException e) {
@@ -993,7 +1043,7 @@ public class ManagerDaoImpl implements ManagerDao {
 		return this.entityManager.find(Thema.class, pk);
 	}
 
-//	@Transactional
+	@Transactional
 	@Override
 	public void update(Thema thema) {
 		this.entityManager.merge(thema);
@@ -1009,7 +1059,7 @@ public class ManagerDaoImpl implements ManagerDao {
 	
 	@Override
 	public List<Thema> getAllThemas (final Bronhouder bronhouder) {
-		final TypedQuery<Thema> query = entityManager.createQuery ("select a.thema from ThemaBronhouderAuthorization a where a.bronhouder = ?1", Thema.class)
+		final TypedQuery<Thema> query = entityManager.createQuery ("select a.thema from BronhouderThema a where a.bronhouder = ?1", Thema.class)
 				.setParameter (1, bronhouder);
 		
 		return query.getResultList ();
@@ -1244,21 +1294,44 @@ public class ManagerDaoImpl implements ManagerDao {
 	 * @param gebruiker
 	 * @param rebind
 	 */
-	private void bindGebruiker (Gebruiker gebruiker, boolean rebind) {
-		final DistinguishedName dn = new DistinguishedName (getLdapSearchBasePeople ());
-		dn.add ("uid", gebruiker.getGebruikersnaam ());
+	private void bindGebruiker (LdapGebruiker gebruiker, boolean rebind) {
+		final DistinguishedName dn;
+		if (gebruiker.getDistinguishedName () == null) {
+			dn = new DistinguishedName (getLdapPeopleBaseDn ());
+			dn.add ("uid", gebruiker.getGebruikersnaam ());
+		} else {
+			dn = new DistinguishedName (gebruiker.getDistinguishedName ());
+		}
 		
 		try {
 			final Attributes attributes = new GebruikerAttributesMapper ().toAttributes (gebruiker);
 			
+			// Bind or rebind the user:
 			if (rebind) {
 				ldapTemplate.rebind(dn, null, attributes);
 			} else {
 				ldapTemplate.bind (dn, null, attributes);
 			}
+			
+			// Add group membership:
+			final DistinguishedName gebruikerDn = new DistinguishedName (getLdapBase ()).append (new DistinguishedName (dn));
+			if (!getUserDns ().contains (gebruikerDn)) { 
+				final Attribute attribute = new BasicAttribute ("member", gebruikerDn.toString ());
+				final ModificationItem modificationItem = new ModificationItem (DirContext.ADD_ATTRIBUTE, attribute);
+				
+				ldapTemplate.modifyAttributes (new DistinguishedName (getLdapGroupDn ()), new ModificationItem[] { modificationItem });
+			}
 		} catch (NamingException e) {
 			throw new RuntimeException (e);
 		}
+	}
+	
+	private void createDbGebruiker (final DbGebruiker gebruiker) {
+		this.entityManager.persist (gebruiker);
+	}
+	
+	private void updateDbGebruiker (final DbGebruiker gebruiker) {
+		this.entityManager.merge (gebruiker);
 	}
 	
 	/**
@@ -1268,8 +1341,24 @@ public class ManagerDaoImpl implements ManagerDao {
 	 * @param gebruiker
 	 */
 	@Override
+	@Transactional
 	public void create (Gebruiker gebruiker) {
-		bindGebruiker (gebruiker, false);
+		if (getGebruiker (gebruiker.getGebruikersnaam ()) != null) {
+			throw new IllegalArgumentException (String.format ("User %s already exists", gebruiker.getGebruikersnaam ()));
+		}
+		
+		if (gebruiker.getLdapGebruiker () != null) {
+			bindGebruiker (gebruiker.getLdapGebruiker (), false);
+		}
+		if (gebruiker.getDbGebruiker () != null) {
+			final DbGebruiker existing = getDbGebruiker (gebruiker.getGebruikersnaam ());
+
+			if (existing != null) {
+				entityManager.merge (gebruiker.getDbGebruiker ());
+			} else {
+				createDbGebruiker (gebruiker.getDbGebruiker ());
+			}
+		}
 	}
 	
 	/**
@@ -1286,7 +1375,65 @@ public class ManagerDaoImpl implements ManagerDao {
 			throw new IllegalArgumentException ("Gebruiker `" + gebruiker.getGebruikersnaam () + "` does not exist.");
 		}
 		
-		bindGebruiker (gebruiker, true);
+		if (gebruiker.getLdapGebruiker () != null) {
+			bindGebruiker (gebruiker.getLdapGebruiker (), true);
+		}
+		if (gebruiker.getDbGebruiker () != null) {
+			updateDbGebruiker (gebruiker.getDbGebruiker ());
+		}
+		
+	}
+	
+	/**
+	 * Produces a set of DN's of all users that are a member of the CDS group in LDAP.
+	 * 
+	 * @return The DN's of all members of the CDS group in LDAP.
+	 */
+	@SuppressWarnings("unchecked")
+	private Set<DistinguishedName> getUserDns () {
+		return (Set<DistinguishedName>)ldapTemplate.lookup (
+			getLdapGroupDn (),
+			new AttributesMapper () {
+				@Override
+				public Object mapFromAttributes (final Attributes attributes) throws NamingException {
+					final Attribute attribute = attributes.get ("member");
+					final Set<DistinguishedName> values = new HashSet<DistinguishedName> ();
+					
+					for (int i = 0; i < attribute.size (); ++ i) {
+						values.add (new DistinguishedName (attribute.get (i).toString ()));
+					}
+					
+					return values;
+				}
+			});
+		
+	}
+	
+	private LdapGebruiker getLdapGebruiker (final String gebruikersnaam) {
+		return getLdapGebruiker (gebruikersnaam, getUserDns ());
+	}
+	
+	private LdapGebruiker getLdapGebruiker (final String gebruikersnaam, final Set<DistinguishedName> members) {
+		final String query = String.format ("(&(objectClass=inetOrgPerson)(uid=%s))", gebruikersnaam);
+		
+		@SuppressWarnings("unchecked")
+		final List<LdapGebruiker> searchResult = (List<LdapGebruiker>)ldapTemplate.search (
+				new DistinguishedName (),
+				query,
+				new GebruikerContextMapper ()
+			);
+
+		if (searchResult.isEmpty ()) {
+			return null;
+		}
+		
+		final DistinguishedName gebruikerDn = new DistinguishedName (getLdapBase ()).append (new DistinguishedName (searchResult.get (0).getDistinguishedName ()));
+		
+		return members.contains (gebruikerDn) ? searchResult.get (0) : null;
+	}
+	
+	private DbGebruiker getDbGebruiker (final String gebruikersnaam) {
+		return this.entityManager.find (DbGebruiker.class, gebruikersnaam);
 	}
 	
 	/**
@@ -1298,13 +1445,48 @@ public class ManagerDaoImpl implements ManagerDao {
 	 */
 	@Override
 	public Gebruiker getGebruiker(String gebruikersnaam) {
-		final List<?> searchResult = ldapTemplate.search (
-				getLdapSearchBasePeople (),
-				String.format (getLdapFilterGebruiker (), gebruikersnaam),
-				new GebruikerAttributesMapper ()
-			);
+		final LdapGebruiker ldapGebruiker = getLdapGebruiker (gebruikersnaam);
+		final DbGebruiker dbGebruiker = getDbGebruiker (gebruikersnaam);
 		
-		return searchResult.size () > 0 ? (Gebruiker)searchResult.get (0) : null;
+		// LDAP user is mandatory, return null if the user doesn't exist in LDAP:
+		if (ldapGebruiker == null) {
+			return null;
+		}
+		
+		// DB user is optional, no need to check if it could be found.
+		return new Gebruiker (ldapGebruiker, dbGebruiker);
+	}
+	
+	private List<LdapGebruiker> getAllLdapGebruikers () {
+		final Set<DistinguishedName> userDns = getUserDns ();
+		final List<LdapGebruiker> gebruikers = new ArrayList<LdapGebruiker> ();
+		
+		for (final DistinguishedName dn: userDns) {
+			final String username = dn.getValue ("uid");
+			if (username == null) {
+				continue;
+			}
+			
+			final LdapGebruiker gebruiker = getLdapGebruiker (username);
+			
+			if (gebruiker != null) {
+				gebruikers.add (gebruiker);
+			}
+		}
+		
+		Collections.sort (gebruikers, new Comparator<LdapGebruiker> () {
+			@Override
+			public int compare (final LdapGebruiker o1, final LdapGebruiker o2) {
+				return o1.getGebruikersnaam ().compareTo (o2.getGebruikersnaam ());
+			}
+		});
+		
+		return Collections.unmodifiableList (gebruikers);
+	}
+	
+	private List<DbGebruiker> getAllDbGebruikers () {
+		return entityManager.createQuery ("from DbGebruiker as gebruiker order by gebruiker.gebruikersnaam", DbGebruiker.class).getResultList ();
+		
 	}
 	
 	/**
@@ -1313,23 +1495,22 @@ public class ManagerDaoImpl implements ManagerDao {
 	 * 
 	 * @return A list containing all users.
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public List<Gebruiker> getAllGebruikers() {
-		final List<?> searchResult = ldapTemplate.search (
-				getLdapSearchBasePeople (),
-				getLdapFilterAllGebruikers (),
-				new GebruikerAttributesMapper ()
-			);
+		final Map<String, DbGebruiker> dbGebruikers = new HashMap<String, DbGebruiker> ();
 		
-		Collections.sort (searchResult, new Comparator<Object>() {
-			@Override
-			public int compare (Object a, Object b) {
-				return ((Gebruiker)a).getGebruikersnaam().compareTo (((Gebruiker)b).getGebruikersnaam ());
-			}
-		});
+		for (final DbGebruiker dbGebruiker: getAllDbGebruikers ()) {
+			dbGebruikers.put (dbGebruiker.getGebruikersnaam (), dbGebruiker);
+		}
 		
-		return (List<Gebruiker>)searchResult;
+		final List<LdapGebruiker> ldapGebruikers = getAllLdapGebruikers ();
+		final List<Gebruiker> gebruikers = new ArrayList<Gebruiker> (ldapGebruikers.size ());
+		
+		for (final LdapGebruiker ldapGebruiker: ldapGebruikers) {
+			gebruikers.add (new Gebruiker (ldapGebruiker, dbGebruikers.get (ldapGebruiker.getGebruikersnaam ())));
+		}
+		
+		return Collections.unmodifiableList (gebruikers);
 	}
 	
 	/**
@@ -1345,11 +1526,37 @@ public class ManagerDaoImpl implements ManagerDao {
 			throw new IllegalArgumentException ("Gebruiker `" + gebruiker.getGebruikersnaam () + "` does not exist.");
 		}
 			
-		final DistinguishedName dn = new DistinguishedName (getLdapSearchBasePeople ());
+		if (gebruiker.getLdapGebruiker () != null) {
+			final DistinguishedName dn;
+			if (gebruiker.getLdapGebruiker ().getDistinguishedName () == null) {
+				dn = new DistinguishedName (getLdapPeopleBaseDn ());
+				dn.add ("uid", gebruiker.getLdapGebruiker ().getGebruikersnaam ());
+			} else {
+				dn = new DistinguishedName (gebruiker.getLdapGebruiker ().getDistinguishedName ());
+			}
+			
+			ldapTemplate.unbind (dn);
+			
+			// Remove group membership:
+			final DistinguishedName gebruikerDn = new DistinguishedName (getLdapBase ()).append (new DistinguishedName (dn));
+			if (getUserDns ().contains (gebruikerDn)) { 
+				final Attribute attribute = new BasicAttribute ("member", gebruikerDn.toString ());
+				final ModificationItem modificationItem = new ModificationItem (DirContext.REMOVE_ATTRIBUTE, attribute);
+				
+				ldapTemplate.modifyAttributes (new DistinguishedName (getLdapGroupDn ()), new ModificationItem[] { modificationItem });
+			}
+		}
 		
-		dn.add ("uid", gebruiker.getGebruikersnaam ());
-		
-		ldapTemplate.unbind (dn);
+		if (gebruiker.getDbGebruiker () != null) {
+			try {
+				final DbGebruiker dbGebruikerToDelete = entityManager.getReference (DbGebruiker.class, gebruiker.getDbGebruiker ().getGebruikersnaam ());
+				entityManager.remove (dbGebruikerToDelete);
+			} catch (JpaObjectRetrievalFailureException e) {
+				// Ignore this exception: it is valid for a user not to have database backing.
+			} catch (EntityNotFoundException e) {
+				// Ignore this exception: it is valid for a user not to have database backing.
+			}
+		}
 	}
 	
 	/**
@@ -1362,153 +1569,22 @@ public class ManagerDaoImpl implements ManagerDao {
 	 */
 	@Override
 	public boolean authenticate (final String gebruikersNaam, final String wachtwoord) {
-		return ldapTemplate.authenticate (getLdapSearchBasePeople (), String.format(getLdapFilterGebruiker(), gebruikersNaam), wachtwoord);
+		final LdapGebruiker ldapGebruiker = getLdapGebruiker (gebruikersNaam);
+		if (ldapGebruiker == null) {
+			return false;
+		}
+		
+		final String query = String.format ("(&(objectClass=inetOrgPerson)(uid=%s))", gebruikersNaam);
+		return ldapTemplate.authenticate (
+				new DistinguishedName (), 
+				query, 
+				wachtwoord
+			);
 	}
 	
 	// -----------------------
 	// -- Gebruikersrollen: --
 	// -----------------------
-	private String getBronhouderCn (Bronhouder bronhouder) {
-		return bronhouder.getCommonName ();
-	}
-	
-	/**
-	 * Creates a new relation between a user, a role and a 'bronhouder'. If the role is 'BEHEERDER', the bronhouder argument
-	 * must be null. Otherwise, if the role is 'BRONHOUDER', the bronhouder argument must be set to a bronhouder instance.
-	 * The relation can only be added if it doesn't currently exist.
-	 * 
-	 * @param gebruiker
-	 * @param rol
-	 * @param bronhouder
-	 * @return A new GebruikersRol instance representing the relation.
-	 */
-	@Override
-	public GebruikersRol createGebruikersRol (final Gebruiker gebruiker, final Rol rol, final Bronhouder bronhouder) {
-		// Validate input:
-		if (gebruiker == null) {
-			throw new IllegalArgumentException ("gebruiker cannot be null");
-		}
-		if (rol == null) {
-			throw new IllegalArgumentException ("rol cannot be null");
-		}
-		if (rol == Rol.BRONHOUDER && bronhouder == null) {
-			throw new IllegalArgumentException ("bronhouder cannot be null when rol is 'BRONHOUDER'");
-		}
-		if (rol == Rol.BEHEERDER && bronhouder != null) {
-			throw new IllegalArgumentException ("bronhouder must be null when rol is 'BEHEERDER'");
-		}
-		
-		// Determine the 'cn' of the group to add the user to:
-		final String groupCn;
-		if (rol == Rol.BEHEERDER) {
-			groupCn = "beheerder";
-		} else {
-			groupCn = getBronhouderCn (bronhouder);
-			if (groupCn == null) {
-				throw new IllegalArgumentException (String.format ("Bronhouder `%s` is invalid", bronhouder.getCommonName ()));
-			}
-		}
-
-		// Test if the user exists:
-		if (getGebruiker (gebruiker.getGebruikersnaam ()) == null) {
-			throw new IllegalArgumentException ("gebruiker does not exist");
-		}
-		
-		// Construct DN's for the group and user:
-		final DistinguishedName groupDn = new DistinguishedName (getLdapSearchBaseGroup ());
-		final DistinguishedName userDn = new DistinguishedName (getLdapSearchBasePeople () + "," + getLdapBase ());
-		
-		groupDn.add ("cn", groupCn);
-		userDn.add ("uid", gebruiker.getGebruikersnaam ());
-		
-		// Update the group by adding a value to the 'member' attribute:
-		final Attribute attribute = new BasicAttribute ("member", userDn.toString ());
-		final ModificationItem modificationItem = new ModificationItem (DirContext.ADD_ATTRIBUTE, attribute);
-		
-		ldapTemplate.modifyAttributes (groupDn, new ModificationItem[] { modificationItem });
-		
-		// Return a GebruikersRol domain object that reflects the relation: 
-		return new GebruikersRolImpl (gebruiker, rol, bronhouder);
-	}
-	
-	/**
-	 * Deletes the given user role. The role can only be removed if it currently exists (e.g. it can't be deleted twice).
-	 * 
-	 * @param gebruikersRol The role to delete.
-	 */
-	@Override
-	public void delete(GebruikersRol gebruikersRol) {
-		final Gebruiker gebruiker = gebruikersRol.getGebruiker ();
-		final Rol rol = gebruikersRol.getRol ();
-		final Bronhouder bronhouder = gebruikersRol.getBronhouder ();
-		final String groupCn;
-
-		// Determine group CN:
-		if (rol == Rol.BEHEERDER) {
-			groupCn = "beheerder";
-		} else {
-			groupCn = getBronhouderCn (bronhouder);
-			if (groupCn == null) {
-				throw new IllegalArgumentException (String.format ("Bronhouder `%s` is invalid", bronhouder.getCommonName ()));
-			}
-		}
-		
-		// Construct DN's for the group and user:
-		final DistinguishedName groupDn = new DistinguishedName (getLdapSearchBaseGroup ());
-		final DistinguishedName userDn = new DistinguishedName (getLdapSearchBasePeople () + "," + getLdapBase ());
-		
-		groupDn.add ("cn", groupCn);
-		userDn.add ("uid", gebruiker.getGebruikersnaam ());
-		
-		// Update the group by removing a value from the 'member' attribute:
-		final Attribute attribute = new BasicAttribute ("member", userDn.toString ());
-		final ModificationItem modificationItem = new ModificationItem (DirContext.REMOVE_ATTRIBUTE, attribute);
-		
-		ldapTemplate.modifyAttributes (groupDn, new ModificationItem[] { modificationItem });
-	}
-	
-	/**
-	 * Returns all roles for the given user. If the user has no roles, an empty array is returned.
-	 * 
-	 * @param gebruiker
-	 * @return A list containing all roles for this user.
-	 */
-	@Override
-	public List<GebruikersRol> getGebruikersRollenByGebruiker(final Gebruiker gebruiker) {
-		final String uid = gebruiker.getGebruikersnaam ();
-		final List<GebruikersRol> result = new ArrayList<GebruikersRol> ();
-		final List<?> searchResult = ldapTemplate.search (
-				getLdapSearchBaseGroup (),
-				String.format (getLdapFilterGroupsByUid (), uid, getLdapBase ()),
-				new AttributesMapper() {
-					@Override
-					public Object mapFromAttributes(Attributes attributes)
-							throws NamingException {
-						
-						if (attributes.get("objectClass").contains ("bronhouder")) {
-							final Bronhouder bronhouder = getBronhouderByCommonName (attributes.get("cn").get ().toString ());
-							if (bronhouder == null) {
-								throw new NamingException ("bronhouder does not exist");
-							}
-							return new GebruikersRolImpl (gebruiker, Rol.BRONHOUDER, bronhouder);
-						} else if (attributes.get ("cn") != null && "beheerder".equals (attributes.get ("cn").get ().toString ())) {
-							return new GebruikersRolImpl (gebruiker, Rol.BEHEERDER, null);
-						}
-						
-						return null;
-					}
-				}
-			);
-		
-		for (Object o: searchResult) {
-			if (o != null) {
-				result.add ((GebruikersRol)o); 
-			}
-		}
-		
-		return result;
-	}
-
 	/* (non-Javadoc)
 	 * @see nl.ipo.cds.dao.ManagerDao#getIdentity(java.lang.Long)
 	 */
@@ -1689,4 +1765,190 @@ public class ManagerDaoImpl implements ManagerDao {
 		entityManager.remove(metatataDocument);		
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public BronhouderThema getBronhouderThema (final Bronhouder bronhouder, final Thema thema) {
+		final List<BronhouderThema> result = entityManager
+			.createQuery ("from BronhouderThema bt where bt.bronhouder = ?1 and bt.thema = ?2", BronhouderThema.class)
+			.setParameter (1, bronhouder)
+			.setParameter (2, thema)
+			.getResultList ();
+		
+		if (result.size () != 1) {
+			return null;
+		}
+		
+		return result.get (0);
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public List<BronhouderThema> getBronhouderThemas () {
+		return entityManager
+			.createQuery ("from BronhouderThema b order by b.bronhouder.naam asc, b.thema.naam asc", BronhouderThema.class)
+			.getResultList ();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public List<BronhouderThema> getBronhouderThemas (final Bronhouder bronhouder) {
+		return entityManager
+			.createQuery ("from BronhouderThema b where b.bronhouder = ?1 order by b.thema.naam asc", BronhouderThema.class)
+			.setParameter (1, bronhouder)
+			.getResultList ();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public List<BronhouderThema> getBronhouderThemas (final Thema thema) {
+		return entityManager
+			.createQuery ("from BronhouderThema b where b.thema = ?1 order by b.bronhouder.naam asc", BronhouderThema.class)
+			.setParameter (1, thema)
+			.getResultList ();
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void create (final BronhouderThema bronhouderThema) {
+		entityManager.persist (bronhouderThema);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	@Transactional
+	public void delete (final BronhouderThema bronhouderThema) {
+		// Delete related GebruikerThemaAutorisatie:
+		final List<GebruikerThemaAutorisatie> gebruikerAuth = new ArrayList<GebruikerThemaAutorisatie> (
+					entityManager
+						.createQuery ("from GebruikerThemaAutorisatie gta where gta.bronhouderThema = ?1", GebruikerThemaAutorisatie.class)
+						.setParameter (1, bronhouderThema)
+						.getResultList()
+				);
+		
+		for (final GebruikerThemaAutorisatie gat: gebruikerAuth) {
+			entityManager.remove (gat);
+		}
+
+		// Delete the BronhouderThema:
+		final BronhouderThema bronhouderThemaToDelete = entityManager
+				.createQuery ("from BronhouderThema bt where bt.bronhouder = ?1 and bt.thema = ?2", BronhouderThema.class)
+				.setParameter (1, bronhouderThema.getBronhouder ())
+				.setParameter (2, bronhouderThema.getThema ())
+				.getSingleResult ();
+		
+		entityManager.remove (bronhouderThemaToDelete);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	@Transactional
+	public GebruikerThemaAutorisatie createGebruikerThemaAutorisatie (final Gebruiker gebruiker, final BronhouderThema bronhouderThema, final TypeGebruik typeGebruik) {
+		if (gebruiker == null) {
+			throw new NullPointerException ("gebruiker cannot be null");
+		}
+		if (bronhouderThema == null) {
+			throw new NullPointerException ("bronhouderThema cannot be null");
+		}
+		if (typeGebruik == null) {
+			throw new NullPointerException ("typeGebruik cannot be null");
+		}
+		
+		// Make sure the user has a database backing:
+		update (gebruiker);
+		
+		// Create a new GebruikerThemaAutorisatie:
+		final GebruikerThemaAutorisatie gta = new GebruikerThemaAutorisatie (gebruiker.getDbGebruiker (), bronhouderThema, typeGebruik);
+		
+		entityManager.persist (gta);
+		
+		return gta;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	@Transactional
+	public void delete (final GebruikerThemaAutorisatie gebruikerThemaAutorisatie) {
+		if (gebruikerThemaAutorisatie == null) {
+			throw new NullPointerException ("gebruikerThemaAutorisatie cannot be null");
+		}
+		
+		final GebruikerThemaAutorisatie instanceToDelete = entityManager
+			.createQuery ("from GebruikerThemaAutorisatie gta where gta.gebruiker = ?1 and gta.bronhouderThema = ?2", GebruikerThemaAutorisatie.class)
+			.setParameter (1, gebruikerThemaAutorisatie.getGebruiker ())
+			.setParameter (2, gebruikerThemaAutorisatie.getBronhouderThema ())
+			.getSingleResult ();
+		
+		entityManager.remove (instanceToDelete);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public List<GebruikerThemaAutorisatie> getGebruikerThemaAutorisatie () {
+		return entityManager
+			.createQuery ("from GebruikerThemaAutorisatie gta order by gta.gebruiker.gebruikersnaam asc, gta.bronhouderThema.thema.naam asc, gta.bronhouderThema.bronhouder.naam asc", GebruikerThemaAutorisatie.class)
+			.getResultList ();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public List<GebruikerThemaAutorisatie> getGebruikerThemaAutorisatie (final Gebruiker gebruiker) {
+		if (gebruiker == null) {
+			throw new NullPointerException ("gebruiker cannot be null");
+		}
+		
+		return entityManager
+			.createQuery ("from GebruikerThemaAutorisatie gta where gta.gebruiker = ?1 order by gta.gebruiker.gebruikersnaam asc, gta.bronhouderThema.thema.naam asc, gta.bronhouderThema.bronhouder.naam asc", GebruikerThemaAutorisatie.class)
+			.setParameter (1, gebruiker.getDbGebruiker ())
+			.getResultList ();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public List<GebruikerThemaAutorisatie> getGebruikerThemaAutorisatie (final Bronhouder bronhouder) {
+		if (bronhouder == null) {
+			throw new NullPointerException ("bronhouder cannot be null");
+		}
+		
+		return entityManager
+				.createQuery ("from GebruikerThemaAutorisatie gta where gta.bronhouderThema.bronhouder = ?1 order by gta.gebruiker.gebruikersnaam asc, gta.bronhouderThema.thema.naam asc, gta.bronhouderThema.bronhouder.naam asc", GebruikerThemaAutorisatie.class)
+				.setParameter (1, bronhouder)
+				.getResultList ();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public List<GebruikerThemaAutorisatie> getGebruikerThemaAutorisatie(final Thema thema) {
+		if (thema == null) {
+			throw new NullPointerException ("thema cannot be null");
+		}
+		
+		return entityManager
+				.createQuery ("from GebruikerThemaAutorisatie gta where gta.bronhouderThema.thema = ?1 order by gta.gebruiker.gebruikersnaam asc, gta.bronhouderThema.thema.naam asc, gta.bronhouderThema.bronhouder.naam asc", GebruikerThemaAutorisatie.class)
+				.setParameter (1, thema)
+				.getResultList ();
+	}
 }

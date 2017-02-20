@@ -47,8 +47,8 @@ public class Service extends BaseDomainObject{
 	@OneToOne(cascade=CascadeType.ALL)
 	@Valid
 	private ExtendedCapabilities extendedCapabilities;
-
-	@Column(unique=true, nullable=false, columnDefinition="text")
+	
+    @Column(unique=true, nullable=false, columnDefinition="text")
 	@NotBlank(message="Verplicht")
 	private String name;
 
@@ -62,6 +62,12 @@ public class Service extends BaseDomainObject{
 	@Valid
 	private List<DatasetMetadata> datasetMetadatas;
 
+	@ElementCollection(fetch=FetchType.EAGER)
+    @CollectionTable(name="spatial_datasetinfo")
+	@OrderColumn(name="index")
+    @Valid
+    private List<SpatialDatasetinfo> spatialDatasetinfos;
+	
 	public String getName() {
 		return name;
 	}
@@ -109,4 +115,14 @@ public class Service extends BaseDomainObject{
 	public void setExtendedCapabilities(ExtendedCapabilities extendedCapabilities) {
 		this.extendedCapabilities = extendedCapabilities;
 	}
+	
+
+	public List<SpatialDatasetinfo> getSpatialDatasetinfos() {
+        return spatialDatasetinfos;
+ }
+
+    public void setSpatialDatasetinfo(List<SpatialDatasetinfo> spatialDatasetinfos) {
+        this.spatialDatasetinfos = spatialDatasetinfos;
+ }
+	
 }

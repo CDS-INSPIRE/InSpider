@@ -8,6 +8,7 @@ import java.util.concurrent.Executor;
 import javax.inject.Inject;
 import javax.xml.stream.XMLStreamReader;
 
+import nl.ipo.cds.categories.IntegrationTests;
 import nl.ipo.cds.dao.ManagerDao;
 import nl.ipo.cds.domain.Bronhouder;
 import nl.ipo.cds.domain.Dataset;
@@ -27,6 +28,7 @@ import nl.ipo.cds.executor.ConfigDir;
 import org.deegree.feature.types.AppSchema;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -38,6 +40,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = XMLConfigTest.Config.class)
+@Category(IntegrationTests.class)
 public class XMLConfigTest {
 
 	@Autowired

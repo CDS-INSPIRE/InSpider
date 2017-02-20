@@ -27,6 +27,8 @@ public class Thema implements Identity {
 	@Column(unique=true, nullable=false)
 	private String naam;
 
+	private String emailteksten;
+
 	/**
 	 * @return the id
 	 */
@@ -56,6 +58,14 @@ public class Thema implements Identity {
 	 */
 	public void setNaam(String naam) {
 		this.naam = naam;
+	}
+	
+	public String getEmailteksten() {
+		return emailteksten;
+	}
+
+	public void setEmailteksten(String emailteksten) {
+		this.emailteksten = emailteksten;
 	}
 	
 	public String toString(){

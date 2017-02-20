@@ -17,4 +17,9 @@ public class CountingFeatureFilter<T extends Feature> implements FeatureFilter<T
 	@Override
 	public void finish () {
 	}
+
+	@Override
+	public boolean postProcess() {
+		return true;
+	}
 }

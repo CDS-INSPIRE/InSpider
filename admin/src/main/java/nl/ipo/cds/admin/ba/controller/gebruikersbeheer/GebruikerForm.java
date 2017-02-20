@@ -6,9 +6,7 @@ package nl.ipo.cds.admin.ba.controller.gebruikersbeheer;
 import javax.validation.Valid;
 import javax.validation.constraints.AssertTrue;
 
-import nl.ipo.cds.domain.Bronhouder;
 import nl.ipo.cds.domain.Gebruiker;
-import nl.ipo.cds.domain.GebruikersRol;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -21,43 +19,9 @@ public class GebruikerForm {
 	@Valid
 	private Gebruiker gebruiker;
 
-	private boolean beheerder;
-	
-	private Bronhouder bronhouder;
-
-	private GebruikersRol gebruikersRol;
-
 	private boolean changePassword;
 	
 	private boolean passwordSet;
-
-	@AssertTrue(message="Een beheerder kan geen bronhouder kiezen. Een beheerder is automatisch bronhouder voor alle provincies")
-	public boolean isBronhouderMandatoryValid(){
-		boolean valid = true;
-
-		// If beheerder, then bronhouder is not permitted
-		if(this.isBeheerder()){
-			if(this.getBronhouder() != null){
-				valid = false;
-			}
-		}
-
-		return valid;
-	}
-
-	@AssertTrue(message="Een bronhouder is verplicht een provincie te kiezen")
-	public boolean isBronhouderDisallowedValid(){
-		boolean valid = true;
-
-		// If bronhouder, then bronhouder is mandatory
-		if(!this.isBeheerder()) {
-			if(this.getBronhouder() == null){
-				valid = false;
-			}
-		}
-
-		return valid;
-	}
 
 	public Gebruiker getGebruiker() {
 		return gebruiker;
@@ -65,34 +29,6 @@ public class GebruikerForm {
 
 	public void setGebruiker(Gebruiker gebruiker) {
 		this.gebruiker = gebruiker;
-	}
-
-	public boolean isBeheerder() {
-		return beheerder;
-	}
-
-	public void setBeheerder(boolean beheerder) {
-		this.beheerder = beheerder;
-	}
-
-	public Bronhouder getBronhouder() {
-		return bronhouder;
-	}
-
-	public void setBronhouder(Bronhouder bronhouder) {
-		this.bronhouder = bronhouder;
-	}
-
-	/**
-	 * @param gebruikersRol
-	 */
-	public void setGebruikersRol(GebruikersRol gebruikersRol) {
-		this.gebruikersRol = gebruikersRol;
-		
-	}
-
-	public GebruikersRol getGebruikersRol() {
-		return gebruikersRol;
 	}
 
 	// To satisfy Spring MVC. However, we won't display the password ever 

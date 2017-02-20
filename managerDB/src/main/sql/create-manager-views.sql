@@ -93,3 +93,4 @@ and j.finishtime > (
 	and status = 'FINISHED')
 group by md.documentname, md.documenttype;
 
+create view manager.themabronhouderauthorization as select * from manager.bronhouderthema;

@@ -21,6 +21,7 @@ import javax.inject.Named;
 
 import nl.idgis.commons.jobexecutor.Job;
 import nl.idgis.commons.jobexecutor.JobLogger;
+import nl.ipo.cds.categories.IntegrationTests;
 import nl.ipo.cds.dao.attributemapping.InputOperationDTO;
 import nl.ipo.cds.dao.attributemapping.OperationDTO;
 import nl.ipo.cds.dao.attributemapping.OperationInputDTO;
@@ -43,12 +44,14 @@ import nl.ipo.cds.etl.theme.protectedSite.ProtectedSiteThemeConfig;
 import org.deegree.geometry.Envelope;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+@Category(IntegrationTests.class)
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = AttributeMapperTest.Config.class)
 public class AttributeMapperTest extends AbstractAttributeMapperTest {

@@ -8,13 +8,9 @@ import javax.sql.DataSource;
 
 import nl.idgis.commons.jobexecutor.JobLogger;
 import nl.ipo.cds.dao.ManagerDao;
-import nl.ipo.cds.etl.process.ImportFeatureProcessor;
-import nl.ipo.cds.etl.process.ImportProcess;
-import nl.ipo.cds.etl.process.RemoveProcess;
-import nl.ipo.cds.etl.process.TransformProcess;
-import nl.ipo.cds.etl.process.ValidateFeatureProcessor;
-import nl.ipo.cds.etl.process.ValidateProcess;
+import nl.ipo.cds.etl.process.*;
 
+import nl.ipo.cds.etl.theme.ThemeDiscoverer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -53,9 +49,13 @@ public class Processes {
 
 	@Bean
 	@Inject
-	public RemoveProcess removeProcess (final DataSource dataSource) {
-		final RemoveProcess process = new RemoveProcess (dataSource);
+	public RemoveProcess removeProcess (final DataSource dataSource, final ThemeDiscoverer themeDiscoverer) {
+		return new RemoveProcess (dataSource, themeDiscoverer);
+	}
 
-		return process;
+	@Bean
+	@Inject
+	public TagProcess tagProcess (final DataSource dataSource, final ThemeDiscoverer themeDiscoverer) {
+		return new TagProcess(dataSource, themeDiscoverer);
 	}
 }

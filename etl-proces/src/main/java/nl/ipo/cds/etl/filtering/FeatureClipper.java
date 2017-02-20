@@ -130,4 +130,9 @@ public class FeatureClipper implements FeatureFilter<PersistableFeature, Persist
 	@Override
 	public void finish () {
 	}
+
+	@Override
+	public boolean postProcess() {
+		return true;
+	}
 }

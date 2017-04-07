@@ -9,7 +9,7 @@
     <wms:DefaultLayerOptions>
         <wms:FeatureInfoRadius>10</wms:FeatureInfoRadius>
     </wms:DefaultLayerOptions>
-    <wms:ThemeId>thmPF_NL</wms:ThemeId>
+    <wms:ThemeId>thmPF</wms:ThemeId>
   </wms:ServiceConfiguration>
 
 </wms:deegreeWMS>

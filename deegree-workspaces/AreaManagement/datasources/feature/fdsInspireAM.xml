@@ -1,10 +1,10 @@
-<SQLFeatureStore configVersion="3.4.0" xmlns="http://www.deegree.org/datasource/feature/sql" xmlns:tn="urn:x-inspire:specification:gmlas:CommonTransportElements:3.0" xmlns:sc="http://www.interactive-instruments.de/ShapeChange/AppInfo" xmlns:net="urn:x-inspire:specification:gmlas:Network:3.2" xmlns:stat="urn:x-inspire:specification:gmlas:StatisticalUnits:0.0" xmlns:base2="http://inspire.ec.europa.eu/schemas/base2/0.1rc2" xmlns:au="urn:x-inspire:specification:gmlas:AdministrativeUnits:3.0" xmlns:gn="urn:x-inspire:specification:gmlas:GeographicalNames:3.0" xmlns:cp="urn:x-inspire:specification:gmlas:CadastralParcels:3.0" xmlns:am="http://inspire.ec.europa.eu/schemas/am/3.0rc2" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:base="urn:x-inspire:specification:gmlas:BaseTypes:3.2" xmlns:ad="urn:x-inspire:specification:gmlas:Addresses:3.0" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:bui="urn:x-inspire:specification:gmlas:Buildings:0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tn-a="urn:x-inspire:specification:gmlas:AirTransportNetwork:3.0" xsi:schemaLocation="http://www.deegree.org/datasource/feature/sql http://schemas.deegree.org/datasource/feature/sql/3.4.0/sql.xsd">
+<SQLFeatureStore configVersion="3.4.0" xmlns="http://www.deegree.org/datasource/feature/sql" xmlns:tn="urn:x-inspire:specification:gmlas:CommonTransportElements:3.0" xmlns:sc="http://www.interactive-instruments.de/ShapeChange/AppInfo" xmlns:net="urn:x-inspire:specification:gmlas:Network:3.2" xmlns:stat="urn:x-inspire:specification:gmlas:StatisticalUnits:0.0" xmlns:base2="http://inspire.ec.europa.eu/schemas/base2/0.1rc2" xmlns:inspire_common="http://inspire.ec.europa.eu/schemas/common/1.0" xmlns:au="urn:x-inspire:specification:gmlas:AdministrativeUnits:3.0" xmlns:gn="urn:x-inspire:specification:gmlas:GeographicalNames:3.0" xmlns:cp="urn:x-inspire:specification:gmlas:CadastralParcels:3.0" xmlns:am="http://inspire.ec.europa.eu/schemas/am/3.0rc2" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:base="urn:x-inspire:specification:gmlas:BaseTypes:3.2" xmlns:ad="urn:x-inspire:specification:gmlas:Addresses:3.0" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:bui="urn:x-inspire:specification:gmlas:Buildings:0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tn-a="urn:x-inspire:specification:gmlas:AirTransportNetwork:3.0" xsi:schemaLocation="http://www.deegree.org/datasource/feature/sql http://schemas.deegree.org/datasource/feature/sql/3.4.0/sql.xsd">
   <JDBCConnId>conAM</JDBCConnId>
   <StorageCRS srid="0" dim="2D">EPSG:28992</StorageCRS>
-  <GMLSchema>http://www.inspire-provincies.nl/draft-schemas/am/3.0rc2/AreaManagementRestrictionRegulationZone.xsd</GMLSchema>
+  <GMLSchema>../../../inspire-schemas/customizedSchemas/am/3.0rc2/AreaManagementRestrictionRegulationZone.xsd</GMLSchema>
   <NullEscalation>true</NullEscalation>
 
-  <FeatureTypeMapping name="am:ManagementRestrictionOrRegulationZone" table="inspire.area_management">
+  <FeatureTypeMapping name="am:ManagementRestrictionOrRegulationZone" table="inspire.vw_area_management">
     <FIDMapping prefix="AM_MANAGEMENTRESTRICTIONORREGULATIONZONE_">
       <Column name="gfid" type="string"/>
       <UUIDGenerator/>
@@ -21,6 +21,10 @@
         <Primitive path="base2:identifierScheme" mapping="thematic_id_identifier_scheme"/>
       </Complex>
     </Complex>
+    <Complex path="am:downloadableDataset">
+    	<Primitive path="inspire_common:Code" mapping="ds_code"/>
+    	<Primitive path="inspire_common:Namespace" mapping="ds_namespace"/>
+    </Complex>       
     <Complex path="am:name">
       <Complex path="gn:GeographicalName">
         <Complex path="gn:language">

@@ -3,8 +3,8 @@
   <LayerStoreId>lyrPF_NL</LayerStoreId>
   
   <Theme>
-    <Identifier>base</Identifier>
-    <d:Title>Root theme</d:Title>
+    <Identifier>PF.ProductionAndIndustrialFacilities</Identifier>
+    <d:Title>ProductionAndIndustrialFacilities</d:Title>
     <s:CRS>EPSG:28992</s:CRS>
 
     <Theme>

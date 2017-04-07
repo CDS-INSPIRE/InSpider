@@ -2,17 +2,20 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
   configVersion="3.2.0" 
   xmlns:app="http://www.ipo.nl/InSpider"
+  xmlns:inspire_common="http://inspire.ec.europa.eu/schemas/common/1.0"
   xsi:schemaLocation="http://www.deegree.org/datasource/feature/sql http://schemas.deegree.org/datasource/feature/sql/3.2.0/sql.xsd">
 
   <JDBCConnId>conNZ</JDBCConnId>
 
-  <FeatureTypeMapping table="bron.hazard_area" name="app:HazardArea_NL">
+  <FeatureTypeMapping table="bron.vw_hazard_area" name="app:HazardArea_NL">
     <FIDMapping>
         <Column name="id" />
     </FIDMapping>
       
     <Primitive path="app:inspire_id_dataset_code" mapping="inspire_id_dataset_code" />
     <Primitive path="app:inspire_id_local_id" mapping="inspire_id_local_id" />
+    <Primitive path="app:downloadable_dataset_code" mapping="ds_code"/>
+    <Primitive path="app:downloadable_dataset_namespace" mapping="ds_namespace"/>
     <Primitive path="app:hazard_area_id" mapping="hazard_area_id" />
     <Primitive path="app:determination_method" mapping="determination_method" />
     <Primitive path="app:type_of_hazard_hazard_category" mapping="type_of_hazard_hazard_category" />

@@ -24,6 +24,8 @@
   <QueryCRS>urn:ogc:def:crs:EPSG::25832</QueryCRS>
 
   <QueryMaxFeatures>-1</QueryMaxFeatures>
+  
+  <StoredQuery>../queries/GetSpatialDataset.xml</StoredQuery>
 
   <GMLFormat gmlVersion="GML_32">
     <MimeType>application/gml+xml; version=3.2</MimeType>

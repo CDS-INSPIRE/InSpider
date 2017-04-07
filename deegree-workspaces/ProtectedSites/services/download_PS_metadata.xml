@@ -21,10 +21,6 @@
         <inspire_common:ResponseLanguage>
           <inspire_common:Language>dut</inspire_common:Language>
         </inspire_common:ResponseLanguage>
-        <inspire_dls:SpatialDataSetIdentifier>
-          <inspire_common:Code>To be replaced by the DatabaseMetadataProvider</inspire_common:Code>
-          <inspire_common:Namespace>To be replaced by the DatabaseMetadataProvider</inspire_common:Namespace>
-        </inspire_dls:SpatialDataSetIdentifier>
       </inspire_dls:ExtendedCapabilities>
     </ows:ExtendedCapabilities>
   </ExtendedCapabilities>
@@ -47,10 +43,6 @@
         <inspire_common:ResponseLanguage>
           <inspire_common:Language>dut</inspire_common:Language>
         </inspire_common:ResponseLanguage>
-        <inspire_dls:SpatialDataSetIdentifier>
-          <inspire_common:Code>To be replaced by the DatabaseMetadataProvider</inspire_common:Code>
-          <inspire_common:Namespace>To be replaced by the DatabaseMetadataProvider</inspire_common:Namespace>
-        </inspire_dls:SpatialDataSetIdentifier>
       </inspire_dls:ExtendedCapabilities>
     </ows:ExtendedCapabilities>
   </ExtendedCapabilities>

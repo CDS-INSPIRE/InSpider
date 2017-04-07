@@ -11,7 +11,7 @@
       <wms:FeatureInfoRadius>10</wms:FeatureInfoRadius>
     </wms:DefaultLayerOptions>
     
-    <wms:ThemeId>thmAM_NL</wms:ThemeId>
+    <wms:ThemeId>thmAM</wms:ThemeId>
   </wms:ServiceConfiguration>
 
 </wms:deegreeWMS>

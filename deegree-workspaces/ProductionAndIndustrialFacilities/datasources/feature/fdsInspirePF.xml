@@ -1,11 +1,11 @@
-<SQLFeatureStore configVersion="3.4.0" xmlns="http://www.deegree.org/datasource/feature/sql" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.deegree.org/datasource/feature/sql http://schemas.deegree.org/datasource/feature/sql/3.1.0/sql.xsd" xmlns:act-core="http://inspire.ec.europa.eu/schemas/act-core/3.0rc3" xmlns:base="http://inspire.ec.europa.eu/schemas/base/3.3rc3/" xmlns:base2="http://inspire.ec.europa.eu/schemas/base2/1.0rc3" xmlns:bu-core2d="http://inspire.ec.europa.eu/schemas/bu-core2d/3.0rc3" xmlns:bu-base="http://inspire.ec.europa.eu/schemas/bu/3.0rc3" xmlns:pf="http://inspire.ec.europa.eu/schemas/pf/3.0rc3" xmlns:ad="urn:x-inspire:specification:gmlas:Addresses:3.0" xmlns:au="urn:x-inspire:specification:gmlas:AdministrativeUnits:3.0" xmlns:tn-a="urn:x-inspire:specification:gmlas:AirTransportNetwork:3.0" xmlns:bui="urn:x-inspire:specification:gmlas:Buildings:0.0" xmlns:cp="urn:x-inspire:specification:gmlas:CadastralParcels:3.0" xmlns:tn="urn:x-inspire:specification:gmlas:CommonTransportElements:3.0" xmlns:gn="urn:x-inspire:specification:gmlas:GeographicalNames:3.0" xmlns:net="urn:x-inspire:specification:gmlas:Network:3.2" xmlns:stat="urn:x-inspire:specification:gmlas:StatisticalUnits:0.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml/3.2">
+<SQLFeatureStore configVersion="3.4.0" xmlns="http://www.deegree.org/datasource/feature/sql" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.deegree.org/datasource/feature/sql http://schemas.deegree.org/datasource/feature/sql/3.1.0/sql.xsd" xmlns:act-core="http://inspire.ec.europa.eu/schemas/act-core/3.0rc3" xmlns:base="http://inspire.ec.europa.eu/schemas/base/3.3rc3/" xmlns:base2="http://inspire.ec.europa.eu/schemas/base2/1.0rc3" xmlns:bu-core2d="http://inspire.ec.europa.eu/schemas/bu-core2d/3.0rc3" xmlns:bu-base="http://inspire.ec.europa.eu/schemas/bu/3.0rc3" xmlns:pf="http://inspire.ec.europa.eu/schemas/pf/3.0rc3" xmlns:ad="urn:x-inspire:specification:gmlas:Addresses:3.0" xmlns:au="urn:x-inspire:specification:gmlas:AdministrativeUnits:3.0" xmlns:tn-a="urn:x-inspire:specification:gmlas:AirTransportNetwork:3.0" xmlns:bui="urn:x-inspire:specification:gmlas:Buildings:0.0" xmlns:cp="urn:x-inspire:specification:gmlas:CadastralParcels:3.0" xmlns:tn="urn:x-inspire:specification:gmlas:CommonTransportElements:3.0" xmlns:gn="urn:x-inspire:specification:gmlas:GeographicalNames:3.0" xmlns:net="urn:x-inspire:specification:gmlas:Network:3.2" xmlns:stat="urn:x-inspire:specification:gmlas:StatisticalUnits:0.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:inspire_common="http://inspire.ec.europa.eu/schemas/common/1.0">
   <JDBCConnId>conPF</JDBCConnId>
   <StorageCRS srid="28992" dim="2D">EPSG:28992</StorageCRS>
   <!--GMLSchema>http://www.inspire-provincies.nl/draft-schemas/pf/3.0rc3/ProductionAndIndustrialFacilities.xsd</GMLSchema-->
-  <GMLSchema>../../../inspire-schemas/draft-schemas/pf/3.0rc3/ProductionAndIndustrialFacilities.xsd</GMLSchema>
+  <GMLSchema>../../../inspire-schemas/customizedSchemas/pf/3.0rc3/ProductionAndIndustrialFacilities.xsd</GMLSchema>
   <NullEscalation>true</NullEscalation>  
 
-  <FeatureTypeMapping name="pf:ProductionFacility" table="inspire.production_facility">
+  <FeatureTypeMapping name="pf:ProductionFacility" table="inspire.vw_production_facility">
     <FIDMapping prefix="PF_PRODUCTIONFACILITY_">
       <Column name="id" type="integer"/>
     </FIDMapping>
@@ -21,7 +21,11 @@
         <Primitive path="base2:identifierScheme" mapping="thematic_identifier_scheme"/>
       </Complex>
     </Complex>
-    <Primitive path="act-core:name" mapping="name"/>    
+    <Complex path="pf:downloadableDataset">
+    	<Primitive path="inspire_common:Code" mapping="ds_code"/>
+    	<Primitive path="inspire_common:Namespace" mapping="ds_namespace"/>
+    </Complex>    
+    <Primitive path="act-core:name" mapping="name"/>
     <Complex path="act-core:geometry">
       <Geometry path="." mapping="geometry"/>
     </Complex>
@@ -72,7 +76,7 @@
     </Complex>
   </FeatureTypeMapping>
 
-  <FeatureTypeMapping name="pf:ProductionInstallation" table="inspire.production_installation">
+  <FeatureTypeMapping name="pf:ProductionInstallation" table="inspire.vw_production_installation">
     <FIDMapping prefix="PF_PRODUCTIONINSTALLATION_">
       <Column name="id" type="integer"/>
     </FIDMapping>
@@ -88,6 +92,10 @@
         <Primitive path="base2:identifierScheme" mapping="thematic_identifier_scheme"/>
       </Complex>
     </Complex>
+    <Complex path="pf:downloadableDataset">
+    	<Primitive path="inspire_common:Code" mapping="ds_code"/>
+    	<Primitive path="inspire_common:Namespace" mapping="ds_namespace"/>
+    </Complex>    
     <Complex path="pf:pointGeometry">
       <Geometry path="." mapping="point_geometry"/>
     </Complex>
@@ -121,7 +129,7 @@
     </Complex>    
   </FeatureTypeMapping>
 
-  <FeatureTypeMapping name="pf:ProductionInstallationPart" table="inspire.production_installation_part">
+  <FeatureTypeMapping name="pf:ProductionInstallationPart" table="inspire.vw_production_installation_part">
     <FIDMapping prefix="PF_PRODUCTIONINSTALLATIONPART_">
       <Column name="id" type="integer"/>
     </FIDMapping>
@@ -131,6 +139,10 @@
         <Primitive path="base:namespace" mapping="inspire_id_namespace"/>
       </Complex>
     </Complex>
+    <Complex path="pf:downloadableDataset">
+    	<Primitive path="inspire_common:Code" mapping="ds_code"/>
+    	<Primitive path="inspire_common:Namespace" mapping="ds_namespace"/>
+    </Complex>    
     <Complex path="pf:pointGeometry">
       <Geometry path="." mapping="point_geometry"/>
     </Complex>

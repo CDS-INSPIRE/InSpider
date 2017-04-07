@@ -3,8 +3,7 @@
   <LayerStoreId>lyrNZ_NL</LayerStoreId>
   
   <Theme>
-    <Identifier>base</Identifier>
-    <d:Title>Root theme</d:Title>
+    <d:Title>NaturalRiskZones</d:Title>
     <s:CRS>EPSG:28992</s:CRS>
     <Theme>
       <Identifier>NZ.HazardArea</Identifier>

@@ -23,9 +23,7 @@
   
   <QueryMaxFeatures>-1</QueryMaxFeatures>
 
-  <StoredQuery>../queries/GetDataSetById.xml</StoredQuery>
-  <StoredQuery>../queries/IdQuery.xml</StoredQuery>
-  <StoredQuery>../queries/TypeQuery.xml</StoredQuery>
+  <StoredQuery>../queries/GetSpatialDataset.xml</StoredQuery>
   
   <GMLFormat gmlVersion="GML_32">
     <MimeType>application/gml+xml; version=3.2</MimeType>

@@ -1,8 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:base="urn:x-inspire:specification:gmlas:BaseTypes:3.2" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gn="urn:x-inspire:specification:gmlas:GeographicalNames:3.0" xmlns:ps="urn:x-inspire:specification:gmlas:ProtectedSites:3.0" elementFormDefault="qualified" targetNamespace="urn:x-inspire:specification:gmlas:ProtectedSites:3.0" version="3.0">
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:base="urn:x-inspire:specification:gmlas:BaseTypes:3.2" xmlns:inspire_common="http://inspire.ec.europa.eu/schemas/common/1.0" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gn="urn:x-inspire:specification:gmlas:GeographicalNames:3.0" xmlns:ps="urn:x-inspire:specification:gmlas:ProtectedSites:3.0" elementFormDefault="qualified" targetNamespace="urn:x-inspire:specification:gmlas:ProtectedSites:3.0" version="3.0">
   <import namespace="urn:x-inspire:specification:gmlas:BaseTypes:3.2" schemaLocation="BaseTypes.xsd"/>
   <import namespace="urn:x-inspire:specification:gmlas:GeographicalNames:3.0" schemaLocation="GeographicalNames.xsd"/>
   <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
   <import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gmd/gmd.xsd"/>
+  <import namespace="http://inspire.ec.europa.eu/schemas/common/1.0" schemaLocation="../../inspire-schemas/schemas/common/1.0/common.xsd"/>
   <!--XML Schema document created by ShapeChange-->
   <element name="ProtectedSite" substitutionGroup="gml:AbstractFeature" type="ps:ProtectedSiteType">
     <annotation>
@@ -122,6 +123,11 @@ The site may have more than one classification.&#13;
               </simpleContent>
             </complexType>
           </element>
+		  <element name="downloadableDataset" type="inspire_common:uniqueResourceIdentifier" minOccurs="1" maxOccurs="unbounded">
+			<annotation>
+				<documentation>Unique identifier for getting the individual downloadset from the download service</documentation>
+			</annotation>
+		  </element>          
         </sequence>
       </extension>
     </complexContent>

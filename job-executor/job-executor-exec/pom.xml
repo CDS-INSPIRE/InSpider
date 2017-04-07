@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>nl.ipo.cds</groupId>
 		<artifactId>job-executor</artifactId>
-        <version>2.5</version>
+        <version>2.6</version>
 	</parent>
 	<packaging>jar</packaging>
 
@@ -42,13 +42,13 @@
 		<dependency>
 			<groupId>nl.ipo.cds</groupId>
 			<artifactId>themes</artifactId>
-            <version>2.5</version>
+            <version>2.6</version>
 			<type>pom</type>
 		</dependency>
 		<dependency>
 			<groupId>nl.ipo.cds</groupId>
 			<artifactId>catalog-metadata</artifactId>
-            <version>2.5</version>
+            <version>2.6</version>
 		</dependency>
 	</dependencies>
 

@@ -1,0 +1,18 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>nl.ipo.cds</groupId>
+		<artifactId>cds-parent</artifactId>
+        <version>2.6</version>
+	</parent>
+	<artifactId>mappings</artifactId>
+	<name>mappings</name>
+	<description>mapping and operation DTO types</description>
+	<dependencies>
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-lgpl</artifactId>
+			<type>jar</type>
+		</dependency>
+	</dependencies>
+</project>

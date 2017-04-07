@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AjcSettings">
+    <option name="ajcPath" value="$MAVEN_REPOSITORY$/org/aspectj/aspectjtools/1.6.11/aspectjtools-1.6.11.jar" />
+    <option name="delegateToJavac" value="true" />
+  </component>
+  <component name="CompilerConfiguration">
+    <option name="DEFAULT_COMPILER" value="ajc" />
+    <resourceExtensions />
+    <wildcardResourcePatterns>
+      <entry name="!?*.java" />
+      <entry name="!?*.form" />
+      <entry name="!?*.class" />
+      <entry name="!?*.groovy" />
+      <entry name="!?*.scala" />
+      <entry name="!?*.flex" />
+      <entry name="!?*.kt" />
+      <entry name="!?*.clj" />
+      <entry name="!?*.aj" />
+    </wildcardResourcePatterns>
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="false">
+        <processorPath useClasspath="true" />
+      </profile>
+      <profile default="false" name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="admin" />
+        <module name="attributemapping" />
+        <module name="catalog-metadata" />
+        <module name="cds-deegree-extension" />
+        <module name="cds-test" />
+        <module name="commons" />
+        <module name="domain" />
+        <module name="domain-metadata" />
+        <module name="etl-attributemapping" />
+        <module name="etl-operations" />
+        <module name="etl-proces" />
+        <module name="etl-reporting" />
+        <module name="etl-test" />
+        <module name="job-executor-api" />
+        <module name="job-executor-exec" />
+        <module name="managerDB" />
+        <module name="mappings" />
+        <module name="metadataDB" />
+        <module name="nagios-status" />
+        <module name="post-validation" />
+        <module name="postgresql" />
+        <module name="resources" />
+        <module name="theme-areamanagement" />
+        <module name="theme-exposedelements" />
+        <module name="theme-habitat" />
+        <module name="theme-hazardarea" />
+        <module name="theme-productionfacility" />
+        <module name="theme-productioninstallation" />
+        <module name="theme-productioninstallationpart" />
+        <module name="theme-protectedsites" />
+        <module name="theme-riskzone" />
+        <module name="validation" />
+      </profile>
+      <profile default="false" name="Annotation profile for cds-parent" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <option name="log4j.outputdir" value="C:\Ritesh\CDS\GitHub\InSpider\deegree-webservices-cds/target/classes/META-INF/deegree/log4j/" />
+        <processorPath useClasspath="true" />
+        <module name="deegree-webservices-cds" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="admin" target="1.6" />
+      <module name="attributemapping" target="1.7" />
+      <module name="catalog-metadata" target="1.7" />
+      <module name="cds-deegree-extension" target="1.7" />
+      <module name="cds-parent" target="1.5" />
+      <module name="cds-test" target="1.7" />
+      <module name="commons" target="1.7" />
+      <module name="deegree-webservices-cds" target="1.6" />
+      <module name="domain" target="1.7" />
+      <module name="domain-metadata" target="1.7" />
+      <module name="etl-attributemapping" target="1.7" />
+      <module name="etl-operations" target="1.7" />
+      <module name="etl-proces" target="1.6" />
+      <module name="etl-reporting" target="1.7" />
+      <module name="etl-test" target="1.7" />
+      <module name="job-executor" target="1.5" />
+      <module name="job-executor-api" target="1.7" />
+      <module name="job-executor-exec" target="1.6" />
+      <module name="managerDB" target="1.6" />
+      <module name="mappings" target="1.7" />
+      <module name="metadataDB" target="1.6" />
+      <module name="nagios-status" target="1.6" />
+      <module name="post-validation" target="1.7" />
+      <module name="postgresql" target="1.7" />
+      <module name="resources" target="1.7" />
+      <module name="theme-areamanagement" target="1.7" />
+      <module name="theme-exposedelements" target="1.7" />
+      <module name="theme-habitat" target="1.7" />
+      <module name="theme-hazardarea" target="1.7" />
+      <module name="theme-productionfacility" target="1.7" />
+      <module name="theme-productioninstallation" target="1.7" />
+      <module name="theme-productioninstallationpart" target="1.7" />
+      <module name="theme-protectedsites" target="1.7" />
+      <module name="theme-riskzone" target="1.7" />
+      <module name="themes" target="1.5" />
+      <module name="validation" target="1.7" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

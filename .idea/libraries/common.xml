@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="common">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/deegree-workspaces/inspire-schemas/schemas/common/1.0.1.zip!/" />
+      <root url="jar://$PROJECT_DIR$/deegree-workspaces/inspire-schemas/schemas/common/1.0.0.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -1,0 +1,32 @@
+<Themes xmlns="http://www.deegree.org/themes/standard" xmlns:d="http://www.deegree.org/metadata/description" xmlns:s="http://www.deegree.org/metadata/spatial" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" configVersion="3.2.0" xsi:schemaLocation="http://www.deegree.org/themes/standard http://schemas.deegree.org/themes/3.2.0/themes.xsd">
+
+  <LayerStoreId>lyrPF</LayerStoreId>
+  
+  <Theme>
+    <d:Title>ProductionAndIndustrialFacilities</d:Title>
+    <s:CRS>EPSG:28992</s:CRS>
+
+    <Theme>
+      <Identifier>PF.ProductionFacility</Identifier>
+      <d:Title>Production Facility</d:Title>
+      <s:CRS>EPSG:28992</s:CRS>
+      <Layer>PF.ProductionFacility</Layer>
+    </Theme>
+
+    <Theme>
+      <Identifier>PF.ProductionInstallation</Identifier>
+      <d:Title>Production Installation</d:Title>
+      <s:CRS>EPSG:28992</s:CRS>
+      <Layer>PF.ProductionInstallation</Layer>
+    </Theme>
+
+    <Theme>
+      <Identifier>PF.ProductionInstallationPart</Identifier>
+      <d:Title>Production Installation Part</d:Title>
+      <s:CRS>EPSG:28992</s:CRS>
+      <Layer>PF.ProductionInstallationPart</Layer>
+    </Theme>
+    
+  </Theme>
+
+</Themes>

@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="ad">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/deegree-workspaces/inspire-schemas/schemas/ad/ad-3_0_1.zip!/" />
+      <root url="jar://$PROJECT_DIR$/deegree-workspaces/inspire-schemas/schemas/ad/ad-3_0_0.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

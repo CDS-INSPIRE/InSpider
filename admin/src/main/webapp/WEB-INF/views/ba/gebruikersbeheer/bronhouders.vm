@@ -1,0 +1,66 @@
+#set($viewName = '_ba_gebruikersbeheer_gebruikers')
+
+<div class="cds-tab-container">
+	<ul class="cds-tab-strip nowrapTabStrip dijitTabContainerTop-tabs">
+		<li class="dijitTab">
+			<a class="tabLabel" href="#springUrl('/ba/gebruikersbeheer/gebruikers')">Gebruikers</a>
+		</li>
+		<li class="dijitTab dijitTabChecked dijitChecked">
+			<a class="tabLabel" href="#springUrl('/ba/gebruikersbeheer/bronhouders')">Bronhouders</a>
+		</li>
+		<li class="dijitTab">
+			<a class="tabLabel" href="#springUrl('/ba/gebruikersbeheer/autorisatie/bronhouders')">Bronhouder thema autorisatie</a>
+		</li>
+		<li class="dijitTab">
+			<a class="tabLabel" href="#springUrl('/ba/gebruikersbeheer/autorisatie/gebruikers')">Gebruiker thema autorisatie</a>
+		</li>
+	</ul>
+	
+	<div class="cds-tab-content">
+
+		<p>
+			#buttonLink('Nieuwe bronhouder toevoegen', "#springUrl('/ba/gebruikersbeheer/bronhouders/-/create')")
+		</p>
+		
+		<table class="cds-table">
+			<thead>
+				<tr>
+					<th>Naam</th>
+					<th>Code</th>
+					<th>Contactgegevens</th>
+					<th>Acties</th>
+				</tr>
+			</thead>
+			
+			<tfoot>
+				<tr>
+					<th colspan="4">
+						#e($bronhouders.size()) bronhouder#if($bronhouders.size() != 1)s#end gevonden
+					</th>
+				</tr>
+			</tfoot>
+			
+			<tbody>
+				#foreach($bronhouder in $bronhouders)
+				<tr>
+					<td>#e($bronhouder.naam)</td>
+					<td>#if($bronhouder.core) - #else #e($bronhouder.code) #end</td>
+					<td>
+						<address>
+							#if($bronhouder.contactNaam)#e($bronhouder.contactNaam)<br>#end
+							#if($bronhouder.contactAdres)#e($bronhouder.contactAdres)<br>#end
+							#if($bronhouder.contactPostcode)#e($bronhouder.contactPostcode) #end #if($bronhouder.contactPlaats)#e($bronhouder.contactPlaats) #end
+							<a href="mailto:#e($bronhouder.contactEmailadres)">#e($bronhouder.contactEmailadres)</a>
+						</address>
+					</td>
+					<td>
+						#buttonLink("Bewerken", "#springUrl('/ba/gebruikersbeheer/bronhouders/')$bronhouder.id/edit") 
+						#buttonLink("Verwijderen", "#springUrl('/ba/gebruikersbeheer/bronhouders/')$bronhouder.id/delete")
+					</td>
+				</tr>
+				#end
+			</tbody>
+		</table>
+		
+	</div>
+</div>

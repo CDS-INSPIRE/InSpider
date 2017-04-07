@@ -1,0 +1,537 @@
+<FeatureLayers xmlns="http://www.deegree.org/layers/feature" xmlns:d="http://www.deegree.org/metadata/description" xmlns:l="http://www.deegree.org/layers/base" xmlns:s="http://www.deegree.org/metadata/spatial" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.deegree.org/layers/feature http://schemas.deegree.org/layers/feature/3.2.0/feature.xsd" configVersion="3.2.0">
+  <FeatureStoreId>fdsAM</FeatureStoreId>
+<!--
+  <FeatureLayer>
+    <FeatureType xmlns:myapp="http://www.ipo.nl/InSpider">myapp:ManagementRestrictionOrRegulationZone_NL</FeatureType>
+    <Filter>
+      <Filter xmlns="http://www.opengis.net/ogc">
+        <PropertyIsEqualTo>
+          <PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:zonetype_code</PropertyName>
+          <Literal>airQualityManagementZone</Literal>
+        </PropertyIsEqualTo>
+      </Filter>
+    </Filter>
+    <l:Name>AM.AirQualityManagementZone_NL</l:Name>
+    <d:Title>Air Quality Management Zone, NL structure</d:Title>
+    
+    <s:CRS>EPSG:28992 EPSG:4326 EPSG:4258 EPSG:3035 EPSG:3034 EPSG:25830 EPSG:25831 EPSG:25832 urn:ogc:def:crs:EPSG::28992 urn:ogc:def:crs:EPSG::4326 urn:ogc:def:crs:EPSG::4258 urn:ogc:def:crs:EPSG::3035 urn:ogc:def:crs:EPSG::3034 urn:ogc:def:crs:EPSG::25830 urn:ogc:def:crs:EPSG::25831 urn:ogc:def:crs:EPSG::25832</s:CRS>
+    
+    <l:StyleRef>
+      <l:StyleStoreId>stlAM</l:StyleStoreId>
+      <l:Style>
+        <l:StyleName>AM.AirQualityManagementZone.Default</l:StyleName>
+        <l:LayerNameRef>AM.AirQualityManagementZone</l:LayerNameRef>
+        <l:StyleNameRef>AM.AirQualityManagementZone.Default</l:StyleNameRef>
+      </l:Style>
+    </l:StyleRef>
+    <l:LayerOptions>
+      <l:MaxFeatures>0</l:MaxFeatures>
+    </l:LayerOptions>    
+  </FeatureLayer>
+  
+  <FeatureLayer>
+    <FeatureType xmlns:myapp="http://www.ipo.nl/InSpider">myapp:ManagementRestrictionOrRegulationZone_NL</FeatureType>
+    <Filter>
+      <Filter xmlns="http://www.opengis.net/ogc">
+        <PropertyIsEqualTo>
+          <PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:zonetype_code</PropertyName>
+          <Literal>animalHealthRestrictionZone</Literal>
+        </PropertyIsEqualTo>
+      </Filter>
+    </Filter>
+    <l:Name>AM.AnimalHealthRestrictionZone_NL</l:Name>
+    <d:Title>Animal Health Restriction Zone, NL structure</d:Title>
+    
+    <s:CRS>EPSG:28992 EPSG:4326 EPSG:4258 EPSG:3035 EPSG:3034 EPSG:25830 EPSG:25831 EPSG:25832 urn:ogc:def:crs:EPSG::28992 urn:ogc:def:crs:EPSG::4326 urn:ogc:def:crs:EPSG::4258 urn:ogc:def:crs:EPSG::3035 urn:ogc:def:crs:EPSG::3034 urn:ogc:def:crs:EPSG::25830 urn:ogc:def:crs:EPSG::25831 urn:ogc:def:crs:EPSG::25832</s:CRS>
+    
+    <l:StyleRef>
+      <l:StyleStoreId>stlAM</l:StyleStoreId>
+      <l:Style>
+        <l:StyleName>AM.AnimalHealthRestrictionZone.Default</l:StyleName>
+        <l:LayerNameRef>AM.AnimalHealthRestrictionZone</l:LayerNameRef>
+        <l:StyleNameRef>AM.AnimalHealthRestrictionZone.Default</l:StyleNameRef>
+      </l:Style>
+    </l:StyleRef>
+    <l:LayerOptions>
+      <l:MaxFeatures>0</l:MaxFeatures>
+    </l:LayerOptions>    
+  </FeatureLayer>
+  
+  <FeatureLayer>
+    <FeatureType xmlns:myapp="http://www.ipo.nl/InSpider">myapp:ManagementRestrictionOrRegulationZone_NL</FeatureType>
+    <Filter>
+      <Filter xmlns="http://www.opengis.net/ogc">
+        <PropertyIsEqualTo>
+          <PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:zonetype_code</PropertyName>
+          <Literal>areaForDisposalOfWaste</Literal>
+        </PropertyIsEqualTo>
+      </Filter>
+    </Filter>
+    <l:Name>AM.AreaForDisposalOfWaste_NL</l:Name>
+    <d:Title>Area For Disposal Of Waste, NL structure</d:Title>
+    
+    <s:CRS>EPSG:28992 EPSG:4326 EPSG:4258 EPSG:3035 EPSG:3034 EPSG:25830 EPSG:25831 EPSG:25832 urn:ogc:def:crs:EPSG::28992 urn:ogc:def:crs:EPSG::4326 urn:ogc:def:crs:EPSG::4258 urn:ogc:def:crs:EPSG::3035 urn:ogc:def:crs:EPSG::3034 urn:ogc:def:crs:EPSG::25830 urn:ogc:def:crs:EPSG::25831 urn:ogc:def:crs:EPSG::25832</s:CRS>
+    
+    <l:StyleRef>
+      <l:StyleStoreId>stlAM</l:StyleStoreId>
+      <l:Style>
+        <l:StyleName>AM.AreaForDisposalOfWaste.Default</l:StyleName>
+        <l:LayerNameRef>AM.AreaForDisposalOfWaste</l:LayerNameRef>
+        <l:StyleNameRef>AM.AreaForDisposalOfWaste.Default</l:StyleNameRef>
+      </l:Style>
+    </l:StyleRef>
+    <l:LayerOptions>
+      <l:MaxFeatures>0</l:MaxFeatures>
+    </l:LayerOptions>    
+  </FeatureLayer>
+  -->
+  <FeatureLayer>
+    <FeatureType xmlns:myapp="http://www.ipo.nl/InSpider">myapp:ManagementRestrictionOrRegulationZone_NL</FeatureType>
+    <Filter>
+      <Filter xmlns="http://www.opengis.net/ogc">
+        <PropertyIsEqualTo>
+          <PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:zonetype_code</PropertyName>
+          <Literal>bathingWaters</Literal>
+        </PropertyIsEqualTo>
+      </Filter>
+    </Filter>
+    <l:Name>AM.BathingWaters</l:Name>
+    <d:Title>Bathing Waters, NL structure</d:Title>
+    
+    <s:CRS>EPSG:28992 EPSG:4326 EPSG:4258 EPSG:3035 EPSG:3034 EPSG:25830 EPSG:25831 EPSG:25832 urn:ogc:def:crs:EPSG::28992 urn:ogc:def:crs:EPSG::4326 urn:ogc:def:crs:EPSG::4258 urn:ogc:def:crs:EPSG::3035 urn:ogc:def:crs:EPSG::3034 urn:ogc:def:crs:EPSG::25830 urn:ogc:def:crs:EPSG::25831 urn:ogc:def:crs:EPSG::25832</s:CRS>
+    
+    <l:StyleRef>
+      <l:StyleStoreId>stlAM</l:StyleStoreId>
+      <l:Style>
+        <l:StyleName>AM.BathingWaters.Default</l:StyleName>
+        <l:LayerNameRef>AM.BathingWaters</l:LayerNameRef>
+        <l:StyleNameRef>AM.BathingWaters.Default</l:StyleNameRef>
+      </l:Style>
+    </l:StyleRef>
+    <l:LayerOptions>
+      <l:MaxFeatures>0</l:MaxFeatures>
+    </l:LayerOptions>    
+  </FeatureLayer>
+  <!--
+  <FeatureLayer>
+    <FeatureType xmlns:myapp="http://www.ipo.nl/InSpider">myapp:ManagementRestrictionOrRegulationZone_NL</FeatureType>
+    <Filter>
+      <Filter xmlns="http://www.opengis.net/ogc">
+        <PropertyIsEqualTo>
+          <PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:zonetype_code</PropertyName>
+          <Literal>coastalZoneManagementArea</Literal>
+        </PropertyIsEqualTo>
+      </Filter>
+    </Filter>
+    <l:Name>AM.CoastalZoneManagementArea_NL</l:Name>
+    <d:Title>Coastal Zone Management Area, NL structure</d:Title>
+    
+    <s:CRS>EPSG:28992 EPSG:4326 EPSG:4258 EPSG:3035 EPSG:3034 EPSG:25830 EPSG:25831 EPSG:25832 urn:ogc:def:crs:EPSG::28992 urn:ogc:def:crs:EPSG::4326 urn:ogc:def:crs:EPSG::4258 urn:ogc:def:crs:EPSG::3035 urn:ogc:def:crs:EPSG::3034 urn:ogc:def:crs:EPSG::25830 urn:ogc:def:crs:EPSG::25831 urn:ogc:def:crs:EPSG::25832</s:CRS>
+    
+    <l:StyleRef>
+      <l:StyleStoreId>stlAM</l:StyleStoreId>
+      <l:Style>
+        <l:StyleName>AM.CoastalZoneManagementArea.Default</l:StyleName>
+        <l:LayerNameRef>AM.CoastalZoneManagementArea</l:LayerNameRef>
+        <l:StyleNameRef>AM.CoastalZoneManagementArea.Default</l:StyleNameRef>
+      </l:Style>
+    </l:StyleRef>
+    <l:LayerOptions>
+      <l:MaxFeatures>0</l:MaxFeatures>
+    </l:LayerOptions>    
+  </FeatureLayer>
+  
+  <FeatureLayer>
+    <FeatureType xmlns:myapp="http://www.ipo.nl/InSpider">myapp:ManagementRestrictionOrRegulationZone_NL</FeatureType>
+    <Filter>
+      <Filter xmlns="http://www.opengis.net/ogc">
+        <PropertyIsEqualTo>
+          <PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:zonetype_code</PropertyName>
+          <Literal>designatedWaters</Literal>
+        </PropertyIsEqualTo>
+      </Filter>
+    </Filter>
+    <l:Name>AM.DesignatedWaters_NL</l:Name>
+    <d:Title>Designated Waters, NL structure</d:Title>
+    
+    <s:CRS>EPSG:28992 EPSG:4326 EPSG:4258 EPSG:3035 EPSG:3034 EPSG:25830 EPSG:25831 EPSG:25832 urn:ogc:def:crs:EPSG::28992 urn:ogc:def:crs:EPSG::4326 urn:ogc:def:crs:EPSG::4258 urn:ogc:def:crs:EPSG::3035 urn:ogc:def:crs:EPSG::3034 urn:ogc:def:crs:EPSG::25830 urn:ogc:def:crs:EPSG::25831 urn:ogc:def:crs:EPSG::25832</s:CRS>
+    
+    <l:StyleRef>
+      <l:StyleStoreId>stlAM</l:StyleStoreId>
+      <l:Style>
+        <l:StyleName>AM.DesignatedWaters.Default</l:StyleName>
+        <l:LayerNameRef>AM.DesignatedWaters</l:LayerNameRef>
+        <l:StyleNameRef>AM.DesignatedWaters.Default</l:StyleNameRef>
+      </l:Style>
+    </l:StyleRef>
+    <l:LayerOptions>
+      <l:MaxFeatures>0</l:MaxFeatures>
+    </l:LayerOptions>    
+  </FeatureLayer>
+  -->
+  <FeatureLayer>
+    <FeatureType xmlns:myapp="http://www.ipo.nl/InSpider">myapp:ManagementRestrictionOrRegulationZone_NL</FeatureType>
+    <Filter>
+      <Filter xmlns="http://www.opengis.net/ogc">
+        <PropertyIsEqualTo>
+          <PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:zonetype_code</PropertyName>
+          <Literal>drinkingWaterProtectionArea</Literal>
+        </PropertyIsEqualTo>
+      </Filter>
+    </Filter>
+    <l:Name>AM.DrinkingWaterProtectionArea</l:Name>
+    <d:Title>Drinking Water Protection Area, NL structure</d:Title>
+    
+    <s:CRS>EPSG:28992 EPSG:4326 EPSG:4258 EPSG:3035 EPSG:3034 EPSG:25830 EPSG:25831 EPSG:25832 urn:ogc:def:crs:EPSG::28992 urn:ogc:def:crs:EPSG::4326 urn:ogc:def:crs:EPSG::4258 urn:ogc:def:crs:EPSG::3035 urn:ogc:def:crs:EPSG::3034 urn:ogc:def:crs:EPSG::25830 urn:ogc:def:crs:EPSG::25831 urn:ogc:def:crs:EPSG::25832</s:CRS>
+    
+    <l:StyleRef>
+      <l:StyleStoreId>stlAM</l:StyleStoreId>
+      <l:Style>
+        <l:StyleName>AM.DrinkingWaterProtectionArea.Default</l:StyleName>
+        <l:LayerNameRef>AM.DrinkingWaterProtectionArea</l:LayerNameRef>
+        <l:StyleNameRef>AM.DrinkingWaterProtectionArea.Default</l:StyleNameRef>
+      </l:Style>
+    </l:StyleRef>
+    <l:LayerOptions>
+      <l:MaxFeatures>0</l:MaxFeatures>
+    </l:LayerOptions>    
+  </FeatureLayer>
+  <!--
+  <FeatureLayer>
+    <FeatureType xmlns:myapp="http://www.ipo.nl/InSpider">myapp:ManagementRestrictionOrRegulationZone_NL</FeatureType>
+    <Filter>
+      <Filter xmlns="http://www.opengis.net/ogc">
+        <PropertyIsEqualTo>
+          <PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:zonetype_code</PropertyName>
+          <Literal>floodUnitOfManagement</Literal>
+        </PropertyIsEqualTo>
+      </Filter>
+    </Filter>
+    <l:Name>AM.FloodUnitOfManagement_NL</l:Name>
+    <d:Title>Flood Unit Of Management, NL structure</d:Title>
+    
+    <s:CRS>EPSG:28992 EPSG:4326 EPSG:4258 EPSG:3035 EPSG:3034 EPSG:25830 EPSG:25831 EPSG:25832 urn:ogc:def:crs:EPSG::28992 urn:ogc:def:crs:EPSG::4326 urn:ogc:def:crs:EPSG::4258 urn:ogc:def:crs:EPSG::3035 urn:ogc:def:crs:EPSG::3034 urn:ogc:def:crs:EPSG::25830 urn:ogc:def:crs:EPSG::25831 urn:ogc:def:crs:EPSG::25832</s:CRS>
+    
+    <l:StyleRef>
+      <l:StyleStoreId>stlAM</l:StyleStoreId>
+      <l:Style>
+        <l:StyleName>AM.FloodUnitOfManagement.Default</l:StyleName>
+        <l:LayerNameRef>AM.FloodUnitOfManagement</l:LayerNameRef>
+        <l:StyleNameRef>AM.FloodUnitOfManagement.Default</l:StyleNameRef>
+      </l:Style>
+    </l:StyleRef>
+    <l:LayerOptions>
+      <l:MaxFeatures>0</l:MaxFeatures>
+    </l:LayerOptions>    
+  </FeatureLayer>
+  
+  <FeatureLayer>
+    <FeatureType xmlns:myapp="http://www.ipo.nl/InSpider">myapp:ManagementRestrictionOrRegulationZone_NL</FeatureType>
+    <Filter>
+      <Filter xmlns="http://www.opengis.net/ogc">
+        <PropertyIsEqualTo>
+          <PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:zonetype_code</PropertyName>
+          <Literal>forestManagementArea</Literal>
+        </PropertyIsEqualTo>
+      </Filter>
+    </Filter>
+    <l:Name>AM.ForestManagementArea_NL</l:Name>
+    <d:Title>Forest, NL structure</d:Title>
+    
+    <s:CRS>EPSG:28992 EPSG:4326 EPSG:4258 EPSG:3035 EPSG:3034 EPSG:25830 EPSG:25831 EPSG:25832 urn:ogc:def:crs:EPSG::28992 urn:ogc:def:crs:EPSG::4326 urn:ogc:def:crs:EPSG::4258 urn:ogc:def:crs:EPSG::3035 urn:ogc:def:crs:EPSG::3034 urn:ogc:def:crs:EPSG::25830 urn:ogc:def:crs:EPSG::25831 urn:ogc:def:crs:EPSG::25832</s:CRS>
+    
+    <l:StyleRef>
+      <l:StyleStoreId>stlAM</l:StyleStoreId>
+      <l:Style>
+        <l:StyleName>AM.ForestManagementArea.Default</l:StyleName>
+        <l:LayerNameRef>AM.ForestManagementArea</l:LayerNameRef>
+        <l:StyleNameRef>AM.ForestManagementArea.Default</l:StyleNameRef>
+      </l:Style>
+    </l:StyleRef>
+    <l:LayerOptions>
+      <l:MaxFeatures>0</l:MaxFeatures>
+    </l:LayerOptions>    
+  </FeatureLayer>
+  
+  <FeatureLayer>
+    <FeatureType xmlns:myapp="http://www.ipo.nl/InSpider">myapp:ManagementRestrictionOrRegulationZone_NL</FeatureType>
+    <Filter>
+      <Filter xmlns="http://www.opengis.net/ogc">
+        <PropertyIsEqualTo>
+          <PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:zonetype_code</PropertyName>
+          <Literal>marineRegion</Literal>
+        </PropertyIsEqualTo>
+      </Filter>
+    </Filter>
+    <l:Name>AM.MarineRegion_NL</l:Name>
+    <d:Title>Marine Region, NL structure</d:Title>
+    
+    <s:CRS>EPSG:28992 EPSG:4326 EPSG:4258 EPSG:3035 EPSG:3034 EPSG:25830 EPSG:25831 EPSG:25832 urn:ogc:def:crs:EPSG::28992 urn:ogc:def:crs:EPSG::4326 urn:ogc:def:crs:EPSG::4258 urn:ogc:def:crs:EPSG::3035 urn:ogc:def:crs:EPSG::3034 urn:ogc:def:crs:EPSG::25830 urn:ogc:def:crs:EPSG::25831 urn:ogc:def:crs:EPSG::25832</s:CRS>
+    
+    <l:StyleRef>
+      <l:StyleStoreId>stlAM</l:StyleStoreId>
+      <l:Style>
+        <l:StyleName>AM.MarineRegion.Default</l:StyleName>
+        <l:LayerNameRef>AM.MarineRegion</l:LayerNameRef>
+        <l:StyleNameRef>AM.MarineRegion.Default</l:StyleNameRef>
+      </l:Style>
+    </l:StyleRef>
+    <l:LayerOptions>
+      <l:MaxFeatures>0</l:MaxFeatures>
+    </l:LayerOptions>    
+  </FeatureLayer>
+  
+  <FeatureLayer>
+    <FeatureType xmlns:myapp="http://www.ipo.nl/InSpider">myapp:ManagementRestrictionOrRegulationZone_NL</FeatureType>
+    <Filter>
+      <Filter xmlns="http://www.opengis.net/ogc">
+        <PropertyIsEqualTo>
+          <PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:zonetype_code</PropertyName>
+          <Literal>nitrateVulnerableZone</Literal>
+        </PropertyIsEqualTo>
+      </Filter>
+    </Filter>
+    <l:Name>AM.NitrateVulnerableZone_NL</l:Name>
+    <d:Title>Nitrate Vulnerable Zone, NL structure</d:Title>
+    
+    <s:CRS>EPSG:28992 EPSG:4326 EPSG:4258 EPSG:3035 EPSG:3034 EPSG:25830 EPSG:25831 EPSG:25832 urn:ogc:def:crs:EPSG::28992 urn:ogc:def:crs:EPSG::4326 urn:ogc:def:crs:EPSG::4258 urn:ogc:def:crs:EPSG::3035 urn:ogc:def:crs:EPSG::3034 urn:ogc:def:crs:EPSG::25830 urn:ogc:def:crs:EPSG::25831 urn:ogc:def:crs:EPSG::25832</s:CRS>
+    
+    <l:StyleRef>
+      <l:StyleStoreId>stlAM</l:StyleStoreId>
+      <l:Style>
+        <l:StyleName>AM.NitrateVulnerableZone.Default</l:StyleName>
+        <l:LayerNameRef>AM.NitrateVulnerableZone</l:LayerNameRef>
+        <l:StyleNameRef>AM.NitrateVulnerableZone.Default</l:StyleNameRef>
+      </l:Style>
+    </l:StyleRef>
+    <l:LayerOptions>
+      <l:MaxFeatures>0</l:MaxFeatures>
+    </l:LayerOptions>    
+  </FeatureLayer>
+  -->
+  <FeatureLayer>
+    <FeatureType xmlns:myapp="http://www.ipo.nl/InSpider">myapp:ManagementRestrictionOrRegulationZone_NL</FeatureType>
+    <Filter>
+      <Filter xmlns="http://www.opengis.net/ogc">
+        <PropertyIsEqualTo>
+          <PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:zonetype_code</PropertyName>
+          <Literal>noiseRestrictionZone</Literal>
+        </PropertyIsEqualTo>
+      </Filter>
+    </Filter>
+    <l:Name>AM.NoiseRestrictionZone</l:Name>
+    <d:Title>Noise Restriction Zone, NL structure</d:Title>
+
+    <s:CRS>EPSG:28992 EPSG:4326 EPSG:4258 EPSG:3035 EPSG:3034 EPSG:25830 EPSG:25831 EPSG:25832 urn:ogc:def:crs:EPSG::28992 urn:ogc:def:crs:EPSG::4326 urn:ogc:def:crs:EPSG::4258 urn:ogc:def:crs:EPSG::3035 urn:ogc:def:crs:EPSG::3034 urn:ogc:def:crs:EPSG::25830 urn:ogc:def:crs:EPSG::25831 urn:ogc:def:crs:EPSG::25832</s:CRS>
+
+    <l:StyleRef>
+      <l:StyleStoreId>stlAM</l:StyleStoreId>
+      <l:Style>
+        <l:StyleName>AM.NoiseRestrictionZone.Default</l:StyleName>
+        <l:LayerNameRef>AM.NoiseRestrictionZone</l:LayerNameRef>
+        <l:StyleNameRef>AM.NoiseRestrictionZone.Default</l:StyleNameRef>
+      </l:Style>
+    </l:StyleRef>
+    <l:LayerOptions>
+      <l:MaxFeatures>0</l:MaxFeatures>
+    </l:LayerOptions>    
+  </FeatureLayer>
+  <!--
+  <FeatureLayer>
+    <FeatureType xmlns:myapp="http://www.ipo.nl/InSpider">myapp:ManagementRestrictionOrRegulationZone_NL</FeatureType>
+    <Filter>
+      <Filter xmlns="http://www.opengis.net/ogc">
+        <PropertyIsEqualTo>
+          <PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:zonetype_code</PropertyName>
+          <Literal>plantHealthProtectionZone</Literal>
+        </PropertyIsEqualTo>
+      </Filter>
+    </Filter>
+    <l:Name>AM.PlantHealthProtectionZone_NL</l:Name>
+    <d:Title>Plant Health Protection Zone, NL structure</d:Title>
+    
+    <s:CRS>EPSG:28992 EPSG:4326 EPSG:4258 EPSG:3035 EPSG:3034 EPSG:25830 EPSG:25831 EPSG:25832 urn:ogc:def:crs:EPSG::28992 urn:ogc:def:crs:EPSG::4326 urn:ogc:def:crs:EPSG::4258 urn:ogc:def:crs:EPSG::3035 urn:ogc:def:crs:EPSG::3034 urn:ogc:def:crs:EPSG::25830 urn:ogc:def:crs:EPSG::25831 urn:ogc:def:crs:EPSG::25832</s:CRS>
+    
+    <l:StyleRef>
+      <l:StyleStoreId>stlAM</l:StyleStoreId>
+      <l:Style>
+        <l:StyleName>AM.PlantHealthProtectionZone.Default</l:StyleName>
+        <l:LayerNameRef>AM.PlantHealthProtectionZone</l:LayerNameRef>
+        <l:StyleNameRef>AM.PlantHealthProtectionZone.Default</l:StyleNameRef>
+      </l:Style>
+    </l:StyleRef>
+    <l:LayerOptions>
+      <l:MaxFeatures>0</l:MaxFeatures>
+    </l:LayerOptions>    
+  </FeatureLayer>
+  -->
+  <FeatureLayer>
+    <FeatureType xmlns:myapp="http://www.ipo.nl/InSpider">myapp:ManagementRestrictionOrRegulationZone_NL</FeatureType>
+    <Filter>
+      <Filter xmlns="http://www.opengis.net/ogc">
+        <PropertyIsEqualTo>
+          <PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:zonetype_code</PropertyName>
+          <Literal>prospectingAndMiningPermitArea</Literal>
+        </PropertyIsEqualTo>
+      </Filter>
+    </Filter>
+    <l:Name>AM.ProspectingAndMiningPermitArea</l:Name>
+    <d:Title>Prospecting And Mining Permit Area, NL structure</d:Title>
+    
+    <s:CRS>EPSG:28992 EPSG:4326 EPSG:4258 EPSG:3035 EPSG:3034 EPSG:25830 EPSG:25831 EPSG:25832 urn:ogc:def:crs:EPSG::28992 urn:ogc:def:crs:EPSG::4326 urn:ogc:def:crs:EPSG::4258 urn:ogc:def:crs:EPSG::3035 urn:ogc:def:crs:EPSG::3034 urn:ogc:def:crs:EPSG::25830 urn:ogc:def:crs:EPSG::25831 urn:ogc:def:crs:EPSG::25832</s:CRS>
+    
+    <l:StyleRef>
+      <l:StyleStoreId>stlAM</l:StyleStoreId>
+      <l:Style>
+        <l:StyleName>AM.ProspectingAndMiningPermitArea.Default</l:StyleName>
+        <l:LayerNameRef>AM.ProspectingAndMiningPermitArea</l:LayerNameRef>
+        <l:StyleNameRef>AM.ProspectingAndMiningPermitArea.Default</l:StyleNameRef>
+      </l:Style>
+    </l:StyleRef>
+    <l:LayerOptions>
+      <l:MaxFeatures>0</l:MaxFeatures>
+    </l:LayerOptions>    
+  </FeatureLayer>
+  <!--
+  <FeatureLayer>
+    <FeatureType xmlns:myapp="http://www.ipo.nl/InSpider">myapp:ManagementRestrictionOrRegulationZone_NL</FeatureType>
+    <Filter>
+      <Filter xmlns="http://www.opengis.net/ogc">
+        <PropertyIsEqualTo>
+          <PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:zonetype_code</PropertyName>
+          <Literal>regulatedFairwayAtSeaOrLargeInlandWater</Literal>
+        </PropertyIsEqualTo>
+      </Filter>
+    </Filter>
+    <l:Name>AM.RegulatedFairwayAtSeaOrLargeInlandWater_NL</l:Name>
+    <d:Title>Regulated Fairway At Sea Or Large Inland Water, NL structure</d:Title>
+    
+    <s:CRS>EPSG:28992 EPSG:4326 EPSG:4258 EPSG:3035 EPSG:3034 EPSG:25830 EPSG:25831 EPSG:25832 urn:ogc:def:crs:EPSG::28992 urn:ogc:def:crs:EPSG::4326 urn:ogc:def:crs:EPSG::4258 urn:ogc:def:crs:EPSG::3035 urn:ogc:def:crs:EPSG::3034 urn:ogc:def:crs:EPSG::25830 urn:ogc:def:crs:EPSG::25831 urn:ogc:def:crs:EPSG::25832</s:CRS>
+    
+    <l:StyleRef>
+      <l:StyleStoreId>stlAM</l:StyleStoreId>
+      <l:Style>
+        <l:StyleName>AM.RegulatedFairwayAtSeaOrLargeInlandWater.Default</l:StyleName>
+        <l:LayerNameRef>AM.RegulatedFairwayAtSeaOrLargeInlandWater</l:LayerNameRef>
+        <l:StyleNameRef>AM.RegulatedFairwayAtSeaOrLargeInlandWater.Default</l:StyleNameRef>
+      </l:Style>
+    </l:StyleRef>
+    <l:LayerOptions>
+      <l:MaxFeatures>0</l:MaxFeatures>
+    </l:LayerOptions>    
+  </FeatureLayer>
+  
+  <FeatureLayer>
+    <FeatureType xmlns:myapp="http://www.ipo.nl/InSpider">myapp:ManagementRestrictionOrRegulationZone_NL</FeatureType>
+    <Filter>
+      <Filter xmlns="http://www.opengis.net/ogc">
+        <PropertyIsEqualTo>
+          <PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:zonetype_code</PropertyName>
+          <Literal>restrictedZonesAroundContaminatedSites</Literal>
+        </PropertyIsEqualTo>
+      </Filter>
+    </Filter>
+    <l:Name>AM.RestrictedZonesAroundContaminatedSites_NL</l:Name>
+    <d:Title>Restricted Zones Around Contaminated Site, NL structure</d:Title>
+    
+    <s:CRS>EPSG:28992 EPSG:4326 EPSG:4258 EPSG:3035 EPSG:3034 EPSG:25830 EPSG:25831 EPSG:25832 urn:ogc:def:crs:EPSG::28992 urn:ogc:def:crs:EPSG::4326 urn:ogc:def:crs:EPSG::4258 urn:ogc:def:crs:EPSG::3035 urn:ogc:def:crs:EPSG::3034 urn:ogc:def:crs:EPSG::25830 urn:ogc:def:crs:EPSG::25831 urn:ogc:def:crs:EPSG::25832</s:CRS>
+    
+    <l:StyleRef>
+      <l:StyleStoreId>stlAM</l:StyleStoreId>
+      <l:Style>
+        <l:StyleName>AM.RestrictedZonesAroundContaminatedSites.Default</l:StyleName>
+        <l:LayerNameRef>AM.RestrictedZonesAroundContaminatedSites</l:LayerNameRef>
+        <l:StyleNameRef>AM.RestrictedZonesAroundContaminatedSites.Default</l:StyleNameRef>
+      </l:Style>
+    </l:StyleRef>
+    <l:LayerOptions>
+      <l:MaxFeatures>0</l:MaxFeatures>
+    </l:LayerOptions>    
+  </FeatureLayer>
+  
+  <FeatureLayer>
+    <FeatureType xmlns:myapp="http://www.ipo.nl/InSpider">myapp:ManagementRestrictionOrRegulationZone_NL</FeatureType>
+    <Filter>
+      <Filter xmlns="http://www.opengis.net/ogc">
+        <PropertyIsEqualTo>
+          <PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:zonetype_code</PropertyName>
+          <Literal>riverBasinDistrict</Literal>
+        </PropertyIsEqualTo>
+      </Filter>
+    </Filter>
+    <l:Name>AM.RiverBasinDistrict_NL</l:Name>
+    <d:Title>River Basin District, NL structure</d:Title>
+    
+    <s:CRS>EPSG:28992 EPSG:4326 EPSG:4258 EPSG:3035 EPSG:3034 EPSG:25830 EPSG:25831 EPSG:25832 urn:ogc:def:crs:EPSG::28992 urn:ogc:def:crs:EPSG::4326 urn:ogc:def:crs:EPSG::4258 urn:ogc:def:crs:EPSG::3035 urn:ogc:def:crs:EPSG::3034 urn:ogc:def:crs:EPSG::25830 urn:ogc:def:crs:EPSG::25831 urn:ogc:def:crs:EPSG::25832</s:CRS>
+    
+    <l:StyleRef>
+      <l:StyleStoreId>stlAM</l:StyleStoreId>
+      <l:Style>
+        <l:StyleName>AM.RiverBasinDistrict.Default</l:StyleName>
+        <l:LayerNameRef>AM.RiverBasinDistrict</l:LayerNameRef>
+        <l:StyleNameRef>AM.RiverBasinDistrict.Default</l:StyleNameRef>
+      </l:Style>
+    </l:StyleRef>
+    <l:LayerOptions>
+      <l:MaxFeatures>0</l:MaxFeatures>
+    </l:LayerOptions>    
+  </FeatureLayer>
+  
+  <FeatureLayer>
+    <FeatureType xmlns:myapp="http://www.ipo.nl/InSpider">myapp:ManagementRestrictionOrRegulationZone_NL</FeatureType>
+    <Filter>
+      <Filter xmlns="http://www.opengis.net/ogc">
+        <PropertyIsEqualTo>
+          <PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:zonetype_code</PropertyName>
+          <Literal>sensitiveArea</Literal>
+        </PropertyIsEqualTo>
+      </Filter>
+    </Filter>
+    <l:Name>AM.SensitiveArea_NL</l:Name>
+    <d:Title>Sensitive Area, NL structure</d:Title>
+    
+    <s:CRS>EPSG:28992 EPSG:4326 EPSG:4258 EPSG:3035 EPSG:3034 EPSG:25830 EPSG:25831 EPSG:25832 urn:ogc:def:crs:EPSG::28992 urn:ogc:def:crs:EPSG::4326 urn:ogc:def:crs:EPSG::4258 urn:ogc:def:crs:EPSG::3035 urn:ogc:def:crs:EPSG::3034 urn:ogc:def:crs:EPSG::25830 urn:ogc:def:crs:EPSG::25831 urn:ogc:def:crs:EPSG::25832</s:CRS>
+    
+    <l:StyleRef>
+      <l:StyleStoreId>stlAM</l:StyleStoreId>
+      <l:Style>
+        <l:StyleName>AM.SensitiveArea.Default</l:StyleName>
+        <l:LayerNameRef>AM.SensitiveArea</l:LayerNameRef>
+        <l:StyleNameRef>AM.SensitiveArea.Default</l:StyleNameRef>
+      </l:Style>
+    </l:StyleRef>
+    <l:LayerOptions>
+      <l:MaxFeatures>0</l:MaxFeatures>
+    </l:LayerOptions>    
+  </FeatureLayer>
+  
+  <FeatureLayer>
+    <FeatureType xmlns:myapp="http://www.ipo.nl/InSpider">myapp:ManagementRestrictionOrRegulationZone_NL</FeatureType>
+    <Filter>
+      <Filter xmlns="http://www.opengis.net/ogc">
+        <PropertyIsEqualTo>
+          <PropertyName xmlns:myapp="http://www.ipo.nl/InSpider">myapp:zonetype_code</PropertyName>
+          <Literal>waterBodyForWFD</Literal>
+        </PropertyIsEqualTo>
+      </Filter>
+    </Filter>
+    <l:Name>AM.WaterBodyForWFD_NL</l:Name>
+    <d:Title>Noise Restriction Zone, NL structure</d:Title>
+    
+    <s:CRS>EPSG:28992 EPSG:4326 EPSG:4258 EPSG:3035 EPSG:3034 EPSG:25830 EPSG:25831 EPSG:25832 urn:ogc:def:crs:EPSG::28992 urn:ogc:def:crs:EPSG::4326 urn:ogc:def:crs:EPSG::4258 urn:ogc:def:crs:EPSG::3035 urn:ogc:def:crs:EPSG::3034 urn:ogc:def:crs:EPSG::25830 urn:ogc:def:crs:EPSG::25831 urn:ogc:def:crs:EPSG::25832</s:CRS>
+    
+    <l:StyleRef>
+      <l:StyleStoreId>stlAM</l:StyleStoreId>
+      <l:Style>
+        <l:StyleName>AM.WaterBodyForWFD.Default</l:StyleName>
+        <l:LayerNameRef>AM.WaterBodyForWFD</l:LayerNameRef>
+        <l:StyleNameRef>AM.WaterBodyForWFD.Default</l:StyleNameRef>
+      </l:Style>
+    </l:StyleRef>
+    <l:LayerOptions>
+      <l:MaxFeatures>0</l:MaxFeatures>
+    </l:LayerOptions>    
+  </FeatureLayer>
+  -->
+
+</FeatureLayers>

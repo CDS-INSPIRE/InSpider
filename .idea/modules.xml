@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/admin/admin.iml" filepath="$PROJECT_DIR$/admin/admin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/attributemapping/attributemapping.iml" filepath="$PROJECT_DIR$/attributemapping/attributemapping.iml" />
+      <module fileurl="file://$PROJECT_DIR$/catalog-metadata/catalog-metadata.iml" filepath="$PROJECT_DIR$/catalog-metadata/catalog-metadata.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cds-deegree-extension/cds-deegree-extension.iml" filepath="$PROJECT_DIR$/cds-deegree-extension/cds-deegree-extension.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cds-parent.iml" filepath="$PROJECT_DIR$/cds-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cds-test/cds-test.iml" filepath="$PROJECT_DIR$/cds-test/cds-test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/commons/commons.iml" filepath="$PROJECT_DIR$/commons/commons.iml" />
+      <module fileurl="file://$PROJECT_DIR$/deegree-webservices-cds/deegree-webservices-cds.iml" filepath="$PROJECT_DIR$/deegree-webservices-cds/deegree-webservices-cds.iml" />
+      <module fileurl="file://$PROJECT_DIR$/domain/domain.iml" filepath="$PROJECT_DIR$/domain/domain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/domain-metadata/domain-metadata.iml" filepath="$PROJECT_DIR$/domain-metadata/domain-metadata.iml" />
+      <module fileurl="file://$PROJECT_DIR$/etl-attributemapping/etl-attributemapping.iml" filepath="$PROJECT_DIR$/etl-attributemapping/etl-attributemapping.iml" />
+      <module fileurl="file://$PROJECT_DIR$/etl-operations/etl-operations.iml" filepath="$PROJECT_DIR$/etl-operations/etl-operations.iml" />
+      <module fileurl="file://$PROJECT_DIR$/etl-proces/etl-proces.iml" filepath="$PROJECT_DIR$/etl-proces/etl-proces.iml" />
+      <module fileurl="file://$PROJECT_DIR$/etl-reporting/etl-reporting.iml" filepath="$PROJECT_DIR$/etl-reporting/etl-reporting.iml" />
+      <module fileurl="file://$PROJECT_DIR$/etl-test/etl-test.iml" filepath="$PROJECT_DIR$/etl-test/etl-test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/job-executor/job-executor.iml" filepath="$PROJECT_DIR$/job-executor/job-executor.iml" />
+      <module fileurl="file://$PROJECT_DIR$/job-executor/job-executor-api/job-executor-api.iml" filepath="$PROJECT_DIR$/job-executor/job-executor-api/job-executor-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/job-executor/job-executor-exec/job-executor-exec.iml" filepath="$PROJECT_DIR$/job-executor/job-executor-exec/job-executor-exec.iml" />
+      <module fileurl="file://$PROJECT_DIR$/managerDB/managerDB.iml" filepath="$PROJECT_DIR$/managerDB/managerDB.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mappings/mappings.iml" filepath="$PROJECT_DIR$/mappings/mappings.iml" />
+      <module fileurl="file://$PROJECT_DIR$/metadataDB/metadataDB.iml" filepath="$PROJECT_DIR$/metadataDB/metadataDB.iml" />
+      <module fileurl="file://$PROJECT_DIR$/nagios-status/nagios-status.iml" filepath="$PROJECT_DIR$/nagios-status/nagios-status.iml" />
+      <module fileurl="file://$PROJECT_DIR$/post-validation/post-validation.iml" filepath="$PROJECT_DIR$/post-validation/post-validation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/postgresql/postgresql.iml" filepath="$PROJECT_DIR$/postgresql/postgresql.iml" />
+      <module fileurl="file://$PROJECT_DIR$/resources/resources.iml" filepath="$PROJECT_DIR$/resources/resources.iml" />
+      <module fileurl="file://$PROJECT_DIR$/theme-areamanagement/theme-areamanagement.iml" filepath="$PROJECT_DIR$/theme-areamanagement/theme-areamanagement.iml" />
+      <module fileurl="file://$PROJECT_DIR$/theme-exposedelements/theme-exposedelements.iml" filepath="$PROJECT_DIR$/theme-exposedelements/theme-exposedelements.iml" />
+      <module fileurl="file://$PROJECT_DIR$/theme-habitat/theme-habitat.iml" filepath="$PROJECT_DIR$/theme-habitat/theme-habitat.iml" />
+      <module fileurl="file://$PROJECT_DIR$/theme-hazardarea/theme-hazardarea.iml" filepath="$PROJECT_DIR$/theme-hazardarea/theme-hazardarea.iml" />
+      <module fileurl="file://$PROJECT_DIR$/theme-productionfacility/theme-productionfacility.iml" filepath="$PROJECT_DIR$/theme-productionfacility/theme-productionfacility.iml" />
+      <module fileurl="file://$PROJECT_DIR$/theme-productioninstallation/theme-productioninstallation.iml" filepath="$PROJECT_DIR$/theme-productioninstallation/theme-productioninstallation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/theme-productioninstallationpart/theme-productioninstallationpart.iml" filepath="$PROJECT_DIR$/theme-productioninstallationpart/theme-productioninstallationpart.iml" />
+      <module fileurl="file://$PROJECT_DIR$/theme-protectedsites/theme-protectedsites.iml" filepath="$PROJECT_DIR$/theme-protectedsites/theme-protectedsites.iml" />
+      <module fileurl="file://$PROJECT_DIR$/theme-riskzone/theme-riskzone.iml" filepath="$PROJECT_DIR$/theme-riskzone/theme-riskzone.iml" />
+      <module fileurl="file://$PROJECT_DIR$/themes/themes.iml" filepath="$PROJECT_DIR$/themes/themes.iml" />
+      <module fileurl="file://$PROJECT_DIR$/validation/validation.iml" filepath="$PROJECT_DIR$/validation/validation.iml" />
+    </modules>
+  </component>
+</project>

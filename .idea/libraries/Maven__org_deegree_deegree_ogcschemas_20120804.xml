@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.deegree:deegree-ogcschemas:20120804">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/deegree/deegree-ogcschemas/20120804/deegree-ogcschemas-20120804.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/deegree/deegree-ogcschemas/20120804/deegree-ogcschemas-20120804-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/deegree/deegree-ogcschemas/20120804/deegree-ogcschemas-20120804-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

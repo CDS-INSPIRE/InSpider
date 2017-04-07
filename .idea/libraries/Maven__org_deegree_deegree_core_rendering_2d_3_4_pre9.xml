@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.deegree:deegree-core-rendering-2d:3.4-pre9">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/deegree/deegree-core-rendering-2d/3.4-pre9/deegree-core-rendering-2d-3.4-pre9.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/deegree/deegree-core-rendering-2d/3.4-pre9/deegree-core-rendering-2d-3.4-pre9-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/deegree/deegree-core-rendering-2d/3.4-pre9/deegree-core-rendering-2d-3.4-pre9-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

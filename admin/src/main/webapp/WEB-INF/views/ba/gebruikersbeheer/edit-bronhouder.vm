@@ -1,0 +1,119 @@
+
+<form method="POST" action="#springUrl('/ba/gebruikersbeheer/bronhouders/')#if($bronhouderId)$bronhouderId/edit#else-/create#end" data-return-url="#springUrl('/ba/gebruikersbeheer/bronhouders')">
+	<table class="cds-table">
+		<thead>
+			<tr>
+				<th colspan="2">
+					#if($bronhouderId)
+						Gegevens bewerken voor bronhouder #e($bronhouder.naam)
+					#else
+						Nieuwe bronhouder toevoegen
+					#end
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			#springBind("bronhouderForm")
+			#if($status.errors.hasErrors())
+			<tr class="error">
+				<td colspan="2">
+					De bronhouder kon niet worden opgeslagen omdat niet alle velden juist zijn ingevuld.
+				</td>
+			</tr>
+			#end
+			
+			#springBind("bronhouderForm.naam")
+			<tr#if($status.isError()) class="error"#end>
+				<td>Bronhoudernaam</td>
+				<td>
+					<input type="text" name="#e(${status.expression})" value="#e($!status.value)" data-dojo-type="dijit/form/TextBox">
+					#errors($status)
+				</td>
+			</tr>
+			
+			#springBind("bronhouderForm.code")
+			<tr#if($status.isError()) class="error"#end>
+				<td>Bronhoudercode</td>
+				<td>
+					<input type="text" name="#e(${status.expression})" value="#e($!status.value)" data-dojo-type="dijit/form/TextBox">
+					#errors($status)
+				</td>
+			</tr>
+			
+			#springBind("bronhouderForm.commonName")
+			<tr#if($status.isError()) class="error"#end>
+				<td>Identificatie</td>
+				<td>
+					<input type="text" name="#e(${status.expression})" value="#e($!status.value)" data-dojo-type="dijit/form/TextBox">
+					#errors($status)
+				</td>
+			</tr>
+			
+			#springBind("bronhouderForm.contactNaam")
+			<tr#if($status.isError()) class="error"#end>
+				<td>Contactpersoon naam</td>
+				<td>
+					<input type="text" name="#e(${status.expression})" value="#e($!status.value)" data-dojo-type="dijit/form/TextBox">
+					#errors($status)
+				</td>
+			</tr>
+			
+			#springBind("bronhouderForm.contactAdres")
+			<tr#if($status.isError()) class="error"#end>
+				<td>Contactpersoon adres</td>
+				<td>
+					<input type="text" name="#e(${status.expression})" value="#e($!status.value)" data-dojo-type="dijit/form/TextBox">
+					#errors($status)
+				</td>
+			</tr>
+			
+			#springBind("bronhouderForm.contactPostcode")
+			<tr#if($status.isError()) class="error"#end>
+				<td>Contactpersoon postcode</td>
+				<td>
+					<input type="text" name="#e(${status.expression})" value="#e($!status.value)" data-dojo-type="dijit/form/TextBox">
+					#errors($status)
+				</td>
+			</tr>
+			
+			#springBind("bronhouderForm.contactPlaats")
+			<tr#if($status.isError()) class="error"#end>
+				<td>Contactpersoon plaats</td>
+				<td>
+					<input type="text" name="#e(${status.expression})" value="#e($!status.value)" data-dojo-type="dijit/form/TextBox">
+					#errors($status)
+				</td>
+			</tr>
+			
+			#springBind("bronhouderForm.contactEmailadres")
+			<tr#if($status.isError()) class="error"#end>
+				<td>Contactpersoon e-mail</td>
+				<td>
+					<input type="text" name="#e(${status.expression})" value="#e($!status.value)" data-dojo-type="dijit/form/TextBox">
+					#errors($status)
+				</td>
+			</tr>
+			
+			#springBind("bronhouderForm.contactTelefoonnummer")
+			<tr#if($status.isError()) class="error"#end>
+				<td>Contactpersoon telefoonnummer</td>
+				<td>
+					<input type="text" name="#e(${status.expression})" value="#e($!status.value)" data-dojo-type="dijit/form/TextBox">
+					#errors($status)
+				</td>
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+				<th colspan="3">
+					<div id="stdButton">
+						<button id="button-ok" data-dojo-type="dijit/form/Button" type="submit" name="submit" value="Submit" title="Druk op deze knop om de NAW gegevens op te slaan">Opslaan</button>
+						<button id="button-cancel" type="button" name="cancel" data-dojo-type="dijit/form/Button">Annuleren</button>
+					</div>
+				</th>
+			</tr>
+		</tfoot>
+	</table>
+</form>
+
+#cancelButtonScript()

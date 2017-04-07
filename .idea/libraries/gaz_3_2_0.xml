@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="gaz-3_2_0">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/deegree-workspaces/inspire-schemas/schemas/gaz/gaz-3_2_0.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

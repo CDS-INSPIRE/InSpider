@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="inspire_vs_ows11">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/deegree-workspaces/inspire-schemas/schemas/inspire_vs_ows11/1.0.0.zip!/" />
+      <root url="jar://$PROJECT_DIR$/deegree-workspaces/inspire-schemas/schemas/inspire_vs_ows11/1.0.1.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

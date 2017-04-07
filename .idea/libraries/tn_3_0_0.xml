@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="tn-3_0_0">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/deegree-workspaces/inspire-schemas/schemas/tn/tn-3_0_0.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

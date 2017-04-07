@@ -1,0 +1,70 @@
+<project default="generate-all-config" name="inspider-config">
+	<property name="distlocation" value="target-degree-workspaces"/>
+	<target name="generate-all-config" >
+		<antcall target="clean-all"/>
+		<!--<antcall target="generate-dev-config"/>
+		<antcall target="generate-test-config"/>
+		<antcall target="generate-acc-config"/>
+		<antcall target="generate-prod-config"/>-->
+		<antcall target="generate-config">
+			<param name="env" value="all"/>
+			<param name="target" value="${distlocation}/workspaces-cds-inspider-all"/>
+		</antcall>
+	</target>
+
+	<target name="clean-all">
+		<delete dir="${basedir}/${distlocation}"/>
+	</target>
+
+	<target name="generate-dev-config">
+		<antcall target="generate-config">
+			<param name="env" value="dev"/>
+			<param name="target" value="${distlocation}/workspaces-dev"/>
+		</antcall>
+	</target>
+
+	<target name="generate-test-config">
+		<antcall target="generate-config">
+			<param name="env" value="test"/>
+			<param name="target" value="${distlocation}/workspaces-test"/>
+		</antcall>
+	</target>
+
+	<target name="generate-acc-config">
+		<antcall target="generate-config">
+			<param name="env" value="acc"/>
+			<param name="target" value="${distlocation}/workspaces-acc"/>
+		</antcall>
+	</target>
+
+	<target name="generate-prod-config">
+		<antcall target="generate-config">
+			<param name="env" value="prod"/>
+			<param name="target" value="${distlocation}/workspaces-prod"/>
+		</antcall>
+	</target>
+	
+	<target name="generate-config">
+		<delete file="${target}/../workspace-${env}.zip"/>
+		<delete dir="${target}"/>
+		<copy  todir="${target}/AreaManagement">
+			<fileset dir="AreaManagement/" />
+		</copy>
+		<copy  todir="${target}/HabitatsAndBiotopes">
+			<fileset dir="HabitatsAndBiotopes/" />
+		</copy>
+		<copy todir="${target}/inspire-schemas">
+			<fileset dir="inspire-schemas/" />
+		</copy>
+		<copy todir="${target}/NaturalRiskZones">
+			<fileset dir="NaturalRiskZones/" />
+		</copy>
+		<copy todir="${target}/ProductionAndIndustrialFacilities">
+			<fileset dir="ProductionAndIndustrialFacilities/" />
+		</copy>
+		<copy todir="${target}/ProtectedSites">
+			<fileset dir="ProtectedSites/" />
+		</copy>
+		<zip destfile="${target}/../workspaces-cds-inspider-${env}.zip" basedir="${target}" />
+	</target>
+</project>

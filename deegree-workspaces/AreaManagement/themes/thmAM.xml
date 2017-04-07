@@ -1,0 +1,39 @@
+<Themes xmlns="http://www.deegree.org/themes/standard" xmlns:d="http://www.deegree.org/metadata/description" xmlns:s="http://www.deegree.org/metadata/spatial" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" configVersion="3.2.0" xsi:schemaLocation="http://www.deegree.org/themes/standard http://schemas.deegree.org/themes/3.2.0/themes.xsd">
+
+  <LayerStoreId>lyrAM</LayerStoreId>
+
+  <Theme>
+    <d:Title>AreaManagement</d:Title>
+    <s:CRS>EPSG:28992</s:CRS>
+
+    <Theme>
+      <Identifier>AM.BathingWaters</Identifier>
+      <d:Title>Bathing Waters</d:Title>
+      <s:CRS>EPSG:28992</s:CRS>
+      <Layer>AM.BathingWaters</Layer>
+    </Theme>
+    
+    <Theme>
+      <Identifier>AM.DrinkingWaterProtectionArea</Identifier>
+      <d:Title>Drinking Water Protection Area</d:Title>
+      <s:CRS>EPSG:28992</s:CRS>
+      <Layer>AM.DrinkingWaterProtectionArea</Layer>
+    </Theme>
+    
+    <Theme>
+      <Identifier>AM.NoiseRestrictionZone</Identifier>
+      <d:Title>Noise Restriction Zone</d:Title>
+      <s:CRS>EPSG:28992</s:CRS>
+      <Layer>AM.NoiseRestrictionZone</Layer>
+    </Theme>
+    
+    <Theme>
+      <Identifier>AM.ProspectingAndMiningPermitArea</Identifier>
+      <d:Title>Prospecting And Mining Permit Area</d:Title>
+      <s:CRS>EPSG:28992</s:CRS>
+      <Layer>AM.ProspectingAndMiningPermitArea</Layer>
+    </Theme>
+    
+  </Theme>
+
+</Themes>

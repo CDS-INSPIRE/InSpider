@@ -1,0 +1,44 @@
+<SQLFeatureStore configVersion="3.2.0" xmlns="http://www.deegree.org/datasource/feature/sql" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.deegree.org/datasource/feature/sql http://schemas.deegree.org/datasource/feature/sql/3.2.0/sql.xsd">
+
+  <!-- [1] Identifier of JDBC connection -->
+  <JDBCConnId>cds-inspire</JDBCConnId>
+
+  <!-- [0...n] Definitions of feature types (derived from tables) -->
+
+  <FeatureTypeMapping xmlns:app="http://www.ipo.nl/InSpider" table="inspire.vw_named_place" name="app:NamedPlace_NL">
+    <FIDMapping>
+      <Column name="id" />
+    </FIDMapping>
+
+    <Primitive path="app:inspire_id_namespace" mapping="inspire_id_namespace" />
+    <Primitive path="app:inspire_id_local_id" mapping="inspire_id_local_id" />
+    <Primitive path="app:ds_code" mapping="ds_code" />
+    <Primitive path="app:ds_namespace" mapping="ds_namespace" />
+    
+    <Geometry path="app:geometry" mapping="geometry">
+      <StorageCRS srid="28992">EPSG:28992</StorageCRS>
+    </Geometry> 
+
+  </FeatureTypeMapping>
+  
+  <FeatureTypeMapping xmlns:app="http://www.ipo.nl/InSpider" table="inspire.vw_protected_site" name="app:ProtectedSite_NL">
+    <FIDMapping>
+      <Column name="id" />
+    </FIDMapping>
+
+    <Primitive path="app:inspire_id_namespace" mapping="inspire_id_namespace" />
+    <Primitive path="app:inspire_id_local_id" mapping="inspire_id_local_id" />
+    <Primitive path="app:ds_code" mapping="ds_code" />
+    <Primitive path="app:ds_namespace" mapping="ds_namespace" />
+	<Primitive path="app:legal_foundation_date" mapping="legal_foundation_date" />
+    <Primitive path="app:legal_foundation_document" mapping="legal_foundation_document" />
+    
+    <Geometry path="app:geometry" mapping="geometry">
+      <StorageCRS srid="28992">EPSG:28992</StorageCRS>
+    </Geometry> 
+
+  </FeatureTypeMapping>
+
+  
+</SQLFeatureStore>

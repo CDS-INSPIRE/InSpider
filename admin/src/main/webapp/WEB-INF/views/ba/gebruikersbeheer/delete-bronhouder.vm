@@ -1,0 +1,43 @@
+<h1>Bronhouder verwijderen: #e($bronhouder.naam)</h1>
+
+#if(!$bronhouderDatasets.isEmpty())
+	<p>
+		<em>De bronhouder kan niet worden verwijderd</em> omdat deze nog is gekoppeld aan de volgende datasets:
+	</p>
+	<ul>
+		#foreach($dataset in $bronhouderDatasets)
+		<li>
+			<strong>#e($dataset.datasetType.thema.naam)</strong>: #e($dataset.datasetType.naam)
+			#if($dataset.naam && !$dataset.naam.isEmpty())
+				(#e($dataset.naam))
+			#end
+		</li>
+		#end
+	</ul>
+	
+	<p>
+		Deze datasets dienen eerst verwijderd te worden voordat de bronhouder kan worden verwijderd.
+	</p>
+#else
+	<form method="POST" action="#springUrl('/ba/gebruikersbeheer/bronhouders/')$bronhouder.id/delete" data-return-url="#springUrl('/ba/gebruikersbeheer/bronhouders')">
+		<p>
+			Bij het verwijderen van een bronhouder worden de volgende gerelateerde zaken ook verwijderd:
+		</p>
+		<ul>
+			<li>Geometrie behorende bij de bronhouder</li>
+			<li>Koppelingen tussen deze bronhouder en thema's</li>
+			<li>Resultaten van valideer- en importeertaken behorende bij deze bronhouder</li>
+			<li>Autorisatie tussen gebruikers en deze bronhouder</li>
+		</ul>
+		<p>
+			Druk op verwijderen om deze bronhouder en bovengenoemde gegevens definitief te verwijderen.
+		</p>
+		
+		<p id="stdButton">
+			<button id="button-cancel" type="button" name="cancel" data-dojo-type="dijit/form/Button">Annuleren</button>
+			<button id="button-ok" data-dojo-type="dijit/form/Button" type="submit" name="submit" value="Verwijderen" title="Druk op deze knop om de bronhouder definitief te verwijderen">Verwijderen</button>
+		</p>
+	</form>
+	
+	#cancelButtonScript()
+#end

@@ -3,7 +3,7 @@
   <parent>
     <artifactId>cds-parent</artifactId>
     <groupId>nl.ipo.cds</groupId>
-      <version>2.5</version>
+      <version>2.6</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
   <artifactId>domain</artifactId>
@@ -59,7 +59,7 @@
   	<dependency>
   		<groupId>nl.ipo.cds</groupId>
   		<artifactId>job-executor-api</artifactId>
-        <version>2.5</version>
+        <version>2.6</version>
   	</dependency>
   	<dependency>
   		<groupId>nl.idgis.commons</groupId>

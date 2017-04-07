@@ -1,0 +1,57 @@
+#set($viewName = '_ba_gebruikersbeheer_gebruikers')
+
+<div class="cds-tab-container">
+	<ul class="cds-tab-strip nowrapTabStrip dijitTabContainerTop-tabs">
+		<li class="dijitTab">
+			<a class="tabLabel" href="#springUrl('/ba/gebruikersbeheer/gebruikers')">Gebruikers</a>
+		</li>
+		<li class="dijitTab">
+			<a class="tabLabel" href="#springUrl('/ba/gebruikersbeheer/bronhouders')">Bronhouders</a>
+		</li>
+		<li class="dijitTab">
+			<a class="tabLabel" href="#springUrl('/ba/gebruikersbeheer/autorisatie/bronhouders')">Bronhouder thema autorisatie</a>
+		</li>
+		<li class="dijitTab dijitTabChecked dijitChecked">
+			<a class="tabLabel" href="#springUrl('/ba/gebruikersbeheer/autorisatie/gebruikers')">Gebruiker thema autorisatie</a>
+		</li>
+	</ul>
+	
+	<div class="cds-tab-content">
+	
+		<table class="cds-table">
+			<thead>
+				<tr>
+					<th>Gebruiker</th>
+					<th>Autorisatie op thema's</th>
+				</tr>
+			</thead>
+			<tbody>
+				#foreach($gtas in $gebruikerThemas)
+				<tr>
+					<td>
+						<a href="#springUrl('/ba/gebruikersbeheer/autorisatie/gebruikers/')#e($gtas.gebruiker.gebruikersnaam)/edit">
+							#e($gtas.gebruiker.gebruikersnaam)
+						</a>
+					</td>
+					<td>
+						#if(!$gtas.gebruikerThemas.isEmpty())
+						<ul>
+							#foreach($gta in $gtas.gebruikerThemas)
+							<li>
+								<strong>#e($gta.bronhouderThema.thema.naam)</strong> voor bronhouder <strong>#e($gta.bronhouderThema.bronhouder.naam)</strong>: <strong>#e($gta.typeGebruik)</strong>
+							</li>
+							#end
+						</ul>
+						#else
+						(geen)
+						#end
+					</td>
+				</tr>
+				#end
+			</tbody>
+		</table>
+		<ul>
+		</ul>
+
+	</div>
+</div>

@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="dojo-release-1.8.3-src">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/admin/src/main/javascript/dojo-release-1.8.3-src.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

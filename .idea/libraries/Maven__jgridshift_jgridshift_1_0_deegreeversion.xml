@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: jgridshift:jgridshift:1.0-deegreeversion">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/jgridshift/jgridshift/1.0-deegreeversion/jgridshift-1.0-deegreeversion.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/jgridshift/jgridshift/1.0-deegreeversion/jgridshift-1.0-deegreeversion-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/jgridshift/jgridshift/1.0-deegreeversion/jgridshift-1.0-deegreeversion-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

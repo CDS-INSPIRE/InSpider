@@ -1,0 +1,47 @@
+#set($viewName = '_ba_gebruikersbeheer_gebruikers')
+
+<div class="cds-tab-container">
+	<ul class="cds-tab-strip nowrapTabStrip dijitTabContainerTop-tabs">
+		<li class="dijitTab">
+			<a class="tabLabel" href="#springUrl('/ba/gebruikersbeheer/gebruikers')">Gebruikers</a>
+		</li>
+		<li class="dijitTab">
+			<a class="tabLabel" href="#springUrl('/ba/gebruikersbeheer/bronhouders')">Bronhouders</a>
+		</li>
+		<li class="dijitTab dijitTabChecked dijitChecked">
+			<a class="tabLabel" href="#springUrl('/ba/gebruikersbeheer/autorisatie/bronhouders')">Bronhouder thema autorisatie</a>
+		</li>
+		<li class="dijitTab">
+			<a class="tabLabel" href="#springUrl('/ba/gebruikersbeheer/autorisatie/gebruikers')">Gebruiker thema autorisatie</a>
+		</li>
+	</ul>
+	
+	<div class="cds-tab-content">
+	
+		<table class="cds-table">
+			<thead>
+				<tr>
+					<th>Bronhouder</th>
+					<th>Thema's</th>
+				</tr>
+			</thead>
+			<tbody>
+				#foreach($bronhouderThema in $bronhouderThemas)
+				<tr>
+					<td>
+						<a href="#springUrl('/ba/gebruikersbeheer/autorisatie/bronhouders/')$bronhouderThema.bronhouder.id/edit">
+							#e($bronhouderThema.bronhouder.naam)
+						</a>
+					</td>
+					<td>
+						<ul>
+							#foreach ($thema in $bronhouderThema.themas)
+							<li>#e($thema.naam)</li>
+							#end
+						</ul>
+					</td>
+				#end
+			</tbody>
+		</table>
+	</div>
+</div>

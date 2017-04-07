@@ -1,0 +1,39 @@
+#set($viewName = '_ba_gebruikersbeheer_gebruikers')
+
+<form method="POST" action="#springUrl('/ba/gebruikersbeheer/autorisatie/bronhouders/')$bronhouder.id/edit" data-return-url="#springUrl('/ba/gebruikersbeheer/autorisatie/bronhouders')">
+
+	<table class="cds-table">
+		<thead>
+			<tr>
+				<th>
+					Beschikbare thema's voor bronhouder #e($bronhouder.naam)
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			#foreach($thema in $themas)
+			<tr>
+				<td>
+					<label>
+						<input type="checkbox" name="ids[$thema.id]"#if($selectedThemas.contains($thema)) checked#end>
+						#e($thema.naam)
+					</label>
+				</td>
+			</tr>
+			#end
+		</tbody>
+		<tfoot>
+			<tr>
+				<th colspan="3">
+					<div id="stdButton">
+						<button id="button-ok" data-dojo-type="dijit/form/Button" type="submit" name="submit" value="Submit" title="Druk op deze knop om de NAW gegevens op te slaan">Opslaan</button>
+						<button id="button-cancel" type="button" name="cancel" data-dojo-type="dijit/form/Button">Annuleren</button>
+					</div>
+				</th>
+			</tr>
+		</tfoot>
+	</table>
+
+</form>
+
+#cancelButtonScript()

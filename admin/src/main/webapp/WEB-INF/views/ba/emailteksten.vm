@@ -1,0 +1,119 @@
+#set($layerName='emailteksten')
+#set($title = 'Thema - ' + $thema.naam)
+
+<br/>
+<head>
+	<script>
+	require(["dijit/Dialog", "dojo/domReady!"], function(Dialog){
+		voorbeeldDialog = new Dialog({
+			title: "Voorbeeld",        
+			style: "width: 700px"
+		});
+	});
+	</script>
+	<script>
+        function buildDummyEmailTexten(){
+			var emailtekstenta = dijit.byId("emailtekstenta");
+			var emailtekst = emailtekstenta.value;
+			var found = emailtekst.indexOf("[DATUM/TIJD]");
+			if(found > -1){
+				emailtekst = emailtekst.replace("[DATUM/TIJD]",  "31-12-1234 23:59:59");
+			}
+			found = emailtekst.indexOf("[NAAM-DATASET]");
+			if(found > -1){
+				emailtekst = emailtekst.replace("[NAAM-DATASET]",  "DatasetX");
+			}
+			found = emailtekst.indexOf("[BRONHOUDER]");
+			if(found > -1){
+				emailtekst = emailtekst.replace("[BRONHOUDER]",  "BronhouderX");
+			}
+			found = emailtekst.indexOf("[TYPE]");
+			if(found > -1){
+				emailtekst = emailtekst.replace("[TYPE]",  "ThemaX");
+			}
+			found = emailtekst.indexOf("[THEMA]");
+			if(found > -1){
+				emailtekst = emailtekst.replace("[THEMA]",  "ThemaTypeX");
+			}
+			found = emailtekst.indexOf("[NAW]");
+			if(found > -1){
+				emailtekst = emailtekst.replace("[NAW]",  "Straat 123, 1234 XY, Utrecht, tel: 0123-456789");
+			}
+			found = emailtekst.indexOf("[URL]");
+			if(found > -1){
+				emailtekst = emailtekst.replace("[URL]",  "URLX");
+			}			
+			return emailtekst;			
+        }
+    
+	function updateButtons(){
+		var emailtekstenta = dijit.byId("emailtekstenta");
+		var emailtekst = emailtekstenta.value;
+		if(emailtekst.length === 0 || !emailtekst.trim()){
+			dijit.byId("opsbutton").setAttribute('disabled', true);
+			dijit.byId("voorbbutton").setAttribute('disabled', true);
+		}
+		else{
+			dijit.byId("opsbutton").setAttribute('disabled', false);
+			dijit.byId("voorbbutton").setAttribute('disabled', false);
+		}
+	}
+	</script>
+</head>
+
+<form method="POST" action="#springUrl('/ba/emailteksten/')$updateThemaForm.id/">
+	<body >
+	<label>Thema:&nbsp;&nbsp;&nbsp;
+	</label>
+    <select data-dojo-type="dijit/form/FilteringSelect" id="themaId" title="Thema" name="themaId" required="true" #if($themas.size()==1) disabled #end>
+		<script type="dojo/method" data-dojo-event="onChange">
+					var themaId = this.get('value');
+					var url = "#springUrl('/ba/emailteksten/')" + themaId;
+					location.href=url;
+				</script>
+		#foreach($b in $themas)
+		    <option value="$b.id" #if ($b.id==$thema.id) selected="selected" #end>$b.naam</option>
+		#end
+	</select>
+	<p></p>
+	<table class="cds-table naw" id="emailteksten" >
+		<thead>
+			<tr>
+				<th colspan="3" >Email teksten #e($updateThemaForm.naam)</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td colspan="3" >
+					<textarea data-dojo-type="dijit/form/Textarea" id="emailtekstenta" name="emailteksten" title="Email teksten $updateThemaForm.naam" style="width:100%"  onChange="updateButtons();">$!updateThemaForm.emailteksten
+					</textarea>
+				</td >
+			</tr>
+			<tr>
+				<th colspan="3" >Toegestane velden: [DATUM/TIJD],[NAAM-DATASET],[BRONHOUDER],[TYPE],[THEMA],[NAW],[URL]</th>
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+				<th align="left" >
+					<div id="opslaanButton">
+						<button  data-dojo-type="dijit/form/Button" id="opsbutton" type="submit" name="submit" value="Submit" title="Druk op deze knop om de Email teksten gegevens op te slaan"  #if(!$updateThemaForm.emailteksten.trim()) disabled="true"#end>Opslaan</button>
+					</div>
+				</th>	
+				<th >
+					<div  id="voorBeeldButton">
+					<button  data-dojo-type="dijit/form/Button" id="voorbbutton" value="Voorbeeld" #if(!$updateThemaForm.emailteksten.trim()) disabled="true"#end>Voorbeeld
+						<script type="dojo/method" data-dojo-event="onClick">
+						var emailtekst = buildDummyEmailTexten();
+						emailtekst = emailtekst.replace(/(?:\r\n|\r|\n)/g, '<br />');
+						voorbeeldDialog.set("content", emailtekst);
+						voorbeeldDialog.show();
+						</script></button>						
+					</div>
+				</th>	
+		</tfoot>
+	</table>
+	</body>
+</form>						
+
+	

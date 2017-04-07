@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.deegree:deegree-core-workspace:3.4-pre10-SNAPSHOT-cds1">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/deegree/deegree-core-workspace/3.4-pre10-SNAPSHOT-cds1/deegree-core-workspace-3.4-pre10-SNAPSHOT-cds1.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/deegree/deegree-core-workspace/3.4-pre10-SNAPSHOT-cds1/deegree-core-workspace-3.4-pre10-SNAPSHOT-cds1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/deegree/deegree-core-workspace/3.4-pre10-SNAPSHOT-cds1/deegree-core-workspace-3.4-pre10-SNAPSHOT-cds1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

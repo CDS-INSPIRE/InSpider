@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="base-3_2_0">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/deegree-workspaces/inspire-schemas/schemas/base/base-3_2_0.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

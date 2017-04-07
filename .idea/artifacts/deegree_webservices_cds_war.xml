@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="deegree-webservices-cds:war">
+    <output-path>$PROJECT_DIR$/deegree-webservices-cds/target</output-path>
+    <root id="archive" name="deegree-webservices-cds-2.6.war">
+      <element id="artifact" artifact-name="deegree-webservices-cds:war exploded" />
+    </root>
+  </artifact>
+</component>

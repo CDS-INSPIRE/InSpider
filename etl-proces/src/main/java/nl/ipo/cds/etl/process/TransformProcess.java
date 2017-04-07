@@ -36,7 +36,7 @@ public class TransformProcess implements Process<TransformJob>, ApplicationConte
 	public boolean process (TransformJob job, final JobLogger logger) throws Exception {
 		Map<String, Transformer> transformers = applicationContext.getBeansOfType(Transformer.class);
 		log.debug("# of transformers found: " + transformers.size());
-		List<String> themeNames = getThemeNamesThatNeedTransformation();
+		List<String> themeNames = getThemeNamesThatNeedTransformation ();
 		for(String transformerName : transformers.keySet()) {
 			Transformer transformer = transformers.get(transformerName);
 			log.debug("starting transformer: " + transformerName);

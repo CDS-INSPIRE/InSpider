@@ -3,8 +3,8 @@
   <LayerStoreId>lyrHB_NL</LayerStoreId>
   
   <Theme>
-    <Identifier>base</Identifier>
-    <d:Title>Root theme</d:Title>
+    <Identifier>HB.HabitatsAndBiotopes</Identifier>
+    <d:Title>HabitatsAndBiotopes</d:Title>
     <s:CRS>EPSG:28992</s:CRS>
     <Theme>
       <Identifier>HB.Habitat</Identifier>

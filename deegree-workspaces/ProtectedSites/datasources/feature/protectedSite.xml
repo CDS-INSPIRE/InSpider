@@ -2,6 +2,7 @@
     xmlns:ps="urn:x-inspire:specification:gmlas:ProtectedSites:3.0"
     xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gco="http://www.isotc211.org/2005/gco"
     xmlns:gn="urn:x-inspire:specification:gmlas:GeographicalNames:3.0"
+    xmlns:inspire_common="http://inspire.ec.europa.eu/schemas/common/1.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" configVersion="3.1.0"
     xsi:schemaLocation="http://www.deegree.org/datasource/feature/sql http://schemas.deegree.org/datasource/feature/sql/3.1.0/sql.xsd">
 
@@ -9,7 +10,7 @@
     <StorageCRS srid="28992" dim="2D">urn:ogc:def:crs:EPSG::28992</StorageCRS>
     <GMLSchema>../../appschemas/ProtectedSites.xsd</GMLSchema>
     
-    <FeatureTypeMapping name="gn:NamedPlace" table="inspire.named_place">
+    <FeatureTypeMapping name="gn:NamedPlace" table="inspire.vw_named_place">
         <FIDMapping>
             <Column name="id" type="integer"/>
         </FIDMapping>
@@ -23,6 +24,10 @@
                 <Primitive path="base:namespace" mapping="inspire_id_namespace"/>
             </Complex>
         </Complex>
+	    <Complex path="gn:downloadableDataset">
+	    	<Primitive path="inspire_common:Code" mapping="ds_code"/>
+	    	<Primitive path="inspire_common:Namespace" mapping="ds_namespace"/>
+	    </Complex>             
         <Complex path="gn:localType">
             <Primitive path="@xsi:nil" mapping="'true'"/>                    
         </Complex>
@@ -56,7 +61,7 @@
     </FeatureTypeMapping>
     
     
-    <FeatureTypeMapping name="ps:ProtectedSite" table="inspire.protected_site">
+    <FeatureTypeMapping name="ps:ProtectedSite" table="inspire.vw_protected_site">
         <FIDMapping>
             <Column name="id" type="integer"/>
         </FIDMapping>
@@ -67,6 +72,10 @@
                 <Primitive path="base:namespace" mapping="inspire_id_namespace"/>
             </Complex>
         </Complex>
+	    <Complex path="ps:downloadableDataset">
+	    	<Primitive path="inspire_common:Code" mapping="ds_code"/>
+	    	<Primitive path="inspire_common:Namespace" mapping="ds_namespace"/>
+	    </Complex>          
         <Primitive path="ps:legalFoundationDate" mapping="legal_foundation_date"/>
         <Complex path="ps:legalFoundationDocument">
             <Complex path="gmd:CI_Citation">

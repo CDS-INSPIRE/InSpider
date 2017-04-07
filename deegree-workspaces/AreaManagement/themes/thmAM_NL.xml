@@ -3,8 +3,8 @@
   <LayerStoreId>lyrAM_NL</LayerStoreId>
 
   <Theme>
-    <Identifier>base</Identifier>
-    <d:Title>Root theme</d:Title>
+    <Identifier>AM.AreaManagement</Identifier>
+    <d:Title>AreaManagement</d:Title>
     <s:CRS>EPSG:28992</s:CRS>
 
     <Theme>

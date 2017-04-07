@@ -1,21 +1,18 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>nl.ipo.cds</groupId>
   <artifactId>deegree-webservices-cds</artifactId>
   <packaging>war</packaging>
   <name>deegree-webservices-cds</name>
   <description>WAR that includes deegree WFS, WMS, WMTS and common datastore modules</description>
-  <version>2.2</version>
 
   <properties>
     <deegree.version>3.4-pre10-SNAPSHOT-cds1</deegree.version>
   </properties>
 
   <parent>
-    <groupId>org.deegree</groupId>
-    <artifactId>deegree-services</artifactId>
-    <version>3.4-pre10-SNAPSHOT-cds1</version>
-    <relativePath />
+    <groupId>nl.ipo.cds</groupId>
+    <artifactId>cds-parent</artifactId>
+    <version>2.3-SNAPSHOT</version>
   </parent>
 
   <repositories>

@@ -22,6 +22,8 @@
     	<property name="cdsVersion" value="${cds.version}"/>
     	<property name="mavenVersion" value="${parent.version}"/>
     	<property name="build" value="${buildNumber}"/>
+    	<property name="requestAuthorizationPrompt" value="${admin.requestAuthorization.prompt}"/>
+    	<property name="requestAuthorizationHref" value="${admin.requestAuthorization.href}"/>
     </bean>
 
     <bean class="nl.ipo.cds.admin.reporting.ReportConfiguration" parent="baseConfiguration">

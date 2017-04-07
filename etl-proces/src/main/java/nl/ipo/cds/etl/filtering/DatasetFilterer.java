@@ -84,4 +84,9 @@ public class DatasetFilterer implements FeatureFilter<GenericFeature, GenericFea
 	@Override
 	public void finish () {
 	}
+
+	@Override
+	public boolean postProcess() {
+		return true;
+	}
 }

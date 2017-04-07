@@ -42,3 +42,13 @@
 		</tfoot>
 	</table>
 </form>
+
+#if(!$requestAuthorizationPrompt.isEmpty() && !$requestAuthorizationHref.isEmpty())
+	<h3>Toegang aanvragen</h3>
+	<p>
+		Indien u geen account heeft, kunt u onderstaande link gebruiken om toegang tot de Centrale Data- en Services aan te vragen.
+	</p>
+	<p>
+		<a href="#e($requestAuthorizationHref)" target="_blank">#e($requestAuthorizationPrompt)</a>
+	</p>
+#end

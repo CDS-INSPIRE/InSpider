@@ -52,7 +52,9 @@ var profile = (function () {
 				           'dojo/domReady', 
 				           'dojox/widget/DialogSimple', 
 				           'dijit/layout/ContentPane',
-				           'dijit/form/Button'
+				           'dijit/form/Button',
+				           'dojo/string',
+				           'dijit/Dialog'
 				           ],
 				customBase: true,
 				boot: true
@@ -76,6 +78,10 @@ var profile = (function () {
 			
 			'cds/layer-naw': {
 				include: ['dijit/form/FilteringSelect', 'dijit/form/ValidationTextBox', 'dijit/form/Button']
+			},
+			
+			'cds/layer-emailteksten': {
+				include: ['dijit/form/FilteringSelect', 'dijit/form/Textarea', 'dijit/Dialog', 'dijit/form/Button']
 			},
 			
 			'cds/layer-validation': {

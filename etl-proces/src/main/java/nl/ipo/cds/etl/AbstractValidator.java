@@ -1,20 +1,5 @@
 package nl.ipo.cds.etl;
 
-import java.lang.annotation.Annotation;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.SortedMap;
-import java.util.TreeMap;
-
 import nl.idgis.commons.jobexecutor.JobLogger;
 import nl.idgis.commons.jobexecutor.JobLogger.LogLevel;
 import nl.ipo.cds.domain.EtlJob;
@@ -28,10 +13,17 @@ import nl.ipo.cds.validation.execute.Compiler;
 import nl.ipo.cds.validation.execute.CompilerException;
 import nl.ipo.cds.validation.gml.codelists.CodeListFactory;
 import nl.ipo.cds.validation.logical.AndExpression;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.deegree.geometry.primitive.Point;
+
+import java.lang.annotation.Annotation;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
+import java.util.*;
 
 public abstract class AbstractValidator<T extends PersistableFeature, Keys extends Enum<Keys> & ValidatorMessageKey<Keys, Context>, Context extends ValidatorContext<Keys, Context>> 
 	extends Validation<Keys, Context> 
@@ -232,10 +224,24 @@ public abstract class AbstractValidator<T extends PersistableFeature, Keys exten
 			throw new RuntimeException (e);
 		}
 	}
-	
-	public void afterJob (final EtlJob job, final EventLogger<Keys> logger, final Context context) {
+
+	/**
+	 * Allows to perform post-job validation.
+	 * @param job The job.
+	 * @param reporter Use this to report additional validation errors.
+	 * @param context The context.
+	 */
+	public void afterJob (final EtlJob job, final Reporter reporter, final Context context) {
 	}
-	
+
+	/**
+	 * Cleanup method to clean resources.
+	 * @param job The job that was running.
+	 * @param context The context.
+	 */
+	public void afterJobCleanup (final EtlJob job, final Context context) {
+	}
+
 	public void beforeFeature (final EtlJob job, final EventLogger<Keys> logger, final Context context, final T feature) {
 	}
 	
@@ -335,17 +341,27 @@ public abstract class AbstractValidator<T extends PersistableFeature, Keys exten
 				afterFeature (etlJob, logger, context, feature);
 			}
 
+
+
+
 			@Override
 			public void finish() {
+				afterJobCleanup(etlJob, context);
+			}
+
+			@Override
+			public boolean postProcess() {
 				if (postExecutor != null) {
 					postExecutor.validate (context);
 				}
-				
-				afterJob (etlJob, logger, context);
-				
+
+				afterJob (etlJob, reporter, context);
+
 				if (reporter.hasErrors ()){
 					etlJob.setGeometryErrorCount (reporter.getGeometryErrorCount ());
+					return false;
 				}
+				return true;
 			}
 		};
 	}
@@ -392,21 +408,22 @@ public abstract class AbstractValidator<T extends PersistableFeature, Keys exten
 			final String currentInspireId = messageValues.length >= 2 ? messageValues[1] : "";
 			
 			if (messageKey.isAddToShapeFile ()) {
-				logEvent (context, messageKey, context.getLastLocation (), currentInspireId, messageValues);
+				logEvent (context, messageKey, context.getLastLocation (), currentInspireId, true,  messageValues);
 			} else {
-				logEvent (context, messageKey, messageValues);
+				logEvent (context, messageKey, null, null, true,  messageValues);
 			}
 		}
 		
 		public void logEvent (final Context context, Keys messageKey, String... messageValues) {
-			this.logEvent(context, messageKey, null, null, messageValues);
+			this.logEvent(context, messageKey, null, null, false, messageValues);
 		}
 		
-		public void logEvent (final Context context, Keys messageKey, Point point, String inspireId, String... messageValues) {
+		private void logEvent (final Context context, Keys messageKey, Point point, String inspireId, boolean removeDuplicateId, String... messageValues) {
 			final String currentId = messageValues.length >= 1 && messageValues[0] != null && messageValues[0].length () > 0 ? messageValues[0] : "[onbekend]";
 			// final String currentInspireId = messageValues.length >= 2 ? messageValues[1] : "";
-			
-			messageValues = messageValues.length > 2 ? Arrays.copyOfRange (messageValues, 2, messageValues.length) : new String[0];
+
+			int copyPosition = removeDuplicateId ? 2 : 1;
+			messageValues = messageValues.length > copyPosition ? Arrays.copyOfRange (messageValues, copyPosition, messageValues.length) : new String[0];
 			
 			if(messageKey.isAddToShapeFile()){
 				++ geometryErrorCount;

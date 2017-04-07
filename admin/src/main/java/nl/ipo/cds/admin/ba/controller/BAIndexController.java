@@ -4,6 +4,7 @@
 package nl.ipo.cds.admin.ba.controller;
 
 import java.security.Principal;
+import java.util.Collections;
 
 import javax.validation.Valid;
 
@@ -35,10 +36,12 @@ public class BAIndexController {
 	@RequestMapping
 	public String index () {
 		AuthzImpl authz = new AuthzImpl();
-		if (authz.anyGranted("ROLE_BEHEERDER")){
+		if (authz.anyGranted("ROLE_SUPERUSER")){
 			return "redirect:/ba/monitoring";
-		}else{
+		} else if (authz.anyGranted("ROLE_RAADPLEGER")) {
 			return "redirect:/ba/etloverzicht";
+		}else{
+			return "redirect:/no-access";
 		}
 	}
 
@@ -98,9 +101,24 @@ public class BAIndexController {
 		return "redirect:/";
 	}
 	
-	
-	
-	
+	/**
+	 * Displays a view for users that have insufficient permissions to manage any data
+	 * in the admin.
+	 * 
+	 * @return The view name.
+	 */
+	@RequestMapping ("/no-access")
+	public String raadpleger (final Principal principal, final Model model) {
+		final Gebruiker gebruiker = managerDao.getGebruiker (principal.getName ());
+		
+		if (gebruiker != null) {
+			model.addAttribute ("gebruikerThemas", managerDao.getGebruikerThemaAutorisatie (gebruiker));
+		} else {
+			model.addAttribute ("gebruikerThemas", Collections.emptyList ());
+		}
+		
+		return "no-access";
+	}
 }
 
 

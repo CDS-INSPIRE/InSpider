@@ -139,7 +139,8 @@ public class OperationFactory {
 			throw new MappingParserException (String.format ("Attribute type not found: %s", inputAttribute.getInputAttributeType ()));
 		}
 		
-		return new InputOperationDTO (attribute, inputAttribute.getName (), attribute != null ? attribute.getType () : null);
+		// attributeType is mandatory
+		return new InputOperationDTO (attribute, inputAttribute.getName (), attribute != null ? attribute.getType () : attributeType);
 	}
 	
 	public TransformOperationDTO buildTransformOperation (final TransformOperation transformOperation) throws MappingParserException {

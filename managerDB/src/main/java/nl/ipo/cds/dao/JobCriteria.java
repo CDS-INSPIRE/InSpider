@@ -49,6 +49,8 @@ public final class JobCriteria extends BaseSearchCriteria {
 	// Show by default only jobs that did something
 	private Boolean verversen;
 
+	private String parameter;
+	
 	public JobCriteria (DatasetType datasetType) {
 		this.datasetType = datasetType;
 	}
@@ -87,6 +89,14 @@ public final class JobCriteria extends BaseSearchCriteria {
 
 	public void setJobStatus(Status jobStatus) {
 		this.jobStatus = jobStatus;
+	}
+
+	public String getParameter() {
+		return parameter;
+	}
+
+	public void setParameter(String parameter) {
+		this.parameter = parameter;
 	}
 	
 }

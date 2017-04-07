@@ -4,9 +4,13 @@
 package nl.ipo.cds.admin.ba.controller;
 
 import java.security.Principal;
+import java.util.List;
 
+import nl.ipo.cds.admin.ba.util.GebruikerAuthorization;
 import nl.ipo.cds.dao.ManagerDao;
 import nl.ipo.cds.domain.Bronhouder;
+import nl.ipo.cds.domain.Thema;
+import nl.ipo.cds.domain.TypeGebruik;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,12 +33,13 @@ public class BronhouderRedirectController {
 
 	@RequestMapping(value ="/ba/naw", method = RequestMethod.GET)
 	public String determineNAWBronhouder(Principal principal) {
-		Bronhouder bronhouder = managerDao.getFirstAuthorizedBronhouder(principal.getName());
+		final Bronhouder bronhouder = new GebruikerAuthorization (managerDao.getGebruiker (principal.getName ()), TypeGebruik.DATABEHEERDER, managerDao)
+			.getAuthorizedBronhouder (null);
 
 		// User is not bronhouder of any 'provincie'
 		//TODO:MES: If this happens the views will break, because they expect a bronhouder to be available in the model
 		if (bronhouder == null){
-			throw new IllegalStateException("User is not a bronhouder");
+			throw new IllegalStateException("No bronhouder");
 		}
 
     	return "redirect:/ba/naw/" + bronhouder.getId();
@@ -42,12 +47,13 @@ public class BronhouderRedirectController {
 
 	@RequestMapping(value ="/ba/datasetconfig", method = RequestMethod.GET)
 	public String determineDatasetBronhouder(Principal principal) {
-		Bronhouder bronhouder = managerDao.getFirstAuthorizedBronhouder(principal.getName());
+		final Bronhouder bronhouder = new GebruikerAuthorization (managerDao.getGebruiker (principal.getName ()), TypeGebruik.DATABEHEERDER, managerDao)
+			.getAuthorizedBronhouder (null);
 
 		// User is not bronhouder of any 'provincie'
 		//TODO:MES: If this happens the views will break, because they expect a bronhouder to be available in the model
 		if (bronhouder == null){
-			throw new IllegalStateException("User is not a bronhouder");
+			throw new IllegalStateException("No bronhouder");
 		}
 
 		return "redirect:/ba/datasetconfig/" + bronhouder.getId();
@@ -55,16 +61,25 @@ public class BronhouderRedirectController {
 
 	@RequestMapping(value ="/ba/validation", method = RequestMethod.GET)
 	public String determineValidationBronhouder(Principal principal) {
-		Bronhouder bronhouder = managerDao.getFirstAuthorizedBronhouder(principal.getName());
+		final Bronhouder bronhouder = new GebruikerAuthorization (managerDao.getGebruiker (principal.getName ()), TypeGebruik.DATABEHEERDER, managerDao)
+			.getAuthorizedBronhouder (null);
 
 		// User is not bronhouder of any 'provincie'
 		//TODO:MES: If this happens the views will break, because they expect a bronhouder to be available in the model
 		if (bronhouder == null){
-			throw new IllegalStateException("User is not a bronhouder");
+			throw new IllegalStateException("No bronhouder");
 		}
 
 		return "redirect:/ba/validation/" + bronhouder.getId();
 	}
 
+	@RequestMapping(value ="/ba/emailteksten", method = RequestMethod.GET)
+	public String determineThemas(Principal principal) {
+		List<Thema> themas = managerDao.getAllThemas ();
 
+		if (themas.size() == 0){
+			throw new IllegalStateException("No Themas");
+		}
+    	return "redirect:/ba/emailteksten/" + themas.get(0).getId();
+	}
 }

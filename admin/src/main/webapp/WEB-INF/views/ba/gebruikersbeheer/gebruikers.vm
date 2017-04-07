@@ -72,7 +72,6 @@ require ([
 		// The columns for the userGrid
         var layout = [
 	        { 	name: "Gebruikersnaam", field: "gebruikersnaam", width: "20%" },
-	        { 	name: "Bronhouder", field: "naam", width: "18%" },
 	        { 	name: "Beheerder", field: "beheerder", formatter: formatBoolean, width: "10%" },
 	        { 	name: "Email", field: "email", width: "20%" },
 	        { 	name: "Mobiel", field: "mobile", width: "20%" },
@@ -132,20 +131,34 @@ require ([
 		dojo.connect(onlyBeheerdersFilter, "onChange", function(){
 			gebruikerFilterForm.submit();
 		});
-		dojo.connect(bronhouderIdFilter, "onChange", function(){
-			gebruikerFilterForm.submit();
-		});
-		
 	});
 });
 </script>
-	
-<br/>
-<br/>
 
-<div>
-	<div data-dojo-type="dijit/form/Form" id="gebruikerFilterForm" jsId="gebruikerFilterForm">
-	    <script type="dojo/method" event="onSubmit">
+<div class="cds-tab-container">
+	<ul class="cds-tab-strip nowrapTabStrip dijitTabContainerTop-tabs">
+		<li class="dijitTab dijitTabChecked dijitChecked">
+			<a class="tabLabel" href="#springUrl('/ba/gebruikersbeheer/gebruikers')">Gebruikers</a>
+		</li>
+		<li class="dijitTab">
+			<a class="tabLabel" href="#springUrl('/ba/gebruikersbeheer/bronhouders')">Bronhouders</a>
+		</li>
+		<li class="dijitTab">
+			<a class="tabLabel" href="#springUrl('/ba/gebruikersbeheer/autorisatie/bronhouders')">Bronhouder thema autorisatie</a>
+		</li>
+		<li class="dijitTab">
+			<a class="tabLabel" href="#springUrl('/ba/gebruikersbeheer/autorisatie/gebruikers')">Gebruiker thema autorisatie</a>
+		</li>
+	</ul>
+	
+	<div class="cds-tab-content">
+	
+		<br/>
+		<br/>
+		
+		<div>
+			<div data-dojo-type="dijit/form/Form" id="gebruikerFilterForm" jsId="gebruikerFilterForm">
+			    <script type="dojo/method" event="onSubmit">
 			var query = {};
 		
 			// Filter on gebruikersnaam
@@ -156,66 +169,56 @@ require ([
 			if(onlyBeheerdersFilter.getValue() == "on"){
 				query.beheerder = true; 
 			}
-			// filter on bronhouder
-			if(bronhouderIdFilter.getValue()){
-				query.naam = bronhouderIdFilter.getValue();
-			}
 
 			grid.setQuery(query);
             return false;
 		</script>
-	    
-	    <table class="filters cds-table" id="userFilters" width="50em">
-			<thead>
-				<tr>
-					<th><label for="userNameFilter">Gebruikersnaam</label></th>
-					<th><label for="bronhouderIdFilter">Bronhouder</label></th>
-					<th><label for="onlyBeheerdersFilter">Alleen beheerders</label></th>
-				</tr>
-			</thead>
-			<tbody>
-		        <tr>
-		            <td>
-						<div data-dojo-type="dijit/form/TextBox" jsId="userNameFilter" name="userNameFilter" value="$!userNameFilter" title="Type de beginletters van de te zoeken gebruiker">
-						</div>
-					</td>
-					<td>		            
-		                <select data-dojo-type="dijit/form/FilteringSelect" jsId="bronhouderIdFilter" id="bronhouderIdFilter" name="bronhouderIdFilter" title="Kies een bronhouder">
-							<option #if($bronhouder == $null) selected="selected"#end></option>
-							#foreach($bronhouderItem in $bronhouders)
-							    <option value="$bronhouderItem.naam" #if ($bronhouderItem.id==$bronhouder.id) selected="selected" #end>$bronhouderItem.naam</option>
-							#end
-						</select>
-		            </td>
-					<td>		            
-		                <div data-dojo-type="dijit/form/CheckBox" jsId="onlyBeheerdersFilter" id="onlyBeheerdersFilter" name="onlyBeheerdersFilter" value="$!onlyBeheerdersFilter" #if ($onlyBeheerdersFilter) selected="selected" #end title="Selecteer om alleen beheerders te tonen">
-						</div>
-		            </td>
-				</tr>
-			</tbody>
-		</table>
-
-		<br/>
-
-		<div id="userGrid" style="height:27em" ></div>
-
-		<br/>
-
-		<table class="cds-table" >
-			<tfoot>
-				<tr>
-					<th>
-						<div id="stdButton">
-							<button data-dojo-type="dijit/form/Button" title="Selecteer om een nieuwe gebruiker in te voeren">Nieuwe gebruiker
-								<script type="dojo/method" data-dojo-event="onClick">
+			    
+			    <table class="filters cds-table" id="userFilters" width="50em">
+					<thead>
+						<tr>
+							<th><label for="userNameFilter">Gebruikersnaam</label></th>
+							<th><label for="onlyBeheerdersFilter">Alleen beheerders</label></th>
+						</tr>
+					</thead>
+					<tbody>
+				        <tr>
+				            <td>
+								<div data-dojo-type="dijit/form/TextBox" jsId="userNameFilter" name="userNameFilter" value="$!userNameFilter" title="Type de beginletters van de te zoeken gebruiker">
+								</div>
+							</td>
+							<td>		            
+				                <div data-dojo-type="dijit/form/CheckBox" jsId="onlyBeheerdersFilter" id="onlyBeheerdersFilter" name="onlyBeheerdersFilter" value="$!onlyBeheerdersFilter" #if ($onlyBeheerdersFilter) selected="selected" #end title="Selecteer om alleen beheerders te tonen">
+								</div>
+				            </td>
+						</tr>
+					</tbody>
+				</table>
+		
+				<br/>
+		
+				<div id="userGrid" style="height:27em" ></div>
+		
+				<br/>
+		
+				<table class="cds-table" >
+					<tfoot>
+						<tr>
+							<th>
+								<div id="stdButton">
+									<button data-dojo-type="dijit/form/Button" title="Selecteer om een nieuwe gebruiker in te voeren">Nieuwe gebruiker
+										<script type="dojo/method" data-dojo-event="onClick">
 									document.location.href = gebruikersbeheerRoot + "/gebruikers/_new";
 								</script>
-							</button>
-						</div>
-					</th>
-				</tr>
-			</tfoot>
-		</table>
-
+									</button>
+								</div>
+							</th>
+						</tr>
+					</tfoot>
+				</table>
+		
+			</div>
+		</div>
+	
 	</div>
 </div>

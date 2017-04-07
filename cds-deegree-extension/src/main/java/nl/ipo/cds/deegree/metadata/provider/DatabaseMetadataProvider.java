@@ -1,24 +1,11 @@
 package nl.ipo.cds.deegree.metadata.provider;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-
-import javax.xml.namespace.QName;
-
 import nl.ipo.cds.dao.metadata.MetadataDao;
 import nl.ipo.cds.domain.metadata.ExtendedCapabilities;
 import nl.ipo.cds.domain.metadata.Keyword;
-import nl.ipo.cds.domain.metadata.SpatialDataSetIdentifier;
-
+import nl.ipo.cds.domain.metadata.SpatialDatasetinfo;
 import org.apache.axiom.om.OMElement;
+import org.apache.axiom.om.impl.builder.StAXOMBuilder;
 import org.apache.axiom.om.xpath.AXIOMXPath;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
@@ -39,6 +26,15 @@ import org.deegree.services.metadata.OWSMetadataProvider;
 import org.deegree.workspace.Resource;
 import org.deegree.workspace.ResourceMetadata;
 import org.jaxen.JaxenException;
+
+import javax.xml.namespace.QName;
+import javax.xml.stream.XMLInputFactory;
+import javax.xml.stream.XMLStreamReader;
+import java.io.StringReader;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.*;
+import java.util.Map.Entry;
 
 class DatabaseMetadataProvider implements OWSMetadataProvider {
 
@@ -192,7 +188,41 @@ class DatabaseMetadataProvider implements OWSMetadataProvider {
 			}
 		}
 	}
+	
+	/**
+     * Converts an XML string into an OMElement
+     *
+     * @param xml String representation of the XML
+     * @return <code>OMElement</code> instance
+     */
+	private OMElement toOM(String xml) {
+		try {
+            XMLStreamReader reader = XMLInputFactory.newInstance().createXMLStreamReader(
+                    new StringReader(xml));
+            StAXOMBuilder builder = new StAXOMBuilder(reader);
+            return builder.getDocumentElement();
 
+		} catch (Exception e) {
+			String msg = "Error creating a OMElement from text : " + e.getMessage();
+			technicalLog.error(msg, e);
+			throw new RuntimeException(msg, e);
+		}
+    }
+	
+	private void addChildNodeElement(OMElement doc, String path, String content) throws JaxenException {
+		if(content != null) {
+			AXIOMXPath xpath = new AXIOMXPath(path);
+			xpath.addNamespace("inspire_common", NS_INSPIRE_COMMON);
+			xpath.addNamespace("inspire_dls", NS_INSPIRE_DLS);
+			OMElement parent = (OMElement)xpath.selectSingleNode(doc);
+			
+			if(parent != null) {
+				OMElement child = toOM(content);
+				parent.addChild(child);
+			}
+		}
+	}
+	
 	/**
 	 * Creating the ExtendedCapabilities is done, by retrieving the ExtendedCapabilities templates
 	 * and replacing the values of elements <inspire_common:URL> and <inspire_dls:SpatialDataSetIdentifier> 
@@ -210,26 +240,39 @@ class DatabaseMetadataProvider implements OWSMetadataProvider {
 		Map<String, List<OMElement>> extendedCapabilities = new HashMap<String, List<OMElement>>();
 		for (Entry<String,List<OMElement>> versionToTemplate : protocolVersionToExtendedCapabilitiesTemplates.entrySet()) {
 			String version = versionToTemplate.getKey();
+			String spatialDataSetIdentifierContent;
 			List<OMElement> extendedCapabilitiesElements = new ArrayList<OMElement>();
 			extendedCapabilities.put(version, extendedCapabilitiesElements);
 			for (OMElement templateEl : versionToTemplate.getValue()) {
 				try {
-					OMElement extCapElement = templateEl.cloneOMElement();
-					
-					if(databaseExtendedCapabilities != null) {						
-						replaceText(extCapElement, "//inspire_common:MetadataUrl/inspire_common:URL", databaseExtendedCapabilities.getMetadataUrl());
-						
-						SpatialDataSetIdentifier spatialDataSetIdentifier = databaseExtendedCapabilities.getSpatialDataSetIdentifier();
-						if(spatialDataSetIdentifier != null) {
-							replaceText(extCapElement, "//inspire_dls:SpatialDataSetIdentifier/inspire_common:Code", spatialDataSetIdentifier.getCode());
-							replaceText(extCapElement, "//inspire_dls:SpatialDataSetIdentifier/inspire_common:Namespace", spatialDataSetIdentifier.getNamespace());							
-						} else {
-							technicalLog.warn("spatialDataSetIdentifier is missing");
-						}
-					}
-					
-					extendedCapabilitiesElements.add(extCapElement);
-				} catch (Exception e) {
+                    OMElement extCapElement = templateEl.cloneOMElement();
+                    
+                    if(databaseExtendedCapabilities != null) {
+                           replaceText(extCapElement, "//inspire_common:MetadataUrl/inspire_common:URL", databaseExtendedCapabilities.getMetadataUrl());
+                           List<SpatialDatasetinfo> spatialDatasetinfoList = metadataDao.findService(this.serviceId).getSpatialDatasetinfos();
+                           
+                           //SpatialDataSetIdentifier spatialDataSetIdentifier = databaseExtendedCapabilities.getSpatialDataSetIdentifier();
+                           for(SpatialDatasetinfo spatialDatasetinfo: spatialDatasetinfoList) {
+                        	   spatialDataSetIdentifierContent = "";
+                        	   // replaceText(extCapElement, "//inspire_dls:SpatialDataSetIdentifier/inspire_common:Code", spatialDatasetinfo.getCode());
+                        	   // replaceText(extCapElement, "//inspire_dls:SpatialDataSetIdentifier/inspire_common:Namespace", spatialDatasetinfo.getNamespace());
+                        	   spatialDataSetIdentifierContent += "<inspire_dls:SpatialDataSetIdentifier xmlns:inspire_dls=\"http://inspire.ec.europa.eu/schemas/inspire_dls/1.0\">";
+                        	   spatialDataSetIdentifierContent += "<inspire_common:Code xmlns:inspire_common=\"http://inspire.ec.europa.eu/schemas/common/1.0\">" + spatialDatasetinfo.getCode() + "</inspire_common:Code>";
+                        	   spatialDataSetIdentifierContent += "<inspire_common:Namespace xmlns:inspire_common=\"http://inspire.ec.europa.eu/schemas/common/1.0\">" + spatialDatasetinfo.getNamespace() + "</inspire_common:Namespace>";
+                        	   spatialDataSetIdentifierContent += "</inspire_dls:SpatialDataSetIdentifier>";
+                        	   
+                        	   addChildNodeElement(extCapElement, "//inspire_dls:ExtendedCapabilities", spatialDataSetIdentifierContent);
+                           }
+                           
+                           
+                           
+                           if(spatialDatasetinfoList.size() <= 0) {
+                                  technicalLog.warn("spatialDataSetIdentifier is missing");
+                           }
+                    }
+                    extendedCapabilitiesElements.add(extCapElement);
+                    
+					} catch (Exception e) {
 					String msg = "Error creating ExtendedCapabilities from template: " + e.getMessage();
 					technicalLog.error(msg, e);
 					throw new RuntimeException(msg, e);
@@ -238,7 +281,8 @@ class DatabaseMetadataProvider implements OWSMetadataProvider {
 		}
 		return extendedCapabilities;
 	}	
-
+	
+	
 	@Override
 	public List<DatasetMetadata> getDatasetMetadata() {
 		technicalLog.debug("DatabaseMetadataProvider: getDatasetMetadata ");
@@ -260,12 +304,29 @@ class DatabaseMetadataProvider implements OWSMetadataProvider {
 		//target
 		Map<QName, DatasetMetadata> deegreeDatasetMetadatas = new HashMap<QName, DatasetMetadata>(datasetMetadatas.size());
 
-		final List<StringPair> ipoId = Arrays.asList(new StringPair("NL.IPO", "ab22c651-6b55-11e0-ae3e-0800200c9a66")) ;
+		List<StringPair> ipoId;
+		String url = "";
+
+		List<SpatialDatasetinfo> spatialDatasetinfoList = metadataDao.findService(this.serviceId).getSpatialDatasetinfos();
+
 		for (Iterator<nl.ipo.cds.domain.metadata.DatasetMetadata> iterator = datasetMetadatas.iterator(); iterator
 				.hasNext();) {
 			nl.ipo.cds.domain.metadata.DatasetMetadata datasetMetadata = iterator.next();
-			DatasetMetadata deegreeDatasetMetadata = new DatasetMetadata(new QName(datasetMetadata.getNamespace(), datasetMetadata.getName()), null, null, null, datasetMetadata.getUrl(), ipoId);
-			deegreeDatasetMetadatas.put(deegreeDatasetMetadata.getQName(), deegreeDatasetMetadata);
+			for (SpatialDatasetinfo spatialDatasetinfo : spatialDatasetinfoList) {
+				if (datasetMetadata.getName().equals(spatialDatasetinfo.getName())) {
+					ipoId = Arrays.asList(new StringPair("NL.IPO", spatialDatasetinfo.getCode()));
+					url = datasetMetadata.getUrl();
+					url = url.replaceAll("id=(.*?\\&)", "id=" + spatialDatasetinfo.getNamespace() + "&");
+					DatasetMetadata deegreeDatasetMetadata = null;
+					if (datasetMetadata.getName().contains(":")) {
+						deegreeDatasetMetadata = new DatasetMetadata(new QName(datasetMetadata.getNamespace(), datasetMetadata.getName().split(":")[1], datasetMetadata.getName().split(":")[0]), null, null, null, url, ipoId);
+					} else {
+						deegreeDatasetMetadata = new DatasetMetadata(new QName(datasetMetadata.getNamespace(), datasetMetadata.getName()), null, null, null, url, ipoId);
+					}
+					deegreeDatasetMetadatas.put(deegreeDatasetMetadata.getQName(), deegreeDatasetMetadata);
+				}
+			}
+
 		}
 		return deegreeDatasetMetadatas;
 	}

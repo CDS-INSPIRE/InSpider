@@ -15,19 +15,35 @@
       http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd">
       
 	<http auto-config="true">
-		<intercept-url pattern="/styles/**" access="ROLE_GEBRUIKER,ROLE_BEHEERDER,ROLE_LANDELIJKGRONDWATERREGISTER,ROLE_ZWEMWATERREGISTER,ROLE_HABITAT,ROLE_RISICOKAART,ROLE_GASUNIE,ROLE_NAM,ROLE_DPO,ROLE_RISC,ROLE_ROR,ROLE_DRENTHE,ROLE_FLEVOLAND,ROLE_FRIESLAND,ROLE_GELDERLAND,ROLE_GRONINGEN,ROLE_LIMBURG,ROLE_NOORDBRABANT,ROLE_NOORDHOLLAND,ROLE_OVERIJSSEL,ROLE_UTRECHT,ROLE_ZEELAND,ROLE_ZUIDHOLLAND"/>
-		<intercept-url pattern="/scripts/**" access="ROLE_GEBRUIKER,ROLE_BEHEERDER,ROLE_LANDELIJKGRONDWATERREGISTER,ROLE_ZWEMWATERREGISTER,ROLE_HABITAT,ROLE_RISICOKAART,ROLE_GASUNIE,ROLE_NAM,ROLE_DPO,ROLE_RISC,ROLE_ROR,ROLE_DRENTHE,ROLE_FLEVOLAND,ROLE_FRIESLAND,ROLE_GELDERLAND,ROLE_GRONINGEN,ROLE_LIMBURG,ROLE_NOORDBRABANT,ROLE_NOORDHOLLAND,ROLE_OVERIJSSEL,ROLE_UTRECHT,ROLE_ZEELAND,ROLE_ZUIDHOLLAND" />
-		<intercept-url pattern="/images/**" access="ROLE_GEBRUIKER,ROLE_BEHEERDER,ROLE_LANDELIJKGRONDWATERREGISTER,ROLE_ZWEMWATERREGISTER,ROLE_HABITAT,ROLE_RISICOKAART,ROLE_GASUNIE,ROLE_NAM,ROLE_DPO,ROLE_RISC,ROLE_ROR,ROLE_DRENTHE,ROLE_FLEVOLAND,ROLE_FRIESLAND,ROLE_GELDERLAND,ROLE_GRONINGEN,ROLE_LIMBURG,ROLE_NOORDBRABANT,ROLE_NOORDHOLLAND,ROLE_OVERIJSSEL,ROLE_UTRECHT,ROLE_ZEELAND,ROLE_ZUIDHOLLAND" />
-		<intercept-url pattern="/log*" access="ROLE_GEBRUIKER,ROLE_BEHEERDER,ROLE_LANDELIJKGRONDWATERREGISTER,ROLE_ZWEMWATERREGISTER,ROLE_HABITAT,ROLE_RISICOKAART,ROLE_GASUNIE,ROLE_NAM,ROLE_DPO,ROLE_RISC,ROLE_ROR,ROLE_DRENTHE,ROLE_FLEVOLAND,ROLE_FRIESLAND,ROLE_GELDERLAND,ROLE_GRONINGEN,ROLE_LIMBURG,ROLE_NOORDBRABANT,ROLE_NOORDHOLLAND,ROLE_OVERIJSSEL,ROLE_UTRECHT,ROLE_ZEELAND,ROLE_ZUIDHOLLAND" />
-		<intercept-url pattern="/*_help.html" access="ROLE_GEBRUIKER,ROLE_BEHEERDER,ROLE_LANDELIJKGRONDWATERREGISTER,ROLE_ZWEMWATERREGISTER,ROLE_HABITAT,ROLE_RISICOKAART,ROLE_GASUNIE,ROLE_NAM,ROLE_DPO,ROLE_RISC,ROLE_ROR,ROLE_DRENTHE,ROLE_FLEVOLAND,ROLE_FRIESLAND,ROLE_GELDERLAND,ROLE_GRONINGEN,ROLE_LIMBURG,ROLE_NOORDBRABANT,ROLE_NOORDHOLLAND,ROLE_OVERIJSSEL,ROLE_UTRECHT,ROLE_ZEELAND,ROLE_ZUIDHOLLAND" />
-		<!-- BEHEERDERS -->
-		<intercept-url pattern="/ba/monitoring/**" access="ROLE_BEHEERDER" />
-		<intercept-url pattern="/ba/gebruikersbeheer/**" access="ROLE_BEHEERDER" />
-		<intercept-url pattern="/ba/vdconfig/**" access="ROLE_BEHEERDER" />
-		<!-- BRONHOUDERS AND BEHEERDERS -->
-		<intercept-url pattern="/**" access="ROLE_BEHEERDER,ROLE_LANDELIJKGRONDWATERREGISTER,ROLE_ZWEMWATERREGISTER,ROLE_HABITAT,ROLE_RISICOKAART,ROLE_GASUNIE,ROLE_NAM,ROLE_DPO,ROLE_RISC,ROLE_ROR,ROLE_DRENTHE,ROLE_FLEVOLAND,ROLE_FRIESLAND,ROLE_GELDERLAND,ROLE_GRONINGEN,ROLE_LIMBURG,ROLE_NOORDBRABANT,ROLE_NOORDHOLLAND,ROLE_OVERIJSSEL,ROLE_UTRECHT,ROLE_ZEELAND,ROLE_ZUIDHOLLAND" />
+		<!-- Anonymous access: -->
+		<intercept-url pattern="/styles/**" access="ROLE_ANON,ROLE_USER"/>
+		<intercept-url pattern="/scripts/**" access="ROLE_ANON,ROLE_USER" />
+		<intercept-url pattern="/images/**" access="ROLE_ANON,ROLE_USER" />
+		<intercept-url pattern="/log*" access="ROLE_ANON,ROLE_USER" />
+		<intercept-url pattern="/*_help.html" access="ROLE_ANON,ROLE_USER" />
 		
-		<anonymous username="guest" granted-authority="ROLE_GEBRUIKER" />
+		<!-- Access by superusers: -->
+		<intercept-url pattern="/ba/monitoring/**" access="ROLE_SUPERUSER" />
+		<intercept-url pattern="/ba/gebruikersbeheer/**" access="ROLE_SUPERUSER" />
+		<intercept-url pattern="/ba/vdconfig/**" access="ROLE_SUPERUSER" />
+		<intercept-url pattern="/ba/metadata/**" access="ROLE_SUPERUSER"/>
+		<intercept-url pattern="/ba/downloadservice/**" access="ROLE_SUPERUSER"/>
+		<intercept-url pattern="/ba/codelists/**" access="ROLE_SUPERUSER"/>
+		<intercept-url pattern="/ba/emailteksten/**" access="ROLE_SUPERUSER"/>
+		
+		<!-- Access by users in specific roles: -->
+		<intercept-url pattern="/ba/etloverzicht/**" access="ROLE_RAADPLEGER"/>
+		<intercept-url pattern="/ba/naw/**" access="ROLE_DATABEHEERDER"/>
+		<intercept-url pattern="/ba/datasetconfig/**" access="ROLE_DATABEHEERDER"/>
+		<intercept-url pattern="/ba/vaststellen/**" access="ROLE_VASTSTELLER"/>
+		<intercept-url pattern="/ba/download/**" access="ROLE_DATABEHEERDER"/>
+		<intercept-url pattern="/ba/jobdetails/**" access="ROLE_DATABEHEERDER"/>
+		<intercept-url pattern="/ba/attributemapping/**" access="ROLE_DATABEHEERDER"/>
+		
+		<!-- Access by all authenticated users: -->
+		<intercept-url pattern="/**" access="ROLE_USER" />
+		
+		<anonymous username="guest" granted-authority="ROLE_ANON" />
 		
 		<form-login login-page="/login" login-processing-url="/do-login" authentication-failure-url="/login?error=true" default-target-url="/" authentication-success-handler-ref="simpleUrlAuthenticationSuccessHandler"/>
 		<logout logout-url="/logout" success-handler-ref="myLogoutSuccessHandler"/>
@@ -44,23 +60,12 @@
 		<beans:property name="alwaysUseDefaultTargetUrl" value="true"/>
 	</beans:bean>
 
+	<beans:bean id="managerDaoAuthenticationProvider" class="nl.ipo.cds.dao.ManagerDaoAuthenticationProvider">
+		<beans:constructor-arg ref="managerDao"/>
+	</beans:bean>
+	
 	<authentication-manager>
-		<ldap-authentication-provider 
-			server-ref="ldapServer" 
-			user-search-filter="uid={0}"
-			user-search-base="ou=People"
-			group-search-filter="member={0}"
-			group-search-base="ou=Group" 
-			group-role-attribute="cn"
-			role-prefix="ROLE_"
-			user-details-class="inetOrgPerson" />
-		
-		<authentication-provider>
-			<user-service>
-				<!-- Convenience admin user -->
-				<user name="admin" password="12admin34" authorities="ROLE_BEHEERDER"/>
-			</user-service>
-		</authentication-provider>
+		<authentication-provider ref="managerDaoAuthenticationProvider"/>
 	</authentication-manager>
 	
 </beans:beans>

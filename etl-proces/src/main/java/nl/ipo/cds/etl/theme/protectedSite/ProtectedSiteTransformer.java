@@ -10,10 +10,10 @@ import nl.ipo.cds.etl.util.ScriptExecutor;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.junit.Assert;
 import org.springframework.core.io.Resource;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 
 public class ProtectedSiteTransformer implements Transformer {
 	
@@ -30,13 +30,13 @@ public class ProtectedSiteTransformer implements Transformer {
 	public void setTransformScript(Resource transformScript) {
 		this.transformScript = transformScript;
 		
-		Assert.assertTrue(transformScript.exists());
+		Assert.isTrue(transformScript.exists());
 	}
 	
 	public void setDeleteScript(Resource deleteScript) {
 		this.deleteScript = deleteScript;
 		
-		Assert.assertTrue(deleteScript.exists());
+		Assert.isTrue(deleteScript.exists());
 	}
 	
 	public void setGeneralizeReader(GeneralizeReader generalizeReader) {

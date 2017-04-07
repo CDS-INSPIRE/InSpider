@@ -37,6 +37,7 @@
 	</bean>
 
 	<bean id="jpaDialect" class="org.springframework.orm.jpa.vendor.HibernateJpaDialect"/>
+	
 
 	<!--
 		The JpaTransactionManager is responsible for creating EntityManagers
@@ -56,10 +57,15 @@
 	<!-- Dao's -->
 	<bean id="managerDao" class="nl.ipo.cds.dao.impl.ManagerDaoImpl">
 		<constructor-arg ref="ldapTemplate" />
-		<property name="ldapBase" value="${ldap.ldapbase}" />
+		<property name="ldapBase" value="${ldap.ldapBase}"/>
+		<property name="ldapGroupDn" value="${ldap.ldapGroupDn}"/>
+		<property name="ldapPeopleBaseDn" value="${ldap.ldapPeopleBaseDn}"/>
 	</bean>
 	<bean id="jobDao" class="nl.ipo.cds.dao.impl.JobDaoImpl">
 		<constructor-arg ref="managerDao"/>
 	</bean>
+	<bean id="tagDao" class="nl.ipo.cds.dao.impl.TagDaoImpl">
+	</bean>
+	
 	
 </beans>

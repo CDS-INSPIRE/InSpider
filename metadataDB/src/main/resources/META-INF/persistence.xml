@@ -9,6 +9,7 @@
 		<class>nl.ipo.cds.domain.metadata.Keyword</class>
 		<class>nl.ipo.cds.domain.metadata.DatasetMetadata</class>
 		<class>nl.ipo.cds.domain.metadata.ExtendedCapabilities</class>
+		<class>nl.ipo.cds.domain.metadata.SpatialDatasetinfo</class>
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
 			<property name="hibernate.default_schema" value="metadata"/>

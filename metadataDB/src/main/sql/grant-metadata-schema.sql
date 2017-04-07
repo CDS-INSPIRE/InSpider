@@ -12,6 +12,7 @@ GRANT SELECT, INSERT, UPDATE, DELETE, TRIGGER ON metadata.sp_deliverypoint TO in
 GRANT SELECT, INSERT, UPDATE, DELETE, TRIGGER ON metadata.sp_emailaddress TO inspire;
 GRANT SELECT, INSERT, UPDATE, DELETE, TRIGGER ON metadata.sp_faxnumber TO inspire;
 GRANT SELECT, INSERT, UPDATE, DELETE, TRIGGER ON metadata.sp_phonenumber TO inspire;
+GRANT SELECT, INSERT, UPDATE, DELETE, TRIGGER ON metadata.spatial_datasetinfo TO inspire;
 
 GRANT USAGE, SELECT, UPDATE ON SEQUENCE metadata.hibernate_sequence TO inspire;
 

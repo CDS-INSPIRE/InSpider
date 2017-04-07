@@ -1,24 +1,14 @@
 package nl.ipo.cds.executor;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-
-import javax.sql.DataSource;
-
 import nl.idgis.commons.jobexecutor.JobExecutor;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.ImportResource;
-import org.springframework.jdbc.datasource.DataSourceUtils;
+import org.springframework.context.annotation.*;
+
+import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.SQLException;
 
 /**
  * Explicitly do not catch Exceptions. The Process-es itself are responsible for catching Exceptions
@@ -114,7 +104,7 @@ public class CdsJobExecuter {
 		Connection connection = dataSource.getConnection(); 
 		
 		connection.setAutoCommit(true);
-		
+	/*
 		Statement appNameStmt = connection.createStatement();
 		appNameStmt.execute("set application_name = 'JobExecutor (lock)'");
 		appNameStmt.close();
@@ -134,6 +124,7 @@ public class CdsJobExecuter {
 			connection.close();
 			connection = null;
 		}
+		*/
 		
 		return connection;
 	}	

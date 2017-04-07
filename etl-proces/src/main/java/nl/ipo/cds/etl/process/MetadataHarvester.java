@@ -96,7 +96,7 @@ public class MetadataHarvester {
 	}
 	
 	public DatasetMetadata parseMetadata (final String uuid) throws HarvesterException {
-		if (uuid != null && uuid.startsWith ("http://")) {
+		if (uuid != null && (uuid.startsWith ("http://")||uuid.startsWith ("https://"))) {
 			if (uuid.contains (";")) {
 				return parseStaticGmlMetadata (uuid);
 			} else {

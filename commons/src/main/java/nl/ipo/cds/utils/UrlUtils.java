@@ -1,14 +1,16 @@
 package nl.ipo.cds.utils;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
-
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
 
 /**
  * Provides fail-safe utility methods for opening URLs.
@@ -23,6 +25,7 @@ import org.apache.http.client.methods.HttpGet;
  * </p>
  */
 public class UrlUtils {
+	private static final Log log = LogFactory.getLog(UrlUtils.class);
 
 	public static InputStream open(URL url) throws IOException {
 		String protocol = url.getProtocol();
@@ -33,7 +36,17 @@ public class UrlUtils {
 	}
 
 	public static InputStream openWithHttpClient(URL url) throws IOException {
-		HttpClient client = HttpUtils.createHttpClient();
+		HttpClient client = null;
+		String protocol = url.getProtocol();
+		if (protocol.equals("http")) {
+			client = HttpUtils.createHttpClient();
+		} else if (protocol.equals("https")) {
+			try {
+				client = HttpUtils.createHttpsClient();
+			} catch (Exception e) {
+				log.error(e.toString());
+			}
+		}
 		HttpGet httpGet = new HttpGet(url.toString());
 		HttpResponse response = client.execute(httpGet);
 		int httpResponseCode = response.getStatusLine().getStatusCode();

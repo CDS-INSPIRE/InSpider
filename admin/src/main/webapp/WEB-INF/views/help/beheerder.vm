@@ -604,4 +604,53 @@
 			Hier staat een lijst van alle configuratie applicaties van Downloadservice installaties.
 		</p>
 	</div>
+	<div id="_ba_emailteksten">
+		<h1>E-mail teksten</h1>
+        <h2>Configureren van e-mail teksten</h2>
+		<br/>
+		<b>In dit tabblad wordt de configuratie van correct geïmporteerde datasets gedaan. Let op: e-mails voor foutieve imports  worden hier niet geconfigureerd.</b>
+		<br/><br/>
+		Kies uit het dropdownmenu het juiste thema. Per thema kan een e-mailtekst ingesteld waarin aangegeven wordt dat het importeren van de dataset correct is verlopen.
+		<br/><br/>
+		In het invoerveld kunt u tekst zonder opmaak invoeren. Hierbij heeft hij de keuze om de onderstaande velden als tekst toe te voegen. Deze velden wordt door het systeem vervangen met de overeenkomstige waarde.
+		<br/><br/>
+		
+		<table style="width:97%" class="cds-table">
+		<thead>
+			<tr>
+				<th title="Veld" style="text-align:center; width:30%" >Veld</th>
+				<th title="Omschrijving/toelichting" style="text-align:center; width:70%" >Omschrijving/toelichting</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+			<td style="font-size: 9pt;">[DATUM/TIJD]</td>
+			<td style="font-size: 9pt;">Datum en tijd volgens het formaat dd-MM-yyyy hh:mm:ss</td></tr><tr>
+			<td style="font-size: 9pt;">[NAAM DATASET]</td>
+			<td style="font-size: 9pt;">Naam van de dataset</td></tr><tr>
+			<td style="font-size: 9pt;">[BRONHOUDER]</td>
+			<td style="font-size: 9pt;">Naam van de bronhouder van de dataset</td></tr><tr>
+			<td style="font-size: 9pt;">[THEMA]</td>
+			<td style="font-size: 9pt;">Naam van het thema van de dataset</td></tr><tr>
+			<td style="font-size: 9pt;">[TYPE]</td>
+			<td style="font-size: 9pt;">Naam van het thematype van de dataset</td></tr><tr>
+			<td style="font-size: 9pt;">[NAW]</td>
+			<td style="font-size: 9pt;">Adres gegevens van de bronhouder uit het NAW tabblad 
+				volgens het formaat:
+				Adres, Postcode, Plaats, tel: Telefoonnummer
+				Bijvoorbeeld:
+				Straat 123, 1234 XY, Utrecht, tel: 0123-456789</td></tr><tr>
+			<td style="font-size: 9pt;">[URL]</td>
+			<td style="font-size: 9pt;">Link naar de job in CDS</td></tr>
+		</tbody>
+		</table>
+		
+		<br/>
+		Kies voorbeeld om een voorbeeld lay-out te zien.
+		<br/><br/>
+		Klik op opslaan. Uw invoer is nu opgeslagen.
+		<br/><br/>
+		<img src="#springUrl('/images/tip.png')" style="width:15px; height:15px" />
+		Let op: bovenstaande tekst gaat naar alle bronhouders die vallen onder het vermelde thema. 			
+    </div>
 </div>

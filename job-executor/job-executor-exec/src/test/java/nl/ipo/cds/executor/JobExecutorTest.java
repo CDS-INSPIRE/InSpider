@@ -1,10 +1,12 @@
 package nl.ipo.cds.executor;
 
 import junit.framework.Assert;
+import nl.ipo.cds.categories.IntegrationTests;
 import nl.ipo.cds.dao.ManagerDao;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -14,6 +16,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 
 @ContextConfiguration (classes = JobExecutorTest.Config.class)
+@Category(IntegrationTests.class)
 public class JobExecutorTest extends AbstractTransactionalJUnit4SpringContextTests{
 
 	@Autowired

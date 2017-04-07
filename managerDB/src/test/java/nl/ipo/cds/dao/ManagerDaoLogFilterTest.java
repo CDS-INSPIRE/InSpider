@@ -6,12 +6,15 @@ import static junit.framework.Assert.assertTrue;
 
 import java.util.List;
 
+import nl.ipo.cds.categories.IntegrationTests;
 import nl.ipo.cds.domain.JobLog;
 import nl.ipo.cds.domain.ValidateJob;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
+@Category(IntegrationTests.class)
 public class ManagerDaoLogFilterTest extends BaseManagerDaoTest {
 
 	private static String[] logMessages = {

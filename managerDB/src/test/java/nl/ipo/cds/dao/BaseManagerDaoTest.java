@@ -5,6 +5,7 @@ import javax.persistence.PersistenceContext;
 
 import junit.framework.Assert;
 import nl.ipo.cds.domain.Bronhouder;
+import nl.ipo.cds.domain.BronhouderThema;
 import nl.ipo.cds.domain.Dataset;
 import nl.ipo.cds.domain.DatasetType;
 import nl.ipo.cds.domain.JobType;
@@ -29,7 +30,7 @@ public abstract class BaseManagerDaoTest extends
 
     protected JobType jobTypeV, jobTypeI, jobTypeT;
     protected Bronhouder bronhouderDR, bronhouderLI, bronhouderNH, bronhouderOV;
-    protected Thema thema ;
+    protected Thema thema, thema2 ;
     protected DatasetType datasetType1, datasetType2, datasetType3;
     protected Dataset dataset1;
     
@@ -120,13 +121,9 @@ public abstract class BaseManagerDaoTest extends
         	bronhouderOV = managerDao.getBronhouderByContactNaam("IDgis");
         }
         // STAMTABEL THEMA
-	    if (managerDao.getThemaByName("Protected sites") == null){
-	        thema = new Thema();
-	        thema.setNaam("Protected sites");
-	        managerDao.create(thema);
-	    }else{
-	    	thema = managerDao.getThemaByName("Protected sites");
-	    }
+        thema = createThema ("Protected sites", "Drenthe", "Limburg");
+        thema2 = createThema ("Thema 2", "Noord-Holland", "Overijssel");
+        
         // STAMTABEL DATASET_TYPE
         if (managerDao.getDatasetTypeByName("EHS") == null){
 	        datasetType1 = new DatasetType();
@@ -154,5 +151,26 @@ public abstract class BaseManagerDaoTest extends
         	dataset1.setUuid("{1234-5678}");
         	managerDao.create(dataset1);
         }
+	}
+	
+	private Thema createThema (final String themaName, final String ... bronhouderNames) {
+		final Thema existing = managerDao.getThemaByName (themaName);
+		
+		if (existing != null) {
+			return existing;
+		}
+		
+        final Thema thema = new Thema ();
+        thema.setNaam (themaName);
+        managerDao.create (thema);
+        
+        // Add BronhouderThemas:
+        for (final String bronhouderName: bronhouderNames) {
+        	final Bronhouder bronhouder = managerDao.getBronhouderByNaam (bronhouderName);
+        	final BronhouderThema bronhouderThema = new BronhouderThema (thema, bronhouder);
+        	entityManager.persist (bronhouderThema);
+        }
+
+        return thema;
 	}
 }

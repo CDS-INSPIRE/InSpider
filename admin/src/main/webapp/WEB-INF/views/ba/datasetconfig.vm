@@ -2,8 +2,12 @@
 <script type="text/javascript">
 require ([
 	'dijit/registry',
+	"cds/ready!",
+	"dojo/parser",
+	"dijit/form/Select",
+	"dijit/dijit",
 	
-	"cds/ready!"
+		
 ], function () {
     window.refresh = function (){
     	var url = "#springUrl('/ba/datasetconfig/')$bronhouder.id";
@@ -33,6 +37,9 @@ require ([
     	
     	location.href = url;
     });
+    
+  
+      
 });
 </script>
 #set($title = 'Bronhouder - ' + $bronhouder.naam)
@@ -43,7 +50,7 @@ require ([
 	<form name="dataset_form" method="POST" action="#springUrl('/ba/datasetconfig/')$bronhouder.id/">
 	<label>Bronhouder:&nbsp;&nbsp;&nbsp;
 	</label>
-    <select data-dojo-type="dijit/form/FilteringSelect" id="bronhouder" title="Provincie of bronhouder" name="bronhouder_Id" required="true" #if(! $authz.anyGranted("ROLE_BEHEERDER")) disabled #end>
+    <select data-dojo-type="dijit/form/FilteringSelect" id="bronhouder" title="Provincie of bronhouder" name="bronhouder_Id" required="true" #if($bronhouders.size()==1) disabled #end>
 		<script type="dojo/method" data-dojo-event="onChange">
 			var bronhouderId = this.get('value');
 			var url = "#springUrl('/ba/datasetconfig/')" + bronhouderId;
@@ -72,6 +79,7 @@ require ([
 				<th title="UUID van de bij de dataset horende metadata, of http-URL verwijzing naar een metadatabestand" style="text-align:left;">UUID of URL metadata</th>
 				<th title="Configuratie van mappings tussen attributen in de bron WFS en het CDS">Attribuutconfiguratie</th>
 				<th title="Actief of inactief maken van datasets" style="text-align:center; border-width:1px; border-right-style:solid; border-right-color:gray; " >Actief</th>
+				<th title="Refresh Policy" style="text-align:center; border-width:1px; border-right-style:solid; border-right-color:gray;">Refresh Policy</th>
 				<th title="Verwijderen of Toevoegen van datasets" style="text-align:center">Actie</th>
 				<th></th>
 			</tr>
@@ -100,8 +108,21 @@ require ([
 					checked="checked"
 					#end
 					/>
-				</td>				
-				<td width="10%"  align="center">
+				</td>
+				<!-- w1502 019 ---->
+				<td width="20%" style="border-width:1px; border-right-style:solid; border-right-color:lightgray"  align="center">
+						<select title="Refresh Policy" data-dojo-type="dijit/form/Select" name="bronhouderDatasets[$foreach.index].refreshPolicy" value="$!bhds.refreshPolicy">
+						<script type="dojo/method" data-dojo-event="onChange">
+								var refreshPolicy = this.get('value');
+						</script>
+								<option value="MANUAL" #if($refreshPolicy == "MANUAL") selected="selected"#end>Handmatig</option>
+								<option value="ONCE_A_DAY" #if($refreshPolicy == "ONCE_A_DAY") selected="selected"#end>Dagelijks</option>
+							    <option value="IF_MODIFIED_HTTP_HEADER" #if($refreshPolicy == "IF_MODIFIED_HTTP_HEADER") selected="selected"#end>Mutatiedatum xml/gml</option>
+							    <option value="IF_MODIFIED_METADATA" #if($refreshPolicy == "IF_MODIFIED_METADATA") selected="selected"#end>Metadata</option>
+						</select>
+				</td>
+				<!-- w1502 019 ---->
+			<td width="10%"  align="center">
 					<div id="stdButton"><button data-dojo-type="dijit/form/Button" 
 					onClick="if (window.confirm('Weet u zeker dat u dataset #e($esc.javascript($bhds.naam)) van type $!bhds.type wilt verwijderen?')){removeDataset($!bhds.id)}" 
 					name="verwijderen" value="$!bhds.type"

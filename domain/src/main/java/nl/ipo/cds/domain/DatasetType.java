@@ -4,7 +4,7 @@
 package nl.ipo.cds.domain;
 
 import static javax.persistence.EnumType.STRING;
-import static nl.ipo.cds.domain.RefreshPolicy.IF_MODIFIED_METADATA;
+import static nl.ipo.cds.domain.RefreshPolicy.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -35,11 +35,14 @@ public class DatasetType implements Identity {
 
 	@Column(unique=true, nullable=false)
 	private String naam;
-
-	@Enumerated(STRING)
-	@Column(nullable=false, columnDefinition="text default 'IF_MODIFIED_METADATA'")
-	private RefreshPolicy refreshPolicy = IF_MODIFIED_METADATA;
-
+	
+// w1502 019 refreshpolicy column added into Dataset table
+	//@Enumerated(STRING)
+	//@Column(nullable=false)
+	//@Column(nullable=false, columnDefinition="text default 'IF_MODIFIED_METADATA'")
+	//private RefreshPolicy refreshPolicy;
+	//private RefreshPolicy refreshPolicy = IF_MODIFIED_METADATA;
+	//private RefreshPolicy refreshPolicy;
 	/**
 	 * @return the id
 	 */
@@ -89,20 +92,22 @@ public class DatasetType implements Identity {
 	/**
 	 * @return the refresh policy, never <code>null</code>
 	 */
-	public RefreshPolicy getRefreshPolicy() {
+	/* public RefreshPolicy getRefreshPolicy() {
 		return refreshPolicy;
-	}
+	}*/
 
 	/**
 	 * @param refreshPolicy the refresh policy to set, must not be <code>null</code> 
 	 */
-	public void setRefreshPolicy(RefreshPolicy refreshPolicy) {
+	/* public void setRefreshPolicy(RefreshPolicy refreshPolicy) {
 		this.refreshPolicy = refreshPolicy;
-	}
+	}*/
 
+	//w1502 019
 	@Override
 	public String toString(){
-		return "## DatasetType (id: " + id + ", naam: " + naam + ", thema: " + thema + ", refreshPolicy: " + refreshPolicy;		
+		return "## DatasetType (id: " + id + ", naam: " + naam + ", thema: " + thema + ")";
 	}
 
+	
 }

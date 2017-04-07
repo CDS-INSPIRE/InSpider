@@ -5,10 +5,12 @@ import static org.junit.Assert.assertNotNull;
 
 import java.util.concurrent.Executor;
 
+import nl.ipo.cds.categories.IntegrationTests;
 import nl.ipo.cds.etl.util.BlockingExecutor;
 import nl.ipo.cds.executor.ConfigDir;
 
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -20,6 +22,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = GeneralizerTest.Config.class)
+@Category(IntegrationTests.class)
 public class GeneralizerTest {
 	
 	@Autowired

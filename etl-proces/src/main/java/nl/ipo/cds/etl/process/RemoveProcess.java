@@ -13,6 +13,8 @@ import nl.idgis.commons.jobexecutor.Process;
 import nl.ipo.cds.domain.Bronhouder;
 import nl.ipo.cds.domain.DatasetType;
 import nl.ipo.cds.domain.RemoveJob;
+import nl.ipo.cds.etl.db.annotation.Table;
+import nl.ipo.cds.etl.theme.ThemeDiscoverer;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -25,8 +27,11 @@ public class RemoveProcess implements Process<RemoveJob> {
 
 	private final DataSource dataSource;
 
-	public RemoveProcess(final DataSource dataSource) {
+	private ThemeDiscoverer themeDiscoverer;
+
+	public RemoveProcess(final DataSource dataSource, ThemeDiscoverer themeDiscoverer) {
 		this.dataSource = dataSource;
+		this.themeDiscoverer = themeDiscoverer;
 	}
 
 	@Override
@@ -34,6 +39,9 @@ public class RemoveProcess implements Process<RemoveJob> {
 	public boolean process(RemoveJob job, JobLogger logger) {
 		log.debug("removing dataset and bron data started");
 
+		final String themaNaam = job.getDatasetType().getThema().getNaam();
+		Table table = themeDiscoverer.getThemeConfiguration(themaNaam).getFeatureTypeClass().getAnnotation(Table.class);
+		final String schemaName = table.schema();
 		Bronhouder bronhouder = job.getBronhouder();
 		DatasetType datasetType = job.getDatasetType();
 		String uuid = job.getUuid();
@@ -41,6 +49,7 @@ public class RemoveProcess implements Process<RemoveJob> {
 		log.debug("bronhouder: " + bronhouder);
 		log.debug("datasetType: " + datasetType);
 		log.debug("uuid: " + uuid);
+		log.debug("schema: " + schemaName);
 
 		Connection connection = DataSourceUtils.getConnection(dataSource);
 
@@ -48,16 +57,16 @@ public class RemoveProcess implements Process<RemoveJob> {
 		// a transform job will then remove data from inspire schema
 		PreparedStatement bron;
 		try {
-			bron = connection.prepareStatement("select table_name from information_schema.tables where table_schema = 'bron' and table_type = 'BASE TABLE'");
+			bron = connection.prepareStatement(String.format("select table_name from information_schema.tables where table_schema = '%s' and table_type = 'BASE TABLE' and right(table_name,7) != '_tagged'", schemaName));
 			ResultSet bronResultSet = bron.executeQuery();
 			while (bronResultSet.next()) {
 				String tableName = bronResultSet.getString(1);
-				
-				log.debug("delete from bron." + tableName);
+				String fullTableName = String.format("%s.%s", schemaName, tableName);
+
+				log.debug("delete from " + fullTableName);
 				try {
-					PreparedStatement stmt = connection.prepareStatement("delete from bron." + tableName
-							+ " where job_id in (" + "select id from manager.etljob " + "where bronhouder_id = ? "
-							+ "and datasettype_id = ? and uuid=?)");
+					String sql = String.format("delete from %s where job_id in (select id from manager.etljob where bronhouder_id = ? and datasettype_id = ? and uuid=?)", fullTableName);
+					PreparedStatement stmt = connection.prepareStatement(sql);
 					stmt.setLong(1, bronhouder.getId());
 					stmt.setLong(2, datasetType.getId());
 					stmt.setString(3, uuid);
@@ -67,10 +76,10 @@ public class RemoveProcess implements Process<RemoveJob> {
 					stmt.close();
 
 				} catch (SQLException e) {
-					log.debug("Failed deleting dataset from bron." + tableName);
-					throw new RuntimeException("Couldn't remove existing data from bron." + tableName, e);
+					log.debug("Failed deleting dataset from " + fullTableName);
+					throw new RuntimeException("Couldn't remove existing data from " + fullTableName, e);
 				} catch (Exception e) {
-					throw new RuntimeException("Couldn't remove existing data from bron." + tableName, e);
+					throw new RuntimeException("Couldn't remove existing data from " + fullTableName, e);
 				}
 			}
 			

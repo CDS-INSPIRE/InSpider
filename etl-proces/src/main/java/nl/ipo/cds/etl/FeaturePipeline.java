@@ -47,7 +47,20 @@ public class FeaturePipeline<InputType extends Feature, OutputType extends Featu
 	@Override
 	public void finish () {
 		for (final FeatureFilter<Feature, Feature> filter: filters) {
-			filter.finish ();
+            filter.finish();
 		}
+	}
+
+	/**
+	 * Responsible for executing post processing on all filters.
+	 * @return Returns true iff the post processing checks/validation completed successfully for all filters.
+	 */
+	@Override
+	public boolean postProcess() {
+		boolean success = true;
+		for (final FeatureFilter<Feature, Feature> filter : filters) {
+			success &= filter.postProcess();
+		}
+		return success;
 	}
 }

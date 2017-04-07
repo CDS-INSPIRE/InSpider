@@ -7,6 +7,7 @@ import java.security.Principal;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,8 +19,8 @@ import nl.idgis.commons.jobexecutor.Job;
 import nl.idgis.commons.jobexecutor.JobCreator;
 import nl.idgis.commons.jobexecutor.JobLogger.LogLevel;
 import nl.idgis.commons.velocity.ToolContext;
+import nl.ipo.cds.admin.ba.util.GebruikerAuthorization;
 import nl.ipo.cds.admin.reporting.ReportConfiguration;
-import nl.ipo.cds.admin.security.AuthzImpl;
 import nl.ipo.cds.dao.DatasetCriteria;
 import nl.ipo.cds.dao.JobCriteria;
 import nl.ipo.cds.dao.ManagerDao;
@@ -31,6 +32,7 @@ import nl.ipo.cds.domain.EtlJob;
 import nl.ipo.cds.domain.ImportJob;
 import nl.ipo.cds.domain.Thema;
 import nl.ipo.cds.domain.TransformJob;
+import nl.ipo.cds.domain.TypeGebruik;
 import nl.ipo.cds.domain.ValidateJob;
 import nl.ipo.cds.etl.reporting.DefaultLogWriterContext;
 import nl.ipo.cds.etl.reporting.LogWriterContext;
@@ -79,56 +81,22 @@ public class EtlOverzichtController {
 		return reportConfiguration.getPgrBaseUrl();
 	}
 
-	private Thema populateThema (final Long themaId, final Model model, final Bronhouder bronhouder) {
-		final List<Thema> themas = managerDao.getAllThemas (bronhouder);
-		
-		if (themaId != null) {
-			final Thema thema = managerDao.getThema (themaId);
-			if (thema != null) {
-				for (final Thema t: themas) {
-					if (t.getId().equals (thema.getId ())) {
-						return thema;
-					}
-				}
-			}
+	/**
+	 * Returns the dataset types that exist for the given thema. This method
+	 * operates similary to the DAO method with the same name, except that the
+	 * "thema" parameter can be null. In which case an empty list is returned.
+	 * 
+	 * @param thema	The theme whose dataset types are returned, or null.
+	 * @return		Returns the dataset types for the given theme, or an empty list of theme is null.
+	 */
+	private List<DatasetType> getDatasetTypesByThema (final Thema thema) {
+		if (thema == null) {
+			return Collections.emptyList ();
 		}
 		
-		
-		return themas.size () > 0 ? themas.get (0) : null;
+		return this.managerDao.getDatasetTypesByThema (thema);
 	}
 	
-	private Bronhouder populateBronhouder (Long bronhouderId, String userName, Model model) {
-		Bronhouder bronhouder = this.getBronhouder(bronhouderId, userName, model);		
-
-		model.addAttribute("bronhouder", bronhouder);
-		
-		return bronhouder;
-	}
-
-	private Bronhouder getBronhouder (Long bronhouderId, String userName, Model model) {
-		Bronhouder bronhouder = null;
-
-		if(bronhouderId == null){
-			bronhouder = managerDao.getFirstAuthorizedBronhouder(userName);
-		} else {
-			bronhouder = this.managerDao.getBronhouder(bronhouderId);
-			Assert.notNull(bronhouder, "Bronhouder with id \"" + bronhouderId + "\", could not be found.");
-			Boolean authorized = this.managerDao.isUserAuthorizedForBronhouder(bronhouder, userName);
-			if(!authorized){
-				// a 'beheerder' is not authorized for a specific bronhouder
-//				bronhouder = null;
-				// but a bronhouder is needed when logged in as 'beheerder' 
-			}
-		}
-		// User is not bronhouder of any 'provincie'
-		//TODO:MES: If this happens the views will break, because they expect a bronhouder to be available in the model
-		if (bronhouder == null){
-			throw new IllegalStateException("User is not a bronhouder, or not authorized for this provence");
-		}
-		
-		return bronhouder;
-	}
-
 	/**
 	 * Datasets
 	 */
@@ -141,13 +109,20 @@ public class EtlOverzichtController {
 								Model model,
 								Principal principal
 							   ) {
+		
+		final GebruikerAuthorization gebruikerAuthorization = new GebruikerAuthorization (managerDao.getGebruiker (principal.getName ()), TypeGebruik.RAADPLEGER, managerDao);
+		final Bronhouder bronhouder = gebruikerAuthorization.getAuthorizedBronhouder (bronhouderId);
+		final Thema thema = gebruikerAuthorization.getAuthorizedThema (themaId);
 
-		Bronhouder bronhouder = this.populateBronhouder(bronhouderId, principal.getName(), model);
-		
-		final Thema thema = this.populateThema (themaId, model, bronhouder);
-		
-		// Default filters
-		populateFilters(bronhouder, thema, datasetTypeId, datasetStatusImport, progress, model);
+		model.addAttribute ("bronhouders", gebruikerAuthorization.getAuthorizedBronhouders ());
+		model.addAttribute ("themas", gebruikerAuthorization.getAuthorizedThemas ());
+		model.addAttribute ("bronhouder", bronhouder);
+		model.addAttribute ("thema", thema);
+		model.addAttribute ("datasetTypes", getDatasetTypesByThema (thema));
+		model.addAttribute ("themaId", thema == null ? null : thema.getId());
+		model.addAttribute ("datasetTypeId", datasetTypeId);
+		model.addAttribute ("datasetStatusImport", datasetStatusImport);
+		model.addAttribute ("progress", progress);
 
 		// Datasets
 		Map<String, Object> datasetInfoMap = getDatasetInfoMap(datasetTypeId, thema, datasetStatusImport, progress, bronhouder);
@@ -245,14 +220,24 @@ public class EtlOverzichtController {
 									@RequestParam(value="jobrefreshed", required=false) Boolean jobrefreshed,
 									Model model,
 									Principal principal) {
-		final Bronhouder bronhouder = this.populateBronhouder(bronhouderId, principal.getName(), model);
-		final Thema thema = populateThema (themaId, model, bronhouder);
 		
-		// Default filters
-		populateFilters(bronhouder, thema, datasetTypeId, datasetStatusImport, progress, model);			
-
+		final GebruikerAuthorization gebruikerAuthorization = new GebruikerAuthorization (managerDao.getGebruiker (principal.getName ()), TypeGebruik.RAADPLEGER, managerDao);
+		final Bronhouder bronhouder = gebruikerAuthorization.getAuthorizedBronhouder (bronhouderId);
+		final Thema thema = gebruikerAuthorization.getAuthorizedThema (themaId);
+		
+		model.addAttribute ("bronhouders", gebruikerAuthorization.getAuthorizedBronhouders ());
+		model.addAttribute ("themas", gebruikerAuthorization.getAuthorizedThemas ());
+		model.addAttribute ("bronhouder", bronhouder);
+		model.addAttribute ("thema", thema);
+		model.addAttribute ("datasetTypes", getDatasetTypesByThema (thema));
+		model.addAttribute ("themaId", thema == null ? null : thema.getId());
+		model.addAttribute ("datasetTypeId", datasetTypeId);
+		model.addAttribute ("datasetStatusImport", datasetStatusImport);
+		model.addAttribute ("progress", progress);
+		
 		// Datasets
 		Map<String, Object> datasetInfoMap = getDatasetInfoMap(datasetTypeId, thema, datasetStatusImport, progress, bronhouder);
+		@SuppressWarnings("unchecked")
 		List<DatasetInfo> datasetInfos = ((List<DatasetInfo>)datasetInfoMap.get("datasetInfos"));
 //		Assert.isTrue(datasetInfos.size() == 1, "Expected exactly one dataset, but there are \"" + datasetInfos.size() + "\" datasets found.");
 		if (datasetInfos.size() == 1){
@@ -288,7 +273,8 @@ public class EtlOverzichtController {
 										@RequestParam(value="progress", required=false) String progress,
 										Model model,
 										Principal principal) {
-		Bronhouder bronhouder = this.getBronhouder(bronhouderId, principal.getName(), model);
+		final GebruikerAuthorization gebruikerAuthorization = new GebruikerAuthorization (managerDao.getGebruiker (principal.getName ()), TypeGebruik.RAADPLEGER, managerDao);
+		final Bronhouder bronhouder = gebruikerAuthorization.getAuthorizedBronhouder (bronhouderId);
 		
 		return this.getDatasetInfoMap(datasetTypeId, null, datasetStatusImport, progress, bronhouder);
 	}
@@ -308,9 +294,11 @@ public class EtlOverzichtController {
 										 @RequestParam(value="jobrefreshed", required=false) Boolean jobrefreshed,
 										 Model model,
 										 Principal principal) {
+		final Bronhouder bronhouder = new GebruikerAuthorization (managerDao.getGebruiker (principal.getName ()), TypeGebruik.RAADPLEGER, managerDao)
+			.getAuthorizedBronhouder (bronhouderId);
+		
 		DatasetType datasetType = this.managerDao.getDatasetType(datasetTypeId);
 		List<Dataset> datasetsByDatasetTypeList = this.managerDao.getDatasetsByDatasetType(datasetType);
-		Bronhouder bronhouder = this.getBronhouder(bronhouderId, principal.getName(), model);
 		boolean match = false;
 		for (Dataset datasetT : datasetsByDatasetTypeList) {
 			if (datasetT.getBronhouder().equals(bronhouder)){
@@ -341,50 +329,6 @@ public class EtlOverzichtController {
 		List<EtlJob> jobs = this.managerDao.findJob(criteria);
 		return jobs;
 	}
-
-	private void populateFilters(Bronhouder bronhouder, final Thema thema, Long datasetTypeId, String datasetStatusImport, String progress, Model model) {
-
-		/** check the authorization of the current user
-		 *  fill the bronhouders list depending on the role
-		 *  i.e. only the current bronhouder for role bronhouder 
-		 *  or all bronhouders for role beheerder 
-		 */
-		AuthzImpl authz = new AuthzImpl();
-		final List<Bronhouder> bronhouderList ;
-		if (authz.anyGranted("ROLE_BEHEERDER")){
-			bronhouderList = managerDao.getAllBronhouders();
-		}else{
-			bronhouderList = new ArrayList<Bronhouder>();
-			bronhouderList.add(bronhouder);
-		}
-		model.addAttribute("bronhouders", bronhouderList);
-
-		List<Thema> themas = this.managerDao.getAllThemas(bronhouder);
-		model.addAttribute("themas", themas);
-
-		/*
-		Thema thema = null; 
-		for (Iterator<Thema> iterator = themas.iterator(); iterator.hasNext();) {
-			thema = (Thema) iterator.next();
-			if(themaId == null) {
-				if("PS".equalsIgnoreCase(thema.getNaam())){
-					break;
-				}
-			} else if(themaId.equals(thema.getId())){
-				break;
-			}
-		}
-		*/
-
-		List<DatasetType> datasetTypes = this.managerDao.getDatasetTypesByThema(thema);
-		model.addAttribute("datasetTypes", datasetTypes);
-
-		model.addAttribute("themaId", thema == null ? null : thema.getId());
-		model.addAttribute("datasetTypeId", datasetTypeId);
-		model.addAttribute("datasetStatusImport", datasetStatusImport);
-		model.addAttribute("progress", progress);
-
-	}
 	
 	@RequestMapping(value = "/ba/bronhouders/{bronhouderId}/validate", method = RequestMethod.GET)
 	public ValidateJob doValidate (@PathVariable long bronhouderId,
@@ -393,13 +337,19 @@ public class EtlOverzichtController {
 							Model model,
 							Principal principal
 							) {
-		Bronhouder bronhouder = this.getBronhouder(bronhouderId, principal.getName(), model);
+		final GebruikerAuthorization gebruikerAuthorization = new GebruikerAuthorization (managerDao.getGebruiker (principal.getName ()), TypeGebruik.DATABEHEERDER, managerDao); 
+		final Bronhouder bronhouder = gebruikerAuthorization.getAuthorizedBronhouder (bronhouderId);
 		
 		final DatasetType datasetType = managerDao.getDatasetType (datasetIdType);
 		Assert.notNull(datasetType, "DataSet with id \"" + datasetIdType + "\", could not be found.");
 //		Assert.isTrue(bronhouder.equals(datasetType.getBronhouder()), "Requested dataset(" + datasetIdType + ") doesn't belong to requested bronhouder("+ bronhouderId +")");
 		Assert.isTrue(managerDao.getPendingJob (bronhouder, datasetType, uuid) == null, "There is already a pending validation-job for this dataset(" + datasetIdType + ") of this bronhouder("+ bronhouderId +")");
 
+		// Test permissions:
+		if (bronhouder == null || !gebruikerAuthorization.getAuthorizedThemas (bronhouder).contains (datasetType.getThema ())) {
+			return null;
+		}
+		
 		// make validate job
 		final ValidateJob job = new ValidateJob ();
 		// copy properties to job
@@ -420,13 +370,20 @@ public class EtlOverzichtController {
 							Model model,
 							Principal principal
 							) {
-		Bronhouder bronhouder = this.getBronhouder(bronhouderId, principal.getName(), model);
+		final GebruikerAuthorization gebruikerAuthorization = new GebruikerAuthorization (managerDao.getGebruiker (principal.getName ()), TypeGebruik.DATABEHEERDER, managerDao); 
+		final Bronhouder bronhouder = gebruikerAuthorization.getAuthorizedBronhouder (bronhouderId);
+		
 		
 		final DatasetType datasetType = managerDao.getDatasetType (datasetIdType);
 		Assert.notNull(datasetType, "DataSet with id \"" + datasetIdType + "\", could not be found.");
 //		Assert.isTrue(bronhouder.equals(datasetType.getBronhouder()), "Requested dataset(" + datasetIdType + ") doesn't belong to requested bronhouder("+ bronhouderId +")");
 		Assert.isTrue(managerDao.getPendingJob (bronhouder, datasetType, uuid) == null, "There is already a pending import-job for this dataset(" + datasetIdType + ") of this bronhouder("+ bronhouderId +")");
 
+		// Test permissions:
+		if (bronhouder == null || !gebruikerAuthorization.getAuthorizedThemas (bronhouder).contains (datasetType.getThema ())) {
+			return null;
+		}
+		
 		// make import job
 		final ImportJob job = new ImportJob ();
 		// copy properties to job
@@ -453,7 +410,10 @@ public class EtlOverzichtController {
 			@PathVariable long jobId, 
 			Model model,
 			Principal principal) {
-		Bronhouder bronhouder = this.getBronhouder(bronhouderId, principal.getName(), model);
+		
+		final Bronhouder bronhouder = new GebruikerAuthorization (managerDao.getGebruiker (principal.getName ()), TypeGebruik.RAADPLEGER, managerDao)
+			.getAuthorizedBronhouder (bronhouderId);
+		
 		if (bronhouder == null) {
 			model.asMap ().clear ();
 			return "redirect:/ba/bronhouders";

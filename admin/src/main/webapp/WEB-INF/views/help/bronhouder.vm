@@ -438,6 +438,27 @@
 			</div><br/>
 			</li>
 			</ul>
+			
+			Dataset Refresh Policy:
+			</br></br>
+			Er zijn vier manieren om uw dataset up-to-date te houden in het CDS.</br>
+			<ol>
+				<li>
+				<em>Metadata:</em> Aan de hand van de "revision date" in de metadata.<br/> Als deze datum in de metadata t.o.v. van de vorige import is gewijzigd (maakt niet uit eerder of later) dan wordt de dataset opnieuw ingelezen.<br/> Bronhouder moet dus de "revision date" wijzigen om te zorgen dat de dataset opnieuw ingeladen wordt.<br/>
+				</li>
+				<li>
+				<em>Dagelijks:</em> Of de data wel of niet is gewijzigd, de dataset wordt dagelijks ververst.<br/>
+				Deze optie is vooral bedoeld voor centrale registers.<br/>
+				</li>
+				<li>
+				<em>Mutatiedatum xml/gml:</em> Als de data middels een xml of gml wordt aangeleverd (dus niet voor WFS) dan wordt bij deze optie de dataset alleen opnieuw ingelezen worden als de mutatiedatum van de xml/gml is gewijzigd.<br/>
+				(Deze mutatiedatum wordt afgeleid uit het last-modified kenmerk in de http header).<br/>
+				</li>
+				<li>
+				<em>Handmatig:</em> Het systeem negeert deze dataset en controleert geen gegevens tijdens het automatisch inlezen.<br/>
+				De bronhouder dient handmatig op importeren te klikken om de dataset te importeren.<br/><br/>
+				</li>
+			</ol>
 
 			<div class="note"><img src="#springUrl('/images/tip.png')" style="width:15px; height:15px" />
 				Indien gewenst kunt u voor de onder beheer zijnde Dataset direct de metadata gegevens van PGR ophalen<br/>

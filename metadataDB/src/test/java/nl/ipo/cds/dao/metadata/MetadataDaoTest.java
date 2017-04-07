@@ -12,6 +12,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.validation.ConstraintViolationException;
 
+import nl.ipo.cds.categories.IntegrationTests;
 import nl.ipo.cds.domain.metadata.DatasetMetadata;
 import nl.ipo.cds.domain.metadata.ExtendedCapabilities;
 import nl.ipo.cds.domain.metadata.Service;
@@ -22,6 +23,7 @@ import nl.ipo.cds.domain.metadata.SpatialDataSetIdentifier;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
@@ -36,6 +38,7 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 	"classpath:/nl/ipo/cds/dao/metadata/dataSource-applicationContext.xml",
 	"classpath:/nl/ipo/cds/context/propertyConfigurer-test.xml" })
 @TransactionConfiguration(defaultRollback = true, transactionManager = "transactionManagerMetadata")
+@Category(IntegrationTests.class)
 public class MetadataDaoTest extends AbstractTransactionalJUnit4SpringContextTests {
 
 	@Autowired

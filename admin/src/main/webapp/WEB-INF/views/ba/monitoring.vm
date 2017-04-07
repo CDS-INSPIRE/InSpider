@@ -52,24 +52,22 @@ require ([
 		    title:"",
 		  	leftClickToOpen:"true"
 		  });
-		  #foreach ($nh in $nagiosHosts)
+
+		  ## removed velocityCount as variable from label, because we only have one.
+		  ## when load balancing is enabled this should be re-thought.
 		  histservMenu.addChild(new dijit.MenuItem({
-		    label:"WFS availability server $velocityCount",
-		  	onClick: function(){openNewLocation("$nagiosService/trends.cgi?host=$nh&service=WFS+availability");}
+		    label:"WFS availability server",
+		  	onClick: function(){openNewLocation("$nagiosService/trends.cgi?host=$nagiosCDSHost&service=WFS+availability");}
 		  }));
-		  #end
-		  #foreach ($nh in $nagiosHosts)
 		  histservMenu.addChild(new dijit.MenuItem({
-		    label:"WMS availability server $velocityCount",
-		  	onClick: function(){openNewLocation("$nagiosService/trends.cgi?host=$nh&service=WMS+availability");}
+		    label:"WMS availability server",
+		  	onClick: function(){openNewLocation("$nagiosService/trends.cgi?host=$nagiosCDSHost&service=WMS+availability");}
 		  }));
-		  #end
-		  #foreach ($nh in $nagiosHosts)
 		  histservMenu.addChild(new dijit.MenuItem({
-		    label:"WMS performance server $velocityCount",
-		  	onClick: function(){openNewLocation("$nagiosService/trends.cgi?host=$nh&service=WMS+performance");}
+		    label:"WMS performance server",
+		  	onClick: function(){openNewLocation("$nagiosService/trends.cgi?host=$nagiosCDSHost&service=WMS+performance");}
 		  }));
-		  #end
+		  
 	 	  histservMenu.startup();
 		
 		  logsysMenu = new dijit.Menu({
@@ -250,7 +248,8 @@ require ([
     	## open a window. 
     	## URL is loaded into a new window, 
     	## as in: window.open(url, "_blank");
-	    window.open(url);
+	##window.open(url);
+        window.open(url, "_self");
     }
     
    

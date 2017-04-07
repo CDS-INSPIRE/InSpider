@@ -97,6 +97,22 @@ public class MonitoringController {
 		model.addAttribute("muninService", monitoringConfiguration.getMuninUrl());
 		model.addAttribute("awstatsServices", awstatsList);
 		model.addAttribute("nagiosHosts", monitoringConfiguration.getNagiosHosts());
+
+		// add nagiosCDSHost for WFS/ WMS availability. 
+		// For dev there is only one host, for prod there will be three
+		String[] nagiosHosts = monitoringConfiguration.getNagiosHosts();
+		switch (nagiosHosts.length) {
+		case 1:
+			model.addAttribute("nagiosCDSHost", nagiosHosts[0]);
+			break;
+		case 3:
+			model.addAttribute("nagiosCDSHost", nagiosHosts[2]);
+			break;
+		default: 
+			model.addAttribute("nagiosCDSHost", "");
+			break;
+		}
+		
 		model.addAttribute("nagiosHostgroup", monitoringConfiguration.getNagiosHostgroup());
 		return "/ba/monitoring";
 	}
@@ -113,39 +129,47 @@ public class MonitoringController {
 
 	@RequestMapping(value ="getTrafficLights/", method = RequestMethod.GET)
 	public void getTrafficLight (Model model) {
-		String nagiosHost1, nagiosHost2;
+		String nagiosHostDb, nagiosHostEtl,nagiosHostCds;
 		String[] nagiosHosts;
+		ServiceStatusNode hostServiceAbortedEtlJobs 		= null;
+		ServiceStatusNode hostServiceEtlJobAge 				= null;
+		ServiceStatusNode hostServiceServiceJars 			= null;
+		ServiceStatusNode hostServiceWfsAvailability 		= null;
+		ServiceStatusNode hostServiceWmsAvailability 		= null;
+		ServiceStatusNode hostServiceWmsPerformance 		= null;
 		nagiosHosts = monitoringConfiguration.getNagiosHosts();
-		if (nagiosHosts.length==0){
-			// This should not happen, will give nullpointer exceptions below
-			nagiosHost1="";
-			nagiosHost2="";
-		} else if (nagiosHosts.length==1){
-			nagiosHost1 = nagiosHosts[0];
-			nagiosHost2 = nagiosHosts[0];
-		} else {
-			nagiosHost1 = nagiosHosts[0];
-			nagiosHost2 = nagiosHosts[1];
+		
+		switch (nagiosHosts.length) {
+		case 1:
+			nagiosHostDb = nagiosHosts[0];
+			nagiosHostEtl = nagiosHosts[0];
+			nagiosHostCds = nagiosHosts[0];
+			break;
+		case 3:
+			nagiosHostDb = nagiosHosts[0];
+			nagiosHostEtl = nagiosHosts[1];
+			nagiosHostCds = nagiosHosts[2];
+			break;
+		default: // This should not happen, will give nullpointer exceptions
+					// below
+			nagiosHostDb = "";
+			nagiosHostEtl = "";
+			nagiosHostCds = "";
+			break;
 		}
-		HostStatusNode hostAStatus = nagiosStatusService.getHostStatus (nagiosHost1);
-		ServiceStatusNode hostAServiceAbortedEtlJobs 		= nagiosStatusService.getServiceStatus (nagiosHost1, "Aborted ETL jobs");
-		ServiceStatusNode hostAServiceEtlJobAge 			= nagiosStatusService.getServiceStatus (nagiosHost1, "ETL Job age");
-		ServiceStatusNode hostAServiceServiceJars 			= nagiosStatusService.getServiceStatus (nagiosHost1, "Service JARS");
-		ServiceStatusNode hostAServiceDatabaseReplication 	= nagiosStatusService.getServiceStatus (nagiosHost1, "Database replication");
-		ServiceStatusNode hostAServiceWfsAvailability 		= nagiosStatusService.getServiceStatus (nagiosHost1, "WFS availability");
-		ServiceStatusNode hostAServiceWmsAvailability 		= nagiosStatusService.getServiceStatus (nagiosHost1, "WMS availability");
-		ServiceStatusNode hostAServiceWmsPerformance 		= nagiosStatusService.getServiceStatus (nagiosHost1, "WMS performance");
 		
-		HostStatusNode hostBStatus = nagiosStatusService.getHostStatus (nagiosHost2);
-		ServiceStatusNode hostBServiceAbortedEtlJobs 		= nagiosStatusService.getServiceStatus (nagiosHost2, "Aborted ETL jobs");
-		ServiceStatusNode hostBServiceEtlJobAge 			= nagiosStatusService.getServiceStatus (nagiosHost2, "ETL Job age");
-		ServiceStatusNode hostBServiceServiceJars 			= nagiosStatusService.getServiceStatus (nagiosHost2, "Service JARS");
-		ServiceStatusNode hostBServiceDatabaseReplication 	= nagiosStatusService.getServiceStatus (nagiosHost2, "Database replication");
-		ServiceStatusNode hostBServiceWfsAvailability 		= nagiosStatusService.getServiceStatus (nagiosHost2, "WFS availability");
-		ServiceStatusNode hostBServiceWmsAvailability 		= nagiosStatusService.getServiceStatus (nagiosHost2, "WMS availability");
-		ServiceStatusNode hostBServiceWmsPerformance 		= nagiosStatusService.getServiceStatus (nagiosHost2, "WMS performance");
+		// the array nagiosHosts should be cleared and have only one valu nagiosHostsCds
 		
-//		System.out.println("Hosts:    [" + nagiosStatusService.getAvailableHosts() + "]");
+		
+		HostStatusNode hostAStatus = nagiosStatusService.getHostStatus (nagiosHostDb);
+		hostServiceAbortedEtlJobs = nagiosStatusService.getServiceStatus (nagiosHostDb, "Aborted ETL jobs");    
+		hostServiceEtlJobAge = nagiosStatusService.getServiceStatus (nagiosHostDb, "ETL Job age");
+		hostServiceServiceJars 	= nagiosStatusService.getServiceStatus (nagiosHostEtl, "Service JARS");
+		hostServiceWfsAvailability = nagiosStatusService.getServiceStatus (nagiosHostCds, "WFS availability");     
+		hostServiceWmsAvailability = nagiosStatusService.getServiceStatus (nagiosHostCds, "WMS availability");     
+		hostServiceWmsPerformance = nagiosStatusService.getServiceStatus (nagiosHostCds, "WMS performance");      
+		
+		//		System.out.println("Hosts:    [" + nagiosStatusService.getAvailableHosts() + "]");
 //		System.out.println("Services: [" + nagiosStatusService.getAvailableServices() + "]");
 
 		/** Bepaal de 'traffic light' status
@@ -153,22 +177,22 @@ public class MonitoringController {
 		 *  Eind score is het maximum van de afzonderlijke scores
 		 */
 		// status Data
-		int serviceAbortedEtlJobs 		= Math.round((hostAServiceAbortedEtlJobs.getCurrentState() + hostBServiceAbortedEtlJobs.getCurrentState()) / 2.0F);
-		int serviceEtlJobAge 			= Math.round((hostAServiceEtlJobAge.getCurrentState() + hostBServiceEtlJobAge.getCurrentState()) / 2.0F);
-		int serviceServiceJars 			= Math.round((hostAServiceServiceJars.getCurrentState() + hostBServiceServiceJars.getCurrentState()) / 2.0F);
-		int serviceDatabaseReplication 	= Math.max(hostAServiceDatabaseReplication.getCurrentState(), hostBServiceDatabaseReplication.getCurrentState());
-		statusData =  Math.max(Math.max(Math.max(serviceAbortedEtlJobs, serviceEtlJobAge), serviceServiceJars), serviceDatabaseReplication);
+		int serviceAbortedEtlJobs 		= hostServiceAbortedEtlJobs.getCurrentState();
+		int serviceEtlJobAge 			= hostServiceEtlJobAge.getCurrentState();
+		int serviceServiceJars 			= hostServiceServiceJars.getCurrentState() ;
+	//	int serviceDatabaseReplication 	= Math.max(hostAServiceDatabaseReplication.getCurrentState(), hostBServiceDatabaseReplication.getCurrentState());
+		statusData =  Math.max(Math.max(serviceAbortedEtlJobs, serviceEtlJobAge), serviceServiceJars);
 		model.addAttribute("StatusData", getStatusLight(statusData));
 		String statusDataTitle = "Aborted ETL Jobs: " + getStatusString(serviceAbortedEtlJobs) + 
 			", ETL Job Age: " 			+ getStatusString(serviceEtlJobAge) + 
-			", Service jars: " 			+ getStatusString(serviceServiceJars) + 
-			", Database replication: " 	+ getStatusString(serviceDatabaseReplication);
+			", Service jars: " 			+ getStatusString(serviceServiceJars) ;
+			
 		model.addAttribute("StatusDataTitle", statusDataTitle);
 
 		// status Services
-		int serviceWfsAvailabilityStatus = Math.round((hostAServiceWfsAvailability.getCurrentState() + hostBServiceWfsAvailability.getCurrentState()) / 2.0F);
-		int serviceWmsAvailabilityStatus = Math.round((hostAServiceWmsAvailability.getCurrentState() + hostBServiceWmsAvailability.getCurrentState()) / 2.0F);
-		int serviceWmsPerformanceStatus  = Math.round((hostAServiceWmsPerformance.getCurrentState() + hostBServiceWmsPerformance.getCurrentState()) / 2.0F);
+		int serviceWfsAvailabilityStatus = hostServiceWfsAvailability.getCurrentState();
+		int serviceWmsAvailabilityStatus = hostServiceWmsAvailability.getCurrentState() ;
+		int serviceWmsPerformanceStatus  = hostServiceWmsPerformance.getCurrentState();
 		statusServices = Math.max(Math.max(serviceWfsAvailabilityStatus, serviceWmsAvailabilityStatus), serviceWmsPerformanceStatus);
 		model.addAttribute("StatusServices", getStatusLight(statusServices));
 		String statusServicesTitle = 

@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>nl.ipo.cds</groupId>
 	<artifactId>cds-parent</artifactId>
-    <version>2.6</version>
+    <version>2.8</version>
 	<packaging>pom</packaging>
 
 	<properties>
@@ -285,7 +285,7 @@
 			<dependency>
 				<groupId>nl.ipo.cds</groupId>
 				<artifactId>postgresql</artifactId>
-                <version>2.6</version>
+                <version>2.8</version>
 				<scope>compile</scope>
 			</dependency>
 			<dependency>
@@ -296,7 +296,7 @@
 			<dependency>
 				<groupId>nl.ipo.cds</groupId>
 				<artifactId>admin</artifactId>
-                <version>2.6</version>
+                <version>2.8</version>
 				<type>war</type>
 				<scope>compile</scope>
 			</dependency>
@@ -310,14 +310,14 @@
 			<dependency>
 				<groupId>nl.ipo.cds</groupId>
 				<artifactId>cds-test</artifactId>
-                <version>2.6</version>
+                <version>2.8</version>
 				<type>jar</type>
 				<scope>compile</scope>
 			</dependency>
 			<dependency>
 				<groupId>nl.ipo.cds</groupId>
 				<artifactId>commons</artifactId>
-                <version>2.6</version>
+                <version>2.8</version>
 				<type>jar</type>
 				<scope>compile</scope>
 			</dependency>
@@ -331,48 +331,48 @@
 			<dependency>
 				<groupId>nl.ipo.cds</groupId>
 				<artifactId>domain</artifactId>
-                <version>2.6</version>
+                <version>2.8</version>
 				<type>jar</type>
 				<scope>compile</scope>
 			</dependency>
 			<dependency>
 				<groupId>nl.ipo.cds</groupId>
 				<artifactId>mappings</artifactId>
-                <version>2.6</version>
+                <version>2.8</version>
 				<type>jar</type>
 			</dependency>
 			<dependency>
 				<groupId>nl.ipo.cds</groupId>
 				<artifactId>catalog-metadata</artifactId>
-                <version>2.6</version>
+                <version>2.8</version>
 				<type>jar</type>
 				<scope>compile</scope>
 			</dependency>
 			<dependency>
 				<groupId>nl.ipo.cds</groupId>
 				<artifactId>domain-metadata</artifactId>
-                <version>2.6</version>
+                <version>2.8</version>
 				<type>jar</type>
 				<scope>compile</scope>
 			</dependency>
 			<dependency>
 				<groupId>nl.ipo.cds</groupId>
 				<artifactId>etl-proces</artifactId>
-                <version>2.6</version>
+                <version>2.8</version>
 				<type>jar</type>
 				<scope>compile</scope>
 			</dependency>
 			<dependency>
 				<groupId>nl.ipo.cds</groupId>
 				<artifactId>etl-reporting</artifactId>
-                <version>2.6</version>
+                <version>2.8</version>
 				<type>jar</type>
 				<scope>compile</scope>
 			</dependency>
 			<dependency>
 				<groupId>nl.ipo.cds</groupId>
 				<artifactId>etl-reporting</artifactId>
-                <version>2.6</version>
+                <version>2.8</version>
 				<classifier>tests</classifier>
 				<type>jar</type>
 				<scope>test</scope>
@@ -380,21 +380,21 @@
 			<dependency>
 				<groupId>nl.ipo.cds</groupId>
 				<artifactId>managerDB</artifactId>
-                <version>2.6</version>
+                <version>2.8</version>
 				<type>jar</type>
 				<scope>compile</scope>
 			</dependency>
 			<dependency>
 				<groupId>nl.ipo.cds</groupId>
 				<artifactId>metadataDB</artifactId>
-                <version>2.6</version>
+                <version>2.8</version>
 				<type>jar</type>
 				<scope>compile</scope>
 			</dependency>
 			<dependency>
 				<groupId>nl.ipo.cds</groupId>
 				<artifactId>resources</artifactId>
-                <version>2.6</version>
+                <version>2.8</version>
 				<type>jar</type>
 				<scope>compile</scope>
 			</dependency>
@@ -408,7 +408,7 @@
 			<dependency>
 				<groupId>nl.ipo.cds</groupId>
 				<artifactId>managerDB</artifactId>
-                <version>2.6</version>
+                <version>2.8</version>
 				<type>zip</type>
 				<classifier>sql</classifier>
 				<scope>compile</scope>
@@ -416,21 +416,21 @@
 			<dependency>
 				<groupId>nl.ipo.cds</groupId>
 				<artifactId>resources</artifactId>
-                <version>2.6</version>
+                <version>2.8</version>
 				<classifier>tst</classifier>
 				<scope>compile</scope>
 			</dependency>
 			<dependency>
 				<groupId>nl.ipo.cds</groupId>
 				<artifactId>resources</artifactId>
-                <version>2.6</version>
+                <version>2.8</version>
 				<classifier>prod</classifier>
 				<scope>compile</scope>
 			</dependency>
 			<dependency>
 				<groupId>nl.ipo.cds</groupId>
 				<artifactId>etl-proces</artifactId>
-                <version>2.6</version>
+                <version>2.8</version>
 				<type>jar</type>
 				<classifier>manager</classifier>
 				<scope>compile</scope>
@@ -438,7 +438,7 @@
 			<dependency>
 				<groupId>nl.ipo.cds</groupId>
 				<artifactId>job-executor</artifactId>
-                <version>2.6</version>
+                <version>2.8</version>
 				<type>jar</type>
 				<classifier>manager</classifier>
 				<scope>compile</scope>
@@ -446,7 +446,7 @@
 			<dependency>
 				<groupId>nl.ipo.cds</groupId>
 				<artifactId>etl-proces</artifactId>
-                <version>2.6</version>
+                <version>2.8</version>
 				<type>zip</type>
 				<classifier>sql</classifier>
 				<scope>compile</scope>
@@ -462,7 +462,7 @@
 			<dependency>
 				<groupId>nl.ipo.cds</groupId>
 				<artifactId>resources</artifactId>
-                <version>2.6</version>
+                <version>2.8</version>
 				<type>jar</type>
 				<classifier>tests</classifier>
 				<scope>compile</scope>
@@ -470,28 +470,28 @@
 			<dependency>
 				<groupId>nl.ipo.cds</groupId>
 				<artifactId>nagios-status</artifactId>
-                <version>2.6</version>
+                <version>2.8</version>
 				<type>jar</type>
 				<scope>compile</scope>
 			</dependency>
 			<dependency>
 				<groupId>nl.ipo.cds</groupId>
 				<artifactId>validation</artifactId>
-                <version>2.6</version>
+                <version>2.8</version>
 				<type>jar</type>
 				<scope>compile</scope>
 			</dependency>
 			<dependency>
 				<groupId>nl.ipo.cds</groupId>
 				<artifactId>etl-test</artifactId>
-                <version>2.6</version>
+                <version>2.8</version>
 				<type>jar</type>
 				<scope>compile</scope>
 			</dependency>
 			<dependency>
 				<groupId>nl.ipo.cds</groupId>
 				<artifactId>post-validation</artifactId>
-                <version>2.6</version>
+                <version>2.8</version>
 				<type>jar</type>
 				<scope>compile</scope>
 			</dependency>

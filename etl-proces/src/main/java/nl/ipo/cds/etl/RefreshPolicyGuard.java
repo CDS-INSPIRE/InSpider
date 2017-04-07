@@ -72,7 +72,7 @@ public class RefreshPolicyGuard {
 			if (isRefreshAllowed) {
 				technicalLog.debug("refresh ok: last modification info changed");
 			} else {
-				technicalLog.debug("refresh veto: last modification info unchanged");				
+				technicalLog.debug("refresh veto: last modification info unchanged");
 			}
 			break;
 		case ONCE_A_DAY:
